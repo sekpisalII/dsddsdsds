@@ -13,15 +13,15 @@ const FooterCard= () => {
               src="../src/assets/stemlogo-removebg-preview.png" className="w-20 h-15 mt-4"
               alt="Stem Logo"
             />
-            <p className="text-[17px]">
+            <p className="text-base text-gray-500/90">
             STEM website ​ដែល​រចនា​ឡើង​សម្រាប់​សិស្សដើម្បី​ចូល​រួម​ក្នុង​ការ​សិក្សា​សហការ និង​ការ​ចែក​រំលែក​ចំណេះដឹង <br />
              អ្នកប្រើប្រាស់មានការគ្រប់គ្រងពេញលេញលើការធ្វើដំណើររបស់ពួកគេនិងបង្កើតមេរៀននៅក្នុងវេទិកា។
             </p>
           </div>
           <div className="grid grid-cols-2 gap-8 sm:mt-4 sm:grid-cols-3 sm:gap-6 ">
             <div>
-              <Footer.Title title="គេហទំព័រ" className="font-suwannaphum text-2xl font-bold text-black "/>
-              <Footer.LinkGroup col className="text-[16px] font-suwannaphum -ml-5">
+              <Footer.Title title="គេហទំព័រ" className="font-suwannaphum text-lg font-bold text-black/90"/>
+              <Footer.LinkGroup col className="text-base font-suwannaphum -ml-5">
                 <Footer.Link href="#">មេរៀន</Footer.Link>
                 <Footer.Link href="#">ប្លុក</Footer.Link>
                 <Footer.Link href="#">វេទិកា</Footer.Link>
@@ -29,19 +29,16 @@ const FooterCard= () => {
               </Footer.LinkGroup>
             </div>
             <div>
-              <Footer.Title title="ព័ឥមាន" className="font-suwannaphum text-2xl font-bold text-black"/>
-              <Footer.LinkGroup col className="text-[16px] font-suwannaphum -ml-5">
+              <Footer.Title title="ព័ត៌មាន" className="font-suwannaphum text-lg font-bold text-black/90"/>
+              <Footer.LinkGroup col className="text-base font-suwannaphum -ml-5">
+                <Footer.Link href="#">លក្ខខណ្ឌប្រើប្រាស់</Footer.Link>
+                <Footer.Link href="#">សាកសួរព័ត៌មាន</Footer.Link>
                 <Footer.Link href="#">អំពីយើង</Footer.Link>
-                <Footer.Link href="#">លក្ខខណ្ឌប្រើប្រាស់</Footer.Link>
-                <Footer.Link href="#">លក្ខខណ្ឌប្រើប្រាស់</Footer.Link>
-                <Footer.Link href="#">សាកសួរព័ឥមាន</Footer.Link>
-                <Footer.Link href="#">លក្ខខណ្ឌផ្សេងៗ</Footer.Link>
               </Footer.LinkGroup>
             </div>
             <div>
-              <Footer.Title title="ទំនាក់ទំនងមកពួកយើង" className="font-suwannaphum text-2xl font-bold text-black"/>
-              <Footer.LinkGroup col className="text-[16px] font-suwannaphum -ml-5">
-                <Footer.Link href="#">ទំនាក់ទំនងមកពួកយើង</Footer.Link>
+              <Footer.Title title="ទំនាក់ទំនងមកពួកយើង" className="font-suwannaphum text-lg font-bold text-black/90"/>
+              <Footer.LinkGroup col className="text-base font-suwannaphum -ml-5">
                 <Footer.Link href="#">អាសយដ្ធាន</Footer.Link>
                 <Footer.Link href="#">ក្រុមការងារ</Footer.Link>
                 <Footer.Link href="#">ផ្សេងៗ</Footer.Link>
