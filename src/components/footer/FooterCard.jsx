@@ -10,7 +10,7 @@ const FooterCard= () => {
         <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
           <div>
             <Footer.Brand
-              src="/Stem_logo-removebg-preview.png" className="w-20 h-15 mt-4"
+              src="../src/assets/stemlogo-removebg-preview.png" className="w-20 h-15 mt-4"
               alt="Stem Logo"
             />
             <p className="text-[17px]">
