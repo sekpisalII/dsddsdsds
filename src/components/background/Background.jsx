@@ -63,5 +63,4 @@ const Background = () => {
     </section>
   );
 };
-
 export default Background;

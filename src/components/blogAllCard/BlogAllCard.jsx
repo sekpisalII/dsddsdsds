@@ -1,5 +1,4 @@
 import React from "react";
-
 const BlogAllCard = () => {
   return (
     <>
@@ -42,5 +41,4 @@ const BlogAllCard = () => {
     </>
   );
 };
-
 export default BlogAllCard;
