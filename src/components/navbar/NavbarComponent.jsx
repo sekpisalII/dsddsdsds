@@ -1,6 +1,6 @@
-import React from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import { Avatar, Dropdown, Navbar, Button } from 'flowbite-react';
+import React from "react";
+import { NavLink, Link } from "react-router-dom";
+import { Avatar, Dropdown, Navbar, Button } from "flowbite-react";
 const NavbarComponent = () => {
   return (
     <>
@@ -9,13 +9,17 @@ const NavbarComponent = () => {
           <Navbar.Brand>
             <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
               <Link as={Link} to="/">
-                <img className="w-[90px] h-[60px] object-cover"  src="../src/assets/stemlogo-removebg-preview.png" alt="" />
+                <img
+                  className="w-[90px] h-[60px] object-cover"
+                  src="../src/assets/stemlogo-removebg-preview.png"
+                  alt=""
+                />
               </Link>
             </span>
           </Navbar.Brand>
           <div className="flex md:order-2 items-center space-x-4">
             <Link to="/login">
-              <Button className="border-2 border-slate-600 bg-white hover:bg-slate-300 text-black font-suwannaphum">
+              <Button className="border-1 hover:bg-blue-500 text-white font-suwannaphum">
                 ចូលគណនី
               </Button>
             </Link>
@@ -23,12 +27,18 @@ const NavbarComponent = () => {
               arrowIcon={false}
               inline
               label={
-                <Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded />
+                <Avatar
+                  alt="User settings"
+                  img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                  rounded
+                />
               }
             >
               <Dropdown.Header>
                 <span className="block text-sm">Bonnie Green</span>
-                <span className="block truncate text-sm font-medium">name@flowbite.com</span>
+                <span className="block truncate text-sm font-medium">
+                  name@flowbite.com
+                </span>
               </Dropdown.Header>
               <Dropdown.Item>Dashboard</Dropdown.Item>
               <Dropdown.Item>Settings</Dropdown.Item>
@@ -42,7 +52,9 @@ const NavbarComponent = () => {
             <NavLink
               to="/book"
               className={({ isActive }) =>
-                `font-suwannaphum text-2xl font-medium  text-white ${isActive ? 'text-yellow-300' : ''}`
+                `font-suwannaphum text-2xl font-medium  text-white ${
+                  isActive ? "text-yellow-300" : ""
+                }`
               }
             >
               សៀវភៅ
@@ -50,7 +62,9 @@ const NavbarComponent = () => {
             <NavLink
               to="/lesson"
               className={({ isActive }) =>
-                `font-suwannaphum text-2xl font-medium  text-white ${isActive ? 'text-yellow-300' : ''}`
+                `font-suwannaphum text-2xl font-medium  text-white ${
+                  isActive ? "text-yellow-300" : ""
+                }`
               }
             >
               មេរៀន
@@ -58,7 +72,9 @@ const NavbarComponent = () => {
             <NavLink
               to="/forum"
               className={({ isActive }) =>
-                `font-suwannaphum text-2xl font-medium  text-white ${isActive ? 'text-yellow-300' : ''}`
+                `font-suwannaphum text-2xl font-medium  text-white ${
+                  isActive ? "text-yellow-300" : ""
+                }`
               }
             >
               វេទិកា
@@ -66,7 +82,9 @@ const NavbarComponent = () => {
             <NavLink
               to="/blog"
               className={({ isActive }) =>
-                `font-suwannaphum text-2xl font-medium  text-white ${isActive ? 'text-yellow-300' : ''}`
+                `font-suwannaphum text-2xl font-medium  text-white ${
+                  isActive ? "text-yellow-300" : ""
+                }`
               }
             >
               ប្លុក
@@ -74,7 +92,9 @@ const NavbarComponent = () => {
             <NavLink
               to="/about-us"
               className={({ isActive }) =>
-                `font-suwannaphum text-2xl font-medium  text-white ${isActive ? 'text-yellow-300' : ''}`
+                `font-suwannaphum text-2xl font-medium  text-white ${
+                  isActive ? "text-yellow-300" : ""
+                }`
               }
             >
               អំពីយើង
@@ -84,8 +104,6 @@ const NavbarComponent = () => {
       </nav>
     </>
   );
-}
+};
 
 export default NavbarComponent;
-
-            

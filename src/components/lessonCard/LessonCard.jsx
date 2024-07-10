@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
 
 const LessonCard = () => {
   return (
     <>
       <section className="flex justify-between mt-5 w-[80%] mx-auto font-suwannaphum mb-4">
-        <h3 className="text-black text-3xl">មេរៀន</h3>
+        <h3 className="font-bold text-[#16A1DF] text-3xl">មេរៀន</h3>
         <span className="flex items-center text-black text-[20px]">
           បង្ហាញទាំងអស់
           <FaArrowRightLong />
@@ -15,7 +15,11 @@ const LessonCard = () => {
       <section className="grid grid-flow-row-dense grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7 w-[80%] mx-auto">
         <div className="relative flex flex-col justify-between col-span-1 h-[480px] overflow-hidden rounded-xl bg-white text-gray-700 shadow-md">
           <div className="relative overflow-hidden bg-transparent rounded-none">
-            <img className="h-80 w-full object-cover" src="../src/assets/stem_lesson.png" alt="" />
+            <img
+              className="h-80 w-full object-cover"
+              src="../src/assets/stem_lesson.png"
+              alt=""
+            />
           </div>
           <div className="p-2">
             <h4 className="block font-suwannaphum text-2xl font-semibold leading-snug tracking-normal text-blue-gray-900">
@@ -50,7 +54,11 @@ const LessonCard = () => {
 
         <div className="relative flex flex-col justify-between col-span-1 h-[480px] overflow-hidden rounded-xl bg-white text-gray-700 shadow-md">
           <div className="relative overflow-hidden bg-transparent rounded-none">
-            <img className="h-80 w-full object-cover" src="../src/assets/stem_lesson.png" alt="" />
+            <img
+              className="h-80 w-full object-cover"
+              src="../src/assets/stem_lesson.png"
+              alt=""
+            />
           </div>
           <div className="p-2">
             <h4 className="block font-suwannaphum text-2xl font-semibold leading-snug tracking-normal text-blue-gray-900">
@@ -85,12 +93,16 @@ const LessonCard = () => {
 
         <div className="relative flex flex-col justify-between col-span-1 lg:col-span-2 h-[480px] overflow-hidden rounded-xl bg-white text-gray-700 shadow-md">
           <div className="relative overflow-hidden bg-transparent rounded-none">
-            <img className="h-full w-full object-cover" src="https://static.nsta.org/images/products/PP%20STEM%20K-2_cvr.jpg" alt="" />
+            <img
+              className="h-full w-full object-cover"
+              src="https://static.nsta.org/images/products/PP%20STEM%20K-2_cvr.jpg"
+              alt=""
+            />
           </div>
         </div>
       </section>
     </>
   );
-}
+};
 
 export default LessonCard;
