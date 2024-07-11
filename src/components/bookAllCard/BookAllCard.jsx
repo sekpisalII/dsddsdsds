@@ -27,7 +27,7 @@ const BookAllCard = ({ book }) => {
                 </button>
               </div>
             </div>
-            <span className="text-gray-600 mt-4">
+            <span className="text-gray-600 mt-4 font-[10px]">
               create by : {book.created_by}
             </span>
           </div>

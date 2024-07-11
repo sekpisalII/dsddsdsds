@@ -24,11 +24,11 @@ const Book = () => {
       <ButtonMenu />
       <section
         id="Projects"
-        className=" p-10 w-[83%] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7 mb-5"
+        className="max-w-screen-2xl p-10  mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mb-5 "
       >
         {books &&
           books.map((book, index) => (
-            <section className="gep-0" key={index}>
+            <section key={index}>
               <BookAllCard book={book} />
             </section>
           ))}
