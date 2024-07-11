@@ -1,44 +1,210 @@
-import React from "react";
-const BlogAllCard = () => {
+import React from 'react';
+
+const BookAllCard = () => {
   return (
-    <>
-      <div className=" bg-white rounded-lg shadow-lg overflow-hidden max-w-lg w-full">
-        {/* <div className="grid grid-cols-4 gap-7 rounded-t-lg"> */}
-        <div className="radies shadow-xl bg-white lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal rounded-lg">
+    <section className="-mt-2 max-w-screen-2xl w-full p-10 mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7 mb-5">
+        <div className="bg-white rounded-lg shadow-md overflow-hidden max-w-lg w-full">
           <img
-            src="src/assets/blog-card.webp"
-            className="w-full rounded-t-lg"
-            alt="Blog"
+            src="../src/assets/CardBook1.jpg"
+            alt="Mountain"
+            className="w-full h-[180px] object-cover"
           />
-          <div className="p-2 pt-2">
-            <div className="mb-0">
-              <p className="text-gray-700 text-[15px] -mt-1 pt-3 font-suwannaphum">
-                របៀបបង្កើតថ្នាក់នៅក្នុងសាលា-(studio.stem)របៀបបង្កើតថ្នាក់នៅក្នុងសាលា
-              </p>
-            </div>
-            <div className="flex items-center">
-              <a href="#">
-                <img
-                  className="w-10 h-10 rounded-full mr-4"
-                  src="https://weteka.org/_next/image?url=https%3A%2F%2Fapi.weteka.org%2Fpublic%2Forgs%2F63fc7c5751508ff62e6ce857%2Fimages%2F287ea2c8-265d-4c3f-926b-8bb1c53701bd.png&w=64&q=75"
-                  alt="Avatar of Jonathan Reinink"
-                />
-              </a>
-              <a
-                href="#"
-                className="text-gray-600 font-semibold leading-none hover:text-indigo-600 font-suwannaphum text-[18px] -mt-4"
-              >
-                សាលាឌីជីថល
-              </a>
-              <p className="text-gray-600 font-suwannaphum mb-4 text-[15px] pt-7 -ml-[100px]">
-                អ្នកតាមដាន: 664 នាក់
-              </p>
+          <div className="p-[10px]">
+            <h2 className="text-[18px] font-bold text-gray-800 mb-2 font-suwannaphum">
+              កំណែទម្រង់កម្រិតខ្ពស់
+            </h2>
+            <p className="text-gray-700 text-[17px] leading-tight mt-3 font-suwannaphum line-clamp-2">
+              វីធីសាស្រ្តនឹងលំហាត់ជាច្រើនសុំម្រាប់អនុវត្តន៍ដើម្បីជួយសម្រួលដល់ការសិក្សារបស់និស......
+            </p>
+            <div className="flex justify-between items-center">
+              <div className="flex justify-center">
+                <button className="h-[30px] mt-4 rounded-md bg-gradient-to-r from-blue-500 to-blue-700 px-2 py-1 text-white text-[15px] font-suwannaphum">
+                  ឥតគិតថ្លៃ
+                </button>
+              </div>
+              <span className="text-gray-600 mt-5 font-suwannaphum">
+                ចំនួនអ្នកមើល​​ : ១៤៤
+              </span>
             </div>
           </div>
         </div>
-      </div>
-      {/* </div> */}
-    </>
+        <div className="bg-white rounded-lg shadow-md overflow-hidden max-w-lg w-full">
+          <img
+            src="../src/assets/CardBook2.jpg"
+            alt="Mountain"
+            className="w-full h-[180px] object-cover"
+          />
+          <div className="p-[10px]">
+            <h2 className="text-[18px] font-bold text-gray-800 mb-2 font-suwannaphum">
+              កំណែទម្រង់កម្រិតខ្ពស់
+            </h2>
+            <p className="text-gray-700 text-[17px] leading-tight mt-3 font-suwannaphum line-clamp-2">
+              វីធីសាស្រ្តនឹងលំហាត់ជាច្រើនសុំម្រាប់អនុវត្តន៍ដើម្បីជួយសម្រួលដល់ការសិក្សារបស់និស......
+            </p>
+            <div className="flex justify-between items-center">
+              <div className="flex justify-center">
+                <button className="h-[30px] mt-4 rounded-md bg-gradient-to-r from-blue-500 to-blue-700 px-2 py-1 text-white text-[15px] font-suwannaphum">
+                  ឥតគិតថ្លៃ
+                </button>
+              </div>
+              <span className="text-gray-600 mt-5 font-suwannaphum">
+                ចំនួនអ្នកមើល​​ : ១៤៤
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="bg-white rounded-lg shadow-md overflow-hidden max-w-lg w-full">
+          <img
+            src="../src/assets/CardBook3.jpg"
+            alt="Mountain"
+            className="w-full h-[180px] object-cover"
+          />
+          <div className="p-[10px]">
+            <h2 className="text-[18px] font-bold text-gray-800 mb-2 font-suwannaphum">
+              កំណែទម្រង់កម្រិតខ្ពស់
+            </h2>
+            <p className="text-gray-700 text-[17px] leading-tight mt-3 font-suwannaphum line-clamp-2">
+              វីធីសាស្រ្តនឹងលំហាត់ជាច្រើនសុំម្រាប់អនុវត្តន៍ដើម្បីជួយសម្រួលដល់ការសិក្សារបស់និស......
+            </p>
+            <div className="flex justify-between items-center">
+              <div className="flex justify-center">
+                <button className="h-[30px] mt-4 rounded-md bg-gradient-to-r from-blue-500 to-blue-700 px-2 py-1 text-white text-[15px] font-suwannaphum">
+                  ឥតគិតថ្លៃ
+                </button>
+              </div>
+              <span className="text-gray-600 mt-5 font-suwannaphum">
+                ចំនួនអ្នកមើល​​ : ១៤៤
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="bg-white rounded-lg shadow-md overflow-hidden max-w-lg w-full">
+          <img
+          src="../src/assets/CardBook4.jpg"
+            alt="Mountain"
+            className="w-full h-[180px] object-cover"
+          />
+          <div className="p-[10px]">
+            <h2 className="text-[18px] font-bold text-gray-800 mb-2 font-suwannaphum">
+              កំណែទម្រង់កម្រិតខ្ពស់
+            </h2>
+            <p className="text-gray-700 text-[17px] leading-tight mt-3 font-suwannaphum line-clamp-2">
+              វីធីសាស្រ្តនឹងលំហាត់ជាច្រើនសុំម្រាប់អនុវត្តន៍ដើម្បីជួយសម្រួលដល់ការសិក្សារបស់និស......
+            </p>
+            <div className="flex justify-between items-center">
+              <div className="flex justify-center">
+                <button className="h-[30px] mt-4 rounded-md bg-gradient-to-r from-blue-500 to-blue-700 px-2 py-1 text-white text-[15px] font-suwannaphum">
+                  ឥតគិតថ្លៃ
+                </button>
+              </div>
+              <span className="text-gray-600 mt-5 font-suwannaphum">
+                ចំនួនអ្នកមើល​​ : ១៤៤
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="bg-white rounded-lg shadow-md overflow-hidden max-w-lg w-full">
+          <img
+          src="../src/assets/CardBook5.jpg"
+            alt="Mountain"
+            className="w-full h-[180px] object-cover"
+          />
+          <div className="p-[10px]">
+            <h2 className="text-[18px] font-bold text-gray-800 mb-2 font-suwannaphum">
+              កំណែទម្រង់កម្រិតខ្ពស់
+            </h2>
+            <p className="text-gray-700 text-[17px] leading-tight mt-3 font-suwannaphum line-clamp-2">
+              វីធីសាស្រ្តនឹងលំហាត់ជាច្រើនសុំម្រាប់អនុវត្តន៍ដើម្បីជួយសម្រួលដល់ការសិក្សារបស់និស......
+            </p>
+            <div className="flex justify-between items-center">
+              <div className="flex justify-center">
+                <button className="h-[30px] mt-4 rounded-md bg-gradient-to-r from-blue-500 to-blue-700 px-2 py-1 text-white text-[15px] font-suwannaphum">
+                  ឥតគិតថ្លៃ
+                </button>
+              </div>
+              <span className="text-gray-600 mt-5 font-suwannaphum">
+                ចំនួនអ្នកមើល​​ : ១៤៤
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="bg-white rounded-lg shadow-md overflow-hidden max-w-lg w-full">
+          <img
+          src="../src/assets/CardBook6.jpg"
+            alt="Mountain"
+            className="w-full h-[180px] object-cover"
+          />
+          <div className="p-[10px]">
+            <h2 className="text-[18px] font-bold text-gray-800 mb-2 font-suwannaphum">
+              កំណែទម្រង់កម្រិតខ្ពស់
+            </h2>
+            <p className="text-gray-700 text-[17px] leading-tight mt-3 font-suwannaphum line-clamp-2">
+              វីធីសាស្រ្តនឹងលំហាត់ជាច្រើនសុំម្រាប់អនុវត្តន៍ដើម្បីជួយសម្រួលដល់ការសិក្សារបស់និស......
+            </p>
+            <div className="flex justify-between items-center">
+              <div className="flex justify-center">
+                <button className="h-[30px] mt-4 rounded-md bg-gradient-to-r from-blue-500 to-blue-700 px-2 py-1 text-white text-[15px] font-suwannaphum">
+                  ឥតគិតថ្លៃ
+                </button>
+              </div>
+              <span className="text-gray-600 mt-5 font-suwannaphum">
+                ចំនួនអ្នកមើល​​ : ១៤៤
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="bg-white rounded-lg shadow-md overflow-hidden max-w-lg w-full">
+          <img
+          src="../src/assets/CardBook9.jpg"
+            alt="Mountain"
+            className="w-full h-[180px] object-cover"
+          />
+          <div className="p-[10px]">
+            <h2 className="text-[18px] font-bold text-gray-800 mb-2 font-suwannaphum">
+              កំណែទម្រង់កម្រិតខ្ពស់
+            </h2>
+            <p className="text-gray-700 text-[17px] leading-tight mt-3 font-suwannaphum line-clamp-2">
+              វីធីសាស្រ្តនឹងលំហាត់ជាច្រើនសុំម្រាប់អនុវត្តន៍ដើម្បីជួយសម្រួលដល់ការសិក្សារបស់និស......
+            </p>
+            <div className="flex justify-between items-center">
+              <div className="flex justify-center">
+                <button className="h-[30px] mt-4 rounded-md bg-gradient-to-r from-blue-500 to-blue-700 px-2 py-1 text-white text-[15px] font-suwannaphum">
+                  ឥតគិតថ្លៃ
+                </button>
+              </div>
+              <span className="text-gray-600 mt-5 font-suwannaphum">
+                ចំនួនអ្នកមើល​​ : ១៤៤
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="bg-white rounded-lg shadow-md overflow-hidden max-w-lg w-full">
+          <img
+            src="../src/assets/CardBook8.jpg"
+            alt="Mountain"
+            className="w-full h-[180px] object-cover"
+          />
+          <div className="p-[10px]">
+            <h2 className="text-[18px] font-bold text-gray-800 mb-2 font-suwannaphum">
+              កំណែទម្រង់កម្រិតខ្ពស់
+            </h2>
+            <p className="text-gray-700 text-[17px] leading-tight mt-3 font-suwannaphum line-clamp-2">
+              វីធីសាស្រ្តនឹងលំហាត់ជាច្រើនសុំម្រាប់អនុវត្តន៍ដើម្បីជួយសម្រួលដល់ការសិក្សារបស់និស......
+            </p>
+            <div className="flex justify-between items-center">
+              <div className="flex justify-center">
+                <button className="h-[30px] mt-4 rounded-md bg-gradient-to-r from-blue-500 to-blue-700 px-2 py-1 text-white text-[15px] font-suwannaphum">
+                  ឥតគិតថ្លៃ
+                </button>
+              </div>
+              <span className="text-gray-600 mt-5 font-suwannaphum">
+                ចំនួនអ្នកមើល​​ : ១៤៤
+              </span>
+            </div>
+          </div>
+        </div>
+    </section>
   );
 };
-export default BlogAllCard;
+
+export default BookAllCard;

@@ -1,38 +1,208 @@
 import React from 'react';
 const LessonAllCard = ()  => {
   return (
-    <div className="flex flex-col bg-gray-100">
-        <div
-          className="bg-white rounded-lg shadow-lg overflow-hidden max-w-lg w-full"
-        >
+    <section className="-mt-2 max-w-screen-2xl w-full p-10 mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7 mb-5">
+        <div className="bg-white rounded-lg shadow-md overflow-hidden max-w-lg w-full">
           <img
-            src="https://images.unsplash.com/photo-1454496522488-7a8e488e8606"
+            src="../src/assets/CardLesson1.jpg"
             alt="Mountain"
             className="w-full h-[180px] object-cover"
           />
           <div className="p-[10px]">
-            <h2 className="text-[18px] font-bold text-gray-800 mb-2">
-              Beautiful Mountain View
+            <h2 className="text-[18px] font-bold text-gray-800 mb-2 font-suwannaphum">
+              កំណែទម្រង់កម្រិតខ្ពស់
             </h2>
-            <p className="text-gray-700 text-[14px] leading-tight mt-3">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-              eu sapien porttitor ......
+            <p className="text-gray-700 text-[17px] leading-tight mt-3 font-suwannaphum line-clamp-2">
+              វីធីសាស្រ្តនឹងលំហាត់ជាច្រើនសុំម្រាប់អនុវត្តន៍ដើម្បីជួយសម្រួលដល់ការសិក្សារបស់និស......
             </p>
             <div className="flex justify-between items-center">
-              <div className="flex items-center">
-                <div className="flex justify-center">
-                  <button
-                    className="h-[30px] mt-4 rounded-md bg-gradient-to-r bg-blue-600 p-4 px-3 py-1 text-white text-[14px]"
-                  >
-                    Let's Go
-                  </button>
-                </div>
+              <div className="flex justify-center">
+                <button className="h-[30px] mt-4 rounded-md bg-gradient-to-r from-blue-500 to-blue-700 px-2 py-1 text-white text-[15px] font-suwannaphum">
+                  ឥតគិតថ្លៃ
+                </button>
               </div>
-              <span className="text-gray-600 mt-4">2 hours ago</span>
+              <span className="text-gray-600 mt-5 font-suwannaphum">
+                ចំនួនអ្នកមើល​​ : ៥៥៥
+              </span>
             </div>
           </div>
         </div>
-      </div>
+        <div className="bg-white rounded-lg shadow-md overflow-hidden max-w-lg w-full">
+          <img
+            src="../src/assets/CardLesson2.jpg"
+            alt="Mountain"
+            className="w-full h-[180px] object-cover"
+          />
+          <div className="p-[10px]">
+            <h2 className="text-[18px] font-bold text-gray-800 mb-2 font-suwannaphum">
+              កំណែទម្រង់កម្រិតខ្ពស់
+            </h2>
+            <p className="text-gray-700 text-[17px] leading-tight mt-3 font-suwannaphum line-clamp-2">
+              វីធីសាស្រ្តនឹងលំហាត់ជាច្រើនសុំម្រាប់អនុវត្តន៍ដើម្បីជួយសម្រួលដល់ការសិក្សារបស់និស......
+            </p>
+            <div className="flex justify-between items-center">
+              <div className="flex justify-center">
+                <button className="h-[30px] mt-4 rounded-md bg-gradient-to-r from-blue-500 to-blue-700 px-2 py-1 text-white text-[15px] font-suwannaphum">
+                  ឥតគិតថ្លៃ
+                </button>
+              </div>
+              <span className="text-gray-600 mt-5 font-suwannaphum">
+                ចំនួនអ្នកមើល​​ :  ៥៥៥
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="bg-white rounded-lg shadow-md overflow-hidden max-w-lg w-full">
+          <img
+            src="../src/assets/CardLesson3.jpg"
+            alt="Mountain"
+            className="w-full h-[180px] object-cover"
+          />
+          <div className="p-[10px]">
+            <h2 className="text-[18px] font-bold text-gray-800 mb-2 font-suwannaphum">
+              កំណែទម្រង់កម្រិតខ្ពស់
+            </h2>
+            <p className="text-gray-700 text-[17px] leading-tight mt-3 font-suwannaphum line-clamp-2">
+              វីធីសាស្រ្តនឹងលំហាត់ជាច្រើនសុំម្រាប់អនុវត្តន៍ដើម្បីជួយសម្រួលដល់ការសិក្សារបស់និស......
+            </p>
+            <div className="flex justify-between items-center">
+              <div className="flex justify-center">
+                <button className="h-[30px] mt-4 rounded-md bg-gradient-to-r from-blue-500 to-blue-700 px-2 py-1 text-white text-[15px] font-suwannaphum">
+                  ឥតគិតថ្លៃ
+                </button>
+              </div>
+              <span className="text-gray-600 mt-5 font-suwannaphum">
+                ចំនួនអ្នកមើល​​ : ៥៥៥
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="bg-white rounded-lg shadow-md overflow-hidden max-w-lg w-full">
+          <img
+          src="../src/assets/CardLesson4.jpg"
+            alt="Mountain"
+            className="w-full h-[180px] object-cover"
+          />
+          <div className="p-[10px]">
+            <h2 className="text-[18px] font-bold text-gray-800 mb-2 font-suwannaphum">
+              កំណែទម្រង់កម្រិតខ្ពស់
+            </h2>
+            <p className="text-gray-700 text-[17px] leading-tight mt-3 font-suwannaphum line-clamp-2">
+              វីធីសាស្រ្តនឹងលំហាត់ជាច្រើនសុំម្រាប់អនុវត្តន៍ដើម្បីជួយសម្រួលដល់ការសិក្សារបស់និស......
+            </p>
+            <div className="flex justify-between items-center">
+              <div className="flex justify-center">
+                <button className="h-[30px] mt-4 rounded-md bg-gradient-to-r from-blue-500 to-blue-700 px-2 py-1 text-white text-[15px] font-suwannaphum">
+                  ឥតគិតថ្លៃ
+                </button>
+              </div>
+              <span className="text-gray-600 mt-5 font-suwannaphum">
+                ចំនួនអ្នកមើល​​ : ៥៥៥
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="bg-white rounded-lg shadow-md overflow-hidden max-w-lg w-full">
+          <img
+          src="../src/assets/CardLesson5.jpg"
+            alt="Mountain"
+            className="w-full h-[180px] object-cover"
+          />
+          <div className="p-[10px]">
+            <h2 className="text-[18px] font-bold text-gray-800 mb-2 font-suwannaphum">
+              កំណែទម្រង់កម្រិតខ្ពស់
+            </h2>
+            <p className="text-gray-700 text-[17px] leading-tight mt-3 font-suwannaphum line-clamp-2">
+              វីធីសាស្រ្តនឹងលំហាត់ជាច្រើនសុំម្រាប់អនុវត្តន៍ដើម្បីជួយសម្រួលដល់ការសិក្សារបស់និស......
+            </p>
+            <div className="flex justify-between items-center">
+              <div className="flex justify-center">
+                <button className="h-[30px] mt-4 rounded-md bg-gradient-to-r from-blue-500 to-blue-700 px-2 py-1 text-white text-[15px] font-suwannaphum">
+                  ឥតគិតថ្លៃ
+                </button>
+              </div>
+              <span className="text-gray-600 mt-5 font-suwannaphum">
+                ចំនួនអ្នកមើល​​ : ៥៥៥
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="bg-white rounded-lg shadow-md overflow-hidden max-w-lg w-full">
+          <img
+          src="../src/assets/CardLesson6.jpg"
+            alt="Mountain"
+            className="w-full h-[180px] object-cover"
+          />
+          <div className="p-[10px]">
+            <h2 className="text-[18px] font-bold text-gray-800 mb-2 font-suwannaphum">
+              កំណែទម្រង់កម្រិតខ្ពស់
+            </h2>
+            <p className="text-gray-700 text-[17px] leading-tight mt-3 font-suwannaphum line-clamp-2">
+              វីធីសាស្រ្តនឹងលំហាត់ជាច្រើនសុំម្រាប់អនុវត្តន៍ដើម្បីជួយសម្រួលដល់ការសិក្សារបស់និស......
+            </p>
+            <div className="flex justify-between items-center">
+              <div className="flex justify-center">
+                <button className="h-[30px] mt-4 rounded-md bg-gradient-to-r from-blue-500 to-blue-700 px-2 py-1 text-white text-[15px] font-suwannaphum">
+                  ឥតគិតថ្លៃ
+                </button>
+              </div>
+              <span className="text-gray-600 mt-5 font-suwannaphum">
+                ចំនួនអ្នកមើល​​ : ៥៥៥
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="bg-white rounded-lg shadow-md overflow-hidden max-w-lg w-full">
+          <img
+            src="../src/assets/CardLesson7.jpg"
+            alt="Mountain"
+            className="w-full h-[180px] object-cover"
+          />
+          <div className="p-[10px]">
+            <h2 className="text-[18px] font-bold text-gray-800 mb-2 font-suwannaphum">
+              កំណែទម្រង់កម្រិតខ្ពស់
+            </h2>
+            <p className="text-gray-700 text-[17px] leading-tight mt-3 font-suwannaphum line-clamp-2">
+              វីធីសាស្រ្តនឹងលំហាត់ជាច្រើនសុំម្រាប់អនុវត្តន៍ដើម្បីជួយសម្រួលដល់ការសិក្សារបស់និស......
+            </p>
+            <div className="flex justify-between items-center">
+              <div className="flex justify-center">
+                <button className="h-[30px] mt-4 rounded-md bg-gradient-to-r from-blue-500 to-blue-700 px-2 py-1 text-white text-[15px] font-suwannaphum">
+                  ឥតគិតថ្លៃ
+                </button>
+              </div>
+              <span className="text-gray-600 mt-5 font-suwannaphum">
+                ចំនួនអ្នកមើល​​ : ៥៥៥
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="bg-white rounded-lg shadow-md overflow-hidden max-w-lg w-full">
+          <img
+            src="../src/assets/CardLesson8.jpg"
+            alt="Mountain"
+            className="w-full h-[180px] object-cover"
+          />
+          <div className="p-[10px]">
+            <h2 className="text-[18px] font-bold text-gray-800 mb-2 font-suwannaphum">
+              កំណែទម្រង់កម្រិតខ្ពស់
+            </h2>
+            <p className="text-gray-700 text-[17px] leading-tight mt-3 font-suwannaphum line-clamp-2">
+              វីធីសាស្រ្តនឹងលំហាត់ជាច្រើនសុំម្រាប់អនុវត្តន៍ដើម្បីជួយសម្រួលដល់ការសិក្សារបស់និស......
+            </p>
+            <div className="flex justify-between items-center">
+              <div className="flex justify-center">
+                <button className="h-[30px] mt-4 rounded-md bg-gradient-to-r from-blue-500 to-blue-700 px-2 py-1 text-white text-[15px] font-suwannaphum">
+                  ឥតគិតថ្លៃ
+                </button>
+              </div>
+              <span className="text-gray-600 mt-5 font-suwannaphum">
+                ចំនួនអ្នកមើល​​ : ៥៥៥
+              </span>
+            </div>
+          </div>
+        </div>
+    </section>
   )
 }
 export default LessonAllCard;

@@ -23,7 +23,7 @@ const BookAllCard = ({ book }) => {
             <div className="flex items-center">
               <div className="flex justify-center">
                 <button className="h-[30px] mt-4 rounded-md bg-gradient-to-r bg-blue-600 p-4 px-3 py-1 text-white text-[14px]">
-                  ឥតគិតថ្លៃ
+                  ចូលអាន
                 </button>
               </div>
             </div>
