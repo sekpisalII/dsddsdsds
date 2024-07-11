@@ -1,18 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import BlogAllCard from "../../components/blogAllCard/BlogAllCard";
+import { fetchBlog } from "../../services/fetchBlog";
 
-const Blog = () => {
+export const Blog = () => {
+  const [blog, setBlog] = useState([{}]);
+  const onBlogFetch = (pageNum, pageSize) => {
+    fetchBlog(pageNum, pageSize).then((json) => {
+      //handle ui
+      console.log(json);
+      //upadte State
+      setBlog(json.results);
+    });
+  };
+  useEffect(() => {
+    onBlogFetch(1, 10);
+  }, []);
   return (
     <section
       id="Projects"
       className=" p-10  mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7 mb-5"
     >
       {" "}
-      <BlogAllCard />
-      <BlogAllCard />
-      <BlogAllCard />
-      <BlogAllCard />
-      <BlogAllCard />
+      {blog &&
+        blog.map((blog, index) => (
+          <section key={index}>
+            <BlogAllCard blog={blog} />
+          </section>
+        ))}
     </section>
   );
 };
