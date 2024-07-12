@@ -4,8 +4,8 @@ import { Avatar, Dropdown, Navbar, Button } from "flowbite-react";
 const NavbarComponent = () => {
   return (
     <>
-      <nav className="w-full bg-[#16A1DF]">
-        <Navbar fluid rounded className="bg-[#16A1DF] w-[80%] mx-auto">
+      <nav className="w-full  bg-[#16A1DF] sticky top-[0] z-50">
+        <Navbar fluid rounded className="bg-[#16A1DF]   mx-[40px]">
           <Navbar.Brand>
             <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
               <Link as={Link} to="/">

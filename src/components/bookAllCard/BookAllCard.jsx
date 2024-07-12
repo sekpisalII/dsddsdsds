@@ -4,6 +4,7 @@ const BookAllCard = ({ book }) => {
   return (
     <div className="flex flex-col bg-gray-100​ font-suwannaphum">
       <div className="bg-white rounded-lg shadow-lg overflow-hidden  w-full">
+        <a href="/bookDetail">
         <img
           src={
             book.course_thumbnail ||
@@ -12,6 +13,7 @@ const BookAllCard = ({ book }) => {
           alt="image"
           className="w-full h-[180px] object-cover rounded-lg "
         />
+        </a>
         <div className="p-[10px]">
           <h2 className="text-[18px] font-bold text-gray-800 mb-2 book-card-title">
             {book.course_name}

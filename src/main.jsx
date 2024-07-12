@@ -15,16 +15,15 @@ import AboutUs from './page/about-us/AboutUs';
 import Register from './page/auth/Register';
 import Login from './page/auth/Login';
 import Home from './page/home/Home';
+import LessonDetailPage from './page/lessonDetailPage/LessonDetailPage';
+import BookDetailPage from './page/bookDetailPage/BookDetailPage';
+import Create_forum_detail from './page/create_forum_detail/Create_forum_detail';
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Layout />,
     errorElement: <Error />,
     children: [
-      // {
-      //   path: '/',
-      //   element: <App />
-      // },
       {
         path: '/',
         element: <Home />
@@ -66,6 +65,18 @@ const router = createBrowserRouter([
   {
     path: '/register',
     element: <Register />
+  },
+  {
+    path:'/lessonDetail',
+    element: <LessonDetailPage />
+  },
+  {
+    path:'/bookDetail',
+    element: <BookDetailPage />
+  },
+  {
+    path:'/create_forum',
+    element: <Create_forum_detail />
   }
 ]);
 
