@@ -11,7 +11,7 @@ const BlogAllCard = ({ blog }) => {
               blog.image ||
               "https://cdna.artstation.com/p/assets/images/images/034/807/864/large/gil-lagziel-oggy-artstation1.jpg?1613299994"
             }
-            className="w-full h-[180px] object-cover "
+            className="w-full h-[180px] object-cover rounded-lg "
             alt="Blog"
           />
           <div className="p-2 pt-2">
@@ -34,11 +34,11 @@ const BlogAllCard = ({ blog }) => {
               </a>
               <a
                 href="#"
-                className="text-gray-600 font-semibold leading-none hover:text-indigo-600 font-suwannaphum text-[18px] -mt-4"
+                className="text-gray-600 font-semibold leading-none hover:text-indigo-600 font-suwannaphum text-[16px] -mt-4"
               >
                 សាលាឌីជីថលCSTAD
               </a>
-              <p className="text-gray-600 font-suwannaphum mb-4 text-[15px] pt-7 -ml-[150px]">
+              <p className="text-gray-600 font-suwannaphum mb-4 text-[12px] pt-7 -ml-[138px]">
                 អ្នកតាមដាន: 0 នាក់
               </p>
             </div>

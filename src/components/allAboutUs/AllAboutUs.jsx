@@ -29,7 +29,7 @@ const AllAboutUs = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-9">
             <div className="img-box ">
               <img
-                src="../src/assets/Online learning (1).gif"
+                src="../src/assets/Online-learning.gif"
                 alt="Online Learning"
                 className="w-full"
               />
