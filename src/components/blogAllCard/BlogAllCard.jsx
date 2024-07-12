@@ -5,7 +5,7 @@ const BlogAllCard = ({ blog }) => {
     <>
       <div className=" bg-white rounded-lg shadow-lg overflow-hidden max-w-lg w-full">
         {/* <div className="grid grid-cols-4 gap-7 rounded-t-lg"> */}
-        <div className="radies shadow-xl bg-white lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal rounded-lg">
+        <div className="radies shadow-xl bg-white lg:rounded-b-none lg:rounded-r flex flex-col  justify-between leading-normal rounded-lg">
           <img
             src={
               blog.image ||
@@ -16,7 +16,7 @@ const BlogAllCard = ({ blog }) => {
           />
           <div className="p-2 pt-2">
             <div className="mb-0">
-              <p className="text-gray-700 text-[15px] -mt-1 pt-3 font-suwannaphum blog-card-title">
+              <p className="text-gray-700 text-[20px] blog-card-title line-clamp-1 -mt-1 pt-3 font-suwannaphum ">
                 {blog.title}
               </p>
             </div>

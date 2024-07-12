@@ -1,11 +1,9 @@
-import React from "react";
 import Background from "../../components/background/Background";
 import BookCard from "../../components/bookCard/BookCard";
 import FooterCard from "../../components/footer/FooterCard";
 import LessonCard from "../../components/lessonCard/LessonCard";
 import BlogCard from "../../components/blogCard/BlogCard";
 
-import DasboardMain from "../dasboardPage/DasboardMain";
 const Home = () => {
   return (
     <div>
@@ -21,9 +19,7 @@ const Home = () => {
       <section className="mt-[100px] ">
         <BlogCard />
       </section>
-      <section className="mt-[100px] ">
-        <DasboardMain />
-      </section>
+
       <FooterCard />
     </div>
   );
