@@ -4,7 +4,6 @@ import BookCard from "../../components/bookCard/BookCard";
 import FooterCard from "../../components/footer/FooterCard";
 import LessonCard from "../../components/lessonCard/LessonCard";
 import BlogCard from "../../components/blogCard/BlogCard";
-import BookDetail from "../../components/bookDetail/BookDetail";
 const Home = () => {
   return (
     <div>

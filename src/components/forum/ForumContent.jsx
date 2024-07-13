@@ -21,42 +21,46 @@ const ForumContent = () => {
           </div>
 
           {/* Question Cards */}
-          <div className="bg-white shadow rounded-lg p-6">
-            <div className="flex items-center mb-4">
-              <img src="../src/assets/contact us.jpg" alt="Avatar" className="h-10 w-10 rounded-full" />
-              <div className="ml-4">
-                <p className="text-sm font-medium text-gray-900 font-suwannaphum">Luykanika</p>
-                <p className="text-sm text-gray-500 font-suwannaphum">5 min ago</p>
+          <a href="/createComment">
+            <div className="bg-white shadow rounded-lg p-6">
+              <div className="flex items-center mb-4">
+                <img src="../src/assets/contact us.jpg" alt="Avatar" className="h-10 w-10 rounded-full" />
+                <div className="ml-4">
+                  <p className="text-sm font-medium text-gray-900 font-suwannaphum">Luykanika</p>
+                  <p className="text-sm text-gray-500 font-suwannaphum">5 min ago</p>
+                </div>
               </div>
+              <h2 className="text-xl font-semibold text-gray-900 mb-2 font-suwannaphum">តើ STEM ជាអ្វី?</h2>
+              <p className="text-gray-700 font-suwannaphum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consequat aliquet maecenas ut sit nulla.</p>
             </div>
-            <h2 className="text-xl font-semibold text-gray-900 mb-2 font-suwannaphum">តើ STEM ជាអ្វី?</h2>
-            <p className="text-gray-700 font-suwannaphum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consequat aliquet maecenas ut sit nulla.</p>
-          </div>
-
+          </a>
           {/* Repeat the above block for more questions */}
-          <div className="bg-white shadow rounded-lg p-6">
-            <div className="flex items-center mb-4">
-              <img src="../src/assets/contact us.jpg" alt="Avatar" className="h-10 w-10 rounded-full" />
-              <div className="ml-4">
-                <p className="text-sm font-medium text-gray-900 font-suwannaphum">Sengmengeam</p>
-                <p className="text-sm text-gray-500 font-suwannaphum">5 min ago</p>
+          <a href="/createComment">
+            <div className="bg-white shadow rounded-lg p-6">
+              <div className="flex items-center mb-4">
+                <img src="../src/assets/contact us.jpg" alt="Avatar" className="h-10 w-10 rounded-full" />
+                <div className="ml-4">
+                  <p className="text-sm font-medium text-gray-900 font-suwannaphum">Sengmengeam</p>
+                  <p className="text-sm text-gray-500 font-suwannaphum">5 min ago</p>
+                </div>
               </div>
+              <h2 className="text-xl font-semibold text-gray-900 mb-2 font-suwannaphum">តើ STEM ជាអ្វី?</h2>
+              <p className="text-gray-700 font-suwannaphum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consequat aliquet maecenas ut sit nulla.</p>
             </div>
-            <h2 className="text-xl font-semibold text-gray-900 mb-2 font-suwannaphum">តើ STEM ជាអ្វី?</h2>
-            <p className="text-gray-700 font-suwannaphum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consequat aliquet maecenas ut sit nulla.</p>
-          </div>
-
-          <div className="bg-white shadow rounded-lg p-6">
-            <div className="flex items-center mb-4">
-              <img src="../src/assets/contact us.jpg" alt="Avatar" className="h-10 w-10 rounded-full" />
-              <div className="ml-4">
-                <p className="text-sm font-medium text-gray-900 font-suwannaphum">Momose</p>
-                <p className="text-sm text-gray-500 font-suwannaphum">5 min ago</p>
+          </a>
+          <a href="/createComment">
+            <div className="bg-white shadow rounded-lg p-6">
+              <div className="flex items-center mb-4">
+                <img src="../src/assets/contact us.jpg" alt="Avatar" className="h-10 w-10 rounded-full" />
+                <div className="ml-4">
+                  <p className="text-sm font-medium text-gray-900 font-suwannaphum">Momose</p>
+                  <p className="text-sm text-gray-500 font-suwannaphum">5 min ago</p>
+                </div>
               </div>
+              <h2 className="text-xl font-semibold text-gray-900 mb-2 font-suwannaphum">What does STEM stand for?</h2>
+              <p className="text-gray-700 font-suwannaphum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consequat aliquet maecenas ut sit nulla.</p>
             </div>
-            <h2 className="text-xl font-semibold text-gray-900 mb-2 font-suwannaphum">What does STEM stand for?</h2>
-            <p className="text-gray-700 font-suwannaphum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consequat aliquet maecenas ut sit nulla.</p>
-          </div>
+          </a>
         </div>
 
         {/* Sidebar */}

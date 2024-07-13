@@ -18,6 +18,8 @@ import Home from './page/home/Home';
 import LessonDetailPage from './page/lessonDetailPage/LessonDetailPage';
 import BookDetailPage from './page/bookDetailPage/BookDetailPage';
 import Create_forum_detail from './page/create_forum_detail/Create_forum_detail';
+import BlogDetailPage from './page/blogDetailPage/BlogDetailPage';
+import CreateCommentPage from './page/createCommentPage/CreateCommentPage';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -77,7 +79,16 @@ const router = createBrowserRouter([
   {
     path:'/create_forum',
     element: <Create_forum_detail />
+  },
+  {
+    path:'/blogDetail',
+    element: <BlogDetailPage />
+  },
+  {
+    path: '/createComment',
+    element: <CreateCommentPage />
   }
+ 
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
