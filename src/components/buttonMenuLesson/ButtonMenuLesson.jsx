@@ -2,10 +2,10 @@ import React from 'react'
 import { Button } from "flowbite-react";
 const  ButtonMenuLesson = () => {
   return (
-    <div>
+    <div className="ml-[40px]">
 
-    <h3 className="text-black text-3xl font-suwannaphum ml-[10%] mt-5">ប្រភេទមេរៀន</h3>
-    <div className="flex flex-wrap gap-2 ml-[10%] mt-5 font-suwannaphum border-black">
+    <h3 className="text-black text-3xl font-suwannaphum mt-5">ប្រភេទមេរៀន</h3>
+    <div className="flex flex-wrap gap-2  mt-5 font-suwannaphum border-black">
       <Button color="gray" pill >
         វិទ្យាសាស្ត្រ
       </Button>

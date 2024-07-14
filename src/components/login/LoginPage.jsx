@@ -205,7 +205,7 @@ const LoginPage = () => {
 
           <div className="md:h-full bg-white rounded-xl lg:p-12 p-8">
             <img
-              src="../src/assets/Computer login (2).gif"
+              src="../src/assets/Tablet login.gif"
               className="w-full h-full object-contain"
               alt="login-image"
             />

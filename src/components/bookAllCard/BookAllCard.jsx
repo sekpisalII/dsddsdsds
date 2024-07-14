@@ -11,7 +11,7 @@ const BookAllCard = ({ book }) => {
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcff1fvUI1w0QGFGSbG7mIEPDWwRaRYaqSMA&s"
           }
           alt="image"
-          className="w-full h-[180px] object-cover rounded-lg "
+          className=" h-[250px] w-full object-cover rounded-lg "
         />
         </a>
         <div className="p-[10px]">

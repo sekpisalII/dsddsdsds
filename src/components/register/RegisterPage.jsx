@@ -88,13 +88,8 @@ const RegisterPage = ()=> {
               </p>
             </form>
 
-            <video className="h-full max-lg:mt-12" autoPlay loop muted>
-              <source
-                src="src/assets/Register.gif"
-                className="w-full h-full object-cover"
-                alt="Dining Experience"
-              />
-            </video>
+            <img src="../src/assets/Sign up (3).gif"  className="h-full max-lg:mt-12" autoPlay loop muted>
+            </img>
           </div>
         </div>
       </div>

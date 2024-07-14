@@ -79,11 +79,11 @@ const CreateComment = () => {
       <div className="w-[187.11px] h-6 left-[563.89px] top-[180px] absolute bg-white justify-start items-start gap-5 inline-flex">
         <div className="w-[67px] h-6 relative">
           <div className="w-6 h-6 left-0 top-0 absolute" />
-          <div className="w-[19px] h-3.5 left-[32px] top-[7px] absolute text-zinc-500 text-xs font-normal font-suwannaphum">120</div>
+          <span className="w-[19px] h-3.5 left-[32px] top-[7px] absolute text-zinc-500 text-xs font-normal font-suwannaphum">120</span>
         </div>
         <div className="w-[65px] h-6 relative">
           <div className="w-6 h-6 left-0 top-0 absolute" />
-          <div className="w-[19px] h-3.5 left-[32px] top-[7px] absolute text-zinc-500 text-xs font-normal font-suwannaphum">120</div>
+          <span className="w-[19px] h-3.5 left-[32px] top-[7px] absolute text-zinc-500 text-xs font-normal font-suwannaphum">120</span>
         </div>
         <div className="w-[39px] h-6 relative">
           <div className="w-[18px] h-[18px] left-0 top-[3px] absolute" />
@@ -91,7 +91,7 @@ const CreateComment = () => {
         </div>
       </div>
     </div>
-    <div className="text-blue-900 text-base font-normal font-suwannaphum underline">See more</div>
+    <button className="text-blue-900 text-base font-normal font-suwannaphum underline">See more</button>
     <div className="w-[688px] h-[37px] relative">
       <div className="w-[179px] h-[26px] left-0 top-0 absolute">
         <div className="w-6 h-6 left-0 top-0 absolute" />

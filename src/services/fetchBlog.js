@@ -10,3 +10,4 @@ export const fetchBlog = async (pageSize, pageNum) => {
   });
   return response.json();
 };
+

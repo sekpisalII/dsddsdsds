@@ -1,13 +1,13 @@
 import React from 'react';
 const LessonAllCard = ()  => {
   return (
-    <section className="-mt-2 max-w-screen-2xl w-full p-10 mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7 mb-5">
+    <section className="-mt-2  w-full p-10 mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7 mb-5">
         <div className="bg-white rounded-lg shadow-md overflow-hidden max-w-lg w-full">
           <a href="/lessonDetail">
           <img
               src="../src/assets/lesson.jpeg"
               alt="Mountain"
-              className="w-full h-[180px] object-cover"
+              className="h-[250px] w-full object-cover"
             />
            
           </a>

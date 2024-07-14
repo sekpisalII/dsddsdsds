@@ -15,11 +15,20 @@ const BlogCard = () => {
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7 w-[80%] mx-auto">
         <div className="relative col-span-1 lg:col-span-2 flex flex-col justify-between h-[280px] sm:h-[480px] overflow-hidden rounded-xl bg-white text-gray-700 shadow-md">
           <div className="relative overflow-hidden">
+            <a href="/BlogAllCard">
             <img
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover  opacity-100 transition duration-300 ease-in-out transform scale-10"
               src="../src/assets/Blog-Posts.webp"
               alt=""
             />
+            <div className="absolute -top-[30px] inset-0 bg-transparent hover:bg-slate-300 opacity-0 hover:opacity-60 transition-opacity duration-300 ease-in-out flex items-center justify-center">
+                <h2 className="text-black text-[28px]  text-center font-bold">
+                អាចបង្កើតប្លុកផ្សេងៗ ការបង្កើតប្លុក 
+                <br />
+                <span className="text-[20px]">និងមានប្លុកជាច្រើនសម្រាប់ទស្សនា</span>
+                </h2>
+              </div>
+            </a>
           </div>
         </div>
 

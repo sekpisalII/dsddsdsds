@@ -87,7 +87,20 @@ const router = createBrowserRouter([
   {
     path: '/createComment',
     element: <CreateCommentPage />
-  }
+  },
+ {
+  path: '/bookAllCard',
+  element: <Book />
+ },
+ {
+  path: '/lessonAllCard',
+  element: <Lesson />
+ },
+ {
+  path: '/blogAllCard',
+  element: <Blog />
+ }
+  
  
 ]);
 

@@ -8,3 +8,4 @@ export const fetchBooks = async (pageSize, pageNum) => {
   });
   return response.json();
 };
+

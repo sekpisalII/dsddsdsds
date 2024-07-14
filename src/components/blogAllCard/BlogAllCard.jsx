@@ -3,16 +3,15 @@ import "./blogStyle.css";
 const BlogAllCard = ({ blog }) => {
   return (
     <>
-      <div className=" bg-white rounded-lg shadow-lg overflow-hidden max-w-lg w-full">
-        {/* <div className="grid grid-cols-4 gap-7 rounded-t-lg"> */}
-        <div className="radies shadow-xl bg-white lg:rounded-b-none lg:rounded-r flex flex-col  justify-between leading-normal rounded-lg">
+      <div className=" bg-white rounded-lg shadow-lg overflow-hidden max-w-lg">
+        <div className="radies shadow-xl bg-white lg:rounded-b-none lg:rounded-r flex flex-col  justify-between leading-normal rounded-lg  w-full">
           <a href="/BlogDetail">
           <img
             src={
               blog.image ||
               "https://cdna.artstation.com/p/assets/images/images/034/807/864/large/gil-lagziel-oggy-artstation1.jpg?1613299994"
             }
-            className="w-full h-[200px] object-cover "
+            className=" h-[250px] w-full object-cover "
             alt="Blog"
           />
           </a>
@@ -25,7 +24,7 @@ const BlogAllCard = ({ blog }) => {
             <div className="flex items-center">
               <a href="#">
                 <img
-                  className="w-10 h-10 rounded-full mr-4"
+                  className="w-10 h-10 rounded-full mr-4 object-cover"
                   src={
                     blog?.image
                       ? blog?.image
@@ -47,7 +46,6 @@ const BlogAllCard = ({ blog }) => {
           </div>
         </div>
       </div>
-      {/* </div> */}
     </>
   );
 };

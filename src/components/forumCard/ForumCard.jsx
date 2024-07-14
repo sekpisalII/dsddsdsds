@@ -1,23 +1,42 @@
-import React from "react";
+import React from 'react'
 import { FaArrowRightLong } from "react-icons/fa6";
-
-const LessonCard = () => {
+const  ForumCard = () => {
   return (
     <>
-      <section className="flex justify-between mt-5 w-[80%] mx-auto font-suwannaphum mb-4">
-        <h3 className="font-bold text-[#16A1DF] text-3xl">មេរៀន</h3>
+      <section className="flex justify-between mt-5 w-[80%] mx-auto font-suwannaphum mb-5">
+        <h3 className="font-bold text-[#16A1DF] text-3xl ">វេទិកា</h3>
         <span className="flex items-center text-black text-[20px]">
           បង្ហាញទាំងអស់
           <FaArrowRightLong />
         </span>
       </section>
-
-      <section className="grid grid-flow-row-dense grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7 w-[80%] mx-auto">
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7 w-[80%] mx-auto">
+        <div className="relative col-span-1 lg:col-span-2 flex flex-col justify-between h-[280px] sm:h-[480px] rounded-xl text-gray-700 shadow-md overflow-hidden">
+              <div className="relative overflow-hidden">
+                <a href="/BookAllCard" className="block h-full w-full">
+                  <div className="relative">
+                    <img
+                      className="h-full w-full object-cover opacity-100 transition duration-300 ease-in-out transform scale-100"
+                      src="../src/assets/Forum.jpg"
+                      alt="Stem Book"
+                    />
+                    <div className="absolute -top-[260px] inset-0 bg-transparent hover:bg-slate-300 opacity-0 hover:opacity-60 transition-opacity duration-300 ease-in-out flex items-center justify-center">
+                      <h2 className="text-black text-[28px]  text-center font-bold">
+                        សំណួរ និង ដំណោះស្រាយ
+                        <br />
+                        <span className="text-[20px]">អ្នកអាចធ្វើការបង្កើតសំណួរ​ និង ធ្វើការឆ្លើយ</span>
+                      </h2>
+                    </div>
+                  </div>
+                </a>
+              </div>
+        </div>
+        {/* Card */}
         <div className="relative flex flex-col justify-between col-span-1 h-[480px] overflow-hidden rounded-xl bg-white text-gray-700 shadow-md">
           <div className="relative overflow-hidden bg-transparent rounded-none">
             <img
               className="h-80 w-full object-cover"
-              src="../src/assets/stem_lesson.png"
+              src="../src/assets/Forum_card.webp"
               alt=""
             />
           </div>
@@ -56,7 +75,7 @@ const LessonCard = () => {
           <div className="relative overflow-hidden bg-transparent rounded-none">
             <img
               className="h-80 w-full object-cover"
-              src="../src/assets/stem_lesson.png"
+              src="../src/assets/Book_layout.png"
               alt=""
             />
           </div>
@@ -88,29 +107,10 @@ const LessonCard = () => {
                 </svg>
               ))}
             </div>
-          </div>
-        </div>
-        <div className="relative flex flex-col justify-between col-span-1 lg:col-span-2 h-[480px] overflow-hidden rounded-xl bg-white text-gray-700 shadow-md">
-          <div className="relative overflow-hidden bg-transparent rounded-none">
-            <a href="/LessonAllCard">
-              <img
-                className="h-full w-full object-cover opacity-100 transition duration-300 ease-in-out transform scale-100"
-                src="https://static.nsta.org/images/products/PP%20STEM%20K-2_cvr.jpg"
-                alt=""
-              />
-               <div className="absolute -top-[40px] inset-0 bg-transparent hover:bg-slate-300 opacity-0 hover:opacity-60 transition-opacity duration-300 ease-in-out flex items-center justify-center">
-                  <h2 className="text-black text-[28px]  text-center font-bold">
-                    ការសិក្សាអំពីមេរៀនផ្សេងៗជាច្រើន
-                    <br />
-                    <span className="text-[20px]">ស្វែងរកមេរៀនជាច្រើនដែលមានជាខ្លីបវីដេអូថែមទៀតផង</span>
-                    </h2>
-                </div>
-            </a>
           </div>
         </div>
       </section>
     </>
-  );
-};
-
-export default LessonCard;
+  )
+}
+export default ForumCard;
