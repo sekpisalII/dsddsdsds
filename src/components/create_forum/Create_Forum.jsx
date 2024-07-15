@@ -14,11 +14,9 @@ const Create_Forum = () => {
             </div>
           </div>
         </div>
-
         <div className="bg-white shadow rounded-lg p-6">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-2">តើ STEM ជាអ្វី?</h2>
-          <p className="text-gray-700 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consequat aliquet maecenas ut sit nulla.</p>
-
+            <h2 className="text-2xl font-semibold text-gray-900 mb-2">តើ STEM ជាអ្វី?</h2>
+            <p className="text-gray-700 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consequat aliquet maecenas ut sit nulla.</p>
           <form>
             <div className="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
               <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">

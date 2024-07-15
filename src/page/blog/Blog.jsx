@@ -3,6 +3,7 @@ import BlogAllCard from "../../components/blogAllCard/BlogAllCard";
 import { fetchBlog } from "../../services/fetchBlog";
 import FooterCard from "../../components/footer/FooterCard";
 import ButtonMenu from "../../components/button_Menu/ButtonMenu";
+import Paginatin from "../../components/pagination/PaginationComponent";
 
 export const Blog = () => {
   const [blog, setBlog] = useState([{}]);
@@ -32,6 +33,7 @@ export const Blog = () => {
             </section>
           ))}
       </section>
+
       <FooterCard />
     </>
   );

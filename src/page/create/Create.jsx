@@ -1,11 +1,9 @@
-import React from 'react';
+import React from 'react'
 
-const Create = () => {
+export default function Create() {
   return (
     <div>
-      This is Create
+      <h1>This is Create</h1>
     </div>
-  );
-};
-
-export default Create;
+  )
+}

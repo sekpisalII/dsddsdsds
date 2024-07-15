@@ -3,16 +3,20 @@ import BookAllCard from "../../components/bookAllCard/BookAllCard";
 import FooterCard from "../../components/footer/FooterCard";
 import ButtonMenu from "../../components/button_Menu/ButtonMenu";
 import { fetchBooks } from "../../services/fetchBooks";
-import Paginatin from "../../components/pagination/Paginatin";
 
+import PaginationComponent from "../../components/pagination/PaginationComponent";
+import Spinner from "../../components/appSpinner/Spinner";
+import { DiVim } from "react-icons/di";
+import { useParams } from "react-router-dom";
 const Book = () => {
+  const [isloading, setIsloading] = useState(true);
   const [books, setBooks] = useState([{}]);
+  const [paging, setPaging] = useState({});
   const onBookFetch = (pageNum, pageSize) => {
     fetchBooks(pageNum, pageSize).then((json) => {
-      //handle ui
       console.log(json);
-      //upadte State
       setBooks(json.results);
+      setIsloading(false);
     });
   };
   useEffect(() => {
@@ -22,18 +26,31 @@ const Book = () => {
   return (
     <>
       <ButtonMenu />
-      <section
-        id="Projects"
-        className="max-w-screen-2xl p-10  mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mb-5 "
-      >
-        {books &&
-          books.map((book, index) => (
-            <section key={index}>
-              <BookAllCard book={book} />
-            </section>
-          ))}
-      </section>
-      <Paginatin />
+
+      {isloading ? (
+        <div>
+          <Spinner />
+        </div>
+      ) : (
+        <section
+          id="Projects"
+          className="max-w-screen-2xl p-10  mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mb-5 "
+        >
+          {books &&
+            books.map((book, index) => (
+              <section key={index}>
+                <BookAllCard book={book} />
+              </section>
+            ))}
+        </section>
+      )}
+
+      {/* <div>
+        {paging &&
+          paging.next.map((count, index) => ( */}
+      <PaginationComponent />
+      {/* ))}
+      </div> */}
       <FooterCard />
     </>
   );
