@@ -7,9 +7,11 @@ const Lesson = () => {
     <div>
       <ButtonMenuLesson />
         <LessonAllCard />
+        
       <FooterCard />
     </div>
   );
 };
 
 export default Lesson;
+

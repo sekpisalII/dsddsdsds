@@ -8,11 +8,8 @@ const LessonAllCard = ()  => {
               src="../src/assets/lesson.jpeg"
               alt="Mountain"
               className="h-[250px] w-full object-cover"
-            />
-           
+            />       
           </a>
-        
-         
           <div className="p-[10px]">
             <h2 className="text-[18px] font-bold text-gray-800 mb-2 font-suwannaphum">
               កំណែទម្រង់កម្រិតខ្ពស់
@@ -37,3 +34,4 @@ const LessonAllCard = ()  => {
   )
 }
 export default LessonAllCard;
+
