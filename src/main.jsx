@@ -57,7 +57,8 @@ const router = createBrowserRouter([
       {
         path: '/notification',
         element: <Notification />
-      }
+      },
+     
     ]
   },
   {
@@ -100,8 +101,7 @@ const router = createBrowserRouter([
     path: '/blogDetail/:id', 
     element: <BlogDetailPage />
   },
-  
- 
+
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
