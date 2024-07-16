@@ -14,7 +14,6 @@ const Create_Forum = () => {
   };
   const onFormSubmited = (e) => {
     e.preventDefault();
-    // forumRequest.image = null;
     saveBook(forumRequest).then((json) => {
       console.log(json);
     });

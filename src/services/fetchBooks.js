@@ -12,7 +12,7 @@ export const fetchBooks = async (pageSize, pageNum) => {
 export const saveBook = async (forumRequest) => {
   const response = await fetch(`${API_BASE_URI}forums/`, {
     method: "POST",
-    body: JSON.stringify(forumRequest),
+    raw: JSON.stringify(forumRequest),
     headers: {
       Authorization: AUTH_HEADER,
       "Content-Type": "application/json",
