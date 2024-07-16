@@ -113,8 +113,37 @@ const AllAboutUs = () => {
               </div>
             </div>
           </div>
+          <div className="w-full sm:w-[318.97px] flex-col justify-start items-center inline-flex mb-6 mentor-card">
+            <img
+              src="../src/assets/Mentor Muyleang.jpg"
+              alt="Mentor"
+              className="w-full h-auto"
+            />
+            <div className="h-[82px] flex-col justify-start items-start flex">
+              <div className="self-stretch text-center text-2xl font-bold font-suwannaphum text-blue-500">
+                Ing Muyleang
+              </div>
+              <div className="self-stretch h-[39px] flex-col justify-start items-center flex">
+                <div className="self-stretch text-center text-black text-[22px] font-medium font-suwannaphum">
+                  Mentor
+                </div>
+                <div className="justify-center items-center gap-[7px] inline-flex text-blue-500">
+                  <a href="https://www.facebook.com/">
+                    <FaFacebook />
+                  </a>
+                  <a href="https://github.com/">
+                    <FaGithub />
+                  </a>
+                  <a href="https://t.me/">
+                    <FaTelegram />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-
+      </section>
+      <section>
         <div className="w-full sm:w-[318.97px] flex-col justify-start items-center inline-flex mb-6">
           <img
             src="../src/assets/Mentor Muyleang.jpg"
@@ -139,6 +168,34 @@ const AllAboutUs = () => {
                 <a href="https://t.me/">
                   <FaTelegram />
                 </a>
+              </div>
+            </div>
+          </div>
+          <div className="w-full sm:w-[318.97px] flex-col justify-start items-center inline-flex mb-6 mentor-card">
+            <img
+              src="../src/assets/Mentor Muyleang.jpg"
+              alt="Mentor"
+              className="w-full h-auto"
+            />
+            <div className="h-[82px] flex-col justify-start items-start flex">
+              <div className="self-stretch text-center text-2xl font-bold font-suwannaphum text-blue-500">
+                Ing Muyleang
+              </div>
+              <div className="self-stretch h-[39px] flex-col justify-start items-center flex">
+                <div className="self-stretch text-center text-black text-[22px] font-medium font-suwannaphum">
+                  Mentor
+                </div>
+                <div className="justify-center items-center gap-[7px] inline-flex text-blue-500">
+                  <a href="https://www.facebook.com/">
+                    <FaFacebook />
+                  </a>
+                  <a href="https://github.com/">
+                    <FaGithub />
+                  </a>
+                  <a href="https://t.me/">
+                    <FaTelegram />
+                  </a>
+                </div>
               </div>
             </div>
           </div>

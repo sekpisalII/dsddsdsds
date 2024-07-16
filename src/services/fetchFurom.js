@@ -1,8 +1,8 @@
 import React from "react";
 import { API_BASE_URI, AUTH_HEADER } from "./constants";
 
-export const fetchBlog = async (pageSize, pageNum) => {
-  const response = await fetch(`${API_BASE_URI}articles/`, {
+export const fetchFurum = async (pageSize, pageNum) => {
+  const response = await fetch(`${API_BASE_URI}forums/`, {
     method: "GET",
     header: {
       Authorization: AUTH_HEADER,
@@ -10,4 +10,3 @@ export const fetchBlog = async (pageSize, pageNum) => {
   });
   return response.json();
 };
-
