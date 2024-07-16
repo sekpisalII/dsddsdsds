@@ -1,4 +1,3 @@
-import React from "react";
 import Background from "../../components/background/Background";
 import BookCard from "../../components/bookCard/BookCard";
 import FooterCard from "../../components/footer/FooterCard";
@@ -22,6 +21,7 @@ const Home = () => {
       <section className="mt-[10px] ">
         <BlogCard />
       </section>
+
       <FooterCard />
     </div>
   );

@@ -3,8 +3,8 @@ import FooterCard from "../../components/footer/FooterCard";
 import LessonAllCard from "../../components/lessonAllCard/LessonAllCard";
 import ButtonMenuLesson from "../../components/buttonMenuLesson/ButtonMenuLesson";
 import { fetchLesson } from "../../services/fetchLesson";
-import Paginatin from "../../components/pagination/Paginatin";
-import ButtonMenu from "../../components/button_Menu/ButtonMenu";
+// import Paginatin from "../../components/pagination/Paginatin";
+// import ButtonMenu from "../../components/button_Menu/ButtonMenu";
 
 const Lesson = () => {
   const [lessons, setLessons] = useState([]);
@@ -38,7 +38,7 @@ const Lesson = () => {
           <LessonAllCard key={index} lesson={lesson} />
         ))}
       </section>
-      <Paginatin />
+      {/* <Paginatin /> */}
       <FooterCard />
     </>
   );
