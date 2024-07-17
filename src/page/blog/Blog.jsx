@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import BlogAllCard from "../../components/blogAllCard/BlogAllCard";
 import { fetchBlog } from "../../services/fetchBlog";
 import FooterCard from "../../components/footer/FooterCard";
-import ButtonMenu from "../../components/button_Menu/ButtonMenu";
 import Paginatin from "../../components/pagination/PaginationComponent";
+import ButtonMenuBlog from "../../components/buttonMenuBlog/ButtonMenuBlog";
 
 export const Blog = () => {
   const [blog, setBlog] = useState([{}]);
@@ -20,7 +20,7 @@ export const Blog = () => {
   }, []);
   return (
     <>
-      <ButtonMenu />
+      <ButtonMenuBlog />
       <section
         id="Projects"
         className=" p-10  mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mb-5"
@@ -33,7 +33,7 @@ export const Blog = () => {
             </section>
           ))}
       </section>
-
+        <Paginatin />
       <FooterCard />
     </>
   );

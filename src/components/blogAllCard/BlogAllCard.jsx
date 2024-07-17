@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 const BlogAllCard = ({ blog }) => {
   return (
     <Link to={`/blogDetail/${blog.id}`} className="block mb-4">
