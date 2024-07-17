@@ -3,15 +3,16 @@ import BookAllCard from "../../components/bookAllCard/BookAllCard";
 import FooterCard from "../../components/footer/FooterCard";
 import ButtonMenu from "../../components/button_Menu/ButtonMenu";
 import { fetchBooks } from "../../services/fetchBooks";
-
-import PaginationComponent from "../../components/pagination/PaginationComponent";
 import Spinner from "../../components/appSpinner/Spinner";
-import { DiVim } from "react-icons/di";
-import { useParams } from "react-router-dom";
+import Pagination from "../../components/Pagination";
+
+// import PaginationComponent from "../../components/pagination/PaginationComponent";
+// import Spinner from "../../components/appSpinner/Spinner";
+// import { DiVim } from "react-icons/di";
+// import { useParams } from "react-router-dom";
 const Book = () => {
   const [isloading, setIsloading] = useState(true);
   const [books, setBooks] = useState([{}]);
-  const [paging, setPaging] = useState({});
   const onBookFetch = (pageNum, pageSize) => {
     fetchBooks(pageNum, pageSize).then((json) => {
       console.log(json);
@@ -28,9 +29,7 @@ const Book = () => {
       <ButtonMenu />
 
       {isloading ? (
-        <div>
-          <Spinner />
-        </div>
+        <Spinner />
       ) : (
         <section
           id="Projects"
@@ -44,11 +43,15 @@ const Book = () => {
             ))}
         </section>
       )}
+      <div className="flex justify-center">
+        {" "}
+        <Pagination />
+      </div>
 
       {/* <div>
         {paging &&
           paging.next.map((count, index) => ( */}
-      <PaginationComponent />
+      {/* <PaginationComponent /> */}
       {/* ))}
       </div> */}
       <FooterCard />

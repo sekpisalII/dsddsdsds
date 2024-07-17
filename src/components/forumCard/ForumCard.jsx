@@ -1,6 +1,7 @@
-import React from 'react'
+import React from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
-const  ForumCard = () => {
+import { Link } from "react-router-dom";
+const ForumCard = () => {
   return (
     <>
       <section className="flex justify-between mt-5 w-[80%] mx-auto font-suwannaphum mb-5">
@@ -12,24 +13,26 @@ const  ForumCard = () => {
       </section>
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7 w-[80%] mx-auto">
         <div className="relative col-span-1 lg:col-span-2 flex flex-col justify-between h-[280px] sm:h-[480px] rounded-xl text-gray-700 shadow-md overflow-hidden">
-              <div className="relative overflow-hidden">
-                <a href="/BookAllCard" className="block h-full w-full">
-                  <div className="relative">
-                    <img
-                      className="h-full w-full object-cover opacity-100 transition duration-300 ease-in-out transform scale-100"
-                      src="../src/assets/Forum.jpg"
-                      alt="Stem Book"
-                    />
-                    <div className="absolute -top-[260px] inset-0 bg-transparent hover:bg-slate-300 opacity-0 hover:opacity-60 transition-opacity duration-300 ease-in-out flex items-center justify-center">
-                      <h2 className="text-black text-[28px]  text-center font-bold">
-                        សំណួរ និង ដំណោះស្រាយ
-                        <br />
-                        <span className="text-[20px]">អ្នកអាចធ្វើការបង្កើតសំណួរ​ និង ធ្វើការឆ្លើយ</span>
-                      </h2>
-                    </div>
-                  </div>
-                </a>
+          <div className="relative overflow-hidden">
+            <Link to="/forum" className="block h-full w-full">
+              <div className="relative">
+                <img
+                  className="h-full w-full object-cover opacity-100 transition duration-300 ease-in-out transform scale-100"
+                  src="../src/assets/Forum.jpg"
+                  alt="Stem Book"
+                />
+                <div className="absolute -top-[260px] inset-0 bg-transparent hover:bg-slate-300 opacity-0 hover:opacity-60 transition-opacity duration-300 ease-in-out flex items-center justify-center">
+                  <h2 className="text-black text-[28px]  text-center font-bold">
+                    សំណួរ និង ដំណោះស្រាយ
+                    <br />
+                    <span className="text-[20px]">
+                      អ្នកអាចធ្វើការបង្កើតសំណួរ​ និង ធ្វើការឆ្លើយ
+                    </span>
+                  </h2>
+                </div>
               </div>
+            </Link>
+          </div>
         </div>
         {/* Card */}
         <div className="relative flex flex-col justify-between col-span-1 h-[480px] overflow-hidden rounded-xl bg-white text-gray-700 shadow-md">
@@ -111,6 +114,6 @@ const  ForumCard = () => {
         </div>
       </section>
     </>
-  )
-}
+  );
+};
 export default ForumCard;

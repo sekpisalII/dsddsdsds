@@ -1,110 +1,108 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import './index.css';
-import Layout from './components/layout/Layout';
-import App from './App';
-import Blog from './page/blog/Blog';
-import Book from './page/book/Book';
-import Lesson from './page/lesson/Lesson';
-import Notification from './page/notification/Notification';
-import Error from './page/error-page/Error';
-import Create from './page/create/Create';
-import Forum from './page/forum/Forum';
-import AboutUs from './page/about-us/AboutUs';
-import Register from './page/auth/Register';
-import Login from './page/auth/Login';
-import Home from './page/home/Home';
-import LessonDetailPage from './page/lessonDetailPage/LessonDetailPage';
-import BookDetailPage from './page/bookDetailPage/BookDetailPage';
-import Create_forum_detail from './page/create_forum_detail/Create_forum_detail';
-import BlogDetailPage from './page/blogDetailPage/BlogDetailPage';
-import CreateCommentPage from './page/createCommentPage/CreateCommentPage';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import "./index.css";
+import Layout from "./components/layout/Layout";
+
+import Blog from "./page/blog/Blog";
+import Book from "./page/book/Book";
+import Lesson from "./page/lesson/Lesson";
+import Notification from "./page/notification/Notification";
+import Error from "./page/error-page/Error";
+import Create from "./page/create/Create";
+import Forum from "./page/forum/Forum";
+import AboutUs from "./page/about-us/AboutUs";
+import Register from "./page/auth/Register";
+import Login from "./page/auth/Login";
+import Home from "./page/home/Home";
+import LessonDetailPage from "./page/lessonDetailPage/LessonDetailPage";
+import BookDetailPage from "./page/bookDetailPage/BookDetailPage";
+import Create_forum_detail from "./page/create_forum_detail/Create_forum_detail";
+import BlogDetailPage from "./page/blogDetailPage/BlogDetailPage";
+import CreateCommentPage from "./page/createCommentPage/CreateCommentPage";
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Layout />,
     errorElement: <Error />,
     children: [
       {
-        path: '/',
-        element: <Home />
+        path: "/",
+        element: <Home />,
       },
       {
-        path: '/book',
-        element: <Book />
+        path: "/book",
+        element: <Book />,
       },
       {
-        path: '/lesson',
-        element: <Lesson />
+        path: "/lesson",
+        element: <Lesson />,
       },
       {
-        path: '/forum',
-        element: <Forum />
+        path: "/forum",
+        element: <Forum />,
       },
       {
-        path: '/blog',
-        element: <Blog />
+        path: "/blog",
+        element: <Blog />,
       },
       {
-        path: '/about-us',
-        element: <AboutUs />
+        path: "/about-us",
+        element: <AboutUs />,
       },
       {
-        path: '/create',
-        element: <Create />
+        path: "/create",
+        element: <Create />,
       },
       {
-        path: '/notification',
-        element: <Notification />
-      }
-    ]
+        path: "/notification",
+        element: <Notification />,
+      },
+    ],
   },
   {
-    path: '/login',
-    element: <Login />
+    path: "/login",
+    element: <Login />,
   },
   {
-    path: '/register',
-    element: <Register />
+    path: "/register",
+    element: <Register />,
   },
   {
-    path:'/lessonDetail',
-    element: <LessonDetailPage />
+    path: "/lessonDetail",
+    element: <LessonDetailPage />,
   },
   {
-    path:'/bookDetail',
-    element: <BookDetailPage />
+    path: "/bookDetail",
+    element: <BookDetailPage />,
   },
   {
-    path:'/create_forum',
-    element: <Create_forum_detail />
+    path: "/create_forum",
+    element: <Create_forum_detail />,
   },
   {
-    path:'/blogDetail',
-    element: <BlogDetailPage />
+    path: "/blogDetail",
+    element: <BlogDetailPage />,
   },
   {
-    path: '/createComment',
-    element: <CreateCommentPage />
+    path: "/createComment",
+    element: <CreateCommentPage />,
   },
   {
-    path: '/bookDetail/:id',
-    element: <BookDetailPage />
+    path: "/bookDetail/:id",
+    element: <BookDetailPage />,
   },
   {
-    path: '/lessonDetail/:id',
-    element: <LessonDetailPage />
+    path: "/lessonDetail/:id",
+    element: <LessonDetailPage />,
   },
   {
-    path: '/blogDetail/:id', 
-    element: <BlogDetailPage />
+    path: "/blogDetail/:id",
+    element: <BlogDetailPage />,
   },
-  
- 
 ]);
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <RouterProvider router={router} />
   </React.StrictMode>

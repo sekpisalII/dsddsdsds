@@ -1,11 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function CardForum({ forums }) {
   return (
     <div>
       {
         <main className="max-w-7xl mx-auto p-4 flex flex-col lg:flex-row justify-between lg:space-x-8">
-          <a href="/createComment">
+          <Link to="/createComment">
             <div className="bg-white shadow rounded-lg p-6">
               <div className="flex items-center mb-4">
                 <img
@@ -32,7 +33,7 @@ export default function CardForum({ forums }) {
                 {forums.description}
               </p>
             </div>
-          </a>
+          </Link>
         </main>
       }
     </div>
