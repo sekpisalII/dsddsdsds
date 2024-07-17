@@ -1,6 +1,5 @@
 import React from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
-
 const BlogCard = () => {
   return (
     <>
@@ -15,7 +14,6 @@ const BlogCard = () => {
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7 w-[80%] mx-auto">
         <div className="relative col-span-1 lg:col-span-2 flex flex-col justify-between h-[280px] sm:h-[480px] overflow-hidden rounded-xl bg-white text-gray-700 shadow-md">
           <div className="relative overflow-hidden">
-            <a href="/BlogAllCard">
             <img
               className="h-full w-full object-cover  opacity-100 transition duration-300 ease-in-out transform scale-10"
               src="../src/assets/Blog-Posts.webp"
@@ -28,7 +26,6 @@ const BlogCard = () => {
                 <span className="text-[20px]">និងមានប្លុកជាច្រើនសម្រាប់ទស្សនា</span>
                 </h2>
               </div>
-            </a>
           </div>
         </div>
 

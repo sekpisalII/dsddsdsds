@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ForumContent from "../../components/forum/ForumContent";
+import ForumContent from "../../components/forumContent/ForumContent";
 import FooterCard from "../../components/footer/FooterCard";
 import { fetchFurum } from "../../services/fetchFurom";
 import CardForum from "../../components/forumCardForm/CardForum";

@@ -1,6 +1,6 @@
 import React from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
-
+import { Link } from "react-router-dom";
 const LessonCard = () => {
   return (
     <>
@@ -11,7 +11,7 @@ const LessonCard = () => {
           <FaArrowRightLong />
         </span>
       </section>
-
+      <Link to="/lessonAllCard" >
       <section className="grid grid-flow-row-dense grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7 w-[80%] mx-auto">
         <div className="relative flex flex-col justify-between col-span-1 h-[480px] overflow-hidden rounded-xl bg-white text-gray-700 shadow-md">
           <div className="relative overflow-hidden bg-transparent rounded-none">
@@ -109,6 +109,7 @@ const LessonCard = () => {
           </div>
         </div>
       </section>
+      </Link>
     </>
   );
 };

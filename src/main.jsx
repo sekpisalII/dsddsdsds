@@ -20,6 +20,13 @@ import BookDetailPage from './page/bookDetailPage/BookDetailPage';
 import Create_forum_detail from './page/create_forum_detail/Create_forum_detail';
 import BlogDetailPage from './page/blogDetailPage/BlogDetailPage';
 import CreateCommentPage from './page/createCommentPage/CreateCommentPage';
+import BookAllCard from './components/bookAllCard/BookAllCard';
+import BookCard from './components/bookCard/BookCard';
+import BookDetail from './components/bookDetail/BookDetail';
+import ForumCard from './components/forumCard/ForumCard';
+import BlogCard from './components/blogCard/BlogCard';
+import BlogDetail from './components/blogDetail/BlogDetail';
+import ForumContent from './components/forumContent/ForumContent';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -101,7 +108,22 @@ const router = createBrowserRouter([
     path: '/blogDetail/:id', 
     element: <BlogDetailPage />
   },
-
+  {
+    path: '/bookAllCard',
+    element: <Book />
+  },
+  {
+    path: '/lessonAllCard',
+    element: <Lesson /> 
+  },
+  {
+    path: '/forumContent',
+    element: <Forum />
+  },
+  {
+    path: '/blogAllCard',
+    element: <Blog />
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

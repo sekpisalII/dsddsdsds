@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./bookStyle.css";
 import { Link } from "react-router-dom";
-import BookDetailPage from "../../page/bookDetailPage/BookDetailPage";
+// import BookDetailPage from "../../page/bookDetailPage/BookDetailPage";
 const BookAllCard = ({ book }) => {
   return (
     <>
       <Link to={`/bookDetail/${book.id}`}>
-
         <div className="flex flex-col bg-gray-100​ font-suwannaphum">
           <div className="bg-white rounded-lg shadow-lg overflow-hidden  w-full">
             <img

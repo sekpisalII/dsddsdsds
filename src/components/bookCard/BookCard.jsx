@@ -15,7 +15,6 @@ const BookCard = () => {
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7 w-[80%] mx-auto">
         <div className="relative col-span-1 lg:col-span-2 flex flex-col justify-between h-[280px] sm:h-[480px] rounded-xl text-gray-700 shadow-md overflow-hidden">
               <div className="relative overflow-hidden">
-           
                   <div className="relative">
                     <img
                       className="h-full w-full object-cover opacity-100 transition duration-300 ease-in-out transform scale-100"
