@@ -7,10 +7,13 @@ const BlogCard = () => {
     <>
       <section className="flex justify-between mt-5 w-[80%] mx-auto font-suwannaphum mb-7">
         <h3 className="font-bold text-[#16A1DF] text-3xl">ប្លុក</h3>
-        <span className="flex items-center text-black text-[20px]">
-          បង្ហាញទាំងអស់
-          <FaArrowRightLong />
-        </span>
+        <Link to="/blog">
+          {" "}
+          <span className="flex items-center text-black text-[20px]">
+            បង្ហាញទាំងអស់
+            <FaArrowRightLong />
+          </span>
+        </Link>
       </section>
 
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7 w-[80%] mx-auto">
