@@ -3,15 +3,13 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import Layout from "./components/layout/Layout";
-
-import Blog from "./page/blog/Blog";
-import Book from "./page/book/Book";
-import Lesson from "./page/lesson/Lesson";
-import Notification from "./page/notification/Notification";
+// import Blog from "./page/blog/Blog";
+// import Book from "./page/book/Book";
+// import Lesson from "./page/lesson/Lesson";
 import Error from "./page/error-page/Error";
-import Create from "./page/create/Create";
-import Forum from "./page/forum/Forum";
-import AboutUs from "./page/about-us/AboutUs";
+// import Create from "./page/create/Create";
+// import Forum from "./page/forum/Forum";
+// import AboutUs from "./page/about-us/AboutUs";
 import Register from "./page/auth/Register";
 import Login from "./page/auth/Login";
 import Home from "./page/home/Home";
@@ -20,6 +18,12 @@ import BookDetailPage from "./page/bookDetailPage/BookDetailPage";
 import Create_forum_detail from "./page/create_forum_detail/Create_forum_detail";
 import BlogDetailPage from "./page/blogDetailPage/BlogDetailPage";
 import CreateCommentPage from "./page/createCommentPage/CreateCommentPage";
+import Notification from "./page/notification/Notification";
+import Lesson from "./page/lesson/Lesson";
+import Book from "./page/book/Book";
+import Forum from "./page/forum/Forum";
+import Blog from "./page/blog/Blog";
+import AboutUs from "./page/about-us/AboutUs";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -49,10 +53,6 @@ const router = createBrowserRouter([
       {
         path: "/about-us",
         element: <AboutUs />,
-      },
-      {
-        path: "/create",
-        element: <Create />,
       },
       {
         path: "/notification",
@@ -97,7 +97,7 @@ const router = createBrowserRouter([
     element: <LessonDetailPage />,
   },
   {
-    path: "/blogDetail/:id",
+    path: "/blogDetail/:bookId",
     element: <BlogDetailPage />,
   },
 ]);

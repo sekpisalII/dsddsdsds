@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { saveBook } from "../../services/fetchBooks";
+import { useNavigate } from "react-router-dom";
 
 const Create_Forum = () => {
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
@@ -12,6 +14,7 @@ const Create_Forum = () => {
       description,
       image: "Null",
     });
+    navigate("/forum");
   };
   return (
     <>
@@ -54,7 +57,7 @@ const Create_Forum = () => {
                 <label htmlFor="comment" className="sr-only">
                   Your comment
                 </label>
-                <h1>{title}</h1>
+
                 <textarea
                   id="title"
                   name="title"

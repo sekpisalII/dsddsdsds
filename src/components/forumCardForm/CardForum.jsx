@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import "./style.css";
 export default function CardForum({ forums }) {
   return (
     <div>
@@ -26,10 +26,10 @@ export default function CardForum({ forums }) {
                   </p>
                 </div>
               </div>
-              <h2 className="text-xl font-semibold text-gray-900 mb-2 font-suwannaphum">
+              <h2 className=" text-xl font-semibold text-gray-900 mb-2 font-suwannaphum line-clamp-2">
                 {forums.title}
               </h2>
-              <p className="text-gray-700 font-suwannaphum">
+              <p className=" text-gray-700 font-suwannaphum line-clamp-2">
                 {forums.description}
               </p>
             </div>
