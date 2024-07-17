@@ -7,12 +7,11 @@ import {
   BsInstagram,
   BsTwitter,
 } from "react-icons/bs";
-
 const FooterCard = () => {
   return (
     <>
       <Footer container className=" bg-slate-100 mt-[30px]">
-        <div className="w-[82%] mx-auto">
+        <div className="w-full mx-auto">
           <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
             <div>
               <Footer.Brand

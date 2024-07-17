@@ -29,11 +29,9 @@ const Book = () => {
         setIsLoading(false);
       });
   };
-
   const handlePageChange = (pageNumber) => {
     fetchForums(pageNumber);
   };
-
   return (
     <>
       <ButtonMenu />
