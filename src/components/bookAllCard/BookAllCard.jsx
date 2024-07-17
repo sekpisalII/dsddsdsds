@@ -6,7 +6,7 @@ const BookAllCard = ({ book }) => {
     <>
       <Link to={`/bookDetail/${book.id}`}>
         <div className="flex flex-col bg-gray-100​ font-suwannaphum">
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden  w-full">
+          <div className="bg-white rounded-lg shadow-lg overflow-hidden w-full">
             <img
               src={
                 book.course_thumbnail ||

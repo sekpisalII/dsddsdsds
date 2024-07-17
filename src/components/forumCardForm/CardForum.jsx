@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
 export default function CardForum({ forums }) {
+  const [formattedDate, setFormattedDate] = useState("");
+  useEffect(() => {
+    const date = new Date(forums.updated_at);
+    setFormattedDate(
+      date.toLocaleString("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+      })
+    );
+  }, [forums.updated_at]);
   return (
     <div>
       {
@@ -22,7 +35,7 @@ export default function CardForum({ forums }) {
                     {forums.author}
                   </p>
                   <p className="text-sm text-gray-500 font-suwannaphum">
-                    {forums.updated_at}
+                    {formattedDate}
                   </p>
                 </div>
               </div>

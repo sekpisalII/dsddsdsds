@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { saveBook } from "../../services/fetchBooks";
 import { useNavigate } from "react-router-dom";
+import SpinnerSave from "../appSpinner/SpinnerSave";
 
 const Create_Forum = () => {
+  const [isLoading, setIsloading] = useState(false);
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
   const onFormSubmited = (e) => {
+    setIsloading(true);
     e.preventDefault();
     saveBook({
       title,
       description,
       image: "Null",
     });
+    setIsloading(false);
     navigate("/forum");
   };
   return (
@@ -89,11 +93,25 @@ const Create_Forum = () => {
               </div>
               <div className="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
                 <button
+                  disabled={isLoading}
                   type="submit"
                   className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
                 >
-                  Post comment
+                  {isLoading ? (
+                    <div className="flex items-center">
+                      <SpinnerSave />
+                      <span className="ml-2">Saving...</span>
+                    </div>
+                  ) : (
+                    "Post comment"
+                  )}
                 </button>
+                {isLoading && (
+                  <div className="inline-flex items-center">
+                    <SpinnerSave />
+                  </div>
+                )}
+
                 <div className="flex space-x-1 rtl:space-x-reverse sm:space-x-2">
                   <button
                     type="button"

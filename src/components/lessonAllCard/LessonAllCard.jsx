@@ -21,7 +21,7 @@ const LessonAllCard = ({ lesson }) => {
               : "https://blog.snappymob.com/wp-content/uploads/2020/12/8-Tips-for-Designing-Empty-Placeholder-Pages-Leni-Featured.png"
           }
           alt="Lesson Image"
-          className="h-[250px] w-full object-cover"
+          className="w-full h-[250px] object-cover rounded-lg"
         />
       </Link>
       <div className="p-[10px]">
