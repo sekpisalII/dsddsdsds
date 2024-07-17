@@ -1,26 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { saveBook } from "../../services/fetchBooks";
-const Create_Forum = () => {
-  const [forumRequest, setForumRequest] = useState({});
-  const onValueChange = (e) => {
-    // console.log(e);
-    let { name, value } = e.target;
-    setForumRequest((prevState) => {
-      return {
-        ...prevState,
-        [name]: value,
-      };
-    });
-  };
-  const onFormSubmited = (e) => {
-    e.preventDefault();
-    // forumRequest.image = null;
-    saveBook(forumRequest).then((json) => {
-      console.log(json);
-    });
-  };
-  useEffect(() => {});
+import { useNavigate } from "react-router-dom";
+import SpinnerSave from "../appSpinner/SpinnerSave";
 
+const Create_Forum = () => {
+  const [isLoading, setIsloading] = useState(false);
+  const navigate = useNavigate();
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [image, setImage] = useState("");
+  const onFormSubmited = (e) => {
+    setIsloading(true);
+    e.preventDefault();
+    saveBook({
+      title,
+      description,
+      image: "Null",
+    });
+    setIsloading(false);
+    navigate("/forum");
+  };
   return (
     <>
       <main className="max-w-7xl mx-auto p-4 space-y-4">
@@ -54,11 +53,9 @@ const Create_Forum = () => {
           </p>
 
           <form onSubmit={onFormSubmited}>
-            <p>{forumRequest.title}</p>
-            <p>{forumRequest.comment}</p>
-            {/* Title Form */}
-
-            {/* End Tile */}
+            {/* <p>{forumRequest.title}</p>
+            <p>{forumRequest.description}</p>
+            <p>{forumRequest.image}</p> */}
             <div className="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
               <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
                 <label htmlFor="comment" className="sr-only">
@@ -68,37 +65,53 @@ const Create_Forum = () => {
                 <textarea
                   id="title"
                   name="title"
+                  value={title}
                   rows="4"
                   className="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
                   placeholder="Write a Title..."
                   required
-                  onChange={onValueChange}
+                  onChange={(e) => setTitle(e.target.value)}
                 ></textarea>
               </div>
             </div>
             <div className="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
               <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
-                <label htmlFor="comment" className="sr-only">
+                <label htmlFor="description" className="sr-only">
                   Your comment
                 </label>
 
                 <textarea
-                  id="comment"
+                  id="description"
                   rows="4"
                   className="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
                   placeholder="Write a comment..."
-                  onChange={onValueChange}
-                  name="comment"
+                  onChange={(e) => setDescription(e.target.value)}
+                  name="description"
+                  value={description}
                   required
                 ></textarea>
               </div>
               <div className="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
                 <button
+                  disabled={isLoading}
                   type="submit"
                   className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
                 >
-                  Post comment
+                  {isLoading ? (
+                    <div className="flex items-center">
+                      <SpinnerSave />
+                      <span className="ml-2">Saving...</span>
+                    </div>
+                  ) : (
+                    "Post comment"
+                  )}
                 </button>
+                {isLoading && (
+                  <div className="inline-flex items-center">
+                    <SpinnerSave />
+                  </div>
+                )}
+
                 <div className="flex space-x-1 rtl:space-x-reverse sm:space-x-2">
                   <button
                     type="button"

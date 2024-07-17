@@ -1,9 +1,10 @@
 import React from 'react'
 
-export default function Create() {
+const Create = () => {
   return (
     <div>
-      <h1>This is Create</h1>
+      
     </div>
   )
 }
+export default Create;

@@ -1,6 +1,7 @@
 import React from "react";
 import { FaArrowRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+
 const BookCard = () => {
   return (
     <>
@@ -14,22 +15,26 @@ const BookCard = () => {
       <Link to="/bookAllCard" className="block h-full w-full">
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7 w-[80%] mx-auto">
         <div className="relative col-span-1 lg:col-span-2 flex flex-col justify-between h-[280px] sm:h-[480px] rounded-xl text-gray-700 shadow-md overflow-hidden">
-              <div className="relative overflow-hidden">
-                  <div className="relative">
-                    <img
-                      className="h-full w-full object-cover opacity-100 transition duration-300 ease-in-out transform scale-100"
-                      src="../src/assets/stem_book.jpg"
-                      alt="Stem Book"
-                    />
-                    <div className="absolute -top-[260px] inset-0 bg-transparent hover:bg-slate-300 opacity-0 hover:opacity-60 transition-opacity duration-300 ease-in-out flex items-center justify-center">
-                      <h2 className="text-black text-[28px]  text-center font-bold">
-                        ការសិក្សាផ្សេងៗដែលទាក់ទងទៅនិង STEM
-                        <br />
-                        <span className="text-[20px]">ស្វែងរកសៀវភៅផ្សេងៗដលទាក់ទងទៅនឹង Technology</span>
-                      </h2>
-                    </div>
-                  </div>
+          <div className="relative overflow-hidden">
+            <Link to="/book" className="block h-full w-full">
+              <div className="relative">
+                <img
+                  className="h-full w-full object-cover opacity-100 transition duration-300 ease-in-out transform scale-100"
+                  src="../src/assets/stem_book.jpg"
+                  alt="Stem Book"
+                />
+                <div className="absolute -top-[260px] inset-0 bg-transparent hover:bg-slate-300 opacity-0 hover:opacity-60 transition-opacity duration-300 ease-in-out flex items-center justify-center">
+                  <h2 className="text-black text-[28px]  text-center font-bold">
+                    ការសិក្សាផ្សេងៗដែលទាក់ទងទៅនិង STEM
+                    <br />
+                    <span className="text-[20px]">
+                      ស្វែងរកសៀវភៅផ្សេងៗដលទាក់ទងទៅនឹង Technology
+                    </span>
+                  </h2>
+                </div>
               </div>
+            </Link>
+          </div>
         </div>
         {/* Card */}
         <div className="relative flex flex-col justify-between col-span-1 h-[480px] overflow-hidden rounded-xl bg-white text-gray-700 shadow-md">

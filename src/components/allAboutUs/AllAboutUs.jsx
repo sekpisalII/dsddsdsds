@@ -51,7 +51,6 @@ const AllAboutUs = () => {
           </div>
         </div>
       </section>
-
       <section className="py-14 lg:py-24 relative">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
           <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-9">
@@ -77,13 +76,11 @@ const AllAboutUs = () => {
           </div>
         </div>
       </section>
-
       <div className="w-max mx-auto text-blue-600">
         <h1 className="animate-typing overflow-hidden whitespace-nowrap border-r-4 text-center border-r-white text-3xl p-3 text-black font-bold">
           លោកគ្រូនិងអ្នកគ្រូរបស់យើង
         </h1>
       </div>
-
       {/* Our Mentor */}
       <section className="container mx-auto flex flex-wrap justify-center gap-28">
         <div className="w-full sm:w-[318.97px] flex-col justify-start items-center inline-flex mb-6">
@@ -114,46 +111,13 @@ const AllAboutUs = () => {
             </div>
           </div>
         </div>
-
-        <div className="w-full sm:w-[318.97px] flex-col justify-start items-center inline-flex mb-6">
-          <img
-            src="../src/assets/Mentor Muyleang.jpg"
-            alt="Mentor"
-            className="w-full h-auto"
-          />
-          <div className="h-[82px] flex-col justify-start items-start flex">
-            <div className="self-stretch text-center text-2xl font-bold font-suwannaphum text-blue-500">
-              Sun Jessica
-            </div>
-            <div className="self-stretch h-[39px] flex-col justify-start items-center flex">
-              <div className="self-stretch text-center text-black text-[22px] font-medium font-suwannaphum">
-                Mentor
-              </div>
-              <div className="justify-center items-center gap-[7px] inline-flex text-blue-500">
-                <a href="https://www.facebook.com/">
-                  <FaFacebook />
-                </a>
-                <a href="https://github.com/">
-                  <FaGithub />
-                </a>
-                <a href="https://t.me/">
-                  <FaTelegram />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
       </section>
-
-
-
       {/* About Us */}
       <div className="w-max mx-auto text-blue-600">
         <h1 className="animate-typing overflow-hidden whitespace-nowrap border-r-4 text-center border-r-white text-3xl p-3 text-black font-bold">
           សមាជិកក្រុមរបស់យើង
         </h1>
       </div>
-
       <div className="w-full h-auto flex flex-col justify-start items-center gap-10">
         <div className="self-stretch flex flex-wrap justify-center gap-10 text-blue-500">
           {[

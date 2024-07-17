@@ -22,9 +22,11 @@ const BlogCard = () => {
             />
             <div className="absolute -top-[30px] inset-0 bg-transparent hover:bg-slate-300 opacity-0 hover:opacity-60 transition-opacity duration-300 ease-in-out flex items-center justify-center">
                 <h2 className="text-black text-[28px]  text-center font-bold">
-                អាចបង្កើតប្លុកផ្សេងៗ ការបង្កើតប្លុក 
-                <br />
-                <span className="text-[20px]">និងមានប្លុកជាច្រើនសម្រាប់ទស្សនា</span>
+                  អាចបង្កើតប្លុកផ្សេងៗ ការបង្កើតប្លុក
+                  <br />
+                  <span className="text-[20px]">
+                    និងមានប្លុកជាច្រើនសម្រាប់ទស្សនា
+                  </span>
                 </h2>
               </div>
           </div>

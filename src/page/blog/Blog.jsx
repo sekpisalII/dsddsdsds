@@ -1,23 +1,43 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import BlogAllCard from "../../components/blogAllCard/BlogAllCard";
-import { fetchBlog } from "../../services/fetchBlog";
+
 import FooterCard from "../../components/footer/FooterCard";
-import Paginatin from "../../components/pagination/PaginationComponent";
+// import Paginatin from "../../components/pagination/PaginationComponent";
 import ButtonMenuBlog from "../../components/buttonMenuBlog/ButtonMenuBlog";
 
 export const Blog = () => {
   const [blog, setBlog] = useState([{}]);
-  const onBlogFetch = (pageNum, pageSize) => {
-    fetchBlog(pageNum, pageSize).then((json) => {
-      //handle ui
-      console.log(json);
-      //upadte State
-      setBlog(json.results);
-    });
-  };
+  const [isLoading, setIsLoading] = useState(true);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+
   useEffect(() => {
-    onBlogFetch(1, 10);
+    // Fetch the initial set of blogs
+    fetchBlogs(1);
   }, []);
+
+  const fetchBlogs = (page) => {
+    setIsLoading(true);
+    fetch(`http://136.228.158.126:50001/api/articles/?page=${page}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setBlog(data.results);
+        setCurrentPage(page);
+        setTotalPages(Math.ceil(data.count / 10)); // Assuming 10 blogs per page
+      })
+      .catch((error) => {
+        console.error("Error fetching blogs:", error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
+  const handlePageChange = (pageNumber) => {
+    fetchBlogs(pageNumber);
+  };
+
   return (
     <>
       <ButtonMenuBlog />
@@ -33,7 +53,7 @@ export const Blog = () => {
             </section>
           ))}
       </section>
-        <Paginatin />
+        {/* <Paginatin /> */}
       <FooterCard />
     </>
   );

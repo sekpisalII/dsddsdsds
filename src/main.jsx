@@ -1,6 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import ReactDOM from 'react-dom'; // Corrected import for ReactDOM
 import './index.css';
 import Layout from './components/layout/Layout';
 import App from './App';
@@ -9,7 +9,6 @@ import Book from './page/book/Book';
 import Lesson from './page/lesson/Lesson';
 import Notification from './page/notification/Notification';
 import Error from './page/error-page/Error';
-import Create from './page/create/Create';
 import Forum from './page/forum/Forum';
 import AboutUs from './page/about-us/AboutUs';
 import Register from './page/auth/Register';
@@ -20,13 +19,8 @@ import BookDetailPage from './page/bookDetailPage/BookDetailPage';
 import Create_forum_detail from './page/create_forum_detail/Create_forum_detail';
 import BlogDetailPage from './page/blogDetailPage/BlogDetailPage';
 import CreateCommentPage from './page/createCommentPage/CreateCommentPage';
-import BookAllCard from './components/bookAllCard/BookAllCard';
-import BookCard from './components/bookCard/BookCard';
-import BookDetail from './components/bookDetail/BookDetail';
-import ForumCard from './components/forumCard/ForumCard';
-import BlogCard from './components/blogCard/BlogCard';
-import BlogDetail from './components/blogDetail/BlogDetail';
-import ForumContent from './components/forumContent/ForumContent';
+import Create from './page/create/Create';
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -65,7 +59,6 @@ const router = createBrowserRouter([
         path: '/notification',
         element: <Notification />
       },
-     
     ]
   },
   {
@@ -77,19 +70,19 @@ const router = createBrowserRouter([
     element: <Register />
   },
   {
-    path:'/lessonDetail',
+    path: '/lessonDetail',
     element: <LessonDetailPage />
   },
   {
-    path:'/bookDetail',
+    path: '/bookDetail',
     element: <BookDetailPage />
   },
   {
-    path:'/create_forum',
+    path: '/create_forum',
     element: <Create_forum_detail />
   },
   {
-    path:'/blogDetail',
+    path: '/blogDetail',
     element: <BlogDetailPage />
   },
   {
@@ -105,7 +98,7 @@ const router = createBrowserRouter([
     element: <LessonDetailPage />
   },
   {
-    path: '/blogDetail/:id', 
+    path: '/blogDetail/:id',
     element: <BlogDetailPage />
   },
   {
@@ -114,7 +107,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/lessonAllCard',
-    element: <Lesson /> 
+    element: <Lesson />
   },
   {
     path: '/forumContent',

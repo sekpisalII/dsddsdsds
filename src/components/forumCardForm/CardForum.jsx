@@ -1,11 +1,25 @@
-import React from "react";
-
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import "./style.css";
 export default function CardForum({ forums }) {
+  const [formattedDate, setFormattedDate] = useState("");
+  useEffect(() => {
+    const date = new Date(forums.updated_at);
+    setFormattedDate(
+      date.toLocaleString("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+      })
+    );
+  }, [forums.updated_at]);
   return (
     <div>
       {
         <main className="max-w-7xl mx-auto p-4 flex flex-col lg:flex-row justify-between lg:space-x-8">
-          <a href="/createComment">
+          <Link to="/createComment">
             <div className="bg-white shadow rounded-lg p-6">
               <div className="flex items-center mb-4">
                 <img
@@ -21,18 +35,18 @@ export default function CardForum({ forums }) {
                     {forums.author}
                   </p>
                   <p className="text-sm text-gray-500 font-suwannaphum">
-                    {forums.updated_at}
+                    {formattedDate}
                   </p>
                 </div>
               </div>
-              <h2 className="text-xl font-semibold text-gray-900 mb-2 font-suwannaphum">
+              <h2 className=" text-xl font-semibold text-gray-900 mb-2 font-suwannaphum line-clamp-2">
                 {forums.title}
               </h2>
-              <p className="text-gray-700 font-suwannaphum">
+              <p className=" text-gray-700 font-suwannaphum line-clamp-2">
                 {forums.description}
               </p>
             </div>
-          </a>
+          </Link>
         </main>
       }
     </div>
