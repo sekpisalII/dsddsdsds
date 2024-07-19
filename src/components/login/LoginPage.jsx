@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 const LoginPage = () => {
   return (
     <>
@@ -13,12 +14,12 @@ const LoginPage = () => {
                   </h3>
                   <p className="text-sm mt-4 text-gray-800 text-center">
                     មិនទាន់មានគណនី?{" "}
-                    <a
-                      href="./register"
+                    <Link
+                      to="/register"
                       className="text-blue-600 font-semibold hover:underline ml-1 whitespace-nowrap"
                     >
                       បង្កើតគណនី
-                    </a>
+                    </Link>
                   </p>
                 </div>
 
