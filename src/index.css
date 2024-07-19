@@ -4,31 +4,32 @@
 @tailwind utilities;
 .progress-circle {
     position: relative;
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
   }
   .progress-circle svg {
     transform: rotate(-90deg);
   }
   .progress-circle circle {
     fill: none;
-    stroke-width: 10;
+    stroke-width: 15;
     stroke-linecap: round;
   }
   .progress-circle .bg {
-    stroke: #e5e7eb;
+    stroke: #e5e7eb; /* Tailwind's gray-200 */
   }
   .progress-circle .progress {
-    stroke-dasharray: 251.2;
-    stroke-dashoffset: 251.2;
+    stroke-dasharray: 377; /* Adjusted for r=60 */
+    stroke-dashoffset: 377;
     transition: stroke-dashoffset 1s;
   }
   .progress-circle[data-progress="34"] .progress {
-    stroke-dashoffset: calc(251.2 * (1 - 34 / 100));
+    stroke-dashoffset: calc(377 * (1 - 84 / 100));
   }
   .progress-circle[data-progress="25"] .progress {
-    stroke-dashoffset: calc(251.2 * (1 - 25 / 100));
+    stroke-dashoffset: calc(377 * (1 - 60 / 100));
   }
   .progress-circle[data-progress="35"] .progress {
-    stroke-dashoffset: calc(251.2 * (1 - 35 / 100));
+    stroke-dashoffset: calc(377 * (1 - 35 / 100));
   }
+  
