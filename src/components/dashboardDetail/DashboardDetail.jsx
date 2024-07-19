@@ -3,9 +3,9 @@ import { MdOutlinePostAdd } from "react-icons/md";
 import { IoCheckmarkCircleSharp } from "react-icons/io5";
 import { AiTwotoneLike } from "react-icons/ai";
 const DashboardDetail = () =>{
-  return (
+  return ( 
     <section className="max-w-screen-xl mx-auto mt-5 gap-[100]">
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1  j gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <div className="bg-white shadow-lg rounded-lg p-6">
             <div className="flex flex-col items-center">
                 <div className="progress-circle" data-progress="34">
