@@ -13,7 +13,7 @@ const LessonAllCard = ({ lesson }) => {
 
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden w-full">
-      <Link to={`/lessonDetail/${lesson.id}`}>
+      <Link to={`/lessonDetail/` + lesson.id}>
         <img
           src={
             isValidUrl(lesson.lesson_image)
@@ -25,7 +25,7 @@ const LessonAllCard = ({ lesson }) => {
         />
       </Link>
       <div className="p-[10px]">
-        <h2 className="text-[18px] font-bold text-gray-800 mb-2 font-suwannaphum">
+        <h2 className="text-[18px] font-bold text-gray-800 mb-2 font-suwannaphum line-clamp-1">
           {lesson.lesson_title}
         </h2>
         <p className="text-gray-700 text-[17px] leading-tight mt-3 font-suwannaphum line-clamp-2">

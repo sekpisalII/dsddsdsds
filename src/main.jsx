@@ -24,6 +24,9 @@ import Book from "./page/book/Book";
 import Forum from "./page/forum/Forum";
 import Blog from "./page/blog/Blog";
 import AboutUs from "./page/about-us/AboutUs";
+
+import PageVerify from "./page/optpage/PageVerify";
+// import Otp from "./components/otp-form/otp";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -58,6 +61,10 @@ const router = createBrowserRouter([
         path: "/notification",
         element: <Notification />,
       },
+      {
+        path: "/createComment/:id",
+        element: <CreateCommentPage />,
+      },
     ],
   },
   {
@@ -84,10 +91,7 @@ const router = createBrowserRouter([
     path: "/blogDetail",
     element: <BlogDetailPage />,
   },
-  {
-    path: "/createComment",
-    element: <CreateCommentPage />,
-  },
+
   {
     path: "/bookDetail/:id",
     element: <BookDetailPage />,
@@ -97,8 +101,12 @@ const router = createBrowserRouter([
     element: <LessonDetailPage />,
   },
   {
-    path: "/blogDetail/:bookId",
+    path: "/blogDetail/:id",
     element: <BlogDetailPage />,
+  },
+  {
+    path: "/otp",
+    element: <PageVerify />,
   },
 ]);
 
