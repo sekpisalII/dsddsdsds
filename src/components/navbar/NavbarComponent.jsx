@@ -1,6 +1,10 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { Avatar, Dropdown, Navbar, Button } from "flowbite-react";
+import { LuLayoutDashboard } from "react-icons/lu";
+import { GrArticle } from "react-icons/gr";
+import { IoSettingsSharp } from "react-icons/io5";
+import { RiLogoutBoxLine } from "react-icons/ri";
 const NavbarComponent = () => {
   return (
     <>
@@ -24,28 +28,45 @@ const NavbarComponent = () => {
               </Button>
             </Link>
             <Dropdown
-              arrowIcon={false}
-              inline
-              label={
-                <Avatar
-                  alt="User settings"
-                  img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                  rounded
-                />
-              }
-            >
-              <Dropdown.Header>
-                <span className="block text-sm">Bonnie Green</span>
-                <span className="block truncate text-sm font-medium">
-                  name@flowbite.com
-                </span>
-              </Dropdown.Header>
-              <Dropdown.Item>Dashboard</Dropdown.Item>
-              <Dropdown.Item>Settings</Dropdown.Item>
-              <Dropdown.Item>Earnings</Dropdown.Item>
-              <Dropdown.Divider />
-              <Dropdown.Item>Sign out</Dropdown.Item>
-            </Dropdown>
+          arrowIcon={false}
+          inline
+          label={
+            <Avatar
+              alt="User settings"
+              img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+              rounded
+            />
+          }
+        >
+          <Dropdown.Header>
+            {/* Optional header content */}
+          </Dropdown.Header>
+          <Dropdown.Item>
+            <LuLayoutDashboard className="m-3 text-blue-600" />
+            <NavLink to="/dashboard" className="font-suwannaphum" activeClassName="active-link">
+              Dashboard
+            </NavLink>
+          </Dropdown.Item>
+          <Dropdown.Item>
+            <GrArticle className="m-3 text-blue-600" />
+            <NavLink to="/article" className="font-suwannaphum" activeClassName="active-link">
+              Articles
+            </NavLink>
+          </Dropdown.Item>
+          <Dropdown.Item>
+            <IoSettingsSharp className="m-3 text-blue-600" />
+            <NavLink to="/setting" className="font-suwannaphum" activeClassName="active-link">
+              Setting
+            </NavLink>
+          </Dropdown.Item>
+          <Dropdown.Divider />
+          <Dropdown.Item>
+            <RiLogoutBoxLine className="m-3 text-blue-600" />
+            <NavLink to="/logout" className="font-suwannaphum" activeClassName="active-link">
+              Logout
+            </NavLink>
+          </Dropdown.Item>
+        </Dropdown>
             <Navbar.Toggle />
           </div>
           <Navbar.Collapse>

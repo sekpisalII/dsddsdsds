@@ -1,4 +1,3 @@
-import React from "react";
 import BookDetail from "../../components/bookDetail/BookDetail";
 import FooterCard from "../../components/footer/FooterCard";
 import { useParams } from "react-router-dom";
@@ -9,6 +8,7 @@ const BookDetailPage = () => {
   return (
     <div>
       <NavbarComponent />
+      <h1 className="text-black">{id}</h1>
       <BookDetail />
       <FooterCard />
     </div>

@@ -1,4 +1,6 @@
-import React from "react";
+import { Link, useParams } from "react-router-dom";
+import Book from "../../page/book/Book";
+
 const BookDetail = () => {
   return (
     <section className="max-w-screen-xl mx-auto">
