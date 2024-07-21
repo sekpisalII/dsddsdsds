@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios"; // Assuming you're using Axios for HTTP requests
-import { Navigate, useNavigation } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 // import { unstable_HistoryRouter } from "react-router-dom";
-
 const RegisterPage = () => {
-  let navigate = useNavigation();
-  // const history = unstable_HistoryRouter();
+  const Navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
@@ -23,22 +22,18 @@ const RegisterPage = () => {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevent default form submission behavior
-
+    event.preventDefault();
     setIsLoading(true); // Set loading state to true
-    setError(null); // Clear any previous errors
 
     try {
       const response = await axios.post(
         "http://136.228.158.126:50001/api/register/",
         formData
-      ); // Replace with your actual API endpoint
-      console.log(response.data);
-      // history.push("/");
-      // Handle successful response (e.g., redirect, display success message)
-      if (response.data.success) {
-        // Redirect to success page or dashboard using useNavigate
-        navigate("/book"); // Replace with your desired success route
+      );
+
+      if (response.status === 201) {
+        alert("Account has been created successfully.", "success");
+        Navigate("/otp"); // Use the `Navigate` function to redirect to the OTP page
       } else {
         // Handle potential API-specific error messages:
         setError(response.data.message || "Registration failed.");
