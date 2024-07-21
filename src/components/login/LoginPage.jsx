@@ -1,6 +1,47 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
 const LoginPage = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [accessToken, setAccessToken] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogin = async () => {
+    setIsLoading(true);
+    const item = { email, password };
+
+    try {
+      const response = await fetch(`http://136.228.158.126:50001/api/login/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(item),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        localStorage.setItem("user-info", JSON.stringify(result));
+        setAccessToken(result.access_token);
+        navigate("/");
+      } else {
+        const errorData = await response.json();
+        setErrorMessage(
+          errorData.error || "Login failed, Please try again later"
+        );
+        navigate("/login");
+      }
+    } catch (error) {
+      setErrorMessage("An error occurred. Please try again later.");
+      console.error("Error:", error);
+      navigate("/login");
+    } finally {
+      setIsLoading(false);
+    }
+  };
   return (
     <>
       <div className="font-suwannaphum">
@@ -31,6 +72,7 @@ const LoginPage = () => {
                     <input
                       name="email"
                       type="text"
+                      onChange={(e) => setEmail(e.target.value)}
                       required
                       className="w-full border-[#9F9F9F] rounded-[15px] text-gray-800 text-sm border-b  focus:border-blue-600 px-2 py-3 outline-none"
                       placeholder="Enter email"
@@ -78,6 +120,7 @@ const LoginPage = () => {
                     <input
                       name="password"
                       type="password"
+                      onChange={(e) => setPassword(e.target.value)}
                       required
                       className="w-full rounded-[15px] text-gray-800 text-sm border-b border-gray-300 focus:border-blue-600 px-2 py-3 outline-none"
                       placeholder="Enter password"
@@ -121,13 +164,23 @@ const LoginPage = () => {
                     </a>
                   </div>
                 </div>
-
+                {errorMessage && (
+                  <div className="error-message text-sm text-red-600 mt-3">
+                    {errorMessage}
+                  </div>
+                )}
                 <div className="mt-12">
                   <button
                     type="button"
-                    className="w-full shadow-xl py-2.5 px-4 text-sm tracking-wide rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
+                    onClick={handleLogin}
+                    disabled={isLoading}
+                    className={`${
+                      isLoading
+                        ? "loading"
+                        : "w-full shadow-xl py-2.5 px-4 text-sm tracking-wide rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
+                    }`}
                   >
-                    ចូលគណនី
+                    {isLoading ? "Loading..." : " ចូលគណនី"}
                   </button>
                 </div>
 
