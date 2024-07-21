@@ -91,36 +91,39 @@ const AllAboutUs = () => {
         </h1>
 
 
-        <div className="mt-10 grid justify-center gap-28 sm:grid-cols-2">
+        <div className="mt-10 grid justify-center selection sm:px-4 gap-28 sm:grid-cols-2">
           {/* Mentor 1 */}
-          <div className="w-[320px] text-center py-2 px-2 bg-gray-100 hover:bg-green-200 shadow-sm rounded-lg hover:shadow-md">
-          <img
-            src="../src/assets/Mentor_MuyleangDevOps.jpg"
-            alt="Mentor" height={220} 
-            className="mx-auto mb-4 rounded-full  w-24 h-24  md:w-28 md:h-28 lg:w-36 lg:h-36"/>
-          
-          <h3 className="text-black text-md tracking-tight md:text-lg lg:text-2xl font-suwannaphum">Ing Muyleang</h3>
-          <h4 className="text-blue-600 text-[20px] font-medium font-suwannaphum">Mentor</h4>
+          <div className="w-[300px] text-center py-2 px-2 bg-gray-100 hover:bg-green-200 shadow-sm rounded-lg hover:shadow-md transform transition-all duration-300 hover:scale-105 hover:-translate-x-1">
+              <img
+                src="../src/assets/Mentor_MuyleangDevOps.jpg"
+                alt="Mentor"
+                height={200}
+                className="mx-auto mb-4 rounded-full w-24 h-24 md:w-28 md:h-28 lg:w-36 lg:h-36"
+              />
+              
+              <h3 className="text-black text-md tracking-tight md:text-lg lg:text-2xl font-suwannaphum">Ing Muyleang</h3>
+              <h4 className="text-blue-600 text-[20px] font-medium font-suwannaphum">Mentor</h4>
 
-          {/* Link */}
-          <ul className="mt-4 pb-2 flex justify-center space-x-4">
-            <li>
-              <a href="https://www.facebook.com/" target="_blank" className="text-xl text-blue-600 hover:text-black"><FaFacebook /></a>
-            </li>
-            <li>
-              <a href="https://github.com/" target="_blank"  className="text-xl text-gray-800 hover:text-black"><FaGithub /></a>
-            </li>
-            <li>
-              <a href="https://t.me/" target="_blank"  className="text-xl text-blue-600 hover:text-black"><FaTelegram /></a>
-            </li>
-          </ul>
-          </div>
+              {/* Link */}
+              <ul className="mt-4 pb-2 flex justify-center space-x-4">
+                <li>
+                  <a href="https://www.facebook.com/" target="_blank" className="text-xl text-blue-600 hover:text-black"><FaFacebook /></a>
+                </li>
+                <li>
+                  <a href="https://github.com/" target="_blank" className="text-xl text-gray-800 hover:text-black"><FaGithub /></a>
+                </li>
+                <li>
+                  <a href="https://t.me/" target="_blank" className="text-xl text-blue-600 hover:text-black"><FaTelegram /></a>
+                </li>
+              </ul>
+            </div>
+
               
           {/* Mentor 2 */}
-          <div className="w-[320px] text-center py-2 bg-gray-100 hover:bg-green-200 shadow-sm rounded-lg hover:shadow-lg">
+          <div className="w-[300px] text-center py-2 bg-gray-100 hover:bg-green-200 shadow-sm rounded-lg hover:shadow-lg transform transition-all duration-300 hover:scale-105 hover:-translate-x-1">
           <img
             src="../src/assets/Mentor_Jessica1.jpg"
-            alt="Mentor" height={220} 
+            alt="Mentor" height={200} 
             className="mx-auto mb-4 rounded-full w-24 h-24 md:w-28 md:h-28 lg:w-36 lg:h-36"/>
           
           <h3 className="text-black text-md tracking-tight md:text-lg lg:text-2xl font-suwannaphum">Sun Jessica</h3>
@@ -149,8 +152,8 @@ const AllAboutUs = () => {
         </h1>
         
         {/* Member */}
-        <div className="mt-10 grid justify-center items-center gap-16 sm:grid-cols-2 lg:grid-cols-3">
-        <div className="w-[300px] text-center py-2 bg-gray-100 hover:bg-green-200 shadow-sm rounded-lg hover:shadow-md">
+        <div className="mt-10 grid justify-center items-center gap-20 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="w-[300px] text-center py-2 bg-gray-100 hover:bg-green-200 shadow-sm rounded-lg hover:shadow-md transform transition-all duration-300 hover:scale-105 hover:-translate-x-1">
           <img
              src="../src/assets/profile AbountUs.jpg"
             alt="Mentor" height={200} 
@@ -161,7 +164,7 @@ const AllAboutUs = () => {
           {/* Link */}
           <ul className="mt-4 pb-2 flex justify-center space-x-4">
             <li>
-              <a href="https://www.facebook.com/" target="_blank" className="text-xl text-blue-600 hover:text-black"><FaFacebook /></a>
+              <a href="https://www.facebook.com/profile.php?id=100028119094073&mibextid=LQQJ4d" target="_blank" className="text-xl text-blue-600 hover:text-black"><FaFacebook /></a>
             </li>
             <li>
               <a href="https://github.com/" target="_blank"  className="text-xl text-blue-600 hover:text-black"><FaGithub /></a>
@@ -173,7 +176,7 @@ const AllAboutUs = () => {
           </div>
 
 
-          <div className="w-[300px] text-center py-2 bg-gray-100 hover:bg-green-200 shadow-sm rounded-lg hover:shadow-md">
+          <div className="w-[300px] text-center py-2 bg-gray-100 hover:bg-green-200 shadow-sm rounded-lg hover:shadow-md  transform transition-all duration-300 hover:scale-105 hover:-translate-x-1">
           <img
             src="../src/assets/profile AbountUs.jpg"
             alt="Mentor" height={200} 
@@ -185,18 +188,18 @@ const AllAboutUs = () => {
           {/* Link */}
           <ul className="mt-4 pb-2 flex justify-center space-x-4">
             <li>
-              <a href="https://www.facebook.com/" target="_blank" className="text-xl text-blue-600 hover:text-black"><FaFacebook /></a>
+              <a href="https://www.facebook.com" target="_blank" className="text-xl text-blue-600 hover:text-black"><FaFacebook /></a>
             </li>
             <li>
-              <a href="https://github.com/" target="_blank"  className="text-xl text-blue-600 hover:text-black"><FaGithub /></a>
+              <a href="https://github.com/SREYNEANG-HONG" target="_blank"  className="text-xl text-blue-600 hover:text-black"><FaGithub /></a>
             </li>
             <li>
-              <a href="https://t.me/" target="_blank"  className="text-xl text-blue-600 hover:text-black"><FaTelegram /></a>
+              <a href="https://t.me/SREYNEANG_HONG" target="_blank"  className="text-xl text-blue-600 hover:text-black"><FaTelegram /></a>
             </li>
           </ul>
         </div>
 
-        <div className="w-[300px] text-center py-2 bg-gray-100 hover:bg-green-200 shadow-sm rounded-lg hover:shadow-md">
+        <div className="w-[300px] text-center py-2 bg-gray-100 hover:bg-green-200 shadow-sm rounded-lg hover:shadow-md  transform transition-all duration-300 hover:scale-105 hover:-translate-x-1">
           <img
             src="../src/assets/profile AbountUs.jpg"
             alt="Mentor" height={200} 
@@ -208,18 +211,18 @@ const AllAboutUs = () => {
           {/* Link */}
           <ul className="mt-4 pb-2 flex justify-center space-x-4">
             <li>
-              <a href="https://www.facebook.com/" target="_blank" className="text-xl text-blue-600 hover:text-black"><FaFacebook /></a>
+              <a href="https://www.facebook.com/profile.php?id=100053897863470&mibextid=ZbWKwL" target="_blank" className="text-xl text-blue-600 hover:text-black"><FaFacebook /></a>
             </li>
             <li>
-              <a href="https://github.com/" target="_blank"  className="text-xl text-blue-600 hover:text-black"><FaGithub /></a>
+              <a href="https://github.com/PonChannarith" target="_blank"  className="text-xl text-blue-600 hover:text-black"><FaGithub /></a>
             </li>
             <li>
-              <a href="https://t.me/" target="_blank"  className="text-xl text-blue-600 hover:text-black"><FaTelegram /></a>
+              <a href="t.me/Channarith11" target="_blank"  className="text-xl text-blue-600 hover:text-black"><FaTelegram /></a>
             </li>
           </ul>
         </div>
 
-        <div className="w-[300px] text-center py-2 bg-gray-100 hover:bg-green-200 shadow-sm rounded-dm hover:shadow-md">
+        <div className="w-[300px] text-center py-2 bg-gray-100 hover:bg-green-200 shadow-sm rounded-dm hover:shadow-md transform transition-all duration-300 hover:scale-105 hover:-translate-x-1">
           <img
             src="../src/assets/profile AbountUs.jpg"
             alt="Mentor" height={200} 
@@ -231,18 +234,18 @@ const AllAboutUs = () => {
           {/* Link */}
           <ul className="mt-4 pb-2 flex justify-center space-x-4">
             <li>
-              <a href="https://www.facebook.com/" target="_blank" className="text-xl text-blue-600 hover:text-black"><FaFacebook /></a>
+              <a href="https://www.facebook.com/van.sok.980?mibextid=ZbWKwL" target="_blank" className="text-xl text-blue-600 hover:text-black"><FaFacebook /></a>
             </li>
             <li>
-              <a href="https://github.com/" target="_blank"  className="text-xl text-blue-600 hover:text-black"><FaGithub /></a>
+              <a href="https://github.com/VanSok55" target="_blank"  className="text-xl text-blue-600 hover:text-black"><FaGithub /></a>
             </li>
             <li>
-              <a href="https://t.me/" target="_blank"  className="text-xl text-blue-600 hover:text-black"><FaTelegram /></a>
+              <a href="t.me/VanSok_z" target="_blank"  className="text-xl text-blue-600 hover:text-black"><FaTelegram /></a>
             </li>
           </ul>
         </div>
 
-        <div className="w-[300px] text-center py-2 bg-gray-100 hover:bg-green-200 shadow-sm rounded-lg hover:shadow-md">
+        <div className="w-[300px] text-center py-2 bg-gray-100 hover:bg-green-200 shadow-sm rounded-lg hover:shadow-md transform transition-all duration-300 hover:scale-105 hover:-translate-x-1">
           <img
             src="../src/assets/profile AbountUs.jpg"
             alt="Mentor" height={200} 
@@ -255,18 +258,18 @@ const AllAboutUs = () => {
           {/* Link */}
           <ul className="mt-4 pb-2 flex justify-center space-x-4">
             <li>
-              <a href="https://www.facebook.com/" target="_blank" className="text-xl text-blue-600 hover:text-black"><FaFacebook /></a>
+              <a href="https://www.facebook.com/ka.nika.7737769?mibextid=ZbWKwL" target="_blank" className="text-xl text-blue-600 hover:text-black"><FaFacebook /></a>
             </li>
             <li>
-              <a href="https://github.com/" target="_blank"  className="text-xl text-blue-600 hover:text-black"><FaGithub /></a>
+              <a href="https://github.com/Ni-kaaa" target="_blank"  className="text-xl text-blue-600 hover:text-black"><FaGithub /></a>
             </li>
             <li>
-              <a href="https://t.me/" target="_blank"  className="text-xl text-blue-600 hover:text-black"><FaTelegram /></a>
+              <a href="t.me/nikaaaa03" target="_blank"  className="text-xl text-blue-600 hover:text-black"><FaTelegram /></a>
             </li>
           </ul>
         </div>
 
-        <div className="w-[300px] text-center py-2 bg-gray-100 hover:bg-green-200 shadow-sm rounded-lg hover:shadow-md">
+        <div className="w-[300px] text-center py-2 bg-gray-100 hover:bg-green-200 shadow-sm rounded-lg hover:shadow-md transform transition-all duration-300 hover:scale-105 hover:-translate-x-1">
           <img
             src="../src/assets/profile AbountUs.jpg"
             alt="Mentor" height={200} 
@@ -278,18 +281,18 @@ const AllAboutUs = () => {
           {/* Link */}
           <ul className="mt-4 pb-2 flex justify-center space-x-4">
             <li>
-              <a href="https://www.facebook.com/" target="_blank" className="text-xl text-blue-600 hover:text-black"><FaFacebook /></a>
+              <a href="https://www.facebook.com/nam.ponleu?mibextid=LQQJ4d" target="_blank" className="text-xl text-blue-600 hover:text-black"><FaFacebook /></a>
             </li>
             <li>
-              <a href="https://github.com/" target="_blank"  className="text-xl text-blue-600 hover:text-black"><FaGithub /></a>
+              <a href="https://github.com/namponleu" target="_blank"  className="text-xl text-blue-600 hover:text-black"><FaGithub /></a>
             </li>
             <li>
-              <a href="https://t.me/" target="_blank"  className="text-xl text-blue-600 hover:text-black"><FaTelegram /></a>
+              <a href="https://t.me/ponleu07" target="_blank"  className="text-xl text-blue-600 hover:text-black"><FaTelegram /></a>
             </li>
           </ul>
         </div>
 
-        <div className="w-[300px] text-center py-2 bg-gray-100 hover:bg-green-200 shadow-sm rounded-lg hover:shadow-md">
+        <div className="w-[300px] text-center py-2 bg-gray-100 hover:bg-green-200 shadow-sm rounded-lg hover:shadow-md transform transition-all duration-300 hover:scale-105 hover:-translate-x-1">
           <img
              src="../src/assets/profile AbountUs.jpg"
             alt="Mentor" height={200} 
@@ -301,18 +304,18 @@ const AllAboutUs = () => {
           {/* Link */}
           <ul className="mt-4 pb-2 flex justify-center space-x-4">
             <li>
-              <a href="https://www.facebook.com/" target="_blank" className="text-xl text-blue-600 hover:text-black"><FaFacebook /></a>
+              <a href="https://www.facebook.com/mengeam.seng?mibextid=ZbWKwL" target="_blank" className="text-xl text-blue-600 hover:text-black"><FaFacebook /></a>
             </li>
             <li>
-              <a href="https://github.com/" target="_blank"  className="text-xl text-blue-600 hover:text-black"><FaGithub /></a>
+              <a href="https://github.com/MengEam08" target="_blank"  className="text-xl text-blue-600 hover:text-black"><FaGithub /></a>
             </li>
             <li>
-              <a href="https://t.me/" target="_blank"  className="text-xl text-blue-600 hover:text-black"><FaTelegram /></a>
+              <a href="t.me/MengEam_Seng" target="_blank"  className="text-xl text-blue-600 hover:text-black"><FaTelegram /></a>
             </li>
           </ul>
         </div>
 
-        <div className="w-[300px] text-center py-2 bg-gray-100 hover:bg-green-200 shadow-sm rounded-lg hover:shadow-md">
+        <div className="w-[300px] text-center py-2 bg-gray-100 hover:bg-green-200 shadow-sm rounded-lg hover:shadow-md transform transition-all duration-300 hover:scale-105 hover:-translate-x-1">
           <img
              src="../src/assets/profile AbountUs.jpg"
             alt="Mentor" height={200} 
@@ -324,19 +327,19 @@ const AllAboutUs = () => {
           {/* Link */}
           <ul className="mt-4 pb-2 flex justify-center space-x-4">
             <li>
-              <a href="https://www.facebook.com/" target="_blank" className="text-xl text-blue-600 hover:text-black"><FaFacebook /></a>
+              <a href="https://www.facebook.com/Boen.thi.monster?mibextid=ZbWKw" target="_blank" className="text-xl text-blue-600 hover:text-black"><FaFacebook /></a>
             </li>
             <li>
-              <a href="https://github.com/" target="_blank"  className="text-xl text-blue-600 hover:text-black"><FaGithub /></a>
+              <a href="https://github.com/boenthi" target="_blank"  className="text-xl text-blue-600 hover:text-black"><FaGithub /></a>
             </li>
             <li>
-              <a href="https://t.me/" target="_blank"  className="text-xl text-blue-600 hover:text-black"><FaTelegram /></a>
+              <a href="http://t.me/BoenThi" target="_blank"  className="text-xl text-blue-600 hover:text-black"><FaTelegram /></a>
             </li>
           </ul>
         </div>
 
 
-        <div className="w-[300px] text-center py-2 bg-gray-100 hover:bg-green-200 shadow-sm rounded-lg hover:shadow-md">
+        <div className="w-[300px] text-center py-2 bg-gray-100 hover:bg-green-200 shadow-sm rounded-lg hover:shadow-md transform transition-all duration-300 hover:scale-105 hover:-translate-x-1">
           <img
              src="../src/assets/profile AbountUs.jpg"
             alt="Mentor" height={200} 
@@ -348,13 +351,13 @@ const AllAboutUs = () => {
           {/* Link */}
           <ul className="mt-4 pb-2 flex justify-center space-x-4">
             <li>
-              <a href="https://www.facebook.com/" target="_blank" className="text-xl text-blue-600 hover:text-black"><FaFacebook /></a>
+              <a href="https://web.facebook.com/?_rdc=1&_rdr" target="_blank" className="text-xl text-blue-600 hover:text-black"><FaFacebook /></a>
             </li>
             <li>
-              <a href="https://github.com/" target="_blank"  className="text-xl text-blue-600 hover:text-black"><FaGithub /></a>
+              <a href="https://github.com/PochPisethh" target="_blank"  className="text-xl text-blue-600 hover:text-black"><FaGithub /></a>
             </li>
             <li>
-              <a href="https://t.me/" target="_blank"  className="text-xl text-blue-600 hover:text-black"><FaTelegram /></a>
+              <a href="http://t.me/Zwcodecambodia168" target="_blank"  className="text-xl text-blue-600 hover:text-black"><FaTelegram /></a>
             </li>
           </ul>
         </div>

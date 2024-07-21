@@ -18,7 +18,6 @@ import BookDetailPage from "./page/bookDetailPage/BookDetailPage";
 import Create_forum_detail from "./page/create_forum_detail/Create_forum_detail";
 import BlogDetailPage from "./page/blogDetailPage/BlogDetailPage";
 import CreateCommentPage from "./page/createCommentPage/CreateCommentPage";
-import Notification from "./page/notification/Notification";
 import Lesson from "./page/lesson/Lesson";
 import Book from "./page/book/Book";
 import Forum from "./page/forum/Forum";
@@ -30,6 +29,8 @@ import ArticlePage from './page/articlePage/ArticlePage';
 import SettingPage from './page/settingPage/SettingPage';
 import LogoutPage from './page/logoutPage/LogoutPage';
 import DashboardPageDetail from './page/dashboardPageDetail/DashboardPageDetail';
+import ForumCard from "./components/forumCard/ForumCard";
+import ForumContent from "./components/forumContent/ForumContent";
 const router = createBrowserRouter([
   {
     path: '/',
@@ -93,6 +94,18 @@ const router = createBrowserRouter([
   {
     path: '/blogAllCard',
     element: <Blog />
+  },
+  {
+    path: '/bookAllCard',
+    element: <Book />
+  },
+  {
+    path: '/lessonAllCard',
+    element: <Lesson />
+  },
+  {
+    path: '/forumContent',
+    element: <ForumContent />
   },
   {
     path: '/blogDetail',

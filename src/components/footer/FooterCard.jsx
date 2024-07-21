@@ -10,7 +10,7 @@ import {
 const FooterCard = () => {
   return (
     <>
-      <Footer container className=" bg-slate-100 mt-[30px]">
+      <Footer container className=" bg-slate-100">
         <div className="w-full mx-auto">
           <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
             <div>
@@ -26,7 +26,8 @@ const FooterCard = () => {
                 អ្នកប្រើប្រាស់មានការគ្រប់គ្រងពេញលេញលើការធ្វើដំណើររបស់ពួកគេនិងបង្កើតមេរៀននៅក្នុងវេទិកា។
               </p>
             </div>
-            <div className="grid grid-cols-2 gap-8 sm:mt-4 sm:grid-cols-3 sm:gap-6 ">
+
+            <div className="mt-5 grid gap-8 sm:mt-4 sm:grid-cols-3 sm:gap-6 ">
               <div>
                 <Footer.Title
                   title="គេហទំព័រ"
@@ -34,7 +35,7 @@ const FooterCard = () => {
                 />
                 <Footer.LinkGroup
                   col
-                  className="text-base font-suwannaphum -ml-5"
+                  className="text-base font-suwannaphum"
                 >
                   <Footer.Link href="#">មេរៀន</Footer.Link>
                   <Footer.Link href="#">ប្លុក</Footer.Link>
@@ -49,7 +50,7 @@ const FooterCard = () => {
                 />
                 <Footer.LinkGroup
                   col
-                  className="text-base font-suwannaphum -ml-5"
+                  className="text-base font-suwannaphum"
                 >
                   <Footer.Link href="#">លក្ខខណ្ឌប្រើប្រាស់</Footer.Link>
                   <Footer.Link href="#">សាកសួរព័ត៌មាន</Footer.Link>
@@ -63,7 +64,7 @@ const FooterCard = () => {
                 />
                 <Footer.LinkGroup
                   col
-                  className="text-base font-suwannaphum -ml-5"
+                  className="text-base font-suwannaphum"
                 >
                   <Footer.Link href="#">អាសយដ្ធាន</Footer.Link>
                   <Footer.Link href="#">ក្រុមការងារ</Footer.Link>

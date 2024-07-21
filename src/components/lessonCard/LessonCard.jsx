@@ -13,7 +13,7 @@ const LessonCard = () => {
           </span>
         </Link>
       </section>
-      <Link to="/lessonAllCard" >
+      <Link to="/lessonAllCard">
       <section className="grid grid-flow-row-dense grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7 w-[80%] mx-auto">
         <div className="relative flex flex-col justify-between col-span-1 h-[480px] overflow-hidden rounded-xl bg-white text-gray-700 shadow-md">
           <div className="relative overflow-hidden bg-transparent rounded-none">
@@ -94,7 +94,6 @@ const LessonCard = () => {
         </div>
         <div className="relative flex flex-col justify-between col-span-1 lg:col-span-2 h-[480px] overflow-hidden rounded-xl bg-white text-gray-700 shadow-md">
           <div className="relative overflow-hidden bg-transparent rounded-none">
-            <Link to="/lesson">
               <img
                 className="h-full w-full object-cover opacity-100 transition duration-300 ease-in-out transform scale-100"
                 src="https://static.nsta.org/images/products/PP%20STEM%20K-2_cvr.jpg"
@@ -109,7 +108,6 @@ const LessonCard = () => {
                   </span>
                 </h2>
               </div>
-            </Link>
           </div>
         </div>
       </section>

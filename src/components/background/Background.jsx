@@ -11,7 +11,7 @@ const Background = () => {
       <div className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-[80vh] lg:items-center lg:px-8 text-white font-suwannaphum">
         <div className=" mx-auto max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
           <div className="mx-auto max-w-3xl text-center">
-            <h1 className=" bg-clip-text text-[50px] font-extrabold sm:text-5xl    ">
+            <h1 className=" bg-clip-text text-[50px] font-extrabold sm:text-5xl">
               សាលារៀនបែបឌីជីថល
             </h1>
             <h1 className="overflow-hidden animate-typing mr-6 whitespace-nowrap border-r-4 border-r-white p-3 text-2xl font-bold">
