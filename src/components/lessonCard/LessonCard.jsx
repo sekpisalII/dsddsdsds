@@ -19,7 +19,7 @@ const LessonCard = () => {
           <div className="relative overflow-hidden bg-transparent rounded-none">
             <img
               className="h-80 w-full object-cover"
-              src="../src/assets/stem_lesson.png"
+              src="../src/assets/lesson_card.jpg"
               alt=""
             />
           </div>
@@ -58,7 +58,7 @@ const LessonCard = () => {
           <div className="relative overflow-hidden bg-transparent rounded-none">
             <img
               className="h-80 w-full object-cover"
-              src="../src/assets/stem_lesson.png"
+              src="../src/assets/Lesson_card2.jpg"
               alt=""
             />
           </div>

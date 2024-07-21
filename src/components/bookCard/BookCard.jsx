@@ -82,7 +82,7 @@ const BookCard = () => {
           <div className="relative overflow-hidden bg-transparent rounded-none">
             <img
               className="h-80 w-full object-cover"
-              src="../src/assets/Book_layout.png"
+              src="../src/assets/stem_book1.jpeg"
               alt=""
             />
           </div>

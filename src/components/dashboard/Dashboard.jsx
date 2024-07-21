@@ -21,7 +21,7 @@ const Dashboard = () => {
       <div className="flex justify-between items-center p-5 bg-e1f2fd bg-blue-500">
         <div>
           <h1 className="text-[30px] text-white font-suwannaphum ml-60">Welcome !</h1>
-          <p className="text-1xl font-semibold text-white font-suwannaphum ml-60">Luy Kanika</p>
+          <p className="text-1xl font-semibold text-white font-suwannaphum ml-60">Channarith</p>
         </div>
         <div className="flex items-center space-x-5">
           <div className="hidden md:flex">
