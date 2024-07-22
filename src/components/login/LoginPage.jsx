@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import { CgMail } from "react-icons/cg";
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -50,14 +50,14 @@ const LoginPage = () => {
             <div className="md:max-w-md w-full px-4 py-4">
               <form>
                 <div className="mb-12">
-                  <h3 className="text-blue-700 text-3xl font-extrabold text-center">
+                  <h3 className="text-blue-700 text-3xl font-extrabold text-center font-suwannaphum">
                     ចូលគណនី
                   </h3>
-                  <p className="text-sm mt-4 text-gray-800 text-center">
+                  <p className="text-lg mt-4 text-gray-800 text-center font-suwannaphum">
                     មិនទាន់មានគណនី?{" "}
                     <Link
                       to="/register"
-                      className="text-blue-600 font-semibold hover:underline ml-1 whitespace-nowrap"
+                      className="text-blue-600 font-semibold hover:underline ml-1 font-suwannaphum whitespace-nowrap"
                     >
                       បង្កើតគណនី
                     </Link>
@@ -65,7 +65,7 @@ const LoginPage = () => {
                 </div>
 
                 <div>
-                  <label className="text-gray-800 text-[14px] block mb-2">
+                  <label className="text-gray-800 text-[20px] block mb-2">
                     អុីម៉ែល
                   </label>
                   <div className="relative flex items-center">
@@ -75,9 +75,9 @@ const LoginPage = () => {
                       onChange={(e) => setEmail(e.target.value)}
                       required
                       className="w-full border-[#9F9F9F] rounded-[15px] text-gray-800 text-sm border-b  focus:border-blue-600 px-2 py-3 outline-none"
-                      placeholder="Enter email"
+                      placeholder="បញ្ចូលអុីមែល"
                     />
-                    <svg
+                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="#bbb"
                       stroke="#bbb"
@@ -108,12 +108,12 @@ const LoginPage = () => {
                           data-original="#000000"
                         ></path>
                       </g>
-                    </svg>
+                      </svg>
                   </div>
                 </div>
 
                 <div className="mt-8">
-                  <label className="text-gray-800 text-[14px]  block mb-2">
+                  <label className="text-gray-800 text-[20px]  block mb-2">
                     លេខសម្ងាត់
                   </label>
                   <div className="relative flex items-center">
@@ -123,7 +123,7 @@ const LoginPage = () => {
                       onChange={(e) => setPassword(e.target.value)}
                       required
                       className="w-full rounded-[15px] text-gray-800 text-sm border-b border-gray-300 focus:border-blue-600 px-2 py-3 outline-none"
-                      placeholder="Enter password"
+                      placeholder="បញ្ចូលលេខសម្ងាត់"
                     />
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

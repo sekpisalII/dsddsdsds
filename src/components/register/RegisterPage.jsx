@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios"; // Assuming you're using Axios for HTTP requests
 import { Navigate, useNavigate } from "react-router-dom";
+import { Button, Checkbox, Label, TextInput } from "flowbite-react";
 // import { unstable_HistoryRouter } from "react-router-dom";
 const RegisterPage = () => {
   const Navigate = useNavigate();
@@ -48,94 +49,100 @@ const RegisterPage = () => {
 
   return (
     <div className=" font-suwannaphum">
-      <div className=" min-h-[150vh] flex fle-col items-center justify-center p-6">
+      <div className=" flex fle-col items-center justify-center p-6">
         <div className="grid lg:grid-cols-2 items-center gap-6 max-w-7xl max-lg:max-w-xl w-full">
           <form onSubmit={handleSubmit} className="lg:max-w-md w-full">
             <h3 className="text-blue-600 text-3xl font-extrabold mb-12 text-center">
               បង្កើតគណនី
             </h3>
-            <div className="space-y-6">
+            <div className="space-y-3">
               <div>
-                <label className="text-[20px]" htmlFor="text">
-                  First Name:
+                <label className="text-[20px] font-suwannaphum" htmlFor="text">
+                  First Name
                 </label>
                 <input
                   type="text"
                   id="first_name"
                   name="first_name"
-                  className="bg-gray-100 w-full border-[#9F9F9F] rounded-[15px] text-gray-800 text-sm px-4 py-4 mt-3 focus:bg-transparent outline-blue-500 transition-all"
+                  className="font-suwannaphum bg-gray-100 w-full border-[#9F9F9F] rounded-[10px] text-gray-800 text-sm px-4 py-3 mt-3 focus:bg-transparent outline-blue-500 transition-all"
                   value={formData.first_name}
                   onChange={handleChange}
+                  placeholder="Enter your first name"
                   required
                 />
               </div>
               <div>
-                <label className="text-[20px]" htmlFor="last_name">
+                <label className="text-[20px] font-suwannaphum" htmlFor="last_name">
                   Last Name:
                 </label>
                 <input
                   type="text"
                   id="last_name"
                   name="last_name"
-                  className="bg-gray-100 w-full border-[#9F9F9F] rounded-[15px] text-gray-800 text-sm px-4 py-4 mt-3 focus:bg-transparent outline-blue-500 transition-all"
+                  className="bg-gray-100 w-full border-[#9F9F9F] rounded-[10px] text-gray-800 text-sm px-4 py-3 mt-3 focus:bg-transparent outline-blue-500 transition-all"
                   value={formData.last_name}
                   onChange={handleChange}
+                  placeholder="Enter your last name"
                   required
                 />
               </div>
               <div>
-                <label className="text-[20px]" htmlFor="username">
+                <label className="text-[20px] font-suwannaphum" htmlFor="username">
                   Username:
                 </label>
                 <input
                   type="text"
                   id="username"
                   name="username"
-                  className="bg-gray-100 w-full border-[#9F9F9F] rounded-[15px] text-gray-800 text-sm px-4 py-4 mt-3 focus:bg-transparent outline-blue-500 transition-all"
+                  className="bg-gray-100 w-full border-[#9F9F9F] rounded-[10px] text-gray-800 text-sm px-4 py-3 mt-3 focus:bg-transparent outline-blue-500 transition-all"
                   value={formData.username}
                   onChange={handleChange}
+                  placeholder="Enter your username"
                   required
                 />
               </div>
               <div>
-                <label className="text-[20px]" htmlFor="email">
+                <label className="text-[20px] font-suwannaphum" htmlFor="email">
                   Email:
                 </label>
                 <input
                   type="email"
                   id="email"
                   name="email"
-                  className="bg-gray-100 w-full border-[#9F9F9F] rounded-[15px] text-gray-800 text-sm px-4 py-4 mt-3 focus:bg-transparent outline-blue-500 transition-all"
+                  className="bg-gray-100 w-full border-[#9F9F9F] rounded-[10px] text-gray-800 text-sm px-4 py-3 mt-3 focus:bg-transparent outline-blue-500 transition-all"
                   value={formData.email}
                   onChange={handleChange}
+                  placeholder="Enter your email"
                   required
                 />
               </div>
               <div>
-                <label className="text-[20px]" htmlFor="password">
+                <label className="text-[20px] font-suwannaphum" htmlFor="password">
                   Password:
                 </label>
                 <input
                   type="password"
                   id="password"
                   name="password"
-                  className="bg-gray-100 w-full border-[#9F9F9F] rounded-[15px] text-gray-800 text-sm px-4 py-4 mt-3 focus:bg-transparent outline-blue-500 transition-all"
+                  className="bg-gray-100 w-full border-[#9F9F9F] rounded-[10px] text-gray-800 text-sm px-4 py-3 mt-3 focus:bg-transparent outline-blue-500 transition-all"
                   value={formData.password}
                   onChange={handleChange}
+                  placeholder="Enter your password"
                   required
                 />
               </div>
               <div>
-                <label className="text-[20px]" htmlFor="confirm_password">
+                <label className="text-[20px] font-suwannaphum" htmlFor="confirm_password">
                   Confirm Password:
                 </label>
                 <input
                   type="password"
                   id="confirm_password"
                   name="confirm_password"
-                  className="bg-gray-100 w-full border-[#9F9F9F] rounded-[15px] text-gray-800 text-sm px-4 py-4 mt-3 focus:bg-transparent outline-blue-500 transition-all"
+                  className="bg-gray-100 w-full border-[#9F9F9F] rounded-[10px] text-gray-800 text-sm px-4 py-3 mt-3 focus:bg-transparent outline-blue-500 transition-all"
                   value={formData.confirm_password}
                   onChange={handleChange}
+                  placeholder="Enter your confirm password"
                   required
                 />
               </div>
@@ -160,7 +167,6 @@ const RegisterPage = () => {
                 </label>
               </div>
             </div>
-
             <div className="mt-12">
               <button
                 type="submit"
@@ -172,19 +178,19 @@ const RegisterPage = () => {
               {error && <p className="error-message">{error}</p>}
             </div>
 
-            <p className="text-sm text-gray-800 mt-6">
+            <p className="text-sm text-gray-800 mt-6 font-suwannaphum">
               មានគណនីហើយមែនទេ?{" "}
               <a
                 href="/login"
-                className="text-blue-600 font-semibold hover:underline ml-1"
+                className="text-blue-600 font-semibold hover:underline ml-1 font-suwannaphum"
               >
                 ចូលគណនី
               </a>
             </p>
           </form>
           <img
-            src="../src/assets/Sign up (3).gif"
-            className="h-full max-lg:mt-12"
+            src="../src/assets/Sign up (3).gif "
+            className="h-full w-full max-lg:mt-12 object-cover"
             autoPlay
             loop
             muted
