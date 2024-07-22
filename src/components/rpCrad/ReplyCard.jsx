@@ -9,11 +9,11 @@ const ReplyCard = ({ forumId }) => {
     const fetchComments = async () => {
       try {
         const response = await fetch(
-          `http://136.228.158.126:50001/api/comments/`
+          `http://136.228.158.126:50001/api/forums/${forumId}/`
         );
         if (response.ok) {
           const data = await response.json();
-          setComments(data.results);
+          setComments(data.comments);
         } else {
           const errorData = await response.json();
           setErrorMessage(errorData.message || "Error fetching comments");
@@ -35,16 +35,27 @@ const ReplyCard = ({ forumId }) => {
         comments.map((comment) => (
           <div
             key={comment.id}
-            className="mx-auto my-8 flex max-w-screen-sm rounded-xl border border-gray-100 p-4 text-left text-gray-600 shadow-lg sm:p-8 justify-start"
+            className="mx-auto my-8 flex max-w-screen-sm rounded-xl border border-gray-100 p-4 text-left text-gray-600 shadow-lg sm:p-8"
           >
             <img
-              className="mr-5 block h-8 w-8 max-w-full text-left align-middle sm:h-16 sm:w-16"
-              src="https://www.uifaces.co/wp-content/themes/uifaces-theme/src/img/home-animation/avatar-3.svg"
+              className=" block max-w-full text-left align-middle sm:h-16 sm:w-16 w-12 h-12 rounded-full mr-4 ml-5"
+              src="https://wallpapers.com/images/hd/smiling-close-up-oggy-and-the-cockroaches-71njhqoakbau7nbm.jpg"
               alt="Profile Picture"
             />
             <div className="w-full text-left">
               <div className="mb-2 flex flex-col justify-between text-gray-600 sm:flex-row">
                 <h3 className="font-medium">{comment.author}</h3>
+                <div className="text-gray-500 ml-5">
+                  {" "}
+                  {new Date(comment.created_at).toLocaleString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                    year: "numeric",
+                    hour: "numeric",
+                    minute: "numeric",
+                    hour12: true,
+                  })}
+                </div>
               </div>
               <p className="text-sm">{comment.content}</p>
               <div className="mt-5 flex items-center justify-between text-gray-600">
@@ -79,7 +90,7 @@ const ReplyCard = ({ forumId }) => {
       ) : isLoading ? (
         <div>Loading...</div>
       ) : (
-        <div>Error: {errorMessage}</div>
+        <div>No comments found for this forum.</div>
       )}
     </div>
   );

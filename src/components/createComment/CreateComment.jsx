@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import { fetchForumByid } from "../../services/fetchForumByid";
 import FooterCard from "../footer/FooterCard";
 import ReplyCard from "../rpCrad/ReplyCard";
+import axios from "axios";
+import { AUTH_HEADER } from "../../services/constants";
 
 const CreateComment = () => {
   const { id } = useParams();
@@ -12,7 +14,10 @@ const CreateComment = () => {
   const [formattedDate, setFormattedDate] = useState("");
   const [showReplyForm, setShowReplyForm] = useState(false);
   const [replyText, setReplyText] = useState("");
-
+  const [formData, setFormData] = useState({
+    forum_id: id,
+    content: "",
+  });
   useEffect(() => {
     const fetchForumData = async () => {
       try {
@@ -54,6 +59,34 @@ const CreateComment = () => {
   if (!forum) {
     return <div>Loading...</div>;
   }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        "http://136.228.158.126:50001/api/comments/",
+        formData,
+        {
+          headers: {
+            ...AUTH_HEADER,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("Post created successfully!");
+    } catch (error) {
+      console.error(
+        `Error creating post: ${error.response.status} - ${error.response.data}`
+      );
+    }
+  };
+
+  const handleFormDataChange = (event) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  };
 
   return (
     <>
@@ -124,17 +157,15 @@ const CreateComment = () => {
                 {showReplyForm && (
                   <div className="mt-4">
                     <Label className="font-suwannaphum">Your Reply</Label>
-                    <Textarea
-                      id="reply-text"
-                      rows={3}
-                      value={replyText}
-                      className="w-[600px] h-[80px]"
-                      placeholder="ការឆ្លើយតបរបស់អ្នក**"
-                      onChange={handleReplyTextChange}
-                    />
-                    <Button className="mt-5 mb-3" onClick={handleReplySubmit}>
-                      Submit Reply
-                    </Button>
+                    <form onSubmit={handleSubmit}>
+                      <Textarea
+                        type="text"
+                        name="content"
+                        value={formData.content}
+                        onChange={handleFormDataChange}
+                      />
+                      <button type="submit">Submit</button>
+                    </form>
                   </div>
                 )}
               </div>
