@@ -33,7 +33,7 @@ const DashboardDetail = ({ targetPercent }) => {
         <div className="bg-white shadow-lg rounded-lg p-6">
           <div className="flex flex-col items-center">
             <div className="progress-circle" data-progress="34">
-              <div className='relative'>
+              <div className="relative">
                 <svg width="150" height="150">
                   <circle className="bg" cx="75" cy="75" r="60"></circle>
                   <circle className="progress text-blue-500" cx="75" cy="75" r="60" style={{ stroke: "currentColor" }}></circle>

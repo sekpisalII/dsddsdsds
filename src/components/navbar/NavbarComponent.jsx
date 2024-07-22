@@ -15,7 +15,7 @@ const NavbarComponent = () => {
               <Link as={Link} to="/">
                 <img
                   className="w-[90px] h-[60px] object-cover"
-                  src="../src/assets/stemlogo-removebg-preview.png"
+                  src="../src/assets/New_logo.jpg"
                   alt=""
                 />
               </Link>
