@@ -72,7 +72,7 @@ const RegisterPage = () => {
             <div className="space-y-3">
               <div>
                 <label className="text-[20px] font-suwannaphum" htmlFor="first_name">
-                  First Name
+                  នាមត្រកូល
                 </label>
                 <input
                   type="text"
@@ -82,7 +82,7 @@ const RegisterPage = () => {
                   value={formik.values.first_name}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  placeholder="Enter your first name"
+                  placeholder="បញ្ចូលនាមត្រកូល"
                 />
                 {formik.touched.first_name && formik.errors.first_name ? (
                   <div className="text-red-600 text-sm">{formik.errors.first_name}</div>
@@ -91,7 +91,7 @@ const RegisterPage = () => {
 
               <div>
                 <label className="text-[20px] font-suwannaphum" htmlFor="last_name">
-                  Last Name
+                  នាមខ្លួន
                 </label>
                 <input
                   type="text"
@@ -101,7 +101,7 @@ const RegisterPage = () => {
                   value={formik.values.last_name}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  placeholder="Enter your last name"
+                  placeholder="បញ្ចូលនាមខ្លួន"
                 />
                 {formik.touched.last_name && formik.errors.last_name ? (
                   <div className="text-red-600 text-sm">{formik.errors.last_name}</div>
@@ -110,7 +110,7 @@ const RegisterPage = () => {
 
               <div>
                 <label className="text-[20px] font-suwannaphum" htmlFor="username">
-                  Username
+                  ឈ្មោះ
                 </label>
                 <input
                   type="text"
@@ -120,16 +120,15 @@ const RegisterPage = () => {
                   value={formik.values.username}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  placeholder="Enter your username"
+                  placeholder="បញ្ចូលឈ្មោះ"
                 />
                 {formik.touched.username && formik.errors.username ? (
                   <div className="text-red-600 text-sm">{formik.errors.username}</div>
                 ) : null}
               </div>
-
               <div className="relative">
                 <label className="text-[20px] font-suwannaphum" htmlFor="email">
-                  Email
+                  អ៊ីមែល
                 </label>
                 <div className="relative mt-3">
                   <input
@@ -140,7 +139,7 @@ const RegisterPage = () => {
                     value={formik.values.email}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    placeholder="Enter your email"
+                    placeholder="បញ្ចូលអ៊ីមែល"
                   />
                   <CgMail className="absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-900" />
                 </div>
@@ -151,7 +150,7 @@ const RegisterPage = () => {
 
               <div className="relative mt-3">
                 <label className="text-[20px] font-suwannaphum" htmlFor="password">
-                  Password
+                  លេខសម្ងាត់
                 </label>
                 <div className="relative mt-3">
                   <input
@@ -162,13 +161,13 @@ const RegisterPage = () => {
                     value={formik.values.password}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    placeholder="Enter your password"
+                    placeholder="បញ្ចូលលេខសម្ងាត់"
                   />
                   <div
                     className="absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-800 cursor-pointer"
                     onClick={() => setShowPassword(!showPassword)}
                   >
-                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                    {showPassword ?  <FaEye /> : <FaEyeSlash />  }
                   </div>
                 </div>
                 {formik.touched.password && formik.errors.password ? (
@@ -178,7 +177,7 @@ const RegisterPage = () => {
 
               <div className="relative mt-3">
                 <label className="text-[20px] font-suwannaphum" htmlFor="confirm_password">
-                  Confirm Password
+                  បញ្ចាក់ពាក្យសម្ងាត់
                 </label>
                 <div className="relative mt-3">
                   <input
@@ -195,7 +194,7 @@ const RegisterPage = () => {
                     className="absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-800 cursor-pointer"
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                   >
-                    {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+                    {showConfirmPassword ? <FaEye /> : <FaEyeSlash />}
                   </div>
                 </div>
                 {formik.touched.confirm_password && formik.errors.confirm_password ? (

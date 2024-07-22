@@ -14,8 +14,8 @@ const NavbarComponent = () => {
             <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
               <Link as={Link} to="/">
                 <img
-                  className="w-[90px] h-[60px] object-cover"
-                  src="../src/assets/New_logo.jpg"
+                  className="w-[100px] h-[60px]  object-cover"
+                  src="../src/assets/STEM_LOGO_TUTOR.png"
                   alt=""
                 />
               </Link>
