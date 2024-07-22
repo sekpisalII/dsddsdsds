@@ -1,43 +1,72 @@
-import React, { useEffect, useState } from "react";
-import { Label, Textarea } from "flowbite-react";
-import { FaCommentDots } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import { Button, Label, Textarea } from "flowbite-react";
 import { useParams } from "react-router-dom";
 import { fetchForumByid } from "../../services/fetchForumByid";
 import FooterCard from "../footer/FooterCard";
+import ReplyCard from "../rpCrad/ReplyCard";
 
 const CreateComment = () => {
   const { id } = useParams();
   const bookId = decodeURIComponent(id);
-  const [forum, setforum] = useState(null);
+  const [forum, setForum] = useState(null);
+  const [formattedDate, setFormattedDate] = useState("");
+  const [showReplyForm, setShowReplyForm] = useState(false);
+  const [replyText, setReplyText] = useState("");
 
   useEffect(() => {
-    const fetchlessonData = async () => {
+    const fetchForumData = async () => {
       try {
         const bookData = await fetchForumByid(encodeURIComponent(bookId));
-        setforum(bookData);
+        setForum(bookData);
+        const date = new Date(bookData.updated_at);
+        setFormattedDate(
+          date.toLocaleString("en-US", {
+            month: "short",
+            day: "numeric",
+            year: "numeric",
+            hour: "numeric",
+            minute: "numeric",
+          })
+        );
       } catch (error) {
         console.error("Error fetching forums data:", error);
       }
     };
-    fetchlessonData();
-  }, []);
+
+    fetchForumData();
+  }, [bookId]);
+
+  const handleReplyClick = () => {
+    setShowReplyForm(!showReplyForm);
+  };
+
+  const handleReplyTextChange = (event) => {
+    setReplyText(event.target.value);
+  };
+
+  const handleReplySubmit = () => {
+    // Handle the reply submission logic here
+    console.log("Reply text:", replyText);
+    setReplyText("");
+    setShowReplyForm(false);
+  };
 
   if (!forum) {
     return <div>Loading...</div>;
   }
+
   return (
     <>
-      <main className="max-w-screen-xl mx-auto mt-10">
-        <div className="w-[1240px] h-[215px] relative bg-white rounded-xl border border-black/opacity-30">
+      <main className="max-w-screen-xl mx-auto mt-10 px-4 sm:px-0">
+        <div className="w-full sm:w-[1240px] h-auto sm:h-[215px] relative bg-white rounded-xl border border-black/opacity-30">
           <h1 className="left-[30px] top-[30px] absolute text-zinc-800 text-[32px] font-semibold font-suwannaphum">
             ចូលរួមជាមួយយើងដើម្បីបង្កើតសហគមន៍សិក្សា
           </h1>
-          <p className="w-[655px] h-[26px] left-[30px] top-[70px] absolute text-zinc-800 text-[20px] text-base font-normal font-suwannaphum">
+          <p className="w-full sm:w-[655px] h-auto sm:h-[26px] left-[30px] top-[70px] absolute text-zinc-800 text-[20px] text-base font-normal font-suwannaphum">
             រីករាយក្នុងការសួរ
             និងឆ្លើយសំណួរទាក់ទងនឹងជំនាញផ្សេងៗដើម្បីចែករំលែកចំណេះដឹងឲ្យគ្នាទៅវិញទៅមក
           </p>
-          <div className="w-[255px] h-[205px] left-[949px] top-[-6px] absolute">
-            {/* Your image goes here */}
+          <div className="w-full sm:w-[255px] h-auto sm:h-[205px] left-[949px] top-[-6px] absolute">
             <img
               className="w-full h-full rounded-xl object-cover p-5"
               src="../src/assets/Online learning (2).gif"
@@ -51,48 +80,77 @@ const CreateComment = () => {
             <div className="w-5 h-5 relative" />
           </div>
         </div>
-      </main>
-      <section className="max-w-screen-xl mx-auto mt-10">
-        <div className="  relative">
-          <div className="w-[211px] h-[60px] left-[43px] top-0 absolute">
-            <img
-              className="w-[60px] h-[60px] left-0 top-0 absolute rounded-[100px]"
-              src="../src/assets/profileForumComment.jpg"
-            />
-            <div className="left-[79px] top-[9px] absolute text-black text-2xl font-normal font-suwannaphum">
-              {forum.author}
-            </div>
-          </div>
-          <div className="w-[681px] h-[158px] p-5 left-[90px] top-[60px] absolute bg-white rounded-lg flex-col justify-start items-start gap-5 inline-flex">
-            <div className=" text-zinc-800 text-xl font-semibold font-suwannaphum">
-              {forum.title}
-            </div>
-
-            <div className="w-[635px] h-[18px] text-zinc-500 text-lg font-normal font-suwannaphum ">
-              {forum.description}
-              <br />
-            </div>
-
-            <button className="text-blue-900 text-base font-normal font-suwannaphum underline mt-6">
-              See more
-            </button>
-
-            <div className="max-w-md w-[900px] ">
-              <div className="mb-2 block">
-                <Label htmlFor="comment" value="Your comment" />
-              </div>
-              <Textarea
-                id="comment"
-                placeholder="Here is comment"
-                required
-                rows={1}
+        {/*  */}
+        <section className="max-w-screen-xl mx-auto mt-10 px-4 sm:px-0 shadow-md rounded-xl font-suwannaphum">
+          <div className="relative">
+            <div className="flex items-center mb-6">
+              <img
+                src={
+                  forum.profileUser ||
+                  "https://wallpapers.com/images/hd/smiling-close-up-oggy-and-the-cockroaches-71njhqoakbau7nbm.jpg"
+                }
+                alt="Avatar"
+                className="w-12 h-12 rounded-full mr-4 ml-5"
               />
+              <div>
+                <div className="text-lg font-medium text-gray-800 ml-5">
+                  {forum.author}
+                </div>
+                <div className="text-gray-500 ml-5"> {formattedDate}</div>
+              </div>
+            </div>
+            <h3 className="text-[20px] leading-relaxed mb-6 font-bold ml-5">
+              {forum.title}
+            </h3>
+            <p className="text-lg leading-relaxed mb-6 ml-5">
+              {" "}
+              {forum.description}
+            </p>
+            <div className="flex justify-end items-center mr-5">
+              <div className="ml-5 mb-5">
+                <a
+                  href="#"
+                  className="text-gray-500 hover:text-gray-700 mr-4 mb-2"
+                >
+                  <i className="far fa-thumbs-up"></i> Like
+                </a>
+
+                <a
+                  className="text-gray-500 hover:text-gray-700"
+                  onClick={handleReplyClick}
+                >
+                  <i className="far fa-comment-alt "></i> Reply
+                </a>
+                {showReplyForm && (
+                  <div className="mt-4">
+                    <Label className="font-suwannaphum">Your Reply</Label>
+                    <Textarea
+                      id="reply-text"
+                      rows={3}
+                      value={replyText}
+                      className="w-[600px] h-[80px]"
+                      placeholder="ការឆ្លើយតបរបស់អ្នក**"
+                      onChange={handleReplyTextChange}
+                    />
+                    <Button className="mt-5 mb-3" onClick={handleReplySubmit}>
+                      Submit Reply
+                    </Button>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
-          <div className=" px-10 pb-10 left-0 top-[233px] absolute flex-col justify-start items-start gap-[30px] inline-flex"></div>
+        </section>
+        <div>
+          <ReplyCard forumId={id} />
         </div>
-      </section>
-      <div className="mt-[400px]">
+        <img
+          className="h-[300px] w-[500px] rounded-lg shadow-xl dark:shadow-gray-800 mt-7"
+          src={forum.image}
+          alt="image description"
+        />
+      </main>
+      <div>
         <FooterCard />
       </div>
     </>

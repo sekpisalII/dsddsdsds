@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { API_BASE_URI, AUTH_HEADER } from "../../services/constants";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [accessToken, setAccessToken] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -14,7 +14,7 @@ const LoginPage = () => {
     const item = { email, password };
 
     try {
-      const response = await fetch(`http://136.228.158.126:50001/api/login/`, {
+      const response = await fetch(`${API_BASE_URI}login/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -25,13 +25,18 @@ const LoginPage = () => {
       if (response.ok) {
         const result = await response.json();
         localStorage.setItem("user-info", JSON.stringify(result));
-        setAccessToken(result.access_token);
+        localStorage.setItem("access_token", result.access);
+        AUTH_HEADER.Authorization = `Bearer ${result.access}`;
         navigate("/");
       } else {
         const errorData = await response.json();
-        setErrorMessage(
-          errorData.error || "Login failed, Please try again later"
-        );
+        if (response.status === 401) {
+          setErrorMessage("Invalid email or password. Please try again.");
+        } else {
+          setErrorMessage(
+            errorData.error || "An error occurred. Please try again later."
+          );
+        }
         navigate("/login");
       }
     } catch (error) {
@@ -42,6 +47,7 @@ const LoginPage = () => {
       setIsLoading(false);
     }
   };
+
   return (
     <>
       <div className="font-suwannaphum">
@@ -180,7 +186,7 @@ const LoginPage = () => {
                         : "w-full shadow-xl py-2.5 px-4 text-sm tracking-wide rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
                     }`}
                   >
-                    {isLoading ? "Loading..." : " ចូលគណនី"}
+                    {isLoading ? "Loading..." : "Login"}
                   </button>
                 </div>
 

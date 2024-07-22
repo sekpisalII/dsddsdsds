@@ -1,21 +1,58 @@
 import React, { useEffect, useState } from "react";
 import { saveBook } from "../../services/fetchBooks";
 import { useNavigate } from "react-router-dom";
-import SpinnerSave from "../appSpinner/SpinnerSave";
+
+import { API_BASE_URI } from "../../services/constants";
 
 const Create_Forum = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [image, setImage] = useState("");
-  const onFormSubmited = (e) => {
+  const [image, setImage] = useState(null);
+  const [previewImage, setPreviewImage] = useState(null);
+
+  const onFormSubmited = async (e) => {
     e.preventDefault();
-    saveBook({
-      title,
-      description,
-      image: "Null",
-    });
-    navigate("/forum");
+
+    let formData = new FormData();
+    formData.append("file", image);
+
+    try {
+      const response = await fetch(`${API_BASE_URI}upload/`, {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to upload image");
+      }
+
+      const json = await response.json();
+      console.log(json);
+
+      await saveBook({
+        title,
+        description,
+        image: json.url,
+      });
+
+      navigate("/forum");
+    } catch (error) {
+      console.error(error);
+      // Handle any errors that occurred during the upload
+    }
+  };
+  useEffect(() => {
+    return () => {
+      if (previewImage) {
+        URL.revokeObjectURL(previewImage);
+      }
+    };
+  }, [previewImage]);
+  const onForumImage = (e) => {
+    const file = e.target.files[0];
+    setImage(file);
+    setPreviewImage(URL.createObjectURL(file));
   };
   return (
     <>
@@ -40,89 +77,118 @@ const Create_Forum = () => {
             </div>
           </div>
         </div>
-        <div className="bg-white shadow rounded-lg p-6">
+        <div className="bg-white shadow rounded-lg p-6​ font-suwannaphum">
           <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-            តើ STEM ជាអ្វី?
+            សួរសំណណួររបស់អ្នកនៅទីនេះ
           </h2>
-          <p className="text-gray-700 mb-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consequat
-            aliquet maecenas ut sit nulla.
-          </p>
 
           <form onSubmit={onFormSubmited}>
             {/* <p>{forumRequest.title}</p>
             <p>{forumRequest.description}</p>
             <p>{forumRequest.image}</p> */}
+            <label
+              for="cover-photo"
+              className="block text-md fleading-6 text-gray-900 font-bold"
+            >
+              ចំណងជើង**
+            </label>
             <div className="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
               <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
-                <label htmlFor="comment" className="sr-only">
-                  Your comment
-                </label>
-
                 <textarea
                   id="title"
                   name="title"
                   value={title}
                   rows="4"
                   className="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
-                  placeholder="Write a Title..."
+                  placeholder="សរសេរ ចំណងជើង**"
                   required
                   onChange={(e) => setTitle(e.target.value)}
                 ></textarea>
               </div>
             </div>
+            <label
+              for="cover-photo"
+              className="block text-md  leading-6 text-gray-900 font-bold"
+            >
+              ចម្ងល់របស់អ្នក**
+            </label>
             <div className="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
               <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
-                <label htmlFor="description" className="sr-only">
-                  Your comment
-                </label>
-
                 <textarea
                   id="description"
                   rows="4"
                   className="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
-                  placeholder="Write a comment..."
+                  placeholder="សរសេរ ចម្ងល់របស់អ្នក**"
                   onChange={(e) => setDescription(e.target.value)}
                   name="description"
                   value={description}
                   required
                 ></textarea>
               </div>
-              <div className="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
-                <button
-                  type="submit"
-                  className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
-                >
-                  Post comment
-                </button>
-                {/* <div className="dp">
+            </div>
+            <div className="col-span-full">
+              <label
+                for="cover-photo"
+                className="block text-md font-bold leading-6 text-gray-900"
+              >
+                រូបភាព**
+              </label>
+              <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+                <div className="text-center">
+                  <svg
+                    className="mx-auto h-12 w-12 text-gray-300"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  <div className="mt-4 flex text-sm leading-6 text-gray-600">
+                    <label
+                      for="file-upload"
+                      className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
+                    >
+                      <span>ដាក់បញ្ចូលរូបភាព</span>
+                      <div>
+                        {previewImage && (
+                          <img
+                            src={previewImage}
+                            alt="Preview"
+                            style={{
+                              maxWidth: "200px",
+                              borderRadius: "10px", // Adjust the value as needed
+                            }}
+                          />
+                        )}
+                        <input
+                          id="file-upload"
+                          name="file-upload"
+                          type="file"
+                          className="sr-only"
+                          onChange={onForumImage}
+                        />
+                      </div>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center justify-between  py-2 border-t dark:border-gray-600">
+              <button
+                type="submit"
+                className="inline-flex​ w-[100px]  items-center py-2.5 px-4 text-md font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
+              >
+                បង្ហោះ
+              </button>
+              {/* <div className="dp">
                   <SpinnerSave />
                 </div> */}
 
-                <div className="flex space-x-1 rtl:space-x-reverse sm:space-x-2">
-                  <label
-                    for="uploadFile1"
-                    className="flex  inline-flex items-center bg-blue-700  hover:bg-gray-700 text-white text-base px-5 py-3 outline-none rounded w-max cursor-pointer mx-auto font-suwannaphum"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-6 mr-2 fill-white inline"
-                      viewBox="0 0 32 32"
-                    >
-                      <path
-                        d="M23.75 11.044a7.99 7.99 0 0 0-15.5-.009A8 8 0 0 0 9 27h3a1 1 0 0 0 0-2H9a6 6 0 0 1-.035-12 1.038 1.038 0 0 0 1.1-.854 5.991 5.991 0 0 1 11.862 0A1.08 1.08 0 0 0 23 13a6 6 0 0 1 0 12h-3a1 1 0 0 0 0 2h3a8 8 0 0 0 .75-15.956z"
-                        data-original="#000000"
-                      />
-                      <path
-                        d="M20.293 19.707a1 1 0 0 0 1.414-1.414l-5-5a1 1 0 0 0-1.414 0l-5 5a1 1 0 0 0 1.414 1.414L15 16.414V29a1 1 0 0 0 2 0V16.414z"
-                        data-original="#000000"
-                      />
-                    </svg>
-                    Upload
-                    <input type="file" id="uploadFile1" className="hidden" />
-                  </label>
-                </div>
-              </div>
+              {/* <div className="flex space-x-1 rtl:space-x-reverse sm:space-x-2"></div> */}
             </div>
           </form>
         </div>

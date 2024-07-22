@@ -26,6 +26,7 @@ import Blog from "./page/blog/Blog";
 import AboutUs from "./page/about-us/AboutUs";
 
 import PageVerify from "./page/optpage/PageVerify";
+import ReplyCard from "./components/rpCrad/ReplyCard";
 // import Otp from "./components/otp-form/otp";
 const router = createBrowserRouter([
   {
@@ -100,6 +101,10 @@ const router = createBrowserRouter([
   {
     path: "/blogDetail/:id",
     element: <BlogDetailPage />,
+  },
+  {
+    path: "/reply/:id",
+    element: <ReplyCard />,
   },
   {
     path: "/otp",

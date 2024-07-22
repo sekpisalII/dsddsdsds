@@ -1,7 +1,27 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { Avatar, Dropdown, Navbar, Button } from "flowbite-react";
+import { useNavigate } from "react-router-dom";
+import { AUTH_HEADER } from "../../services/constants";
 const NavbarComponent = () => {
+  const navigate = useNavigate();
+
+  const handleSignOut = () => {
+    try {
+      // Remove the access token from the local storage
+      localStorage.removeItem("access_token");
+      // Remove the AUTH_HEADER from the constant.js file
+      delete AUTH_HEADER.Authorization;
+      // Show a success message to the user
+      alert("You have been successfully signed out.");
+      // Redirect the user to the login page
+      navigate("/login");
+    } catch (error) {
+      // Show an error message to the user
+      alert("There was an error signing you out. Please try again.");
+      console.error(error);
+    }
+  };
   return (
     <>
       <nav className="w-full  bg-[#16A1DF] sticky top-[0] z-50">
@@ -44,7 +64,7 @@ const NavbarComponent = () => {
               <Dropdown.Item>Settings</Dropdown.Item>
               <Dropdown.Item>Earnings</Dropdown.Item>
               <Dropdown.Divider />
-              <Dropdown.Item>Sign out</Dropdown.Item>
+              <Dropdown.Item onClick={handleSignOut}>Sign out</Dropdown.Item>
             </Dropdown>
             <Navbar.Toggle />
           </div>
