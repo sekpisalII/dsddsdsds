@@ -36,6 +36,7 @@ const Otp = () => {
       setIsLoading(false);
     }
   };
+
   return (
     <div className="font-suwannaphum">
       <div className="max-w-md mx-auto border mt-20">

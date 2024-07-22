@@ -123,6 +123,10 @@ const router = createBrowserRouter([
     path: "/blogDetail/:id",
     element: <BlogDetailPage />,
   },
+  // {
+  //   path: "/reply/:id",
+  //   element: <ReplyCard />,
+  // },
   {
     path: "/otp",
     element: <PageVerify />,

@@ -1,2 +1,8 @@
-export const API_BASE_URI = `http://136.228.158.126:50001/api/`;
-export const AUTH_HEADER = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIxNzMwODg5LCJpYXQiOjE3MjExMjYwODksImp0aSI6ImUyYWY2MTZlNzg5NTRiOWFiMDljYTc4MmM5NWQyZWE4IiwidXNlcl9pZCI6ImVmNWRjZTdkLTg0NmMtNDI5Yi04NmE3LTI3NGQxN2U0OTg2NCJ9.nhoPUmSpST-gl4h7Ps1wxcM6AIs-kdHoFkdq9DcLhoE`;
+export const accessToken = localStorage.getItem("access_token");
+
+export const AUTH_HEADER = {
+  Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+};
+
+// Use the AUTH_HEADER to make authenticated requests
+export const API_BASE_URI = "http://136.228.158.126:50001/api/";
