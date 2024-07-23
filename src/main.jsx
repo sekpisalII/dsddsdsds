@@ -31,6 +31,8 @@ import LogoutPage from './page/logoutPage/LogoutPage';
 import DashboardPageDetail from './page/dashboardPageDetail/DashboardPageDetail';
 import ForumCard from "./components/forumCard/ForumCard";
 import ForumContent from "./components/forumContent/ForumContent";
+import { GiPolarStar } from "react-icons/gi";
+import PostArticlePage from "./page/postArticlePage/PostArticlePage";
 const router = createBrowserRouter([
   {
     path: '/',
@@ -130,6 +132,10 @@ const router = createBrowserRouter([
   {
     path: "/otp",
     element: <PageVerify />,
+  },
+  {
+    path: "/postArticle",
+    element: <PostArticlePage />
   },
   {
     path: '/dashboard',

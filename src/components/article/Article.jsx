@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
 import Dashboard from '../../components/dashboard/Dashboard';
 import { TbArrowWaveLeftDown } from 'react-icons/tb';
+import { Link } from "react-router-dom";
 
 const Article = () => {
   // const [search, setSearch] = useState('');
   // const [filteredData, setFilteredData] = useState([]);
   // const [data, setData] = useState([]);
   // const [isLoading, setIsLoading] = useState(true);
-
   // const columns = [
   //   {
   //     name: 'ID',
@@ -118,7 +118,9 @@ const Article = () => {
       </a>
     </header>
     <div className="flex justify-end p-4">
-      <button className="button bg-blue-500 px-2 py-2 font-suwannaphum font-semibold text-white rounded-md">+New</button>
+      <button className="button bg-blue-500 px-2 py-2 font-suwannaphum font-semibold text-white rounded-md">
+        <Link to="/postArticle">+New</Link> </button>
+
     </div>
     <div className="card-content">
       <table>
