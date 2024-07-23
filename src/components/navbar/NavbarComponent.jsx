@@ -1,11 +1,43 @@
-import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { Avatar, Dropdown, Navbar, Button } from "flowbite-react";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { GrArticle } from "react-icons/gr";
 import { IoSettingsSharp } from "react-icons/io5";
 import { RiLogoutBoxLine } from "react-icons/ri";
+import { AUTH_HEADER } from "../../services/constants";
 const NavbarComponent = () => {
+  const navigate = useNavigate();
+  const [hasAccessToken, setHasAccessToken] = useState(false);
+
+  const handleNavigate = (path) => {
+    // Check if the user has an access token
+    const access_token = localStorage.getItem("access_token");
+    if (!access_token) {
+      // If the user doesn't have an access token, navigate to the login page
+      navigate("/login");
+    } else {
+      // If the user has an access token, navigate to the requested page
+      navigate(path);
+    }
+  };
+
+  const handleSignOut = () => {
+    try {
+      // Remove the access token from the local storage
+      localStorage.removeItem("access_token");
+      // Remove the AUTH_HEADER from the constant.js file
+      delete AUTH_HEADER.Authorization;
+      // Show a success message to the user
+      alert("You have been successfully signed out.");
+      // Redirect the user to the login page
+      navigate("/login");
+    } catch (error) {
+      // Show an error message to the user
+      alert("There was an error signing you out. Please try again.");
+      console.error(error);
+    }
+  };
   return (
     <>
       <nav className="w-full  bg-[#16A1DF] sticky top-[0] z-50">
@@ -28,45 +60,35 @@ const NavbarComponent = () => {
               </Button>
             </Link>
             <Dropdown
-          arrowIcon={false}
-          inline
-          label={
-            <Avatar
-              alt="User settings"
-              img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-              rounded
-            />
-          }
-        >
-          <Dropdown.Header>
-            {/* Optional header content */}
-          </Dropdown.Header>
-          <Dropdown.Item>
-            <LuLayoutDashboard className="m-3 text-blue-600" />
-            <NavLink to="/dashboard" className="font-suwannaphum" activeClassName="active-link">
-              Dashboard
-            </NavLink>
-          </Dropdown.Item>
-          <Dropdown.Item>
-            <GrArticle className="m-3 text-blue-600" />
-            <NavLink to="/article" className="font-suwannaphum" activeClassName="active-link">
-              Articles
-            </NavLink>
-          </Dropdown.Item>
-          <Dropdown.Item>
-            <IoSettingsSharp className="m-3 text-blue-600" />
-            <NavLink to="/setting" className="font-suwannaphum" activeClassName="active-link">
-              Setting
-            </NavLink>
-          </Dropdown.Item>
-          <Dropdown.Divider />
-          <Dropdown.Item>
-            <RiLogoutBoxLine className="m-3 text-blue-600" />
-            <NavLink to="/logout" className="font-suwannaphum" activeClassName="active-link">
-              Logout
-            </NavLink>
-          </Dropdown.Item>
-        </Dropdown>
+              arrowIcon={false}
+              inline
+              label={
+                <Avatar
+                  alt="User settings"
+                  img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                  rounded
+                />
+              }
+            >
+              <Dropdown.Header>User Actions</Dropdown.Header>
+              <Dropdown.Item onClick={() => handleNavigate("/dashboard")}>
+                <LuLayoutDashboard className="m-3 text-blue-600" />
+                <span className="font-suwannaphum">Dashboard</span>
+              </Dropdown.Item>
+              <Dropdown.Item onClick={() => handleNavigate("/article")}>
+                <GrArticle className="m-3 text-blue-600" />
+                <span className="font-suwannaphum">Articles</span>
+              </Dropdown.Item>
+              <Dropdown.Item onClick={() => handleNavigate("/settings")}>
+                <IoSettingsSharp className="m-3 text-blue-600" />
+                <span className="font-suwannaphum">Settings</span>
+              </Dropdown.Item>
+              <Dropdown.Divider />
+              <Dropdown.Item onClick={handleSignOut}>
+                <RiLogoutBoxLine className="m-3 text-blue-600" />
+                <span>Sign Out</span>
+              </Dropdown.Item>
+            </Dropdown>
             <Navbar.Toggle />
           </div>
           <Navbar.Collapse>
