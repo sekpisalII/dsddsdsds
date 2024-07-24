@@ -163,6 +163,7 @@ const CreateComment = () => {
                         name="content"
                         value={formData.content}
                         onChange={handleFormDataChange}
+                        className="w-full h-[35px]"
                       />
                       <button type="submit">Submit</button>
                     </form>
