@@ -19,7 +19,7 @@ const ForumCard = () => {
           <div className="relative overflow-hidden">
               <div className="relative">
                 <img
-                  className="h-full w-full object-cover opacity-100 transition duration-300 ease-in-out transform scale-100"
+                  className="h-full  object-cover opacity-100 transition duration-300 ease-in-out transform scale-100"
                   src="../src/assets/Forum.jpg"
                   alt="Stem Book"
                 />
