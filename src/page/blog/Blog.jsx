@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
 import BlogAllCard from "../../components/blogAllCard/BlogAllCard";
-
 import FooterCard from "../../components/footer/FooterCard";
-import ButtonMenu from "../../components/button_Menu/ButtonMenu";
 import Spinner from "../../components/appSpinner/Spinner";
+import ButtonMenuBlog from "../../components/buttonMenuBlog/ButtonMenuBlog";
 
 export const Blog = () => {
   const [blog, setBlog] = useState([{}]);
   const [isLoading, setIsLoading] = useState(true);
-
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
@@ -33,12 +31,14 @@ export const Blog = () => {
         setIsLoading(false);
       });
   };
+
   const handlePageChange = (pageNumber) => {
     fetchBlogs(pageNumber);
   };
+
   return (
     <>
-      <ButtonMenu />
+      <ButtonMenuBlog />
       {isLoading ? (
         <div className="flex justify-center items-center h-screen">
           <Spinner />
@@ -46,7 +46,7 @@ export const Blog = () => {
       ) : (
         <section
           id="Projects"
-          className=" p-10  mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mb-5"
+          className="h-auto p-10 mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mb-5"
         >
           {blog &&
             blog.map((blog, index) => (
@@ -57,8 +57,7 @@ export const Blog = () => {
         </section>
       )}
 
-      <div className="flex justify-center">
-        {" "}
+      <div className="flex h-auto justify-center">
         <div className="bg-white p-4 flex items-center flex-wrap">
           <button
             className="px-4 py-2 text-green-600 transition-colors duration-150 bg-white border border-r-0 border-green-600 rounded-l-lg focus:shadow-outline hover:bg-green-100"
@@ -87,7 +86,10 @@ export const Blog = () => {
           </button>
         </div>
       </div>
-      <FooterCard />
+
+      <div className="h-auto pt-10">
+        <FooterCard  />
+      </div>
     </>
   );
 };

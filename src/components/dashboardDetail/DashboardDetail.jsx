@@ -1,89 +1,104 @@
-import React, { useState, useEffect } from 'react';
-import { MdOutlinePostAdd } from "react-icons/md";
-import { IoCheckmarkCircleSharp } from "react-icons/io5";
-import { AiTwotoneLike } from "react-icons/ai";
-
-const DashboardDetail = ({ targetPercent }) => {
-  const [percent, setPercent] = useState(0);
-
+import React, { useEffect } from 'react';
+import ApexCharts from 'apexcharts';
+const DashboardDetail = () => {
+  const dashboards = [
+    { id: 1, title: 'Total Post', chartData: [15, 15, 20, 10] },
+    { id: 2, title: 'Total follower', chartData: [25, 45, 35] },
+    { id: 3, title: 'Total likes', chartData: [20,30, 25, 25] },
+  ];
+  return (
+    <section className="max-w-screen-xl mx-auto mt-5 gap-[100] grid grid-cols-1 md:grid-cols-3">
+      {dashboards.map((dashboard) => (
+        <DashboardCard key={dashboard.id} title={dashboard.title} chartData={dashboard.chartData} />
+      ))}
+    </section>
+  );
+};
+const DashboardCard = ({ title, chartData }) => {
   useEffect(() => {
-    let animationFrameId;
-    const startTime = Date.now();
-
-    const animateProgress = () => {
-      const elapsedTime = Date.now() - startTime;
-      const duration = 2000; // 2 seconds
-      const newPercent = Math.min((elapsedTime / duration) * targetPercent, targetPercent);
-
-      setPercent(newPercent);
-
-      if (newPercent < targetPercent) {
-        animationFrameId = requestAnimationFrame(animateProgress);
-      }
+    const chart = new ApexCharts(document.getElementById(`pie-chart-${title}`), getChartOptions(chartData));
+    chart.render();
+    return () => {
+      chart.destroy();
     };
-
-    animateProgress();
-
-    return () => cancelAnimationFrame(animationFrameId);
-  }, [targetPercent]);
+  }, [chartData]);
 
   return (
-    <section className="max-w-screen-xl mx-auto mt-5 gap-[100]">
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <div className="bg-white shadow-lg rounded-lg p-6">
-          <div className="flex flex-col items-center">
-            <div className="progress-circle" data-progress="34">
+    <div className="max-w-sm w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+      <div className="flex justify-between items-center w-full">
+        <div className="flex-col items-center">
+          <div className="flex items-center text-center mb-1 ml-32">
+            <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white text-center">{title}</h5>
+          </div>
+        </div>
+        <div
+          id="dateRangeDropdown"
+          className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-80 lg:w-96 dark:bg-gray-700 dark:divide-gray-600"
+        >
+          <div className="p-3" aria-labelledby="dateRangeButton">
+            <div date-rangepicker datepicker-autohide className="flex items-center">
               <div className="relative">
-                <svg width="150" height="150">
-                  <circle className="bg" cx="75" cy="75" r="60"></circle>
-                  <circle className="progress text-blue-500" cx="75" cy="75" r="60" style={{ stroke: "currentColor" }}></circle>
-                </svg>
-                <MdOutlinePostAdd className="absolute top-[50%] left-[50%] -ml-4 -mt-3 text-[30px]" />
-              </div>
-            </div>
-            <p className="text-center text-[25px] font-semibold mt-4">84</p>
-            <p className="text-center text-sm text-gray-600 mt-1">Total Posts</p>
-          </div>
-        </div>
-        <div className="bg-white shadow-lg rounded-lg p-6">
-          <div className="flex flex-col items-center">
-            <div className="progress-circle" data-progress="90">
-              <div className="relative ">
-                <svg width="150" height="150">
-                  <circle className="bg" cx="75" cy="75" r="60"></circle>
-                  <circle className="progress text-green-400" cx="75" cy="75" r="60" style={{ stroke: "currentColor" }}></circle>
-                </svg>
-                <div className="absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] rotate-90">
-                  <IoCheckmarkCircleSharp className="text-[30px]" />
+                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                  <svg
+                    className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                  </svg>
                 </div>
+                <input
+                  name="start"
+                  type="text"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Start date"
+                />
               </div>
-            </div>
-            <p className="text-center text-[25px] font-semibold mt-4">50</p>
-            <p className="text-center text-sm text-gray-600 mt-1">Total Posts</p>
-          </div>
-        </div>
-        <div className="bg-white shadow-lg rounded-lg p-6">
-          <div className="flex flex-col items-center">
-            <div className="progress-circle" data-progress="70">
-              <div className="relative ">
-                <svg width="150" height="150">
-                  <circle className="bg" cx="75" cy="75" r="60"></circle>
-                  <circle className="progress text-yellow-400" cx="75" cy="75" r="60" style={{ stroke: "currentColor" }}></circle>
-                </svg>
-                <div className="absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] rotate-90">
-                  <AiTwotoneLike className="text-[30px]" />
+              <span className="mx-2 text-gray-500 dark:text-gray-400">to</span>
+              <div className="relative">
+                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                  <svg
+                    className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                  </svg>
                 </div>
+                <input
+                  name="end"
+                  type="text"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="End date"
+                />
               </div>
             </div>
-            <p className="text-center text-[25px] font-semibold mt-4">70</p>
-            <p className="text-center text-sm text-gray-600 mt-1">Total Posts</p>
           </div>
         </div>
       </div>
-    </section>
+      <div id={`pie-chart-${title}`}></div>
+    </div>
   );
+};
 
-
+const getChartOptions = (chartData) => {
+  return {
+    chart: {
+      type: 'pie',
+      height: '400',
+    },
+    labels: ['Social Media', 'Search Engines', 'Direct Traffic', 'Referral Traffic'],
+    series: chartData,
+    colors: ['#f39c12', '#d35400', '#27ae60', '#2980b9'],
+    legend: {
+      show: true,
+      position: 'bottom',
+    },
+  };
 };
 
 export default DashboardDetail;

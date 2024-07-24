@@ -31,42 +31,38 @@ const  Setting = () => {
                         <Label className="text-[20px]" htmlFor="text" value="នាមត្រកូល" />
                       </div>
                       <TextInput className="font-suwannaphum" id="first name" type="text" placeholder="បញ្ចូលនាមត្រកូល" required />
-                      <span class="help">Required. New first name</span>
                     </div>
                     <div className="text-[20px]">
                       <div className="mb-2 block font-suwannaphum ">
                         <Label className="text-[20px] mt-4" htmlFor="text" value="នាមខ្លួន" />
                       </div>
                       <TextInput className="font-suwannaphum" id="last name" type="text" placeholder="បញ្ចូលនាមខ្លួន" required />
-                      <span class="help">Required. New last name</span>
+                 
                     </div>
                 <div className="text-[20px]">
                       <div className="mb-2 block font-suwannaphum ">
                         <Label className="text-[20px] mt-4" htmlFor="text" value="អាស័យដ្ធាន" />
                       </div>
                       <TextInput className="font-suwannaphum" id="address" type="text" placeholder="បញ្ចូលអាស័យដ្ធានរបស់អ្នក" required />
-                      <span class="help">Required. New address</span>
+                      
                 </div>
                 <div className="text-[23px] ">
                       <div className="mb-2 block font-suwannaphum ">
                         <Label className="text-[20px] mt-4" htmlFor="text" value="ឈ្មោះ" />
                       </div>
                       <TextInput className="font-suwannaphum" id="User name" type="text" placeholder="បញ្ចូលឈ្មោះរបស់អ្នក" required />
-                      <span class="help">Required. New Username</span>
                     </div>
                   <div className="text-[20px] font-suwannaphum">
                       <div className="mb-2 block font-suwannaphum ">
                         <Label className="text-[20px] mt-4" htmlFor="email" value="អុីមែល" />
                       </div>
                       <TextInput id="email" type="email" placeholder="បញ្ចូលអុីមែលរបស់អ្នក" required />
-                      <span class="help">Required. New email</span>
                     </div>
                     <div className="text-[20px] font-suwannaphum">
                       <div className="mb-2 block font-suwannaphum ">
                         <Label className="text-[20px] mt-4" htmlFor="text" value="ថ្ងៃខែឆ្នាំកំណើត" />
                       </div>
                       <TextInput id="dbo" type="text" placeholder="បញ្ចូលថ្ងៃខែឆ្នាំកំណើត" required />
-                      <span class="help">Required. New dath of birth</span>
                     </div>
                 <div className="field font-suwannaphum" >
                   <div className="control">
@@ -94,7 +90,7 @@ const  Setting = () => {
                 />
               </div>
             </div>
-            <span className="font-suwannaphum text-center mx-auto text-2xl text-gray-900 font-medium items-center ml-52">ពណ៏មានរបស់អ្នកប្រើប្រាស់</span>
+            <span className="font-suwannaphum text-center mx-auto text-2xl text-gray-900 font-medium items-center ml-52">ព័ឥមានរបស់អ្នកប្រើប្រាស់</span>
             <div className=" w-full p-4 ">
             <ul className="space-y-2 font-suwannaphum">
               <li className="flex justify-between">

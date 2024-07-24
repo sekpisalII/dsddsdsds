@@ -93,31 +93,38 @@ const AllAboutUs = () => {
 
         <div className="mt-10 grid justify-center selection sm:px-4 gap-28 sm:grid-cols-2">
           {/* Mentor 1 */}
-          <div className="w-[300px] text-center py-2 px-2 bg-gray-100 hover:bg-green-200 shadow-sm rounded-lg hover:shadow-md transform transition-all duration-300 hover:scale-105 hover:-translate-x-1">
-              <img
-                src="../src/assets/Mentor_MuyleangDevOps.jpg"
-                alt="Mentor"
-                height={200}
-                className="mx-auto mb-4 rounded-full w-24 h-24 md:w-28 md:h-28 lg:w-36 lg:h-36"
-              />
-              
-              <h3 className="text-black text-md tracking-tight md:text-lg lg:text-2xl font-suwannaphum">Ing Muyleang</h3>
-              <h4 className="text-blue-600 text-[20px] font-medium font-suwannaphum">Mentor</h4>
-
-              {/* Link */}
-              <ul className="mt-4 pb-2 flex justify-center space-x-4">
-                <li>
-                  <a href="https://www.facebook.com/" target="_blank" className="text-xl text-blue-600 hover:text-black"><FaFacebook /></a>
-                </li>
-                <li>
-                  <a href="https://github.com/" target="_blank" className="text-xl text-gray-800 hover:text-black"><FaGithub /></a>
-                </li>
-                <li>
-                  <a href="https://t.me/" target="_blank" className="text-xl text-blue-600 hover:text-black"><FaTelegram /></a>
-                </li>
-              </ul>
-            </div>
-
+          <div className="w-[300px] text-center py-4 px-6 bg-[#16A1DF] shadow-sm rounded-xl transform transition-all duration-300 hover:scale-105 hover:shadow-sm">
+      <div className="flex justify-center items-center">
+        <img
+          src="../src/assets/Mentor_MuyleangDevOps.jpg"
+          alt="Mentor"
+          height={200}
+          className="mb-4 rounded-full border-4 border-yellow-400 w-28 h-28 md:w-32 md:h-32 lg:w-36 lg:h-36"
+        />
+      </div>
+      <h3 className="text-white text-lg tracking-tight md:text-xl lg:text-2xl font-bold font-suwannaphum">Ing Muyleang</h3>
+      <h4 className="text-black text-md font-semibold md:text-lg lg:text-xl mb-2 font-suwannaphum">Mentor</h4>
+      <p className="text-gray-200 -mt-2 text-sm md:text-base lg:text-lg font-suwannaphum">
+      Center of Science and Technology Advanced Development
+      </p>
+      <ul className="flex justify-center space-x-6 mt-2">
+        <li>
+          <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" className="text-xl text-white hover:text-red-600 ">
+            <FaFacebook />
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="text-xl text-white hover:text-red-600">
+            <FaGithub />
+          </a>
+        </li>
+        <li>
+          <a href="https://t.me/" target="_blank" rel="noopener noreferrer" className="text-xl text-white hover:text-red-600">
+          <FaTelegram />
+          </a>
+        </li>
+      </ul>
+    </div>
               
           {/* Mentor 2 */}
           <div className="w-[300px] text-center py-2 bg-gray-100 hover:bg-green-200 shadow-sm rounded-lg hover:shadow-lg transform transition-all duration-300 hover:scale-105 hover:-translate-x-1">

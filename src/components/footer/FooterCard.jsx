@@ -11,7 +11,7 @@ const FooterCard = () => {
   return (
     <>
       <Footer container className=" bg-slate-100">
-        <div className="w-full mx-auto">
+        <div className="w-full h-auto mx-auto">
           <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
             <div>
               <Footer.Brand

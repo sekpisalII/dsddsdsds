@@ -54,6 +54,7 @@ const Create_Forum = () => {
     setImage(file);
     setPreviewImage(URL.createObjectURL(file));
   };
+
   return (
     <>
       <main className="max-w-7xl mx-auto p-4 space-y-4">
