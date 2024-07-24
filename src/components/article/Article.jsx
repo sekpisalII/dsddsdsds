@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import Dashboard from "../../components/dashboard/Dashboard";
+import { Link } from "react-router-dom";
 
 const Article = () => {
   return (
@@ -26,9 +27,10 @@ const Article = () => {
           </header>
           <div className="flex justify-end p-4">
             <button className="button bg-blue-500 px-2 py-2 font-suwannaphum font-semibold text-white rounded-md">
-              +New
+              <Link to="/postArticle">+New</Link>{" "}
             </button>
           </div>
+
           <div className="card-content">
             <table>
               <thead>

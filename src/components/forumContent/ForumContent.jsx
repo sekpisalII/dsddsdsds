@@ -1,6 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ForumContent = () => {
+  const navigate = useNavigate();
+  const [hasAccessToken, setHasAccessToken] = useState(false);
+
+  const handleNavigate = (path) => {
+    // Check if the user has an access token
+    const access_token = localStorage.getItem("access_token");
+    if (!access_token) {
+      // If the user doesn't have an access token, navigate to the login page
+      navigate("/login");
+    } else {
+      // If the user has an access token, navigate to the requested page
+      navigate(path);
+    }
+  };
   return (
     <div>
       <main className="max-w-7xl mx-auto p-4 flex flex-col lg:flex-row justify-between lg:space-x-8">
@@ -21,7 +36,7 @@ const ForumContent = () => {
                   ចួលរួមជាមួយពួកយើង​
                   អ្នកអាចធ្វើការបង្កើតសំណួរនិងធ្វើការឆ្លើយសំណួរដែលទាក់ទងនិងស្ទែម
                 </p>
-                <a href="/create_forum">
+                <a onClick={() => handleNavigate("/create_forum")}>
                   <button className="mt-4 bg-white text-blue-600 px-4 py-2 rounded-lg font-suwannaphum">
                     បង្កើតសំណួរឥឡូវនេះ
                   </button>
