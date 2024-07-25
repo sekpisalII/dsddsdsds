@@ -5,7 +5,9 @@ import { LuLayoutDashboard } from "react-icons/lu";
 import { GrArticle } from "react-icons/gr";
 import { IoSettingsSharp } from "react-icons/io5";
 import { RiLogoutBoxLine } from "react-icons/ri";
+import { MdForum } from "react-icons/md";
 import { AUTH_HEADER } from "../../services/constants";
+
 const NavbarComponent = () => {
   const navigate = useNavigate();
   const [hasAccessToken, setHasAccessToken] = useState(false);
@@ -78,6 +80,10 @@ const NavbarComponent = () => {
               <Dropdown.Item onClick={() => handleNavigate("/article")}>
                 <GrArticle className="m-3 text-blue-600" />
                 <span className="font-suwannaphum">Articles</span>
+              </Dropdown.Item>
+              <Dropdown.Item onClick={() => handleNavigate("/getForum")}>
+              <MdForum className="m-3 text-blue-600" />=
+                <span className="font-suwannaphum">Forum</span>
               </Dropdown.Item>
               <Dropdown.Item onClick={() => handleNavigate("/setting")}>
                 <IoSettingsSharp className="m-3 text-blue-600" />

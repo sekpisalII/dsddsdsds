@@ -1,59 +1,59 @@
 // import React from 'react';
 import React, { useEffect, useState } from "react";
-import { saveBook } from "../../services/fetchBooks";
+import { saveBlog, saveBook } from "../../services/fetchBooks";
 import { useNavigate } from "react-router-dom";
 import { API_BASE_URI } from "../../services/constants";
 
-const  PostArticle = () => {
-    const navigate = useNavigate();
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
-    const [image, setImage] = useState(null);
-    const [previewImage, setPreviewImage] = useState(null);
+const PostArticle = () => {
+  const navigate = useNavigate();
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [image, setImage] = useState(null);
+  const [previewImage, setPreviewImage] = useState(null);
 
-const onFormSubmited = async (e) => {
-e.preventDefault();
+  const onFormSubmited = async (e) => {
+    e.preventDefault();
 
-let formData = new FormData();
-formData.append("file", image);
+    let formData = new FormData();
+    formData.append("file", image);
 
-try {
-  const response = await fetch(`${API_BASE_URI}upload/`, {
-    method: "POST",
-    body: formData,
-  });
+    try {
+      const response = await fetch(`${API_BASE_URI}upload/`, {
+        method: "POST",
+        body: formData,
+      });
 
-  if (!response.ok) {
-    throw new Error("Failed to upload image");
-  }
+      if (!response.ok) {
+        throw new Error("Failed to upload image");
+      }
 
-  const json = await response.json();
-  console.log(json);
+      const json = await response.json();
+      console.log(json);
 
-  await saveBook({
-    title,
-    description,
-    image: json.url,
-  });
+      await saveBlog({
+        title,
+        content,
+        image: json.url,
+      });
 
-  navigate("/forum");
-} catch (error) {
-  console.error(error);
-  // Handle any errors that occurred during the upload
-}
-};
-useEffect(() => {
-return () => {
-  if (previewImage) {
-    URL.revokeObjectURL(previewImage);
-  }
-};
-}, [previewImage]);
-const onForumImage = (e) => {
-const file = e.target.files[0];
-setImage(file);
-setPreviewImage(URL.createObjectURL(file));
-};
+      navigate("/blog");
+    } catch (error) {
+      console.error(error);
+      // Handle any errors that occurred during the upload
+    }
+  };
+  useEffect(() => {
+    return () => {
+      if (previewImage) {
+        URL.revokeObjectURL(previewImage);
+      }
+    };
+  }, [previewImage]);
+  const onForumImage = (e) => {
+    const file = e.target.files[0];
+    setImage(file);
+    setPreviewImage(URL.createObjectURL(file));
+  };
   return (
     <>
       <main className="max-w-7xl mx-auto p-4 space-y-4">
@@ -104,9 +104,9 @@ setPreviewImage(URL.createObjectURL(file));
                   rows="4"
                   className="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
                   placeholder="ការពិពណ៏នាចមណងជើង**"
-                  onChange={(e) => setDescription(e.target.value)}
+                  onChange={(e) => setContent(e.target.value)}
                   name="description"
-                  value={description}
+                  value={content}
                   required
                 ></textarea>
               </div>
@@ -174,6 +174,6 @@ setPreviewImage(URL.createObjectURL(file));
         </div>
       </main>
     </>
-  )
-}
+  );
+};
 export default PostArticle;

@@ -24,48 +24,48 @@ import Forum from "./page/forum/Forum";
 import Blog from "./page/blog/Blog";
 import AboutUs from "./page/about-us/AboutUs";
 import PageVerify from "./page/optpage/PageVerify";
-import DashboardPage from './page/dashBoardPage/DashboardPage';
-import ArticlePage from './page/articlePage/ArticlePage';
-import SettingPage from './page/settingPage/SettingPage';
-import LogoutPage from './page/logoutPage/LogoutPage';
-import DashboardPageDetail from './page/dashboardPageDetail/DashboardPageDetail';
-import ForumCard from "./components/forumCard/ForumCard";
+import DashboardPage from "./page/dashBoardPage/DashboardPage";
+import ArticlePage from "./page/articlePage/ArticlePage";
+import SettingPage from "./page/settingPage/SettingPage";
+import LogoutPage from "./page/logoutPage/LogoutPage";
+import DashboardPageDetail from "./page/dashboardPageDetail/DashboardPageDetail";
+
 import ForumContent from "./components/forumContent/ForumContent";
-import { GiPolarStar } from "react-icons/gi";
 import PostArticlePage from "./page/postArticlePage/PostArticlePage";
+import GetForumPage from "./page/getForumPage/GetForumPage";
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Layout />,
     errorElement: <Error />,
     children: [
       {
-        path: '/',
-        element: <Home />
+        path: "/",
+        element: <Home />,
       },
       {
-        path: '/book',
-        element: <Book />
+        path: "/book",
+        element: <Book />,
       },
       {
-        path: '/lesson',
-        element: <Lesson />
+        path: "/lesson",
+        element: <Lesson />,
       },
       {
-        path: '/forum',
-        element: <Forum />
+        path: "/forum",
+        element: <Forum />,
       },
       {
-        path: '/blog',
-        element: <Blog />
+        path: "/blog",
+        element: <Blog />,
       },
       {
-        path: '/about-us',
-        element: <AboutUs />
+        path: "/about-us",
+        element: <AboutUs />,
       },
       {
-        path: '/create',
-        element: <Create />
+        path: "/create",
+        element: <Create />,
       },
       {
         path: "/createComment/:id",
@@ -74,52 +74,52 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: '/login',
-    element: <Login />
+    path: "/login",
+    element: <Login />,
   },
   {
-    path: '/register',
-    element: <Register />
+    path: "/register",
+    element: <Register />,
   },
   {
-    path: '/lessonDetail',
-    element: <LessonDetailPage />
+    path: "/lessonDetail",
+    element: <LessonDetailPage />,
   },
   {
-    path: '/bookDetail',
-    element: <BookDetailPage />
+    path: "/bookDetail",
+    element: <BookDetailPage />,
   },
   {
-    path: '/create_forum',
-    element: <Create_forum_detail />
+    path: "/create_forum",
+    element: <Create_forum_detail />,
   },
   {
-    path: '/blogAllCard',
-    element: <Blog />
+    path: "/blogAllCard",
+    element: <Blog />,
   },
   {
-    path: '/bookAllCard',
-    element: <Book />
+    path: "/bookAllCard",
+    element: <Book />,
   },
   {
-    path: '/lessonAllCard',
-    element: <Lesson />
+    path: "/lessonAllCard",
+    element: <Lesson />,
   },
   {
-    path: '/forumContent',
-    element: <ForumContent />
+    path: "/forumContent",
+    element: <ForumContent />,
   },
   {
-    path: '/blogDetail',
-    element: <BlogDetailPage />
+    path: "/blogDetail",
+    element: <BlogDetailPage />,
   },
   {
-    path: '/bookDetail/:id',
-    element: <BookDetailPage />
+    path: "/bookDetail/:id",
+    element: <BookDetailPage />,
   },
   {
-    path: '/lessonDetail/:id',
-    element: <LessonDetailPage />
+    path: "/lessonDetail/:id",
+    element: <LessonDetailPage />,
   },
   {
     path: "/blogDetail/:id",
@@ -134,33 +134,36 @@ const router = createBrowserRouter([
     element: <PageVerify />,
   },
   {
+    path: "/dashboard",
+    element: <DashboardPage />,
+  },
+  {
+    path: "/dashboardDetail",
+    element: <DashboardPageDetail />,
+  },
+  {
+    path: "/article",
+    element: <ArticlePage />,
+  },
+  {
+    path: "/getForum",
+    element: <GetForumPage />
+  },
+  {
+    path: "/setting",
+    element: <SettingPage />,
+  },
+  {
+    path: "/logout",
+    element: <LogoutPage />,
+  },
+  {
     path: "/postArticle",
-    element: <PostArticlePage />
+    element: <PostArticlePage />,
   },
-  {
-    path: '/dashboard',
-    element: <DashboardPage />
-  },
-  {
-    path: '/dashboardDetail',
-    element: <DashboardPageDetail />
-  },
-  {
-    path: '/article',
-    element: <ArticlePage />
-  },
-  {
-    path: '/setting',
-    element: <SettingPage />
-  },
-  {
-    path: '/logout',
-    element: <LogoutPage />
-  }
-
 ]);
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <RouterProvider router={router} />
   </React.StrictMode>

@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { API_BASE_URI, AUTH_HEADER } from "../../services/constants";
+// import { useState } from "react";
+// import { Link, useNavigate } from "react-router-dom";
+// import { CgMail } from "react-icons/cg";
+// import { FaEyeSlash, FaEye } from "react-icons/fa";
+// import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -8,6 +14,12 @@ const LoginPage = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const validationSchema = Yup.object().shape({
+    email: Yup.string().email("Invalid email format").required("Required"),
+    password: Yup.string()
+      .min(6, "Password must be at least 6 characters")
+      .required("Required"),
+  });
 
   const handleLogin = async () => {
     setIsLoading(true);
