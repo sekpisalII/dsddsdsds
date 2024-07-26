@@ -24,7 +24,6 @@ const LoginPage = () => {
   const handleLogin = async () => {
     setIsLoading(true);
     const item = { email, password };
-
     try {
       const response = await fetch(`${API_BASE_URI}login/`, {
         method: "POST",

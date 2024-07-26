@@ -79,6 +79,7 @@ const CreateComment = () => {
         `Error creating post: ${error.response.status} - ${error.response.data}`
       );
     }
+    location.reload();
   };
 
   const handleFormDataChange = (event) => {
@@ -165,6 +166,7 @@ const CreateComment = () => {
                         onChange={handleFormDataChange}
                         className="w-full h-[35px]"
                       />
+            
                       <button type="submit">Submit</button>
                     </form>
                   </div>

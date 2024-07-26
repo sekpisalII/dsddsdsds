@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
 import Dashboard from '../../components/dashboard/Dashboard';
-import { Link } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 
 const Article = () => {
   const [search, setSearch] = useState('');
@@ -10,7 +10,7 @@ const Article = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [totalRows, setTotalRows] = useState(0);
-
+  const [param,setParam]=useSearchParams();
   const columns = [
     {
       name: 'ID',
@@ -53,24 +53,43 @@ const Article = () => {
   // Fetch data from API with pagination and access token
   async function fetchData(page) {
     try {
+      // const accessToken = localStorage.getItem('access_token');
       const accessToken = localStorage.getItem('access_token');
+     
       if (!accessToken) {
         throw new Error('No access token found');
       }
 
-      const response = await fetch(`http://136.228.158.126:50001/api/articles/?page=${page}`, {
+      const response = await fetch(`http://136.228.158.126:50001/api/articles/?page=${param.get('page')}`, {
         headers: {
           'Authorization': `Bearer ${accessToken}`,
         },
       });
-
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
 
       const result = await response.json();
-      setData(result.results); // Ensure to set the correct data
-      setFilteredData(result.results);
+      console.log(result)
+      const user=localStorage.getItem('user');
+      const nameUser=JSON.parse(user)
+      console.log(nameUser)
+      const data=result.results
+      console.log(data)
+      const userData=data.filter((users)=>{return users.author===nameUser.name});
+      console.log(userData)
+      console.log(userData.length==0);
+      if(userData.length==0){
+        const pang=Math.ceil(result.count/10);
+        for(let i=1;i<=pang;i++){
+          setParam({page:i});
+          location.reload();
+        }
+        // location.reload();
+      }
+      // const userArticles = result.results.filter(article => article.author === currentUser);
+      setData(userData); // Ensure to set the correct data
+      setFilteredData(userData);
       setTotalRows(result.count);
       setIsLoading(false);
     } catch (error) {
@@ -114,6 +133,8 @@ const Article = () => {
   };
 
   const handlePageChange = (page) => {
+    setParam({page:page});
+    console.log(param.get('page'));
     setPage(page);
   };
 
