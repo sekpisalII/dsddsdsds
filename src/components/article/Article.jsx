@@ -79,9 +79,11 @@ const Article = () => {
       const userData=data.filter((users)=>{return users.author===nameUser.name});
       console.log(userData)
       console.log(userData.length==0);
+      // location.reload();
       if(userData.length==0){
         const pang=Math.ceil(result.count/10);
         for(let i=1;i<=pang;i++){
+          
           setParam({page:i});
           location.reload();
         }
@@ -115,7 +117,6 @@ const Article = () => {
     );
     setFilteredData(results);
   }, [search, data]);
-
   const customStyles = {
     headCells: {
       style: {
@@ -124,20 +125,18 @@ const Article = () => {
       },
     },
   };
-
   const paginationComponentOptions = {
     rowsPerPageText: 'Rows per page',
     rangeSeparatorText: 'of',
     selectAllRowsItem: true,
     selectAllRowsItemText: 'All',
   };
-
   const handlePageChange = (page) => {
+    console.log("page",page)
     setParam({page:page});
     console.log(param.get('page'));
     setPage(page);
   };
-
   return (
     <>
       <Dashboard />
