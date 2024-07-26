@@ -8,6 +8,8 @@ const Article = () => {
   const [filteredData, setFilteredData] = useState([]);
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [totalRows, setTotalRows] = useState(0);
 
   const columns = [
     {
@@ -48,16 +50,28 @@ const Article = () => {
     }
   ];
 
-  // Fetch data from API
-  async function fetchData() {
+  // Fetch data from API with pagination and access token
+  async function fetchData(page) {
     try {
-      const response = await fetch('http://136.228.158.126:50001/api/articles/');
+      const accessToken = localStorage.getItem('access_token');
+      if (!accessToken) {
+        throw new Error('No access token found');
+      }
+
+      const response = await fetch(`http://136.228.158.126:50001/api/articles/?page=${page}`, {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+        },
+      });
+
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
+
       const result = await response.json();
       setData(result.results); // Ensure to set the correct data
       setFilteredData(result.results);
+      setTotalRows(result.count);
       setIsLoading(false);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -66,8 +80,8 @@ const Article = () => {
   }
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchData(page);
+  }, [page]);
 
   // Filter data based on search input
   useEffect(() => {
@@ -99,6 +113,10 @@ const Article = () => {
     selectAllRowsItemText: 'All',
   };
 
+  const handlePageChange = (page) => {
+    setPage(page);
+  };
+
   return (
     <>
       <Dashboard />
@@ -107,7 +125,10 @@ const Article = () => {
           columns={columns}
           data={filteredData}
           pagination
+          paginationServer
+          paginationTotalRows={totalRows}
           paginationComponentOptions={paginationComponentOptions}
+          onChangePage={handlePageChange}
           subHeader
           subHeaderComponent={
             <input

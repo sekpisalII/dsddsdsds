@@ -146,6 +146,7 @@ const Setting = () => {
                     name="first_name"
                     value={formData.first_name}
                     onChange={handleInputChange}
+                    placeholder="បញ្ចូលនាមត្រកូល"
                   />
                 </div>
                 <div className="text-[20px]">
@@ -163,8 +164,8 @@ const Setting = () => {
                     name="last_name"
                     value={formData.last_name}
                     onChange={handleInputChange}
+                    placeholder="បញ្ចូលនាមខ្លួន"
                   />
-                  <span class="help">Required. New last name</span>
                 </div>
                 <div className="text-[23px] ">
                   <div className="mb-2 block font-suwannaphum ">
@@ -181,8 +182,8 @@ const Setting = () => {
                     name="username"
                     value={formData.username}
                     onChange={handleInputChange}
+                    placeholder="បញ្ចូលឈ្មោះ"
                   />
-                  <span class="help">Required. New Username</span>
                 </div>
                 <div className="text-[20px] font-suwannaphum">
                   <div className="mb-2 block font-suwannaphum ">
@@ -198,6 +199,7 @@ const Setting = () => {
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
+                    placeholder="បញ្ចូលអុីមឺល"
                   />
                 </div>
                 <div className="text-[20px] font-suwannaphum">
@@ -214,6 +216,7 @@ const Setting = () => {
                     name="dob"
                     value={formData.dob}
                     onChange={handleInputChange}
+                    placeholder="បញ្ចូលថ្ងៃខែឆ្នាំកំណើត"
                   />
                 </div>
                 <div className="text-[20px]">
@@ -231,6 +234,7 @@ const Setting = () => {
                     name="address"
                     value={formData.address}
                     onChange={handleInputChange}
+                    placeholder="បញ្ចូលអាស័យដ្ធាន"
                   />
                 </div>
 

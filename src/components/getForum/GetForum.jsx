@@ -1,54 +1,53 @@
 import React, { useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
-import Dashboard from '../dashboard/Dashboard'
+import Dashboard from '../dashboard/Dashboard';
 
 const GetForum = () => {
-    const [search, setSearch] = useState('');
-    const [filteredData, setFilteredData] = useState([]);
-    const [data, setData] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+  const [search, setSearch] = useState('');
+  const [filteredData, setFilteredData] = useState([]);
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-    const columns = [
-        {
-          name: 'ID',
-          selector: (row) => row.id,
-          sortable: true,
-          cell: (row) => <span className="text-lg font-suwannaphum">{row.id}</span>,
-        },
-        {
-          name: 'Username',
-          selector: (row) => row.author,
-          sortable: true,
-          cell: (row) => <span className="text-lg font-suwannaphum">{row.author}</span>,
-        },
-        {
-          name: 'Title',
-          selector: (row) => row.title,
-          sortable: true,
-          cell: (row) => <span className="text-lg line-clamp-2 font-suwannaphum">{row.title}</span>,
-        },
-        {
-          name: 'Description',
-          selector: (row) => row.description,
-          sortable: true,
-          cell: (row) => <span className="text-lg line-clamp-2 font-suwannaphum">{row.description}</span>,
-        },
-        {
-          name: 'Image',
-          selector: (row) => row.image,
-          sortable: true,
-          cell: (row) => <img src={row.image} alt={row.title} className="w-16 h-16 object-cover" />,
-        },
-        {
-          name: 'Created',
-          selector: (row) => row.created_at,
-          sortable: true,
-          cell: (row) => <span className="text-lg font-suwannaphum">{new Date(row.created_at).toLocaleDateString()}</span>,
-        }
-      ];
+  const columns = [
+    {
+      name: 'ID',
+      selector: (row) => row.id,
+      sortable: true,
+      cell: (row) => <span className="text-lg font-suwannaphum">{row.id}</span>,
+    },
+    {
+      name: 'Username',
+      selector: (row) => row.author,
+      sortable: true,
+      cell: (row) => <span className="text-lg font-suwannaphum">{row.author}</span>,
+    },
+    {
+      name: 'Title',
+      selector: (row) => row.title,
+      sortable: true,
+      cell: (row) => <span className="text-lg line-clamp-2 font-suwannaphum">{row.title}</span>,
+    },
+    {
+      name: 'Description',
+      selector: (row) => row.content,
+      sortable: true,
+      cell: (row) => <span className="text-lg line-clamp-2 font-suwannaphum">{row.content}</span>,
+    },
+    {
+      name: 'Image',
+      selector: (row) => row.image,
+      sortable: true,
+      cell: (row) => <img src={row.image} alt={row.title} className="w-16 h-16 object-cover" />,
+    },
+    {
+      name: 'Created',
+      selector: (row) => row.created_at,
+      sortable: true,
+      cell: (row) => <span className="text-lg font-suwannaphum">{new Date(row.created_at).toLocaleDateString()}</span>,
+    }
+  ];
 
-
-      // Fetch data from API
+  // Fetch data from API
   async function fetchData() {
     try {
       const response = await fetch('http://136.228.158.126:50001/api/forums/');
@@ -56,8 +55,10 @@ const GetForum = () => {
         throw new Error('Network response was not ok');
       }
       const result = await response.json();
-      setData(result.results); // Ensure to set the correct data
-      setFilteredData(result.results);
+      // Filter posts by new users (non-empty authors, excluding predefined users like 'channarithsolo')
+      const userPosts = result.results.filter(post => post.author && post.author !== 'channarithsolo');
+      setData(userPosts);
+      setFilteredData(userPosts);
       setIsLoading(false);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -98,10 +99,11 @@ const GetForum = () => {
     selectAllRowsItem: true,
     selectAllRowsItemText: 'All',
   };
+
   return (
     <div>
-        <Dashboard />
-        <section className="bg-gray-100 w-[70%] mx-auto">
+      <Dashboard />
+      <section className="bg-gray-100 w-[70%] mx-auto">
         <DataTable
           columns={columns}
           data={filteredData}
@@ -124,7 +126,7 @@ const GetForum = () => {
         />
       </section>
     </div>
-  )
+  );
 }
 
-export default GetForum
+export default GetForum;
