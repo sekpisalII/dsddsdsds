@@ -19,7 +19,7 @@ const Dashboard = () => {
     { id: 1, path: "/dashboard", name: "Dashboard", icon: RxDashboard },
     { id: 2, path: "/article", name: "Article", icon: GrArticle },
     { id: 3, path: "/setting", name: "Setting", icon: IoSettingsOutline },
-    { id: 4, path: "/getforum",name: "Forum",icon: MdForum},
+    { id: 4, path: "/getforum", name: "Forum", icon: MdForum },
     { id: 5, path: "/logout", name: "Logout", icon: TbLogout2 },
   ];
 
@@ -74,7 +74,7 @@ const Dashboard = () => {
             </button>
             <img
               className="w-8 h-8 rounded-full border-4 border-gray-100"
-              src="../src/assets/Mentor Muyleang.jpg"
+              src={profile.image}
               alt=""
             />
           </div>

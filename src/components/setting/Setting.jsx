@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import Dashboard from "../dashboard/Dashboard";
-// import { Button, Checkbox, Label, TextInput } from "flowbite-react";
 import axios from "axios";
 import { AUTH_HEADER } from "../../services/constants";
 import { Label, TextInput } from "flowbite-react";
+
 const Setting = () => {
   const [profileData, setProfileData] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
@@ -40,14 +40,12 @@ const Setting = () => {
     e.preventDefault();
 
     try {
-      const formDataToSubmit = new FormData();
-      Object.keys(formData).forEach((key) => {
-        formDataToSubmit.append(key, formData[key]);
-      });
-
-      const response = await axios.put(
-        "http://136.228.158.126:50001/api/profile/",
-        formDataToSubmit,
+      // Upload the image first
+      const imageFormData = new FormData();
+      imageFormData.append("file", formData.image);
+      const imageResponse = await axios.post(
+        "http://136.228.158.126:50001/api/upload/",
+        imageFormData,
         {
           headers: {
             ...AUTH_HEADER,
@@ -55,8 +53,25 @@ const Setting = () => {
           },
         }
       );
+
+      // Update the form data with the image URL
+      const updatedFormData = {
+        ...formData,
+        image: imageResponse.data.url,
+      };
+
+      // Submit the updated form data
+      const response = await axios.put(
+        "http://136.228.158.126:50001/api/profile/",
+        updatedFormData,
+        {
+          headers: {
+            ...AUTH_HEADER,
+            "Content-Type": "application/json",
+          },
+        }
+      );
       setFormData(response.data);
-      // Update the local state with the new data
       setSuccessMessage("Profile updated successfully!");
       setErrorMessage(""); // Update the local state with the new data
     } catch (error) {
@@ -148,6 +163,7 @@ const Setting = () => {
                     onChange={handleInputChange}
                     placeholder="បញ្ចូលនាមត្រកូល"
                   />
+                  <span class="help">Required. New first name</span>
                 </div>
                 <div className="text-[20px]">
                   <div className="mb-2 block font-suwannaphum ">
@@ -201,6 +217,7 @@ const Setting = () => {
                     onChange={handleInputChange}
                     placeholder="បញ្ចូលអុីមឺល"
                   />
+                  <span class="help">Required. New email</span>
                 </div>
                 <div className="text-[20px] font-suwannaphum">
                   <div className="mb-2 block font-suwannaphum ">
@@ -218,6 +235,7 @@ const Setting = () => {
                     onChange={handleInputChange}
                     placeholder="បញ្ចូលថ្ងៃខែឆ្នាំកំណើត"
                   />
+                  <span class="help">Required. New dath of birth</span>
                 </div>
                 <div className="text-[20px]">
                   <div className="mb-2 block font-suwannaphum ">
@@ -236,6 +254,7 @@ const Setting = () => {
                     onChange={handleInputChange}
                     placeholder="បញ្ចូលអាស័យដ្ធាន"
                   />
+                  <span class="help">Required. New address</span>
                 </div>
 
                 <div className="field font-suwannaphum">
@@ -262,19 +281,14 @@ const Setting = () => {
               <div>
                 <div className="card-content">
                   <div className="image-container">
-                    {profileData.image ? (
-                      <img
-                        src={profileData.image}
-                        alt="Profile"
-                        className="avatar"
-                      />
-                    ) : (
-                      <img
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL_JlCFnIGX5omgjEjgV9F3sBRq14eTERK9w&s"
-                        alt="Placeholder"
-                        className="avatar"
-                      />
-                    )}
+                    <img
+                      src={
+                        profileData.image ||
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL_JlCFnIGX5omgjEjgV9F3sBRq14eTERK9w&s"
+                      }
+                      alt="Profile"
+                      className="avatar"
+                    />
                   </div>
                 </div>
 
@@ -319,6 +333,21 @@ const Setting = () => {
                     )}
                   </ul>
                 </div>
+                {/* <p>First Name: </p>
+                <p>Last Name: </p>
+                <p>Date of Birth: {profileData.dob}</p>
+                <p>Username: </p>
+                <p>Email: </p>
+                <p>Address:</p>
+                {profileData.image && (
+                  <img src={profileData.image} alt="Profile" />
+                )}
+                {successMessage && (
+                  <div className="success-message">{successMessage}</div>
+                )}
+                {errorMessage && (
+                  <div className="error-message">{errorMessage}</div>
+                )} */}
               </div>
             ) : (
               <p>Loading...</p>

@@ -66,7 +66,7 @@ const Article = () => {
         },
       });
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error("Network response was not ok");
       }
 
       const result = await response.json();
@@ -95,7 +95,7 @@ const Article = () => {
       setTotalRows(result.count);
       setIsLoading(false);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
       setIsLoading(false);
     }
   }
@@ -111,25 +111,26 @@ const Article = () => {
       return;
     }
 
-    const results = data.filter((item) =>
-      item.author.toLowerCase().includes(search.toLowerCase()) ||
-      item.title.toLowerCase().includes(search.toLowerCase())
+    const results = data.filter(
+      (item) =>
+        item.author.toLowerCase().includes(search.toLowerCase()) ||
+        item.title.toLowerCase().includes(search.toLowerCase())
     );
     setFilteredData(results);
   }, [search, data]);
   const customStyles = {
     headCells: {
       style: {
-        fontSize: '25px',
-        fontFamily: 'suwannaphum',
+        fontSize: "25px",
+        fontFamily: "suwannaphum",
       },
     },
   };
   const paginationComponentOptions = {
-    rowsPerPageText: 'Rows per page',
-    rangeSeparatorText: 'of',
+    rowsPerPageText: "Rows per page",
+    rangeSeparatorText: "of",
     selectAllRowsItem: true,
-    selectAllRowsItemText: 'All',
+    selectAllRowsItemText: "All",
   };
   const handlePageChange = (page) => {
     console.log("page",page)
@@ -159,7 +160,7 @@ const Article = () => {
             />
           }
           progressPending={isLoading}
-          progressComponent={<div>Loading...</div>}  // Add a loading indicator
+          progressComponent={<div>Loading...</div>} // Add a loading indicator
           fixedHeader
           fixedHeaderScrollHeight="600px"
           // actions={
