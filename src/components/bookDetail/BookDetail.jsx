@@ -1,12 +1,21 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { fetchBookById } from "../../services/fetchBookById";
+import { Worker } from "@react-pdf-viewer/core";
+// Import the main component
+import { Viewer } from "@react-pdf-viewer/core";
+import book1 from "../../assets/book1.pdf";
+// Import the styles
+import "@react-pdf-viewer/core/lib/styles/index.css";
+import { defaultLayoutPlugin } from "@react-pdf-viewer/default-layout";
 
+// Import styles
+import "@react-pdf-viewer/default-layout/lib/styles/index.css";
 const BookDetail = () => {
   const { id } = useParams();
   const bookId = decodeURIComponent(id);
   const [book, setBook] = useState(null);
-
+  const defaultLayoutPluginInstance = defaultLayoutPlugin();
   useEffect(() => {
     const fetchBookData = async () => {
       try {
@@ -26,13 +35,34 @@ const BookDetail = () => {
   return (
     <section className="mt-8 w-[90%] h-auto mx-auto flex flex-col md:flex-row justify-between gap-8 p-8 font-suwannaphum">
       <div className="w-full md:w-[65%]">
-        {book.course_thumbnail && (
-          <img
-            src={book.course_thumbnail}
-            alt="image"
-            className="w-full h-[500px] object-cover rounded-lg"
-          />
-        )}
+        <div>
+          {book.categories.map((category) => (
+            <div key={category.id}>
+              {category.lessons.map((lesson) => (
+                <div key={lesson.id}>
+                  {lesson.sections.map((section) => (
+                    <div key={section.id}>
+                      {section.contents.map((content) => (
+                        <div key={content.id}>
+                          {content.file ? (
+                            <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
+                              <Viewer
+                                fileUrl={content.file}
+                                plugins={[defaultLayoutPluginInstance]}
+                              />
+                            </Worker>
+                          ) : (
+                            <p>No PDF file available for this content.</p>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
       <div className="w-full md:w-[35%] flex flex-col gap-8">
         <div className="w-full p-4 bg-[#F5F5F5]">

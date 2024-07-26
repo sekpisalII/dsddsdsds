@@ -11,7 +11,7 @@ import { AUTH_HEADER } from "../../services/constants";
 const NavbarComponent = () => {
   const navigate = useNavigate();
   const [hasAccessToken, setHasAccessToken] = useState(false);
-
+  const [profile, setProfile] = useState(null);
   const handleNavigate = (path) => {
     // Check if the user has an access token
     const access_token = localStorage.getItem("access_token");
@@ -40,6 +40,32 @@ const NavbarComponent = () => {
       console.error(error);
     }
   };
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const response = await fetch(
+          "http://136.228.158.126:50001/api/profile/",
+          {
+            headers: {
+              ...AUTH_HEADER,
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        const data = await response.json();
+        setProfile(data);
+      } catch (error) {
+        console.error("Error fetching profile:", error);
+      }
+    };
+
+    fetchProfile();
+  }, []);
+
+  if (!profile) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
       <nav className="w-full  bg-[#16A1DF] sticky top-[0] z-50">
@@ -64,13 +90,7 @@ const NavbarComponent = () => {
             <Dropdown
               arrowIcon={false}
               inline
-              label={
-                <Avatar
-                  alt="User settings"
-                  img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                  rounded
-                />
-              }
+              label={<Avatar alt="User settings" img={profile.image} rounded />}
             >
               <Dropdown.Header>User Actions</Dropdown.Header>
               <Dropdown.Item onClick={() => handleNavigate("/dashboard")}>
@@ -82,7 +102,7 @@ const NavbarComponent = () => {
                 <span className="font-suwannaphum">Articles</span>
               </Dropdown.Item>
               <Dropdown.Item onClick={() => handleNavigate("/getForum")}>
-              <MdForum className="m-3 text-blue-600" />=
+                <MdForum className="m-3 text-blue-600" />=
                 <span className="font-suwannaphum">Forum</span>
               </Dropdown.Item>
               <Dropdown.Item onClick={() => handleNavigate("/setting")}>
