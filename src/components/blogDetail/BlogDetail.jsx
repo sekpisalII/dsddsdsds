@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import { fetchBlogById } from "../../services/fetchBlogById";
 import { useParams } from "react-router-dom";
 import { SlUserFollow } from "react-icons/sl";
-import {
-  FaRegCalendarAlt,
-} from "react-icons/fa";
+import { FaRegCalendarAlt } from "react-icons/fa";
 
 const BlogDetail = () => {
   const { id } = useParams();
@@ -27,7 +25,12 @@ const BlogDetail = () => {
   }
   return (
     <>
-    <div className="mt-10 w-[80%] mx-auto"> <span className="font-suwannaphum text-[25px] font-medium">ទំព័រប្លុក</span></div>
+      <div className="mt-10 w-[80%] mx-auto">
+        {" "}
+        <span className="font-suwannaphum text-[25px] font-medium">
+          ទំព័រប្លុក
+        </span>
+      </div>
       <section className="mt-10 mb-10 w-full mx-auto flex flex-col md:flex-row font-suwannaphum">
         <div className=" w-full mx-auto md:w-full grid grid-rows-[auto_auto]">
           <div className="w-full sticky top-0 h-auto bg-[#F5F5F5] shadow-sm">

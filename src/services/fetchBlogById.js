@@ -9,3 +9,27 @@ export const fetchBlogById = async (id) => {
   });
   return response.json();
 };
+async function unfollowUser(currentUserId, userToUnfollowId) {
+  try {
+    // Check if the current user is already following the user to unfollow
+    const isFollowing = await checkIfFollowing(currentUserId, userToUnfollowId);
+    if (isFollowing) {
+      // Remove the user from the current user's following list
+      await removeFromFollowingList(currentUserId, userToUnfollowId);
+
+      // Remove the current user from the user to unfollow's follower list
+      await removeFromFollowerList(userToUnfollowId, currentUserId);
+
+      console.log(
+        `User ${currentUserId} has unfollowed user ${userToUnfollowId}`
+      );
+    } else {
+      console.log(
+        `User ${currentUserId} is not following user ${userToUnfollowId}`
+      );
+    }
+  } catch (error) {
+    console.error(`Error unfollowing user: ${error}`);
+    throw error;
+  }
+}
