@@ -37,6 +37,9 @@ const Dashboard = () => {
         );
         const data = await response.json();
         setProfile(data);
+        localStorage.setItem('user',JSON.stringify({
+          name:data.username
+        }));
       } catch (error) {
         console.error("Error fetching profile:", error);
       }

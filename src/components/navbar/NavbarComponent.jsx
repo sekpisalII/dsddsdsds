@@ -7,7 +7,6 @@ import { IoSettingsSharp } from "react-icons/io5";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { MdForum } from "react-icons/md";
 import { AUTH_HEADER } from "../../services/constants";
-
 const NavbarComponent = () => {
   const navigate = useNavigate();
   const [hasAccessToken, setHasAccessToken] = useState(false);
