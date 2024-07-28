@@ -10,7 +10,8 @@ const Article = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [totalRows, setTotalRows] = useState(0);
-  const [param,setParam]=useSearchParams();
+  const [param, setParam] = useSearchParams();
+
   const columns = [
     {
       name: "ID",
@@ -68,14 +69,30 @@ const Article = () => {
         </span>
       ),
     },
+    {
+      name: "Actions",
+      cell: (row) => (
+        <div className=" space-x-2">
+          <Link
+            to={`/editArticle/${row.id}`}
+            className="button bg-green-500 px-2 py-1 font-suwannaphum text-xl text-white rounded-md pt-1"
+          >
+            Edit
+          </Link>
+          <button
+            onClick={() => handleDelete(row.id)}
+            className="button bg-red-600 px-2 py-2 font-suwannaphum text-xl text-white rounded-md"
+          >
+            Delete
+          </button>
+        </div>
+      ),
+    },
   ];
 
-  // Fetch data from API with pagination and access token
   async function fetchData(page) {
     try {
-      // const accessToken = localStorage.getItem('access_token');
       const accessToken = localStorage.getItem('access_token');
-     
       if (!accessToken) {
         throw new Error('No access token found');
       }
@@ -91,26 +108,22 @@ const Article = () => {
 
       const result = await response.json();
       console.log(result)
-      const user=localStorage.getItem('user');
-      const nameUser=JSON.parse(user)
+      const user = localStorage.getItem('user');
+      const nameUser = JSON.parse(user)
       console.log(nameUser)
-      const data=result.results
+      const data = result.results
       console.log(data)
-      const userData=data.filter((users)=>{return users.author===nameUser.name});
+      const userData = data.filter((users) => { return users.author === nameUser.name });
       console.log(userData)
-      console.log(userData.length==0);
-      // location.reload();
-      if(userData.length==0){
-        const pang=Math.ceil(result.count/10);
-        for(let i=1;i<=pang;i++){
-          
-          setParam({page:i});
+      console.log(userData.length == 0);
+      if (userData.length == 0) {
+        const pang = Math.ceil(result.count / 10);
+        for (let i = 1; i <= pang; i++) {
+          setParam({ page: i });
           location.reload();
         }
-        // location.reload();
       }
-      // const userArticles = result.results.filter(article => article.author === currentUser);
-      setData(userData); // Ensure to set the correct data
+      setData(userData);
       setFilteredData(userData);
       setTotalRows(result.count);
       setIsLoading(false);
@@ -124,7 +137,6 @@ const Article = () => {
     fetchData(page);
   }, [page]);
 
-  // Filter data based on search input
   useEffect(() => {
     if (!search) {
       setFilteredData(data);
@@ -138,6 +150,27 @@ const Article = () => {
     );
     setFilteredData(results);
   }, [search, data]);
+
+  const handleDelete = async (id) => {
+    const accessToken = localStorage.getItem('access_token');
+    try {
+      const response = await fetch(`http://136.228.158.126:50001/api/articles/${id}/`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+        },
+      });
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      setData(data.filter(item => item.id !== id));
+      setFilteredData(filteredData.filter(item => item.id !== id));
+      setTotalRows(totalRows - 1);
+    } catch (error) {
+      console.error("Error deleting data:", error);
+    }
+  };
+
   const customStyles = {
     headCells: {
       style: {
@@ -146,18 +179,21 @@ const Article = () => {
       },
     },
   };
+
   const paginationComponentOptions = {
     rowsPerPageText: "Rows per page",
     rangeSeparatorText: "of",
     selectAllRowsItem: true,
     selectAllRowsItemText: "All",
   };
+
   const handlePageChange = (page) => {
-    console.log("page",page)
-    setParam({page:page});
+    console.log("page", page);
+    setParam({ page: page });
     console.log(param.get('page'));
     setPage(page);
   };
+
   return (
     <>
       <Dashboard />
@@ -180,7 +216,7 @@ const Article = () => {
             />
           }
           progressPending={isLoading}
-          progressComponent={<div>Loading...</div>} // Add a loading indicator
+          progressComponent={<div>Loading...</div>}
           fixedHeader
           fixedHeaderScrollHeight="600px"
           actions={

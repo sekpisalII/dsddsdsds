@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { GoBell } from "react-icons/go";
-import { TbLogout2 } from "react-icons/tb";
 import { RxDashboard } from "react-icons/rx";
 import { GrArticle } from "react-icons/gr";
 import { MdForum } from "react-icons/md";
@@ -20,7 +19,6 @@ const Dashboard = () => {
     { id: 2, path: "/article", name: "Article", icon: GrArticle },
     { id: 3, path: "/setting", name: "Setting", icon: IoSettingsOutline },
     { id: 4, path: "/getforum", name: "Forum", icon: MdForum },
-    { id: 5, path: "/logout", name: "Logout", icon: TbLogout2 },
   ];
 
   useEffect(() => {

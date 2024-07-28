@@ -3,13 +3,8 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import Layout from "./components/layout/Layout";
-// import Blog from "./page/blog/Blog";
-// import Book from "./page/book/Book";
-// import Lesson from "./page/lesson/Lesson";
 import Error from "./page/error-page/Error";
 import Create from "./page/create/Create";
-// import Forum from "./page/forum/Forum";
-// import AboutUs from "./page/about-us/AboutUs";
 import Register from "./page/auth/Register";
 import Login from "./page/auth/Login";
 import Home from "./page/home/Home";
@@ -27,12 +22,12 @@ import PageVerify from "./page/optpage/PageVerify";
 import DashboardPage from "./page/dashBoardPage/DashboardPage";
 import ArticlePage from "./page/articlePage/ArticlePage";
 import SettingPage from "./page/settingPage/SettingPage";
-import LogoutPage from "./page/logoutPage/LogoutPage";
 import DashboardPageDetail from "./page/dashboardPageDetail/DashboardPageDetail";
-
 import ForumContent from "./components/forumContent/ForumContent";
 import PostArticlePage from "./page/postArticlePage/PostArticlePage";
 import GetForumPage from "./page/getForumPage/GetForumPage";
+import EditArticlePage from "./page/editArticlePage/EditArticlePage";
+import EditForumPage from "./page/editForumPage/EditForumPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -125,10 +120,14 @@ const router = createBrowserRouter([
     path: "/blogDetail/:id",
     element: <BlogDetailPage />,
   },
-  // {
-  //   path: "/reply/:id",
-  //   element: <ReplyCard />,
-  // },
+  {
+    path: '/editArticle/:id',
+    element: <EditArticlePage />
+  },
+  {
+    path: '/editForum/:id',
+    element: <EditForumPage />
+  },
   {
     path: "/otp",
     element: <PageVerify />,
@@ -152,10 +151,6 @@ const router = createBrowserRouter([
   {
     path: "/setting",
     element: <SettingPage />,
-  },
-  {
-    path: "/logout",
-    element: <LogoutPage />,
   },
   {
     path: "/postArticle",
