@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { fetchBlogById } from "../../services/fetchBlogById";
 import { useParams } from "react-router-dom";
-import { SlUserFollow } from "react-icons/sl";
+import { SlUserFollow, SlUserUnfollow } from "react-icons/sl";
 import { FaRegCalendarAlt } from "react-icons/fa";
+import axios from "axios";
+import { AUTH_HEADER } from "../../services/constants";
 
 const BlogDetail = () => {
   const { id } = useParams();
   const bookId = decodeURIComponent(id);
   const [blog, setblog] = useState(null);
+  const [isFollowing, setIsFollowing] = useState(false);
 
   useEffect(() => {
     const fetchlessonData = async () => {
@@ -20,13 +23,53 @@ const BlogDetail = () => {
     };
     fetchlessonData();
   }, []);
+
+  const handleFollow = async () => {
+    try {
+      await axios.post(
+        `http://136.228.158.126:50001/api/follows/${blog.userId}/follow_user/`,
+        {
+          headers: {
+            ...AUTH_HEADER,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      setIsFollowing(true);
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        // Handle unauthorized response
+        console.error("Unauthorized access. Please login to continue.");
+        // Redirect the user to the login page or display an error message
+      } else {
+        console.error("Error following user:", error);
+      }
+    }
+  };
+  const handleUnfollow = async () => {
+    try {
+      await axios.post(
+        `http://136.228.158.126:50001/api/follows/${blog.userId}/unfollow_user/`,
+        {},
+        {
+          headers: {
+            ...AUTH_HEADER,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      setIsFollowing(false);
+    } catch (error) {
+      console.error("Error unfollowing user:", error);
+    }
+  };
+
   if (!blog) {
     return <div>Loading...</div>;
   }
   return (
     <>
       <div className="mt-10 w-[80%] mx-auto">
-        {" "}
         <span className="font-suwannaphum text-[25px] font-medium">
           ទំព័រប្លុក
         </span>
@@ -54,9 +97,24 @@ const BlogDetail = () => {
                   </div>
                 </span>
               </div>
-              <div className="flex text-white space-x-4 bg-[#16a1df] py-2 px-4 rounded-xl cursor-pointer hover:bg-[#246a8b] mt-4 md:mt-0">
-                <SlUserFollow className="mt-[2px]" />
-                <span className="-mt-[2px] ml-1">តាមដាន</span>
+              <div className="flex text-white space-x-4 bg-[#16a1df] py-2 px-4 rounded-xl mt-4 md:mt-0 cursor-pointer">
+                {isFollowing ? (
+                  <div
+                    className="flex items-center hover:bg-[#246a8b]"
+                    onClick={handleUnfollow}
+                  >
+                    <SlUserUnfollow className="mt-[2px]" />
+                    <span className="-mt-[2px] ml-1">អាបរ</span>
+                  </div>
+                ) : (
+                  <div
+                    className="flex items-center hover:bg-[#246a8b]"
+                    onClick={handleFollow}
+                  >
+                    <SlUserFollow className="mt-[2px]" />
+                    <span className="-mt-[2px] ml-1">តាមដាន</span>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -76,4 +134,5 @@ const BlogDetail = () => {
     </>
   );
 };
+
 export default BlogDetail;
