@@ -129,7 +129,6 @@ const GetForum = () => {
       const userData = data.filter((users) => users.author === nameUser.name);
       console.log(userData);
       console.log(userData.length === 0);
-
       if (userData.length === 0) {
         const pang = Math.ceil(result.count / 10);
         for (let i = 1; i <= pang; i++) {

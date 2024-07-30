@@ -12,7 +12,6 @@ const DashboardDetail = () => {
       </div>
     ))}
   </section>
-  
   );
 };
 const DashboardCard = ({ title, chartData }) => {
@@ -23,7 +22,6 @@ const DashboardCard = ({ title, chartData }) => {
       chart.destroy();
     };
   }, [chartData]);
-
   return (
     <div className="max-w-sm w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
       <div className="flex justify-between items-center w-full">

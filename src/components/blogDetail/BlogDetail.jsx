@@ -3,7 +3,6 @@ import { fetchBlogById } from "../../services/fetchBlogById";
 import { useParams } from "react-router-dom";
 import { SlUserFollow } from "react-icons/sl";
 import { FaRegCalendarAlt } from "react-icons/fa";
-
 const BlogDetail = () => {
   const { id } = useParams();
   const [blog, setBlog] = useState(null);
@@ -74,6 +73,7 @@ const BlogDetail = () => {
   if (!blog) {
     return <div>Loading...</div>;
   }
+
 
   return (
     <>
