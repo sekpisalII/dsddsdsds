@@ -34,10 +34,10 @@ const BlogAllCard = ({ blog }) => {
                 href="#"
                 className="text-gray-600 font-semibold leading-none hover:text-indigo-600 font-suwannaphum text-[16px] -mt-4"
               >
-                សាលាឌីជីថលCSTAD
+                {blog?.author}
               </a>
-              <p className="text-gray-600 font-suwannaphum mb-4 text-[12px] pt-7 -ml-[138px]">
-                អ្នកតាមដាន: 0 នាក់
+              <p className="text-gray-600 font-suwannaphum mb-4 text-[15px] pt-7 -ml-[55px]">
+                អ្នកតាមដាន {blog?.id} នាក់
               </p>
             </div>
           </div>

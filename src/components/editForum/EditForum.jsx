@@ -77,7 +77,6 @@ const EditForum = () => {
       console.error('Error updating forum data:', error);
     }
   };
-
   return (
     <div className="container mx-auto p-4 font-suwannaphum bg-[#15A1DF] mt-10 rounded-lg">
       <div className="text-2xl font-bold mb-4 text-black text-center mx-auto">Edit Forum Post</div>

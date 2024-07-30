@@ -1,12 +1,119 @@
-import React from 'react'
+import React from 'react';
+import { FaShoppingBag, FaChartBar, FaUserFriends, FaChartLine } from 'react-icons/fa'; // Importing specific icons from react-icons
 import Dashboard from '../../components/dashboard/Dashboard';
 import DashboardDetail from '../../components/dashboardDetail/DashboardDetail';
-const  DashboardPage = () => {
+import DashboardDetailChart from '../../components/dashboardDetailchart/DashboardDetailChart';
+
+const DashboardPage = () => {
   return (
     <div>
       <Dashboard />
-      <DashboardDetail />
+      <section className="flex max-w-screen-2xl mx-auto mt-5">
+        <main className="w-full">
+          <div className="grid mb-4 pb-10 px-8 mx-4 rounded-3xl bg-gray-100 border-4 border-green-400">
+            <div className="grid grid-cols-12 gap-6">
+              <div className="grid grid-cols-12 col-span-12 gap-6 xxl:col-span-9">
+                <div className="col-span-12 mt-8">
+                  <div className="flex items-center h-10 intro-y">
+                    <h2 className="mr-5 text-lg font-medium truncate">Dashboard</h2>
+                  </div>
+                  <section className="max-w-screen-2xl mx-auto">
+                    <div className="grid grid-cols-12 gap-10 mt-5">
+                      <a
+                        className="transform hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y bg-white"
+                        href="#"
+                      >
+                        <div className="p-5">
+                          <div className="flex justify-between">
+                            <FaShoppingBag className="h-7 w-7 text-blue-400" />
+                            <div className="bg-green-500 rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm">
+                              <span className="flex items-center">30%</span>
+                            </div>
+                          </div>
+                          <div className="ml-2 w-full flex-1">
+                            <div>
+                              <div className="mt-3 text-3xl font-bold leading-8">4.510</div>
+                              <div className="mt-1 text-base text-gray-600">Item Sales</div>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+
+                      <a
+                        className="transform hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y bg-white"
+                        href="#"
+                      >
+                        <div className="p-5">
+                          <div className="flex justify-between">
+                            <FaChartBar className="h-7 w-7 text-yellow-400" />
+                            <div className="bg-red-500 rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm">
+                              <span className="flex items-center">30%</span>
+                            </div>
+                          </div>
+                          <div className="ml-2 w-full flex-1">
+                            <div>
+                              <div className="mt-3 text-3xl font-bold leading-8">4.510</div>
+                              <div className="mt-1 text-base text-gray-600">Item Sales</div>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+
+                      <a
+                        className="transform hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y bg-white"
+                        href="#"
+                      >
+                        <div className="p-5">
+                          <div className="flex justify-between">
+                            <FaUserFriends className="h-7 w-7 text-yellow-400" />
+                            <div className="bg-red-500 rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm">
+                              <span className="flex items-center">30%</span>
+                            </div>
+                          </div>
+                          <div className="ml-2 w-full flex-1">
+                            <div>
+                              <div className="mt-3 text-3xl font-bold leading-8">4.510</div>
+                              <div className="mt-1 text-base text-gray-600">Item Sales</div>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+
+                      <a
+                        className="transform hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y bg-white"
+                        href="#"
+                      >
+                        <div className="p-5">
+                          <div className="flex justify-between">
+                            <FaChartLine className="h-7 w-7 text-yellow-400" />
+                            <div className="bg-red-500 rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm">
+                              <span className="flex items-center">30%</span>
+                            </div>
+                          </div>
+                          <div className="ml-2 w-full flex-1">
+                            <div>
+                              <div className="mt-3 text-3xl font-bold leading-8">4.510</div>
+                              <div className="mt-1 text-base text-gray-600">Item Sales</div>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </section>
+      <section className="flex max-w-screen-2xl mx-auto mt-5">
+        <DashboardDetail />
+        <div className="mt-10">
+          <DashboardDetailChart />
+        </div>
+      </section>
     </div>
-  )
-}
+  );
+};
+
 export default DashboardPage;

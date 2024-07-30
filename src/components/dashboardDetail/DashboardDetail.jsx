@@ -2,16 +2,17 @@ import React, { useEffect } from 'react';
 import ApexCharts from 'apexcharts';
 const DashboardDetail = () => {
   const dashboards = [
-    { id: 1, title: 'Total Post', chartData: [15, 15, 20, 10] },
-    { id: 2, title: 'Total follower', chartData: [25, 45, 35] },
-    { id: 3, title: 'Total likes', chartData: [20,30, 25, 25] },
+    { id: 1, chartData: [15, 15, 20,4] },
   ];
   return (
-    <section className="max-w-screen-xl mx-auto mt-5 gap-[100] grid grid-cols-1 md:grid-cols-3">
-      {dashboards.map((dashboard) => (
+    <section className="max-w-screen-2xl mx-auto mt-5 grid grid-cols-1 md:grid-cols-1 justify-center items-center">
+    {dashboards.map((dashboard) => (
+      <div className="mx-auto">
         <DashboardCard key={dashboard.id} title={dashboard.title} chartData={dashboard.chartData} />
-      ))}
-    </section>
+      </div>
+    ))}
+  </section>
+  
   );
 };
 const DashboardCard = ({ title, chartData }) => {
@@ -91,9 +92,9 @@ const getChartOptions = (chartData) => {
       type: 'pie',
       height: '400',
     },
-    labels: ['Social Media', 'Search Engines', 'Direct Traffic', 'Referral Traffic'],
+    labels: ['Total Post', 'Total Followers', 'Total Likes',],
     series: chartData,
-    colors: ['#f39c12', '#d35400', '#27ae60', '#2980b9'],
+    colors: ['#f39c12', '#d35400', '#27ae60'],
     legend: {
       show: true,
       position: 'bottom',
