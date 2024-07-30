@@ -9,7 +9,6 @@ const BlogDetail = () => {
   const [isFollowing, setIsFollowing] = useState(false);
   const [followError, setFollowError] = useState("");
   const [followersCount, setFollowersCount] = useState(0); // Add state for followers count
-
   useEffect(() => {
     console.log("id", id)
     const fetchLessonData = async () => {

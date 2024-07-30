@@ -64,18 +64,10 @@ const NavbarComponent = () => {
                 />
               }
             >
-              <Dropdown.Header>User Actions</Dropdown.Header>
+              <Dropdown.Header className="font-suwannaphum text-sm">User Actions</Dropdown.Header>
               <Dropdown.Item onClick={() => handleNavigate("/dashboard")}>
                 <LuLayoutDashboard className="m-3 text-blue-600" />
                 <span className="font-suwannaphum">Dashboard</span>
-              </Dropdown.Item>
-              <Dropdown.Item onClick={() => handleNavigate("/article")}>
-                <GrArticle className="m-3 text-blue-600" />
-                <span className="font-suwannaphum">Articles</span>
-              </Dropdown.Item>
-              <Dropdown.Item onClick={() => handleNavigate("/setting")}>
-                <IoSettingsSharp className="m-3 text-blue-600" />
-                <span className="font-suwannaphum">Settings</span>
               </Dropdown.Item>
               <Dropdown.Divider />
               <Dropdown.Item onClick={handleSignOut}>

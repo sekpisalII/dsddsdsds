@@ -3,6 +3,7 @@ import BlogAllCard from "../../components/blogAllCard/BlogAllCard";
 import FooterCard from "../../components/footer/FooterCard";
 import Spinner from "../../components/appSpinner/Spinner";
 import ButtonMenuBlog from "../../components/buttonMenuBlog/ButtonMenuBlog";
+import NavbarComponent from "../../components/navbar/NavbarComponent";
 
 export const Blog = () => {
   const [blog, setBlog] = useState([{}]);
@@ -38,6 +39,7 @@ export const Blog = () => {
 
   return (
     <>
+    <NavbarComponent />
       <ButtonMenuBlog />
       {isLoading ? (
         <div className="flex justify-center items-center h-screen">

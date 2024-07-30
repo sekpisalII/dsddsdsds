@@ -3,7 +3,7 @@ import BookAllCard from "../../components/bookAllCard/BookAllCard";
 import FooterCard from "../../components/footer/FooterCard";
 import ButtonMenu from "../../components/button_Menu/ButtonMenu";
 import Spinner from "../../components/appSpinner/Spinner";
-
+import NavbarComponent from "../../components/navbar/NavbarComponent";
 const Book = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [book, setBook] = useState([]);
@@ -34,6 +34,7 @@ const Book = () => {
   };
   return (
     <>
+    <NavbarComponent />
       <ButtonMenu />
       {isLoading ? (
         <Spinner />

@@ -3,6 +3,7 @@ import FooterCard from "../../components/footer/FooterCard";
 import LessonAllCard from "../../components/lessonAllCard/LessonAllCard";
 import ButtonMenuLesson from "../../components/buttonMenuLesson/ButtonMenuLesson";
 import Spinner from "../../components/appSpinner/Spinner";
+import NavbarComponent from "../../components/navbar/NavbarComponent";
 
 const Lesson = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -38,6 +39,7 @@ const Lesson = () => {
 
   return (
     <>
+    <NavbarComponent />
       <ButtonMenuLesson />
       {isLoading ? (
         <Spinner />

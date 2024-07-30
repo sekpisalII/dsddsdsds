@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import AllAboutUs from "../../components/allAboutUs/AllAboutUs";
 import FooterCard from "../../components/footer/FooterCard";
 import Spinner from "../../components/appSpinner/Spinner";
-
+import NavbarComponent from "../../components/navbar/NavbarComponent";
 const AboutUs = () => {
   const [isloading, setIsloading] = useState(true);
   const onLessonFetch = () => {
@@ -14,6 +14,7 @@ const AboutUs = () => {
 
   return (
     <>
+      <NavbarComponent />
       {isloading ? <Spinner /> : <AllAboutUs />}
 
       <div className="mt-20">

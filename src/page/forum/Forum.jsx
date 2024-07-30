@@ -3,6 +3,7 @@ import ForumContent from "../../components/forumContent/ForumContent";
 import FooterCard from "../../components/footer/FooterCard";
 import CardForum from "../../components/forumCardForm/CardForum";
 import Spinner from "../../components/appSpinner/Spinner";
+import NavbarComponent from "../../components/navbar/NavbarComponent";
 const Forum = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [forums, setForums] = useState([]);
@@ -36,6 +37,7 @@ const Forum = () => {
 
   return (
     <div>
+      <NavbarComponent />
       <ForumContent />
       {isLoading ? (
         <div className="flex justify-center items-center h-screen">

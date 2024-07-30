@@ -156,6 +156,10 @@ const router = createBrowserRouter([
     path: "/postArticle",
     element: <PostArticlePage />,
   },
+  {
+    path: "/home",
+    element: <Home />
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
