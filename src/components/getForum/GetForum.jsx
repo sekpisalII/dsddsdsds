@@ -126,14 +126,19 @@ const GetForum = () => {
       const data = result.results;
       console.log(data);
 
+
       const userData = data.filter((users) => users.author === nameUser.name);
       console.log(userData);
+        //  location.reload();
       console.log(userData.length === 0);
       if (userData.length === 0) {
         const pang = Math.ceil(result.count / 10);
+        
         for (let i = 1; i <= pang; i++) {
+
           setParam({ page: i });
-          location.reload();
+          // location.reload();
+          console.log(i)
         }
       }
 
