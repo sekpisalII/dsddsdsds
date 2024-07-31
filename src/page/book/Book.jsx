@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import BookAllCard from "../../components/bookAllCard/BookAllCard";
 import FooterCard from "../../components/footer/FooterCard";
 import Spinner from "../../components/appSpinner/Spinner";
-import NavbarComponent from "../../components/navbar/NavbarComponent"
+import NavbarComponent from "../../components/navbar/NavbarComponent";
 
 // Define the categories for filtering
 const categories = [
@@ -50,8 +50,6 @@ const Book = () => {
 
   const handleFilterClick = (filter) => {
     setActiveFilter(filter);
-
-    // Special handling for "History"
     if (filter === "All") {
       setFilteredData(data);
     } else if (filter === "Google") {
@@ -93,12 +91,12 @@ const Book = () => {
 
   return (
     <>
-    <NavbarComponent />
+      <NavbarComponent />
       <div className="flex flex-wrap gap-2 mt-5 justify-center">
         {categories.map((category) => (
           <button
             key={category}
-            className={`px-4 py-2 rounded font-suwannaphum ${
+            className={`px-4 py-2 rounded-full font-suwannaphum flex flex-wrap gap-2 mt-5  ${
               activeFilter === category
                 ? "bg-blue-500 text-white"
                 : "bg-gray-200"
