@@ -113,17 +113,18 @@ const Setting = () => {
       }
     };
 
+
     fetchProfileData();
   }, []);
   return (
     <>
       <Dashboard />
-      <section className="section main-section max-w-screen-xl mx-auto mt-7">
-        <div className="profile-container">
+       <section className="section main-section w-[80%] ml-[16%] sm:ml-[14%] md:ml-[22%] lg:ml-[20%] xl:ml-[18%] mt-7 px-4">
+        <div className="profile-container grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="card">
             <header className="card-header">
-              <p className="card-header-title font-suwannaphum">
-                <span className="icon">👤</span>
+              <p className="card-header-title font-suwannaphum flex items-center">
+                <span className="icon mr-2">👤</span>
                 Edit Profile
               </p>
             </header>
@@ -132,22 +133,20 @@ const Setting = () => {
                 <div className="field font-suwannaphum">
                   <div className="field-body">
                     <div className="field file">
-                      <label className="upload control rounded-lg">
-                        <button className="button upload-button mx-3">
-                          Upload
-                        </button>
+                      <label className="upload control rounded-lg flex flex-col items-center justify-center md:flex-row md:justify-center md:space-x-4">
                         <input
                           type="file"
                           id="image"
                           name="image"
+                          className="w-full md:w-auto text-[16px] md:text-base lg:text-lg"
                           onChange={handleFileChange}
                         />
                       </label>
                     </div>
                   </div>
                 </div>
-                <div className="text-[20px]">
-                  <div className="mb-2 block font-suwannaphum ">
+                <div className="text-[20px] mb-4">
+                  <div className="mb-2 block font-suwannaphum">
                     <Label
                       className="text-[20px]"
                       htmlFor="text"
@@ -163,10 +162,10 @@ const Setting = () => {
                     onChange={handleInputChange}
                     placeholder="បញ្ចូលនាមត្រកូល"
                   />
-                  <span class="help">Required. New first name</span>
+                  <span className="help">Required. New first name</span>
                 </div>
-                <div className="text-[20px]">
-                  <div className="mb-2 block font-suwannaphum ">
+                <div className="text-[20px] mb-4">
+                  <div className="mb-2 block font-suwannaphum">
                     <Label
                       className="text-[20px]"
                       htmlFor="text"
@@ -183,10 +182,10 @@ const Setting = () => {
                     placeholder="បញ្ចូលនាមខ្លួន"
                   />
                 </div>
-                <div className="text-[23px] ">
-                  <div className="mb-2 block font-suwannaphum ">
+                <div className="text-[23px] mb-4">
+                  <div className="mb-2 block font-suwannaphum">
                     <Label
-                      className="text-[20px] mt-4"
+                      className="text-[20px]"
                       htmlFor="text"
                       value="ឈ្មោះ"
                     />
@@ -201,10 +200,10 @@ const Setting = () => {
                     placeholder="បញ្ចូលឈ្មោះ"
                   />
                 </div>
-                <div className="text-[20px] font-suwannaphum">
-                  <div className="mb-2 block font-suwannaphum ">
+                <div className="text-[20px] font-suwannaphum mb-4">
+                  <div className="mb-2 block font-suwannaphum">
                     <Label
-                      className="text-[20px] mt-4"
+                      className="text-[20px]"
                       htmlFor="email"
                       value="អុីមែល"
                     />
@@ -215,14 +214,15 @@ const Setting = () => {
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
+
                     placeholder="បញ្ចូលអុីមឺល"
                   />
-                  <span class="help">Required. New email</span>
+                  <span className="help">Required. New email</span>
                 </div>
-                <div className="text-[20px] font-suwannaphum">
-                  <div className="mb-2 block font-suwannaphum ">
+                <div className="text-[20px] font-suwannaphum mb-4">
+                  <div className="mb-2 block font-suwannaphum">
                     <Label
-                      className="text-[20px] mt-4"
+                      className="text-[20px]"
                       htmlFor="text"
                       value="ថ្ងៃខែឆ្នាំកំណើត"
                     />
@@ -235,12 +235,12 @@ const Setting = () => {
                     onChange={handleInputChange}
                     placeholder="បញ្ចូលថ្ងៃខែឆ្នាំកំណើត"
                   />
-                  <span class="help">Required. New dath of birth</span>
+                  <span className="help">Required. New date of birth</span>
                 </div>
-                <div className="text-[20px]">
-                  <div className="mb-2 block font-suwannaphum ">
+                <div className="text-[20px] mb-4">
+                  <div className="mb-2 block font-suwannaphum">
                     <Label
-                      className="text-[20px] mt-4"
+                      className="text-[20px]"
                       htmlFor="text"
                       value="អាស័យដ្ធាន"
                     />
@@ -254,14 +254,14 @@ const Setting = () => {
                     onChange={handleInputChange}
                     placeholder="បញ្ចូលអាស័យដ្ធាន"
                   />
-                  <span class="help">Required. New address</span>
+                  <span className="help">Required. New address</span>
                 </div>
 
                 <div className="field font-suwannaphum">
                   <div className="control">
                     <button
                       type="submit"
-                      className="button submit-button font-suwannaphum"
+                      className="text-[16px] button submit-button md:font-suwannaphum"
                     >
                       បញ្ចូន
                     </button>
@@ -272,30 +272,31 @@ const Setting = () => {
           </div>
           <div className="card">
             <header className="card-header">
-              <p className="card-header-title">
-                <span className="icon">👥</span>
+              <p className="card-header-title flex items-center">
+                <span className="icon mr-2">👥</span>
                 Profile
               </p>
             </header>
             {profileData ? (
               <div>
                 <div className="card-content">
-                  <div className="image-container">
+                  <div className="image-container flex justify-center mb-4">
                     <img
                       src={
                         profileData.image ||
                         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL_JlCFnIGX5omgjEjgV9F3sBRq14eTERK9w&s"
                       }
                       alt="Profile"
-                      className="avatar"
+                      className="avatar w-24 h-24 rounded-full"
                     />
                   </div>
                 </div>
 
-                <span className="font-suwannaphum text-center mx-auto text-2xl text-gray-900 font-medium items-center ml-52">
+
+                <span className="font-suwannaphum text-center mx-3 text-2xl text-gray-900 font-medium">
                   ពណ៏មានរបស់អ្នកប្រើប្រាស់
                 </span>
-                <div className=" w-full p-4 ">
+                <div className="w-full p-4">
                   <ul className="space-y-2 font-suwannaphum">
                     <li className="flex justify-between">
                       <span>នាមត្រកូល</span>
@@ -307,7 +308,7 @@ const Setting = () => {
                     </li>
                     <li className="flex justify-between">
                       <span>អាស័យដ្ធាន</span>
-                      <span> {profileData.address}</span>
+                      <span>{profileData.address}</span>
                     </li>
                     <li className="flex justify-between">
                       <span>ឈ្មោះ</span>
@@ -319,7 +320,7 @@ const Setting = () => {
                     </li>
                     <li className="flex justify-between">
                       <span>ថ្ងៃខែឆ្នាំកំណើត</span>
-                      <span> {profileData.dob}</span>
+                      <span>{profileData.dob}</span>
                     </li>
                     {successMessage && (
                       <div className="success-message text-blue-600">
@@ -333,21 +334,6 @@ const Setting = () => {
                     )}
                   </ul>
                 </div>
-                {/* <p>First Name: </p>
-                <p>Last Name: </p>
-                <p>Date of Birth: {profileData.dob}</p>
-                <p>Username: </p>
-                <p>Email: </p>
-                <p>Address:</p>
-                {profileData.image && (
-                  <img src={profileData.image} alt="Profile" />
-                )}
-                {successMessage && (
-                  <div className="success-message">{successMessage}</div>
-                )}
-                {errorMessage && (
-                  <div className="error-message">{errorMessage}</div>
-                )} */}
               </div>
             ) : (
               <p>Loading...</p>
