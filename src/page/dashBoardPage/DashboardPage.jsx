@@ -8,16 +8,16 @@ const DashboardPage = () => {
   return (
     <div>
       <Dashboard />
-      <section className="flex max-w-screen-2xl mx-auto mt-5">
+      <section className="flex max-w-screen-xl mx-auto mt-5">
         <main className="w-full">
           <div className="grid mb-4 pb-10 px-8 mx-4 rounded-3xl bg-gray-100 border-4 border-green-400">
             <div className="grid grid-cols-12 gap-6">
               <div className="grid grid-cols-12 col-span-12 gap-6 xxl:col-span-9">
                 <div className="col-span-12 mt-8">
                   <div className="flex items-center h-10 intro-y">
-                    <h2 className="mr-5 text-lg font-medium truncate">Dashboard</h2>
+                    <h2 className="mr-5 text-lg font-medium truncate">Dashboard welcome</h2>
                   </div>
-                  <section className="max-w-screen-2xl mx-auto">
+                  <section className="max-w-screen2xl mx-auto">
                     <div className="grid grid-cols-12 gap-10 mt-5">
                       <a
                         className="transform hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y bg-white"

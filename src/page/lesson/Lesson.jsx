@@ -39,6 +39,7 @@ const Lesson = () => {
 
   return (
     <>
+    <NavbarComponent />
       {/* <ButtonMenuLesson /> */}
       {isLoading ? (
         <Spinner />

@@ -111,7 +111,6 @@ const GetForum = () => {
           'Authorization': `Bearer ${accessToken}`,
         },
       });
-
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
@@ -133,9 +132,7 @@ const GetForum = () => {
       console.log(userData.length === 0);
       if (userData.length === 0) {
         const pang = Math.ceil(result.count / 10);
-        
         for (let i = 1; i <= pang; i++) {
-
           setParam({ page: i });
           // location.reload();
           console.log(i)
