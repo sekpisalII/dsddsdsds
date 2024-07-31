@@ -15,7 +15,6 @@ import ForumCard from "../../components/forumCard/ForumCard";
 
 const Home = () => {
   const navigate = useNavigate();
-  const [hasAccessToken, setHasAccessToken] = useState(false);
 
   const handleNavigate = (path) => {
     const access_token = localStorage.getItem("access_token");
@@ -70,7 +69,9 @@ const Home = () => {
                 />
               }
             >
-              <Dropdown.Header className="font-suwannaphum text-sm">User Actions</Dropdown.Header>
+              <Dropdown.Header className="font-suwannaphum text-sm">
+                User Actions
+              </Dropdown.Header>
               <Dropdown.Item onClick={() => handleNavigate("/dashboard")}>
                 <LuLayoutDashboard className="m-3 text-blue-600" />
                 <span className="font-suwannaphum">Dashboard</span>
