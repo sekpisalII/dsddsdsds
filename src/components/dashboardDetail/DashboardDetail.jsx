@@ -90,7 +90,7 @@ const getChartOptions = (chartData) => {
       type: 'pie',
       height: '400',
     },
-    labels: ['Total Post', 'Total Followers', 'Total Likes',],
+    labels: ['Total Postforum', 'Total Postarticle', 'Total Follower','Total Like'],
     series: chartData,
     colors: ['#f39c12', '#d35400', '#27ae60'],
     legend: {

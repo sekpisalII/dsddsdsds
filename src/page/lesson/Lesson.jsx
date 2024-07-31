@@ -10,7 +10,7 @@ const categories = [
   "រូបវិទ្យា",
   "ជីវវិទ្យា",
   "គីមីវិទ្យា",
-  "Other",
+  "ផ្សេងៗទៀត",
 ];
 const Lesson = () => {
   const [isLoading, setIsLoading] = useState(true);

@@ -10,13 +10,13 @@ import {
 const FooterCard = () => {
   return (
     <>
-      <Footer container className=" bg-slate-100">
+      <Footer container className=" bg-slate-100 mt-10">
         <div className="w-full h-auto mx-auto">
           <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
             <div>
-              <Footer.Brand
-                src="../src/assets/stemlogo-removebg-preview.png"
-                className="w-20 h-15 mt-4"
+            <Footer.Brand
+                src="../src/assets/STEM_LOGO_TUTOR.png"
+                className="w-16 h-16 sm:w-20 sm:h-20 md:w-13 md:h-13 lg:w-15 lg:h-15 xl:w-15 xl:h-20 rounded-full object-cover mt-4"
                 alt="Stem Logo"
               />
               <p className="text-base text-gray-500/90">

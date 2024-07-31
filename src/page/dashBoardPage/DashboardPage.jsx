@@ -3,7 +3,10 @@ import { FaShoppingBag, FaChartBar, FaUserFriends, FaChartLine } from 'react-ico
 import Dashboard from '../../components/dashboard/Dashboard';
 import DashboardDetail from '../../components/dashboardDetail/DashboardDetail';
 import DashboardDetailChart from '../../components/dashboardDetailchart/DashboardDetailChart';
-
+import { MdForum } from "react-icons/md";
+import { GrArticle } from "react-icons/gr";
+import { GiShadowFollower } from "react-icons/gi";
+import { AiFillLike } from "react-icons/ai";
 const DashboardPage = () => {
   return (
     <div>
@@ -25,7 +28,7 @@ const DashboardPage = () => {
                       >
                         <div className="p-5">
                           <div className="flex justify-between">
-                            <FaShoppingBag className="h-7 w-7 text-blue-400" />
+                          <MdForum  className="h-7 w-7 text-blue-400" />
                             <div className="bg-green-500 rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm">
                               <span className="flex items-center">30%</span>
                             </div>
@@ -33,7 +36,7 @@ const DashboardPage = () => {
                           <div className="ml-2 w-full flex-1">
                             <div>
                               <div className="mt-3 text-3xl font-bold leading-8">4.510</div>
-                              <div className="mt-1 text-base text-gray-600">Item Sales</div>
+                              <div className="mt-1 text-base text-gray-600">Total Postforum</div>
                             </div>
                           </div>
                         </div>
@@ -45,7 +48,7 @@ const DashboardPage = () => {
                       >
                         <div className="p-5">
                           <div className="flex justify-between">
-                            <FaChartBar className="h-7 w-7 text-yellow-400" />
+                          <GrArticle   className="h-7 w-7 text-yellow-400" />
                             <div className="bg-red-500 rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm">
                               <span className="flex items-center">30%</span>
                             </div>
@@ -53,7 +56,7 @@ const DashboardPage = () => {
                           <div className="ml-2 w-full flex-1">
                             <div>
                               <div className="mt-3 text-3xl font-bold leading-8">4.510</div>
-                              <div className="mt-1 text-base text-gray-600">Item Sales</div>
+                              <div className="mt-1 text-base text-gray-600">Total postarticle</div>
                             </div>
                           </div>
                         </div>
@@ -65,7 +68,7 @@ const DashboardPage = () => {
                       >
                         <div className="p-5">
                           <div className="flex justify-between">
-                            <FaUserFriends className="h-7 w-7 text-yellow-400" />
+                          <GiShadowFollower  className="h-7 w-7 text-yellow-400" />
                             <div className="bg-red-500 rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm">
                               <span className="flex items-center">30%</span>
                             </div>
@@ -73,7 +76,7 @@ const DashboardPage = () => {
                           <div className="ml-2 w-full flex-1">
                             <div>
                               <div className="mt-3 text-3xl font-bold leading-8">4.510</div>
-                              <div className="mt-1 text-base text-gray-600">Item Sales</div>
+                              <div className="mt-1 text-base text-gray-600">Total Follower</div>
                             </div>
                           </div>
                         </div>
@@ -85,7 +88,7 @@ const DashboardPage = () => {
                       >
                         <div className="p-5">
                           <div className="flex justify-between">
-                            <FaChartLine className="h-7 w-7 text-yellow-400" />
+                          <AiFillLike className="h-7 w-7 text-yellow-400" />
                             <div className="bg-red-500 rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm">
                               <span className="flex items-center">30%</span>
                             </div>
@@ -93,7 +96,7 @@ const DashboardPage = () => {
                           <div className="ml-2 w-full flex-1">
                             <div>
                               <div className="mt-3 text-3xl font-bold leading-8">4.510</div>
-                              <div className="mt-1 text-base text-gray-600">Item Sales</div>
+                              <div className="mt-1 text-base text-gray-600">Totla Like</div>
                             </div>
                           </div>
                         </div>
