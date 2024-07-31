@@ -15,6 +15,7 @@ import ForumCard from "../../components/forumCard/ForumCard";
 
 const Home = () => {
   const navigate = useNavigate();
+  const [hasAccessToken, setHasAccessToken] = useState(false);
 
   const handleNavigate = (path) => {
     const access_token = localStorage.getItem("access_token");
