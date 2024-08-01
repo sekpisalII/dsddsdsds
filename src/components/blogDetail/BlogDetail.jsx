@@ -3,31 +3,32 @@ import { fetchBlogById } from "../../services/fetchBlogById";
 import { useParams } from "react-router-dom";
 import { SlUserFollow } from "react-icons/sl";
 import { FaRegCalendarAlt } from "react-icons/fa";
+
 const BlogDetail = () => {
   const { id } = useParams();
   const [blog, setBlog] = useState(null);
   const [isFollowing, setIsFollowing] = useState(false);
   const [followError, setFollowError] = useState("");
-  const [followersCount, setFollowersCount] = useState(0); // Add state for followers count
+  const [followersCount, setFollowersCount] = useState(0);
+
   useEffect(() => {
-    console.log("id", id)
     const fetchLessonData = async () => {
       try {
         const bookData = await fetchBlogById(id);
-        console.log("Fetched blog data:", bookData); // Logging fetched data
         setBlog(bookData);
-        setFollowersCount(bookData.followersCount || 0); // Initialize followers count
+        setFollowersCount(bookData.followersCount || 0);
+        // Assuming blog object contains a field indicating if the current user is following the author
+        setIsFollowing(bookData.isFollowing || false);
       } catch (error) {
         console.error("Error fetching blog data:", error);
       }
     };
     fetchLessonData();
-  }, []);
+  }, [id]);
 
   const handleFollow = async () => {
-    if (!blog || !blog.id) {
+    if (!blog || !blog.author_id) {
       setFollowError("Author ID is missing or undefined");
-      console.error("Author ID is missing or undefined:", blog); // Logging the blog object
       return;
     }
 
@@ -37,8 +38,9 @@ const BlogDetail = () => {
         throw new Error("No access token found");
       }
 
-      const response = await fetch(`http://136.228.158.126:50001/api/follows/${blog.id}/follow_user/`, {
-        method: "POST",
+      const method = isFollowing ? "DELETE" : "POST";
+      const response = await fetch(`http://136.228.158.126:50001/api/follows/${blog.author_id}/follow_user/`, {
+        method,
         headers: {
           "Authorization": `Bearer ${accessToken}`,
           "Content-Type": "application/json",
@@ -53,18 +55,18 @@ const BlogDetail = () => {
           if (responseData.detail === "User does not exist.") {
             setFollowError("User does not exist.");
           } else {
-            throw new Error(responseData.detail || "Failed to follow user");
+            throw new Error(responseData.detail || "Failed to follow/unfollow user");
           }
           return;
         }
-        setIsFollowing(true);
-        setFollowersCount(followersCount + 1); // Increment followers count
+        setIsFollowing(!isFollowing);
+        setFollowersCount(followersCount + (isFollowing ? -1 : 1));
         setFollowError("");
       } catch (error) {
         throw new Error("Invalid JSON response: " + responseText);
       }
     } catch (error) {
-      console.error("Error following user:", error);
+      console.error("Error following/unfollowing user:", error);
       setFollowError(error.message);
     }
   };
@@ -72,7 +74,6 @@ const BlogDetail = () => {
   if (!blog) {
     return <div>Loading...</div>;
   }
-
 
   return (
     <>
@@ -92,7 +93,7 @@ const BlogDetail = () => {
                   }
                   alt=""
                 />
-                <span className="ml-4 md:ml-5 font-md font-suwannaphum mt-2">
+                <span className="ml-4 md:ml-5 font-md font-suwannaphum mt-2 object-cover">
                   {blog.author}
                   <div className="text-[rgb(13, 12, 34)] text-center font-suwannaphum mt-2 flex cursor-pointer">
                     <FaRegCalendarAlt className="font-light" />
@@ -109,11 +110,10 @@ const BlogDetail = () => {
                     isFollowing ? "bg-gray-400" : "bg-[#16a1df] hover:bg-[#246a8b]"
                   } mt-4 md:mt-0`}
                   onClick={handleFollow}
-                  disabled={isFollowing}
                 >
                   <SlUserFollow className="mt-[2px]" />
                   <button className="-mt-[2px] ml-1">
-                    {isFollowing ? "Following" : "Follow"}
+                    {isFollowing ? "Unfollow" : "Follow"}
                   </button>
                 </div>
               </div>

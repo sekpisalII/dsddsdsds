@@ -1,6 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+
 const BlogAllCard = ({ blog }) => {
+  const [followerCount, setFollowerCount] = useState(0);
+
+  useEffect(() => {
+    // Fetch follower count from API
+    const fetchFollowerCount = async () => {
+      try {
+        const response = await fetch(`https://your-api-url.com/api/followers/${blog.author_id}`);
+        const data = await response.json();
+        setFollowerCount(data.count);
+      } catch (error) {
+        console.error("Error fetching follower count:", error);
+      }
+    };
+
+    fetchFollowerCount();
+  }, [blog.author_id]);
+
   return (
     <Link to={`/blogDetail/` + blog.id} className="block mb-4">
       <div className="bg-white rounded-lg shadow-lg overflow-hidden max-w-lg">
@@ -24,7 +42,7 @@ const BlogAllCard = ({ blog }) => {
                 <img
                   className="w-10 h-10 rounded-full mr-4 object-cover"
                   src={
-                    blog?.image ||
+                    blog?.profileUser ||
                     "https://cdna.artstation.com/p/assets/images/images/034/807/864/large/gil-lagziel-oggy-artstation1.jpg?1613299994"
                   }
                   alt="Avatar of Jonathan Reinink"
@@ -37,7 +55,7 @@ const BlogAllCard = ({ blog }) => {
                 {blog?.author}
               </a>
               <p className="text-gray-600 font-suwannaphum mb-4 text-[15px] pt-7 -ml-[55px]">
-                អ្នកតាមដាន {blog?.id} នាក់
+                អ្នកតាមដាន {followerCount} នាក់
               </p>
             </div>
           </div>
