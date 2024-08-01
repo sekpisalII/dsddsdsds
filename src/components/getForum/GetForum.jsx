@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import DataTable from 'react-data-table-component';
-import Dashboard from '../../components/dashboard/Dashboard';
+import React, { useEffect, useState } from "react";
+import DataTable from "react-data-table-component";
+import Dashboard from "../../components/dashboard/Dashboard";
 import { Link, useSearchParams } from "react-router-dom";
 
 const GetForum = () => {
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   const [filteredData, setFilteredData] = useState([]);
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -28,9 +28,7 @@ const GetForum = () => {
       selector: (row) => row.author,
       sortable: true,
       cell: (row) => (
-        <span className="text-base sm:text-sm md:text-lg font-suwannaphum">
-          {row.author}
-        </span>
+        <span className="text-lg font-suwannaphum">{row.author}</span>
       ),
     },
     {
@@ -38,7 +36,7 @@ const GetForum = () => {
       selector: (row) => row.title,
       sortable: true,
       cell: (row) => (
-        <span className="text-base sm:text-sm md:text-lg line-clamp-2 font-suwannaphum">
+        <span className="text-lg line-clamp-2 font-suwannaphum">
           {row.title}
         </span>
       ),
@@ -48,7 +46,7 @@ const GetForum = () => {
       selector: (row) => row.description,
       sortable: true,
       cell: (row) => (
-        <span className="text-base sm:text-sm md:text-lg line-clamp-2 font-suwannaphum">
+        <span className="text-lg line-clamp-2 font-suwannaphum">
           {row.description}
         </span>
       ),
@@ -61,7 +59,7 @@ const GetForum = () => {
         <img
           src={row.image}
           alt={row.title}
-          className="w-12 h-12 sm:w-16 sm:h-16 object-cover"
+          className="w-16 h-16 object-cover"
         />
       ),
     },
@@ -70,7 +68,7 @@ const GetForum = () => {
       selector: (row) => row.created_at,
       sortable: true,
       cell: (row) => (
-        <span className="text-base sm:text-sm md:text-lg font-suwannaphum">
+        <span className="text-lg font-suwannaphum">
           {new Date(row.created_at).toLocaleDateString()}
         </span>
       ),
@@ -98,20 +96,23 @@ const GetForum = () => {
 
   const handleDelete = async (id) => {
     try {
-      const accessToken = localStorage.getItem('access_token');
+      const accessToken = localStorage.getItem("access_token");
       if (!accessToken) {
-        throw new Error('No access token found');
+        throw new Error("No access token found");
       }
 
-      const response = await fetch(`http://136.228.158.126:50001/api/forums/${id}/`, {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${accessToken}`,
-        },
-      });
+      const response = await fetch(
+        `http://136.228.158.126:50001/api/forums/${id}/`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
 
       if (!response.ok) {
-        throw new Error('Failed to delete article');
+        throw new Error("Failed to delete article");
       }
 
       const updatedData = data.filter((item) => item.id !== id);
@@ -119,57 +120,52 @@ const GetForum = () => {
       setFilteredData(updatedData);
       setTotalRows(totalRows - 1); 
     } catch (error) {
-      console.error('Error deleting article:', error);
+      console.error("Error deleting article:", error);
     }
   };
 
-  async function fetchData(page) {
+  const fetchData = async () => {
     try {
-      const accessToken = localStorage.getItem('access_token');
+      const accessToken = localStorage.getItem("access_token");
       if (!accessToken) {
-        throw new Error('No access token found');
+        throw new Error("No access token found");
       }
 
-      const response = await fetch(`http://136.228.158.126:50001/api/forums/?page=${param.get('page')}`, {
-        headers: {
-          'Authorization': `Bearer ${accessToken}`,
-        },
-      });
-
+      const currentPage = param.get("page") || 1; // Use current page from URL or default to 1
+      const response = await fetch(
+        `http://136.228.158.126:50001/api/forums/?page=${currentPage}`,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
 
       const result = await response.json();
 
-      const user = localStorage.getItem('user');
+      const user = localStorage.getItem("user");
       const nameUser = JSON.parse(user);
-
 
       const data = result.results;
       const userData = data.filter((users) => users.author === nameUser.name);
 
-      if (userData.length === 0) {
-        const pang = Math.ceil(result.count / 10);
-        for (let i = 1; i <= pang; i++) {
-          setParam({ page: i });
-          location.reload();
-        }
-      }
-
       setData(userData);
       setFilteredData(userData);
       setTotalRows(result.count);
+      setPage(Number(currentPage));
       setIsLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
       setIsLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
-    fetchData(page);
-  }, [page]);
+    fetchData();
+  }, [param]); // Refetch data whenever the URL parameters change
 
   useEffect(() => {
     if (!search) {
