@@ -76,7 +76,6 @@ const LoginPage = () => {
                   </p>
                 </div>
 
-
                 <div>
                   <label className="text-gray-800 text-[14px] block mb-2">
                     អុីម៉ែល
@@ -153,7 +152,6 @@ const LoginPage = () => {
                   </div>
                 </div>
 
-
                 <div className="flex flex-wrap items-center justify-between gap-4 mt-6">
                   <div className="flex items-center">
                     <input
@@ -199,7 +197,10 @@ const LoginPage = () => {
                 </div>
 
                 <div className="space-x-6 flex justify-center mt-6">
-                  <button type="button" className="border-none outline-none">
+                  <button
+                    type="button"
+                    className="border-none outline-none google"
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="32px"
@@ -237,8 +238,7 @@ const LoginPage = () => {
                         data-original="#eb4132"
                       />
                     </svg>
-
-                    </button>
+                  </button>
                   <button type="button" className="border-none outline-none">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
