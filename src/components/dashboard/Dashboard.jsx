@@ -16,7 +16,7 @@ const Dashboard = () => {
   };
   const SIDEBAR_LINKS = [
     { id: 1, path: "/dashboard", name: "Dashboard", icon: RxDashboard },
-    { id: 2, path: "/article?page=2", name: "Article", icon: GrArticle },
+    { id: 2, path: "/article?page=1", name: "Article", icon: GrArticle },
     { id: 3, path: "/setting", name: "Setting", icon: IoSettingsOutline },
     { id: 4, path: "/getforum?page=2", name: "Forum", icon: MdForum },
   ];
@@ -85,19 +85,18 @@ const Dashboard = () => {
       {/* Sidebar */}
       <div className="w-12 sm:w-16 md:w-56 fixed left-0 top-0 z-10 h-screen border-r pt-8 px-2 sm:px-4 bg-white">
         {/* Logo */}
-        <div className="mb-8 flex justify-center sm:justify-start">
+        <div className="mb-8 flex justify-center sm:justify-center">
           <Link to="/home">
-            <img
-              src="../src/assets/stemlogo-removebg-preview.png"
-              alt="logo"
-              className="hidden sm:flex w-16 sm:w-28"
-            />
+            <main className="mb-8 flex justify-center sm:justify-start">
+              <img
+                src="../src/assets/STEM_LOGO_TUTOR.png"
+                alt="logo"
+                className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 rounded-full object-cover"
+              />
+            </main>
+           
           </Link>
-          <img
-            src="../src/assets/stemlogo-removebg-preview.png"
-            alt="logo"
-            className="w-6 sm:w-8 flex sm:hidden"
-          />
+
         </div>
         {/* Navigation Links */}
         <ul className="mt-6 space-y-3 sm:space-y-6">

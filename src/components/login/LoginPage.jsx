@@ -268,7 +268,6 @@ const LoginPage = () => {
                 </div>
               </form>
             </div>
-
             <div className="md:h-full bg-white rounded-xl lg:p-12 p-8">
               <img
                 src="../src/assets/Computer login (2).gif"

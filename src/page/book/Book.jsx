@@ -6,12 +6,12 @@ import NavbarComponent from "../../components/navbar/NavbarComponent";
 
 // Define the categories for filtering
 const categories = [
-  "All",
+  "ទាំងអស់",
   "Google",
-  "History",
-  "Love",
-  "Exam Preparation Book",
-  "Other",
+  "ប្រវត្តវិទ្យា",
+  "ស្នេហា",
+  "កម្រងវិញ្ញាសារ",
+  "ផ្សេងៗទៀត",
 ];
 
 const Book = () => {
@@ -50,22 +50,22 @@ const Book = () => {
 
   const handleFilterClick = (filter) => {
     setActiveFilter(filter);
-    if (filter === "All") {
+    if (filter === "ទាំងអស់") {
       setFilteredData(data);
     } else if (filter === "Google") {
       const filtered = data.filter((item) =>
         item.course_name.toLowerCase().includes("google")
       );
       setFilteredData(filtered);
-    } else if (filter === "History") {
-      const historyKeywords = ["history", "his", "ប្រវត្តិ"];
+    } else if (filter === "ប្រវត្តវិទ្យា") {
+      const historyKeywords = ["ប្រវត្តវិទ្យា", "his", "ប្រវត្តិ"];
       const filtered = data.filter((item) =>
         historyKeywords.some((keyword) =>
           item.course_name.toLowerCase().includes(keyword.toLowerCase())
         )
       );
       setFilteredData(filtered);
-    } else if (filter === "Love") {
+    } else if (filter === "ស្នេហា") {
       const historyKeywords = ["Love", "ស្នេហា", "សេច"];
       const filtered = data.filter((item) =>
         historyKeywords.some((keyword) =>
@@ -73,7 +73,7 @@ const Book = () => {
         )
       );
       setFilteredData(filtered);
-    } else if (filter === "Exam Preparation Book") {
+    } else if (filter === "កម្រងវិញ្ញាសារ") {
       const historyKeywords = ["Exam Preparation Book", "វិញ្ញាសា", "ប្រឡង"];
       const filtered = data.filter((item) =>
         historyKeywords.some((keyword) =>

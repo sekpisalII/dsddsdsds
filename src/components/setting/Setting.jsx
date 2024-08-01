@@ -162,7 +162,6 @@ const Setting = () => {
                     onChange={handleInputChange}
                     placeholder="បញ្ចូលនាមត្រកូល"
                   />
-                  <span className="help">Required. New first name</span>
                 </div>
                 <div className="text-[20px] mb-4">
                   <div className="mb-2 block font-suwannaphum">
@@ -217,7 +216,6 @@ const Setting = () => {
 
                     placeholder="បញ្ចូលអុីមឺល"
                   />
-                  <span className="help">Required. New email</span>
                 </div>
                 <div className="text-[20px] font-suwannaphum mb-4">
                   <div className="mb-2 block font-suwannaphum">
@@ -235,7 +233,6 @@ const Setting = () => {
                     onChange={handleInputChange}
                     placeholder="បញ្ចូលថ្ងៃខែឆ្នាំកំណើត"
                   />
-                  <span className="help">Required. New date of birth</span>
                 </div>
                 <div className="text-[20px] mb-4">
                   <div className="mb-2 block font-suwannaphum">
@@ -254,7 +251,6 @@ const Setting = () => {
                     onChange={handleInputChange}
                     placeholder="បញ្ចូលអាស័យដ្ធាន"
                   />
-                  <span className="help">Required. New address</span>
                 </div>
 
                 <div className="field font-suwannaphum">
@@ -287,7 +283,7 @@ const Setting = () => {
                         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL_JlCFnIGX5omgjEjgV9F3sBRq14eTERK9w&s"
                       }
                       alt="Profile"
-                      className="avatar w-24 h-24 rounded-full"
+                      className="avatar w-24 h-24 rounded-full object-cover "
                     />
                   </div>
                 </div>
