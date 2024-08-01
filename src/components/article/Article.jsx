@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import Dashboard from "../../components/dashboard/Dashboard";
 import { Link, useSearchParams } from "react-router-dom";
+
 const Article = () => {
   const [search, setSearch] = useState("");
   const [filteredData, setFilteredData] = useState([]);
@@ -9,20 +10,22 @@ const Article = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [param, setParam] = useSearchParams();
   const [articleToDelete, setArticleToDelete] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const columns = [
     {
       name: "ID",
       selector: (row) => row.id,
       sortable: true,
-      cell: (row) => <span className="text-lg font-suwannaphum">{row.id}</span>,
+      cell: (row) => <span className="text-base sm:text-sm md:text-lg font-suwannaphum">{row.id}</span>,
     },
     {
       name: "Username",
       selector: (row) => row.author,
       sortable: true,
       cell: (row) => (
-        <span className="text-lg font-suwannaphum">{row.author}</span>
+        <span className="text-base sm:text-sm md:text-lg font-suwannaphum">{row.author}</span>
       ),
     },
     {
@@ -30,7 +33,7 @@ const Article = () => {
       selector: (row) => row.title,
       sortable: true,
       cell: (row) => (
-        <span className="text-lg line-clamp-2 font-suwannaphum">
+        <span className="text-base sm:text-sm md:text-lg line-clamp-2 font-suwannaphum">
           {row.title}
         </span>
       ),
@@ -40,7 +43,7 @@ const Article = () => {
       selector: (row) => row.content,
       sortable: true,
       cell: (row) => (
-        <span className="text-lg line-clamp-2 font-suwannaphum">
+        <span className="text-base sm:text-sm md:text-lg line-clamp-2 font-suwannaphum">
           {row.content}
         </span>
       ),
@@ -62,7 +65,7 @@ const Article = () => {
       selector: (row) => row.created_at,
       sortable: true,
       cell: (row) => (
-        <span className="text-lg font-suwannaphum">
+        <span className="text-base sm:text-sm md:text-lg font-suwannaphum">
           {new Date(row.created_at).toLocaleDateString()}
         </span>
       ),
@@ -70,16 +73,16 @@ const Article = () => {
     {
       name: "Actions",
       cell: (row) => (
-        <div className="space-x-2">
+        <div className="flex flex-col gap-1">
           <Link
             to={`/editArticle/${row.id}`}
-            className="button bg-green-500 px-2 py-1 font-suwannaphum text-xl text-white rounded-md pt-1"
+            className="button bg-green-500 text-sm px-3 py-1 rounded-lg text-center md:px-4 md:py-2"
           >
             Edit
           </Link>
           <button
             onClick={() => handleDelete(row.id)}
-            className="button bg-red-600 px-2 py-2 font-suwannaphum text-xl text-white rounded-md"
+            className="button bg-red-600 text-sm px-3 py-1 rounded-lg text-center md:px-4 md:py-2"
           >
             Delete
           </button>
@@ -114,7 +117,7 @@ const Article = () => {
     }
   };
 
-  const fetchData = async () => {
+  const fetchData = async (page = 1) => {
     try {
       const accessToken = localStorage.getItem("access_token");
       if (!accessToken) {
@@ -122,7 +125,7 @@ const Article = () => {
       }
 
       const response = await fetch(
-        `http://136.228.158.126:50001/api/articles/?page=${param.get("page")}`,
+        `http://136.228.158.126:50001/api/articles/?page=${page}&limit=${rowsPerPage}`,
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
@@ -139,14 +142,8 @@ const Article = () => {
       const data = result.results;
       const userData = data.filter((users) => users.author === nameUser.name);
 
-      if (userData.length === 0) {
-        // If no data is found, you may want to adjust the parameters
-        setParam({ page: 1 }); // Set to page 1 or handle accordingly
-      } else {
-        setData(userData);
-        setFilteredData(userData);
-      }
-
+      setData(userData);
+      setFilteredData(userData);
       setIsLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -155,8 +152,8 @@ const Article = () => {
   };
 
   useEffect(() => {
-    fetchData();
-  }, [param]);
+    fetchData(currentPage);
+  }, [currentPage, rowsPerPage]);
 
   useEffect(() => {
     if (!search) {
@@ -172,6 +169,16 @@ const Article = () => {
     setFilteredData(results);
   }, [search, data]);
 
+  const handlePageChange = page => {
+    setCurrentPage(page);
+    fetchData(page);
+  };
+
+  const handleRowsPerPageChange = rowsPerPage => {
+    setRowsPerPage(rowsPerPage);
+    fetchData(currentPage);
+  };
+
   const customStyles = {
     headCells: {
       style: {
@@ -184,34 +191,40 @@ const Article = () => {
   return (
     <>
       <Dashboard />
-      <section className="bg-gray-200 w-[70%] mx-auto">
-        <DataTable
-          columns={columns}
-          data={filteredData}
-          pagination={false}
-          subHeader
-          subHeaderComponent={
-            <input
-              onChange={(e) => setSearch(e.target.value)}
-              className="rounded-md border-gray-500 px-3 py-2 mt-5 font-suwannaphum ml-2 text-lg"
-              placeholder="Search ..."
-              type="text"
-            />
-          }
-          progressPending={isLoading}
-          progressComponent={<div>Loading...</div>}
-          fixedHeader
-          fixedHeaderScrollHeight="600px"
-          actions={
-            <Link
-              to="/postArticle"
-              className="button bg-blue-500 px-2 py-2 font-suwannaphum font-semibold text-white rounded-md"
-            >
-              +New
-            </Link>
-          }
-          customStyles={customStyles}
-        />
+      <section className="bg-gray-100 p-2 ml-[50px] w-[calc(100%-50px)] sm:ml-[65px] sm:w-[calc(100%-65px)] md:ml-[225px] md:w-[calc(100%-225px)] lg:ml-[225px] lg:w-[calc(100%-225px)] xl:ml-[225px] xl:w-[calc(100%-225px)]">
+        <div className="container mx-auto">
+          <DataTable
+            columns={columns}
+            data={filteredData}
+            pagination
+            paginationServer
+            paginationTotalRows={data.length}
+            onChangePage={handlePageChange}
+            onChangeRowsPerPage={handleRowsPerPageChange}
+            subHeader
+            subHeaderComponent={
+              <input
+                onChange={(e) => setSearch(e.target.value)}
+                className="rounded-md border-gray-500 px-3 py-2 mt-5 font-suwannaphum ml-2 text-base sm:text-lg w-full sm:w-auto"
+                placeholder="Search ..."
+                type="text"
+              />
+            }
+            progressPending={isLoading}
+            progressComponent={<div>Loading...</div>}
+            fixedHeader
+            fixedHeaderScrollHeight="600px"
+            actions={
+              <Link
+                to="/postArticle"
+                className="bg-blue-500 px-2 py-2 font-suwannaphum font-semibold text-white rounded-md text-sm md:text-base lg:text-lg"
+              >
+                +New
+              </Link>
+            }
+            customStyles={customStyles}
+          />
+        </div>
       </section>
     </>
   );

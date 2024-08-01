@@ -20,7 +20,7 @@ const BlogAllCard = ({ blog }) => {
   }, [blog.author_id]);
 
   return (
-    <Link to={`/blogDetail/` + blog.id} className="block mb-4">
+    <Link to={`/blogDetail/${blog.id}`} className="block mb-4">
       <div className="bg-white rounded-lg shadow-lg overflow-hidden max-w-lg">
         <div className="radies shadow-xl bg-white lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal rounded-lg w-full">
           <img

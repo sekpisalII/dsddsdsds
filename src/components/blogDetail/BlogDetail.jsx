@@ -20,7 +20,7 @@ const BlogDetail = () => {
         // Check if the user is following the author
         const accessToken = localStorage.getItem("access_token");
         if (accessToken) {
-          const response = await fetch(`http://136.228.158.126:50001/api/follows/check/${blogData.author_id}/`, {
+          const response = await fetch(`http://136.228.158.126:50001/api/follows/${blogData.author_id}/`, {
             headers: {
               "Authorization": `Bearer ${accessToken}`,
             },
@@ -40,17 +40,17 @@ const BlogDetail = () => {
       setFollowError("Author ID is missing or undefined");
       return;
     }
-
+  
     try {
       const accessToken = localStorage.getItem("access_token");
       if (!accessToken) {
         throw new Error("No access token found");
       }
-
+  
       const url = isFollowing
         ? `http://136.228.158.126:50001/api/follows/${blog.author_id}/unfollow/`
         : `http://136.228.158.126:50001/api/follows/${blog.author_id}/follow_user/`;
-
+  
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -59,15 +59,20 @@ const BlogDetail = () => {
         },
         body: JSON.stringify({}),
       });
-
-      const responseData = await response.json();
+      // console.log(response)
       if (!response.ok) {
-        setFollowError(responseData.detail || "Failed to update follow status");
+        // Parse the response to get error details
+        const errorData = await response.json();
+        setFollowError(errorData.detail || "Failed to update follow status");
         return;
       }
-
+  
+      // Update followers count and following status on success
       setIsFollowing(!isFollowing);
-      setFollowersCount(isFollowing ? followersCount - 1 : followersCount + 1); // Update followers count
+      setFollowersCount(prev => ({
+        ...prev,
+        [blog.author_id]: !isFollowing ? (prev[blog.author_id] || 0) + 1 : (prev[blog.author_id] || 0) - 1
+      }));
       setFollowError("");
     } catch (error) {
       console.error("Error toggling follow status:", error);
@@ -108,7 +113,7 @@ const BlogDetail = () => {
                 </span>
               </div>
               <div className="flex items-center space-x-2">
-                <span>{followersCount} followers</span>
+              អ្នកតាមដាន {followersCount[blog.author_id] || 0} នាក់
                 <div
                   className={`flex text-white space-x-4 py-2 px-4 rounded-xl cursor-pointer ${
                     isFollowing ? "bg-gray-400" : "bg-[#16a1df] hover:bg-[#246a8b]"
