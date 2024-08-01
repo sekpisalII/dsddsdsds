@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
 import Dashboard from '../../components/dashboard/Dashboard';
-import { Link, useParams, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 const Article = () => {
   const [search, setSearch] = useState("");
   const [filteredData, setFilteredData] = useState([]);
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [page, setPage] = useState(1);
-  const [totalRows, setTotalRows] = useState(0);
   const [param, setParam] = useSearchParams();
+  const [articleToDelete, setArticleToDelete] = useState(null);
 
   const columns = [
     {
@@ -72,7 +71,7 @@ const Article = () => {
     {
       name: "Actions",
       cell: (row) => (
-        <div className=" space-x-2">
+        <div className="space-x-2">
           <Link
             to={`/editArticle/${row.id}`}
             className="button bg-green-500 px-2 py-1 font-suwannaphum text-xl text-white rounded-md pt-1"
@@ -90,7 +89,30 @@ const Article = () => {
     },
   ];
 
-  async function fetchData(page) {
+  const handleDelete = async (id) => {
+    if (window.confirm("Are you sure you want to delete this article?")) {
+      const accessToken = localStorage.getItem('access_token');
+      try {
+        const response = await fetch(`http://136.228.158.126:50001/api/articles/${id}/`, {
+          method: 'DELETE',
+          headers: {
+            'Authorization': `Bearer ${accessToken}`,
+          },
+        });
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        setData(data.filter(item => item.id !== id));
+        setFilteredData(filteredData.filter(item => item.id !== id));
+        alert("Article deleted successfully");
+      } catch (error) {
+        console.error("Error deleting data:", error);
+        alert("Failed to delete the article");
+      }
+    }
+  };
+
+  const fetchData = async () => {
     try {
       const accessToken = localStorage.getItem('access_token');
       if (!accessToken) {
@@ -107,35 +129,30 @@ const Article = () => {
       }
 
       const result = await response.json();
-      console.log(result)
       const user = localStorage.getItem('user');
-      const nameUser = JSON.parse(user)
-      console.log(nameUser)
-      const data = result.results
-      console.log(data)
-      const userData = data.filter((users) => { return users.author === nameUser.name });
-      console.log(userData)
-      console.log(userData.length == 0);
-      if (userData.length == 0) {
-        const pang = Math.ceil(result.count / 10);
-        for (let i = 1; i <= pang; i++) {
+      const nameUser = JSON.parse(user);
+      const data = result.results;
+      const userData = data.filter((users) => users.author === nameUser.name);
+
+      if (userData.length === 0) {
+        const pages = Math.ceil(result.count / 10);
+        for (let i = 1; i <= pages; i++) {
           setParam({ page: i });
           location.reload();
         }
       }
       setData(userData);
       setFilteredData(userData);
-      setTotalRows(result.count);
       setIsLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
       setIsLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
-    fetchData(page);
-  }, [page]);
+    fetchData();
+  }, []);
 
   useEffect(() => {
     if (!search) {
@@ -151,26 +168,6 @@ const Article = () => {
     setFilteredData(results);
   }, [search, data]);
 
-  const handleDelete = async (id) => {
-    const accessToken = localStorage.getItem('access_token');
-    try {
-      const response = await fetch(`http://136.228.158.126:50001/api/articles/${id}/`, {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${accessToken}`,
-        },
-      });
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      setData(data.filter(item => item.id !== id));
-      setFilteredData(filteredData.filter(item => item.id !== id));
-      setTotalRows(totalRows - 1);
-    } catch (error) {
-      console.error("Error deleting data:", error);
-    }
-  };
-
   const customStyles = {
     headCells: {
       style: {
@@ -180,32 +177,14 @@ const Article = () => {
     },
   };
 
-  const paginationComponentOptions = {
-    rowsPerPageText: "Rows per page",
-    rangeSeparatorText: "of",
-    selectAllRowsItem: true,
-    selectAllRowsItemText: "All",
-  };
-
-  const handlePageChange = (page) => {
-    console.log("page", page);
-    setParam({ page: page });
-    console.log(param.get('page'));
-    setPage(page);
-  };
-
   return (
     <>
       <Dashboard />
-      <section className="bg-gray-100 w-[70%] mx-auto">
+      <section className="bg-gray-200 w-[70%] mx-auto">
         <DataTable
           columns={columns}
           data={filteredData}
-          pagination
-          paginationServer
-          paginationTotalRows={totalRows}
-          paginationComponentOptions={paginationComponentOptions}
-          onChangePage={handlePageChange}
+          pagination={false}
           subHeader
           subHeaderComponent={
             <input

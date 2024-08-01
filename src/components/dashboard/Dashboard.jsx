@@ -16,7 +16,7 @@ const Dashboard = () => {
   };
   const SIDEBAR_LINKS = [
     { id: 1, path: "/dashboard", name: "Dashboard", icon: RxDashboard },
-    { id: 2, path: "/article?page=2", name: "Article", icon: GrArticle },
+    { id: 2, path: "/article?page=1", name: "Article", icon: GrArticle },
     { id: 3, path: "/setting", name: "Setting", icon: IoSettingsOutline },
     { id: 4, path: "/getforum?page=2", name: "Forum", icon: MdForum },
   ];
