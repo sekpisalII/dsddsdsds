@@ -50,7 +50,6 @@ const BlogDetail = () => {
         console.error("Error fetching blog data:", error);
       }
     };
-
     fetchBlogData();
   }, [id]);
   const incrementFollowersCount = () => {
@@ -112,7 +111,7 @@ const BlogDetail = () => {
     } catch (error) {
       console.error("Error toggling follow status:", error);
       setFollowError(error.message);
-      setFollowSuccessMessage("");
+      setFollowSuccessMessage(" ");
     }
   };
 
