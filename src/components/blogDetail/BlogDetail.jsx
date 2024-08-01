@@ -9,24 +9,33 @@ const BlogDetail = () => {
   const [blog, setBlog] = useState(null);
   const [isFollowing, setIsFollowing] = useState(false);
   const [followError, setFollowError] = useState("");
-  const [followersCount, setFollowersCount] = useState(0);
+  const [followersCount, setFollowersCount] = useState(0); // Add state for followers count
 
   useEffect(() => {
-    const fetchLessonData = async () => {
+    const fetchBlogData = async () => {
       try {
-        const bookData = await fetchBlogById(id);
-        setBlog(bookData);
-        setFollowersCount(bookData.followersCount || 0);
-        // Assuming blog object contains a field indicating if the current user is following the author
-        setIsFollowing(bookData.isFollowing || false);
+        const blogData = await fetchBlogById(id);
+        setBlog(blogData);
+        setFollowersCount(blogData.followersCount || 0); // Initialize followers count
+        // Check if the user is following the author
+        const accessToken = localStorage.getItem("access_token");
+        if (accessToken) {
+          const response = await fetch(`http://136.228.158.126:50001/api/follows/check/${blogData.author_id}/`, {
+            headers: {
+              "Authorization": `Bearer ${accessToken}`,
+            },
+          });
+          const responseData = await response.json();
+          setIsFollowing(responseData.isFollowing || false);
+        }
       } catch (error) {
         console.error("Error fetching blog data:", error);
       }
     };
-    fetchLessonData();
+    fetchBlogData();
   }, [id]);
 
-  const handleFollow = async () => {
+  const handleFollowToggle = async () => {
     if (!blog || !blog.author_id) {
       setFollowError("Author ID is missing or undefined");
       return;
@@ -38,9 +47,12 @@ const BlogDetail = () => {
         throw new Error("No access token found");
       }
 
-      const method = isFollowing ? "DELETE" : "POST";
-      const response = await fetch(`http://136.228.158.126:50001/api/follows/${blog.author_id}/follow_user/`, {
-        method,
+      const url = isFollowing
+        ? `http://136.228.158.126:50001/api/follows/${blog.author_id}/unfollow/`
+        : `http://136.228.158.126:50001/api/follows/${blog.author_id}/follow_user/`;
+
+      const response = await fetch(url, {
+        method: "POST",
         headers: {
           "Authorization": `Bearer ${accessToken}`,
           "Content-Type": "application/json",
@@ -48,25 +60,17 @@ const BlogDetail = () => {
         body: JSON.stringify({}),
       });
 
-      const responseText = await response.text();
-      try {
-        const responseData = JSON.parse(responseText);
-        if (!response.ok) {
-          if (responseData.detail === "User does not exist.") {
-            setFollowError("User does not exist.");
-          } else {
-            throw new Error(responseData.detail || "Failed to follow/unfollow user");
-          }
-          return;
-        }
-        setIsFollowing(!isFollowing);
-        setFollowersCount(followersCount + (isFollowing ? -1 : 1));
-        setFollowError("");
-      } catch (error) {
-        throw new Error("Invalid JSON response: " + responseText);
+      const responseData = await response.json();
+      if (!response.ok) {
+        setFollowError(responseData.detail || "Failed to update follow status");
+        return;
       }
+
+      setIsFollowing(!isFollowing);
+      setFollowersCount(isFollowing ? followersCount - 1 : followersCount + 1); // Update followers count
+      setFollowError("");
     } catch (error) {
-      console.error("Error following/unfollowing user:", error);
+      console.error("Error toggling follow status:", error);
       setFollowError(error.message);
     }
   };
@@ -109,7 +113,7 @@ const BlogDetail = () => {
                   className={`flex text-white space-x-4 py-2 px-4 rounded-xl cursor-pointer ${
                     isFollowing ? "bg-gray-400" : "bg-[#16a1df] hover:bg-[#246a8b]"
                   } mt-4 md:mt-0`}
-                  onClick={handleFollow}
+                  onClick={handleFollowToggle}
                 >
                   <SlUserFollow className="mt-[2px]" />
                   <button className="-mt-[2px] ml-1">

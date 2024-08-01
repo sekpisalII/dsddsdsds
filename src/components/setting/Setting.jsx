@@ -40,24 +40,28 @@ const Setting = () => {
     e.preventDefault();
 
     try {
-      // Upload the image first
-      const imageFormData = new FormData();
-      imageFormData.append("file", formData.image);
-      const imageResponse = await axios.post(
-        "http://136.228.158.126:50001/api/upload/",
-        imageFormData,
-        {
-          headers: {
-            ...AUTH_HEADER,
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      // Upload the image first if an image is selected
+      let imageUrl = formData.image;
+      if (formData.image) {
+        const imageFormData = new FormData();
+        imageFormData.append("file", formData.image);
+        const imageResponse = await axios.post(
+          "http://136.228.158.126:50001/api/upload/",
+          imageFormData,
+          {
+            headers: {
+              ...AUTH_HEADER,
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        imageUrl = imageResponse.data.url;
+      }
 
-      // Update the form data with the image URL
+      // Update the form data with the image URL if the image was uploaded
       const updatedFormData = {
         ...formData,
-        image: imageResponse.data.url,
+        image: imageUrl,
       };
 
       // Submit the updated form data
@@ -71,11 +75,13 @@ const Setting = () => {
           },
         }
       );
-      setFormData(response.data);
+
+      // Update local state with the new data
+      setProfileData(response.data);
       setSuccessMessage("Profile updated successfully!");
-      setErrorMessage(""); // Update the local state with the new data
+      setErrorMessage("");
     } catch (error) {
-      console.error(error.response.data); // Inspect the server's response data
+      console.error(error.response?.data); // Inspect the server's response data
       if (
         error.response &&
         error.response.data &&
@@ -86,7 +92,6 @@ const Setting = () => {
         );
         setSuccessMessage("");
       } else {
-        console.error(error.response.data); // Inspect the server's response data
         setErrorMessage("An error occurred while updating your profile.");
         setSuccessMessage("");
       }
@@ -106,6 +111,7 @@ const Setting = () => {
           }
         );
         setProfileData(response.data);
+        setFormData(response.data); // Initialize formData with the fetched profile data
       } catch (error) {
         console.error(error);
         setErrorMessage("An error occurred while fetching your profile data.");
@@ -113,13 +119,13 @@ const Setting = () => {
       }
     };
 
-
     fetchProfileData();
   }, []);
+
   return (
     <>
       <Dashboard />
-       <section className="section main-section w-[80%] ml-[16%] sm:ml-[14%] md:ml-[22%] lg:ml-[20%] xl:ml-[18%] mt-7 px-4">
+      <section className="section main-section w-[80%] ml-[16%] sm:ml-[14%] md:ml-[22%] lg:ml-[20%] xl:ml-[18%] mt-7 px-4">
         <div className="profile-container grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="card">
             <header className="card-header">
@@ -213,8 +219,7 @@ const Setting = () => {
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-
-                    placeholder="បញ្ចូលអុីមឺល"
+                    placeholder="បញ្ចូលអុីមែល"
                   />
                 </div>
                 <div className="text-[20px] font-suwannaphum mb-4">
@@ -239,7 +244,7 @@ const Setting = () => {
                     <Label
                       className="text-[20px]"
                       htmlFor="text"
-                      value="អាស័យដ្ធាន"
+                      value="អាស័យដ្ឋាន"
                     />
                   </div>
                   <TextInput
@@ -249,10 +254,9 @@ const Setting = () => {
                     name="address"
                     value={formData.address}
                     onChange={handleInputChange}
-                    placeholder="បញ្ចូលអាស័យដ្ធាន"
+                    placeholder="បញ្ចូលអាស័យដ្ឋាន"
                   />
                 </div>
-
                 <div className="field font-suwannaphum">
                   <div className="control">
                     <button
@@ -283,12 +287,10 @@ const Setting = () => {
                         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL_JlCFnIGX5omgjEjgV9F3sBRq14eTERK9w&s"
                       }
                       alt="Profile"
-                      className="avatar w-24 h-24 rounded-full object-cover "
+                      className="avatar w-24 h-24 rounded-full object-cover"
                     />
                   </div>
                 </div>
-
-
                 <span className="font-suwannaphum text-center mx-3 text-2xl text-gray-900 font-medium">
                   ពណ៏មានរបស់អ្នកប្រើប្រាស់
                 </span>
@@ -303,7 +305,7 @@ const Setting = () => {
                       <span>{profileData.last_name}</span>
                     </li>
                     <li className="flex justify-between">
-                      <span>អាស័យដ្ធាន</span>
+                      <span>អាស័យដ្ឋាន</span>
                       <span>{profileData.address}</span>
                     </li>
                     <li className="flex justify-between">
@@ -340,4 +342,5 @@ const Setting = () => {
     </>
   );
 };
+
 export default Setting;

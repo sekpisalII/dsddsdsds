@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
 import Dashboard from '../../components/dashboard/Dashboard';
 import { Link, useSearchParams } from "react-router-dom";
-
 const Article = () => {
   const [search, setSearch] = useState("");
   const [filteredData, setFilteredData] = useState([]);
