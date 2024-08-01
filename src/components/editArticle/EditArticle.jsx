@@ -1,28 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
 const EditArticle = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [article, setArticle] = useState({
-    title: '',
-    content: '',
-    image: '',
+    title: "",
+    content: "",
+    image: "",
   });
   const [file, setFile] = useState(null);
 
   useEffect(() => {
-    // Fetch the article details by ID
     const fetchArticle = async () => {
-      const accessToken = localStorage.getItem('access_token');
+      const accessToken = localStorage.getItem("access_token");
       try {
-        const response = await fetch(`http://136.228.158.126:50001/api/articles/${id}/`, {
-          headers: {
-            'Authorization': `Bearer ${accessToken}`,
-          },
-        });
+        const response = await fetch(
+          `http://136.228.158.126:50001/api/articles/${id}/`,
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
         if (!response.ok) {
-          throw new Error('Failed to fetch article');
+          throw new Error("Failed to fetch article");
         }
         const result = await response.json();
         setArticle({
@@ -31,7 +33,7 @@ const EditArticle = () => {
           image: result.image,
         });
       } catch (error) {
-        console.error('Error fetching article:', error);
+        console.error("Error fetching article:", error);
       }
     };
 
@@ -57,58 +59,66 @@ const EditArticle = () => {
 
     if (file) {
       const formData = new FormData();
-      formData.append('file', file);
+      formData.append("file", file);
 
       try {
-        const uploadResponse = await fetch('http://your-image-upload-url.com/upload', {
-          method: 'POST',
-          body: formData,
-        });
+        const uploadResponse = await fetch(
+          "http://136.228.158.126:50001/api/upload/",
+          {
+            method: "POST",
+            body: formData,
+          }
+        );
 
         if (!uploadResponse.ok) {
           const errorText = await uploadResponse.text(); // Get response text
-          console.error('Error response:', errorText);
-          throw new Error('Failed to upload image');
+          console.error("Error response:", errorText);
+          throw new Error("Failed to upload image");
         }
 
         const uploadResult = await uploadResponse.json();
-        imageUrl = uploadResult.url; // Ensure this matches your upload response
+        imageUrl = uploadResult.url; // Extract URL from the response
       } catch (error) {
-        console.error('Error uploading image:', error);
+        console.error("Error uploading image:", error);
         return;
       }
     }
 
-    const accessToken = localStorage.getItem('access_token');
+    const accessToken = localStorage.getItem("access_token");
     try {
-      const response = await fetch(`http://136.228.158.126:50001/api/articles/${id}/`, {
-        method: 'PUT',
-        headers: {
-          'Authorization': `Bearer ${accessToken}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          title: article.title,
-          content: article.content,
-          image: imageUrl,
-        }),
-      });
+      const response = await fetch(
+        `http://136.228.158.126:50001/api/articles/${id}/`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title: article.title,
+            content: article.content,
+            image: imageUrl, // Update with the new or existing image URL
+          }),
+        }
+      );
 
       if (response.ok) {
-        navigate('/article'); // Redirect to the articles list page
+        navigate("/article"); // Redirect to the articles list page
       } else {
         const errorText = await response.text(); // Get response text
-        console.error('Error response:', errorText);
-        throw new Error('Failed to update the article');
+        console.error("Error response:", errorText);
+        throw new Error("Failed to update the article");
       }
     } catch (error) {
-      console.error('Error updating article:', error);
+      console.error("Error updating article:", error);
     }
   };
 
   return (
     <div className="container mx-auto p-4 font-suwannaphum bg-[#15A1DF] mt-10 rounded-lg">
-      <div className="text-2xl font-bold mb-4 text-black text-center mx-auto">Edit Article</div>
+      <div className="text-2xl font-bold mb-4 text-black text-center mx-auto">
+        Edit Article
+      </div>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label className="block text-gray-700">Title</label>
@@ -148,7 +158,10 @@ const EditArticle = () => {
             />
           </div>
         )}
-        <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded">
+        <button
+          type="submit"
+          className="px-4 py-2 bg-blue-600 text-white rounded"
+        >
           Submit
         </button>
       </form>

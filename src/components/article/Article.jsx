@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import DataTable from 'react-data-table-component';
-import Dashboard from '../../components/dashboard/Dashboard';
+import React, { useEffect, useState } from "react";
+import DataTable from "react-data-table-component";
+import Dashboard from "../../components/dashboard/Dashboard";
 import { Link, useSearchParams } from "react-router-dom";
 
 const Article = () => {
@@ -91,19 +91,22 @@ const Article = () => {
 
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this article?")) {
-      const accessToken = localStorage.getItem('access_token');
+      const accessToken = localStorage.getItem("access_token");
       try {
-        const response = await fetch(`http://136.228.158.126:50001/api/articles/${id}/`, {
-          method: 'DELETE',
-          headers: {
-            'Authorization': `Bearer ${accessToken}`,
-          },
-        });
+        const response = await fetch(
+          `http://136.228.158.126:50001/api/articles/${id}/`,
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
-        setData(data.filter(item => item.id !== id));
-        setFilteredData(filteredData.filter(item => item.id !== id));
+        setData(data.filter((item) => item.id !== id));
+        setFilteredData(filteredData.filter((item) => item.id !== id));
         alert("Article deleted successfully");
       } catch (error) {
         console.error("Error deleting data:", error);
@@ -114,35 +117,37 @@ const Article = () => {
 
   const fetchData = async () => {
     try {
-      const accessToken = localStorage.getItem('access_token');
+      const accessToken = localStorage.getItem("access_token");
       if (!accessToken) {
-        throw new Error('No access token found');
+        throw new Error("No access token found");
       }
 
-      const response = await fetch(`http://136.228.158.126:50001/api/articles/?page=${param.get('page')}`, {
-        headers: {
-          'Authorization': `Bearer ${accessToken}`,
-        },
-      });
+      const response = await fetch(
+        `http://136.228.158.126:50001/api/articles/?page=${param.get("page")}`,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
 
       const result = await response.json();
-      const user = localStorage.getItem('user');
+      const user = localStorage.getItem("user");
       const nameUser = JSON.parse(user);
       const data = result.results;
       const userData = data.filter((users) => users.author === nameUser.name);
 
       if (userData.length === 0) {
-        const pages = Math.ceil(result.count / 10);
-        for (let i = 1; i <= pages; i++) {
-          setParam({ page: i });
-          location.reload();
-        }
+        // If no data is found, you may want to adjust the parameters
+        setParam({ page: 1 }); // Set to page 1 or handle accordingly
+      } else {
+        setData(userData);
+        setFilteredData(userData);
       }
-      setData(userData);
-      setFilteredData(userData);
+
       setIsLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -152,7 +157,7 @@ const Article = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [param]);
 
   useEffect(() => {
     if (!search) {
