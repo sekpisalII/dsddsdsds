@@ -10,14 +10,16 @@ const BlogDetail = () => {
   const [isFollowing, setIsFollowing] = useState(false);
   const [followError, setFollowError] = useState("");
   const [followSuccessMessage, setFollowSuccessMessage] = useState("");
-  const [followersCount, setFollowersCount] = useState(0);
+  const [totalFollowers, setTotalFollowers] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
+  // Fetch blog data
   useEffect(() => {
     const fetchBlogData = async () => {
       try {
         const blogData = await fetchBlogById(id);
         setBlog(blogData);
-        setFollowersCount(blogData.followersCount || 0);
 
         // Retrieve follow status from local storage or check from backend
         const followedBlogs =
@@ -29,7 +31,7 @@ const BlogDetail = () => {
           const accessToken = localStorage.getItem("access_token");
           if (accessToken) {
             const response = await fetch(
-              `http://136.228.158.126:50001/api/follows/${blogData.author_id}/unfollow_user/`, // Ensure correct endpoint
+              `http://136.228.158.126:50001/api/follows/${blogData.author_id}/unfollow_user/`,
               {
                 method: "POST",
                 headers: {
@@ -48,17 +50,45 @@ const BlogDetail = () => {
         }
       } catch (error) {
         console.error("Error fetching blog data:", error);
+        setError("Failed to load blog data.");
       }
     };
+
     fetchBlogData();
   }, [id]);
-  const incrementFollowersCount = () => {
-    setFollowersCount((prev) => prev + 1);
+
+  // Fetch total followers for the blog
+  const fetchTotalFollowers = async () => {
+    if (!blog || !blog.author_id) {
+      console.error("Author ID is missing");
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `http://136.228.158.126:50001/api/follow/${blog.author_id}/followers/`
+      );
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await response.json();
+      setTotalFollowers(data.total_followers);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const decrementFollowersCount = () => {
-    setFollowersCount((prev) => (prev > 0 ? prev - 1 : 0));
-  };
+  // Trigger fetch of total followers when blog data is available
+  useEffect(() => {
+    if (blog && blog.author_id) {
+      fetchTotalFollowers();
+    }
+  }, [blog]);
+
   const handleFollowToggle = async () => {
     if (!blog || !blog.author_id) {
       setFollowError("Author ID is missing or undefined");
@@ -93,15 +123,14 @@ const BlogDetail = () => {
       const newIsFollowing = !isFollowing;
       setIsFollowing(newIsFollowing);
 
-      // Update followers count based on the new follow status
-      if (newIsFollowing) {
-        incrementFollowersCount();
-        setFollowSuccessMessage("You have started following this blog.");
-      } else {
-        decrementFollowersCount();
-        setFollowSuccessMessage("You have unfollowed this blog.");
-      }
+      // Update total followers count based on the new follow status
+      setTotalFollowers((prev) => (newIsFollowing ? prev + 1 : prev - 1));
 
+      setFollowSuccessMessage(
+        newIsFollowing
+          ? "You have started following this blog."
+          : "You have unfollowed this blog."
+      );
       setFollowError("");
 
       const followedBlogs =
@@ -111,12 +140,16 @@ const BlogDetail = () => {
     } catch (error) {
       console.error("Error toggling follow status:", error);
       setFollowError(error.message);
-      setFollowSuccessMessage(" ");
+      setFollowSuccessMessage("");
     }
   };
 
-  if (!blog) {
+  if (loading) {
     return <div>Loading...</div>;
+  }
+
+  if (!blog) {
+    return <div>Blog not found</div>;
   }
 
   return (
@@ -151,8 +184,10 @@ const BlogDetail = () => {
               </div>
               <div className="flex items-center space-x-2">
                 <span>
-                  {followersCount}{" "}
-                  {followersCount === 1 ? "follower" : "followers"}
+                  {error && <p>Error: {error}</p>}
+                  {totalFollowers !== null && !loading && !error && (
+                    <p>Total Followers: {totalFollowers}</p>
+                  )}
                 </span>
                 <div
                   className={`flex text-white space-x-4 py-2 px-4 rounded-xl cursor-pointer ${

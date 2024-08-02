@@ -2,27 +2,43 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const BlogAllCard = ({ blog }) => {
-  const [followerCount, setFollowerCount] = useState(0);
+  const [totalFollowers, setTotalFollowers] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Fetch total followers for the blog author
+  const fetchTotalFollowers = async () => {
+    if (!blog || !blog.author_id) {
+      console.error("Author ID is missing");
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `http://136.228.158.126:50001/api/follow/${blog.author_id}/followers/`
+      );
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await response.json();
+      setTotalFollowers(data.total_followers);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    // Fetch follower count from API
-    const fetchFollowerCount = async () => {
-      try {
-        const response = await fetch(`https://your-api-url.com/api/followers/${blog.author_id}`);
-        const data = await response.json();
-        setFollowerCount(data.count);
-      } catch (error) {
-        console.error("Error fetching follower count:", error);
-      }
-    };
-
-    fetchFollowerCount();
-  }, [blog.author_id]);
+    fetchTotalFollowers();
+  }, [blog.author_id]); // Dependency on `blog.author_id` to refetch if it changes
 
   return (
     <Link to={`/blogDetail/${blog.id}`} className="block mb-4">
       <div className="bg-white rounded-lg shadow-lg overflow-hidden max-w-lg">
-        <div className="radies shadow-xl bg-white lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal rounded-lg w-full">
+        <div className="flex flex-col justify-between leading-normal rounded-lg w-full">
           <img
             src={
               blog.image ||
@@ -42,20 +58,24 @@ const BlogAllCard = ({ blog }) => {
                 <img
                   className="w-10 h-10 rounded-full mr-4 object-cover"
                   src={
-                    blog?.profileUser ||
+                    blog.profileUser ||
                     "https://cdna.artstation.com/p/assets/images/images/034/807/864/large/gil-lagziel-oggy-artstation1.jpg?1613299994"
                   }
-                  alt="Avatar of Jonathan Reinink"
+                  alt="Avatar"
                 />
               </a>
               <a
                 href="#"
                 className="text-gray-600 font-semibold leading-none hover:text-indigo-600 font-suwannaphum text-[16px] -mt-4"
               >
-                {blog?.author}
+                {blog.author}
               </a>
-              <p className="text-gray-600 font-suwannaphum mb-4 text-[15px] pt-7 -ml-[55px]">
-                អ្នកតាមដាន {followerCount} នាក់
+              <p className="text-gray-600 font-suwannaphum mb-4 text-[15px] pt-7">
+                {loading
+                  ? "Loading followers..."
+                  : error
+                  ? `Error: ${error}`
+                  : `អ្នកតាមដាន ${totalFollowers} នាក់`}
               </p>
             </div>
           </div>
