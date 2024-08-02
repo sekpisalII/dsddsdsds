@@ -3,8 +3,6 @@ import BookAllCard from "../../components/bookAllCard/BookAllCard";
 import FooterCard from "../../components/footer/FooterCard";
 import Spinner from "../../components/appSpinner/Spinner";
 import NavbarComponent from "../../components/navbar/NavbarComponent";
-
-// Define the categories for filtering
 const categories = [
   "ទាំងអស់",
   "Google",

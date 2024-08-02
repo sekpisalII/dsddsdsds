@@ -20,48 +20,47 @@ const BlogAllCard = ({ blog }) => {
   }, [blog.author_id]);
 
   return (
-    <Link to={`/blogDetail/${blog.id}`} className="block mb-4">
-      <div className="bg-white rounded-lg shadow-lg overflow-hidden max-w-lg">
-        <div className="radies shadow-xl bg-white lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal rounded-lg w-full">
+    <Link to={`/blogDetail/` + blog.id}>
+    <div class="max-w-sm shadow-lg">
+      <div class="relative h-[200px]">
+        <img
+          src={
+            blog?.image ||
+            "https://ralfvanveen.com/wp-content/uploads/2021/06/Placeholder-_-Glossary.svg"
+          }
+          alt=""
+          class="absolute inset-0 w-full h-full object-cover "
+        />
+      </div>
+      <div class="mt-4 px-4 pb-4">
+        <a href="#">
+          <h5 class="text-gray-700 text-[20px] blog-card-title line-clamp-1 font-suwannaphum">
+            {blog.title}
+          </h5>
+        </a>
+        <div class="mt-5 flex items-center">
           <img
+            class="w-10 h-10 rounded-full object-cover"
             src={
-              blog.image ||
-              "https://cdna.artstation.com/p/assets/images/images/034/807/864/large/gil-lagziel-oggy-artstation1.jpg?1613299994"
+              blog?.profileUser ||
+              "https://ralfvanveen.com/wp-content/uploads/2021/06/Placeholder-_-Glossary.svg"
             }
-            className="w-full h-[250px] object-cover rounded-lg"
-            alt="Blog"
+            alt=""
           />
-          <div className="p-2 pt-2">
-            <div className="mb-0">
-              <p className="text-gray-700 text-[20px] blog-card-title line-clamp-1 -mt-1 pt-3 font-suwannaphum">
-                {blog.title}
-              </p>
-            </div>
-            <div className="flex items-center">
-              <a href="#">
-                <img
-                  className="w-10 h-10 rounded-full mr-4 object-cover"
-                  src={
-                    blog?.profileUser ||
-                    "https://cdna.artstation.com/p/assets/images/images/034/807/864/large/gil-lagziel-oggy-artstation1.jpg?1613299994"
-                  }
-                  alt="Avatar of Jonathan Reinink"
-                />
-              </a>
-              <a
-                href="#"
-                className="text-gray-600 font-semibold leading-none hover:text-indigo-600 font-suwannaphum text-[16px] -mt-4"
-              >
-                {blog?.author}
-              </a>
-              <p className="text-gray-600 font-suwannaphum mb-4 text-[15px] pt-7 -ml-[55px]">
-                អ្នកតាមដាន {followerCount} នាក់
-              </p>
-            </div>
+
+          <div class="flex flex-col">
+            <span class="ml-3 mr-2 rounded px-2.5 py-0.5 text-gray-600 font-semibold hover:text-indigo-600 font-suwannaphum text-[16px]">
+              {blog?.author}
+            </span>
+            <span class="text-gray-600 font-suwannaphum text-[15px] ml-6">
+              អ្នកតាមដាន {followerCount} នាក់
+            </span>
           </div>
         </div>
       </div>
-    </Link>
+    </div>
+  </Link>
+
   );
 };
 

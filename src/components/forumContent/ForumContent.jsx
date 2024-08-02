@@ -19,40 +19,41 @@ const ForumContent = () => {
   return (
     <div>
       <main className="max-w-7xl mx-auto p-4 flex flex-col lg:flex-row justify-between lg:space-x-8">
-        <div className=" lg:w-2/3 space-y-4">
-          {/* Banner  */}
-          <div className="relative w-full h-64 bg-blue-600 rounded-lg overflow-hidden">
+        <div className="lg:w-2/3 space-y-4  transition-transform duration-500 hover:scale-105">
+          {/* Banner */}
+          <div className="relative w-full bg-blue-600 rounded-lg overflow-hidden">
             <img
-              src="../src/assets/forum_detail.jpg"
+              src="../src/assets/forum_content.gif"
               alt="Cartoon"
               className="object-cover w-full h-full"
             />
-            <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-              <div className="text-center">
-                <h1 className="text-3xl font-bold text-white font-suwannaphum">
+            <div className="absolute inset-0 bg-black bg-opacity-25 flex items-center justify-center">
+              <div className="text-center animate-fadeInUp">
+                <h1 className="text-3xl font-bold text-white font-suwannaphum transition-transform duration-300 hover:scale-105">
                   សំណួរ និង ដំណោះស្រាយ
                 </h1>
-                <p className="text-gray-200 mt-2 font-suwannaphum">
+                <p className="text-gray-200 mt-2 font-suwannaphum transition-transform duration-300 hover:scale-105">
                   ចួលរួមជាមួយពួកយើង​
                   អ្នកអាចធ្វើការបង្កើតសំណួរនិងធ្វើការឆ្លើយសំណួរដែលទាក់ទងនិងស្ទែម
                 </p>
-                <a onClick={() => handleNavigate("/create_forum")}>
-                  <button className="mt-4 bg-white text-blue-600 px-4 py-2 rounded-lg font-suwannaphum">
-                    បង្កើតសំណួរឥឡូវនេះ
-                  </button>
-                </a>
+                <button
+                  onClick={() => handleNavigate("/create_forum")}
+                  className="mt-4 bg-white text-blue-600 px-4 py-2 rounded-lg font-suwannaphum  transition-transform duration-300 hover:scale-105"
+                >
+                  បង្កើតសំណួរឥឡូវនេះ
+                </button>
               </div>
             </div>
           </div>
 
           {/* Question Cards */}
-
           {/* Repeat the above block for more questions */}
         </div>
 
+
         {/* Sidebar */}
         <aside className="w-full lg:w-1/3 space-y-4 mt-8 lg:mt-0">
-          <div className="bg-white shadow rounded-lg p-4">
+          <div className="bg-white shadow rounded-lg p-4 transition-transform duration-300 transform hover:scale-105">
             <h2 className="text-lg font-semibold text-gray-900 mb-4 font-suwannaphum">
               សំណួរដែលពេញនិយម
             </h2>
@@ -74,7 +75,7 @@ const ForumContent = () => {
               </li>
             </ul>
           </div>
-          <div className="bg-white shadow rounded-lg p-4">
+          <div className="bg-white shadow rounded-lg p-4 transition-transform duration-300 transform hover:scale-105">
             <h2 className="text-lg font-semibold text-gray-900 mb-4 font-suwannaphum">
               សំណួរដែលទាក់ទង
             </h2>

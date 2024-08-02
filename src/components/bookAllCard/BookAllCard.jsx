@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const BookAllCard = ({ book }) => {
   return (
     <Link to={`/bookDetail/${book.id}`} className="text-blue-600 mt-4 block">
-      <div className="bg-white rounded-lg shadow-lg overflow-hidden w-full">
+      <div className="bg-white rounded-lg shadow-lg overflow-hidden w-full border">
         <img
           src={
             book.course_thumbnail ||
@@ -20,17 +20,17 @@ const BookAllCard = ({ book }) => {
           <p className="text-gray-700 text-[14px] leading-tight mt-3">
             {book.course_description}
           </p>
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between mb-2 items-center ">
             <div className="flex items-center">
               <button
-                className="h-[30px] mt-4 rounded-md bg-gradient-to-r bg-blue-600 p-4 px-3 py-1 text-white text-[14px]"
+                className="h-[30px] mt-4 rounded-md font-suwannaphum bg-gradient-to-r bg-blue-600 p-4 px-3 py-1 text-white text-[16px]"
                 onClick={() => console.log("Show button clicked")}
               >
-                Show
+                បង្ហាញ
               </button>
             </div>
-            <span className="text-gray-600 mt-4 text-[10px]">
-              Created by: {book.created_by}
+            <span className="text-gray-600 mt-4  font-suwannaphum text-[16px]">
+              បានបង្កើតដោយ: {book.created_by}
             </span>
           </div>
         </div>
