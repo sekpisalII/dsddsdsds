@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const BookAllCard = ({ book }) => {
   return (
     <Link to={`/bookDetail/${book.id}`} className="text-blue-600 mt-4 block">
-      <div className="bg-white rounded-lg shadow-lg overflow-hidden w-full border">
+      <div className="bg-white rounded-lg shadow-md overflow-hidden w-full border">
         <img
           src={
             book.course_thumbnail ||

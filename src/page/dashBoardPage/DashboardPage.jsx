@@ -19,7 +19,6 @@ const DashboardPage = () => {
   const accessToken = localStorage.getItem("access_token");
   const user = JSON.parse(localStorage.getItem("user"));
   const userId = user ? user.id : 1; // Replace with actual user ID from user object
-
   const fetchPosts = async () => {
     try {
       const response = await axios.get('http://136.228.158.126:50001/api/forums/', {

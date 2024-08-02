@@ -21,17 +21,19 @@ const BlogAllCard = ({ blog }) => {
 
   return (
     <Link to={`/blogDetail/` + blog.id}>
-    <div class="max-w-sm shadow-lg">
-      <div class="relative h-[200px]">
+    <div class=" shadow-md border rounded-lg">
+     <div className="relative h-[250px]">
         <img
-          src={
-            blog?.image ||
-            "https://ralfvanveen.com/wp-content/uploads/2021/06/Placeholder-_-Glossary.svg"
-          }
-          alt=""
-          class="absolute inset-0 w-full h-full object-cover "
+          src={blog?.image || "../src/assets/placeholder1.png"}
+          alt="Image not found"
+          className="absolute inset-0 w-full h-[250px] object-cover rounded-t-lg"
+          onError={(e) => {
+            e.target.onerror = null; 
+            e.target.src = "../src/assets/placeholder1.png";
+          }}
         />
       </div>
+
       <div class="mt-4 px-4 pb-4">
         <a href="#">
           <h5 class="text-gray-700 text-[20px] blog-card-title line-clamp-1 font-suwannaphum">

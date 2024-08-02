@@ -12,7 +12,7 @@ const LessonAllCard = ({ lesson }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden w-full">
+    <div className="bg-white rounded-lg shadow-md overflow-hidden w-full border">
       <Link to={`/lessonDetail/` + lesson.id}>
         <img
           src={
