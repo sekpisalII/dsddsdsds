@@ -6,7 +6,7 @@ import { GrArticle } from "react-icons/gr";
 import { IoSettingsSharp } from "react-icons/io5";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { AUTH_HEADER } from "../../services/constants";
-import Background from "../../components/background/Background";
+import Background from "../../components/background/Background"
 import BookCard from "../../components/bookCard/BookCard";
 import FooterCard from "../../components/footer/FooterCard";
 import LessonCard from "../../components/lessonCard/LessonCard";
