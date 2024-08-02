@@ -3,7 +3,6 @@ import { fetchBlogById } from "../../services/fetchBlogById";
 import { useParams } from "react-router-dom";
 import { SlUserFollow } from "react-icons/sl";
 import { FaRegCalendarAlt } from "react-icons/fa";
-import NavbarComponent from "../../components/navbar/NavbarComponent";
 
 const BlogDetail = () => {
   const { id } = useParams();
@@ -11,14 +10,16 @@ const BlogDetail = () => {
   const [isFollowing, setIsFollowing] = useState(false);
   const [followError, setFollowError] = useState("");
   const [followSuccessMessage, setFollowSuccessMessage] = useState("");
-  const [followersCount, setFollowersCount] = useState(0);
+  const [totalFollowers, setTotalFollowers] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
+  // Fetch blog data
   useEffect(() => {
     const fetchBlogData = async () => {
       try {
         const blogData = await fetchBlogById(id);
         setBlog(blogData);
-        setFollowersCount(blogData.followersCount || 0);
 
         // Retrieve follow status from local storage or check from backend
         const followedBlogs =
@@ -30,9 +31,9 @@ const BlogDetail = () => {
           const accessToken = localStorage.getItem("access_token");
           if (accessToken) {
             const response = await fetch(
-              `http://136.228.158.126:50001/api/follows/${blogData.author_id}/unfollow_user/`, // Ensure correct endpoint
+              `http://136.228.158.126:50001/api/follows/${blogData.author_id}/unfollow_user/`,
               {
-                method: "GET",
+                method: "POST",
                 headers: {
                   Authorization: `Bearer ${accessToken}`,
                 },
@@ -49,18 +50,44 @@ const BlogDetail = () => {
         }
       } catch (error) {
         console.error("Error fetching blog data:", error);
+        setError("Failed to load blog data.");
       }
     };
+
     fetchBlogData();
   }, [id]);
 
-  const incrementFollowersCount = () => {
-    setFollowersCount((prev) => prev + 1);
+  // Fetch total followers for the blog
+  const fetchTotalFollowers = async () => {
+    if (!blog || !blog.author_id) {
+      console.error("Author ID is missing");
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `http://136.228.158.126:50001/api/follow/${blog.author_id}/followers/`
+      );
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await response.json();
+      setTotalFollowers(data.total_followers);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const decrementFollowersCount = () => {
-    setFollowersCount((prev) => (prev > 0 ? prev - 1 : 0));
-  };
+  // Trigger fetch of total followers when blog data is available
+  useEffect(() => {
+    if (blog && blog.author_id) {
+      fetchTotalFollowers();
+    }
+  }, [blog]);
 
   const handleFollowToggle = async () => {
     if (!blog || !blog.author_id) {
@@ -96,15 +123,16 @@ const BlogDetail = () => {
       const newIsFollowing = !isFollowing;
       setIsFollowing(newIsFollowing);
 
-      // Update followers count based on the new follow status
-      if (newIsFollowing) {
-        incrementFollowersCount();
-        setFollowSuccessMessage("You have started following this blog.");
-      } else {
-        decrementFollowersCount();
-        setFollowSuccessMessage("You have unfollowed this blog.");
-      }
+      // Update total followers count based on the new follow status
+      setTotalFollowers((prev) => (newIsFollowing ? prev + 1 : prev - 1));
+
+      setFollowSuccessMessage(
+        newIsFollowing
+          ? "You have started following this blog."
+          : "You have unfollowed this blog."
+      );
       setFollowError("");
+
       const followedBlogs =
         JSON.parse(localStorage.getItem("followed_blogs")) || {};
       followedBlogs[blog.author_id] = newIsFollowing;
@@ -116,15 +144,20 @@ const BlogDetail = () => {
     }
   };
 
-  if (!blog) {
+  if (loading) {
     return <div>Loading...</div>;
+  }
+
+  if (!blog) {
+    return <div>Blog not found</div>;
   }
 
   return (
     <>
-      <NavbarComponent />
       <div className="mt-10 w-[80%] mx-auto">
-        <span className="font-suwannaphum text-3xl font-bold">ទំព័រប្លុក</span>
+        <span className="font-suwannaphum text-3xl font-bold">
+          ទំព័រប្លុក
+        </span>
       </div>
       <section className="mt-5 mb-10 w-full mx-auto font-suwannaphum">
         <div className="w-full mx-auto md:w-full grid grid-rows-[auto_auto]">
@@ -134,7 +167,7 @@ const BlogDetail = () => {
                 <img
                   className="rounded-full object-cover md:-ml-12 w-[50px] md:w-[60px] mt-[4px] md:mt-[4px] h-[50px] md:h-[60px] transition-transform duration-300 hover:scale-105"
                   src={
-                    blog?.profileUser ||
+                    blog.profileUser ||
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNK2libct1ti7CliA65qLEOpjZutZy6penfA&s"
                   }
                   alt="Profile"
@@ -149,16 +182,20 @@ const BlogDetail = () => {
                   </div>
                 </span>
               </div>
-              <div className="flex items-center space-x-2">
+              <div className="flex flex-col md:flex-row items-center space-x-3 space-y-2 md:space-y-0">
+                <div className="flex items-center space-x-2 text-sm md:text-base transition-opacity duration-300 hover:opacity-75">
                 <span>
-                  {followersCount}{" "}
-                  {followersCount === 1 ? "follower" : "followers"}
+                  {error && <p>Error: {error}</p>}
+                  {totalFollowers !== null && !loading && !error && (
+                    <p>Total Followers: {totalFollowers}</p>
+                  )}
                 </span>
+                </div>
                 <div
-                  className={`flex text-white space-x-4 py-2 px-4 rounded-xl cursor-pointer ${
+                  className={`flex text-white space-x-2 py-1 px-2 md:py-2 md:px-4 rounded-xl cursor-pointer transition-all duration-300 ${
                     isFollowing
                       ? "bg-gray-400"
-                      : "bg-[#16a1df] hover:bg-[#246a8b]"
+                      : "bg-[#16a1df] hover:bg-[#246a8b] transform hover:scale-105"
                   } mt-4 md:mt-0`}
                   onClick={handleFollowToggle}
                 >
@@ -179,7 +216,7 @@ const BlogDetail = () => {
             )}
             <h3>{blog.title}</h3>
             <img
-              className="mt-4 mb-4 md:w-full md:h-[1000px]"
+              className="mt-4 mb-4 w-full object-cover rounded-lg transition-transform duration-500 hover:scale-95 border border-solid"
               src={blog.image}
               alt={blog.title}
             />
