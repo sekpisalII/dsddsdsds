@@ -1,24 +1,52 @@
 import React, { useState, useEffect } from "react";
 import FooterCard from "../../components/footer/FooterCard";
 import LessonAllCard from "../../components/lessonAllCard/LessonAllCard";
-import ButtonMenuLesson from "../../components/buttonMenuLesson/ButtonMenuLesson";
 import Spinner from "../../components/appSpinner/Spinner";
 import NavbarComponent from "../../components/navbar/NavbarComponent";
+
 const categories = [
   "ទាំងអស់",
+  "Google",
   "គណិតវិទ្យា",
+  "វិទ្យាសាស្រ្តពិត",
+  "វិទ្យាសាស្រ្តសង្គម",
+  "ប្រវត្តវិទ្យា",
+  "ជីវះវិទ្យា",
   "រូបវិទ្យា",
-  "ជីវវិទ្យា",
   "គីមីវិទ្យា",
+  "បច្ចេកវិទ្យា",
+  "អក្ខរកម្មឌីជីថល",
+  "ទស្សនវិទ្យា",
+  "ស្នេហា",
+  "កម្រងវិញ្ញាសារ",
   "ផ្សេងៗទៀត",
 ];
+
+const filterKeywords = {
+  Google: ["google"],
+  គណិតវិទ្យា: ["គណិតវិទ្យា", "math", "mathematics"],
+  វិទ្យាសាស្រ្តពិត: ["វិទ្យាសាស្រ្តពិត", "វិទ្យាសាស្រ្ត", "science"],
+  វិទ្យាសាស្រ្តសង្គម: ["វិទ្យាសាស្រ្តសង្គម", "វិទ្យាសាស្រ្ត", "science"],
+  ប្រវត្តវិទ្យា: ["ប្រវត្តវិទ្យា", "history", "his", "ប្រវត្តិ"],
+  ជីវះវិទ្យា: ["ជីវះវិទ្យា", "biology", "bio"],
+  រូបវិទ្យា: ["រូបវិទ្យា", "physics", "phys"],
+  គីមីវិទ្យា: ["គីមីវិទ្យា", "chemistry", "chem","គ្រឹះនៃការសិក្សាគីមី"],
+  បច្ចេកវិទ្យា: ["បច្ចេកវិទ្យា", "technology", "tech"],
+  អក្ខរកម្មឌីជីថល: ["អក្ខរកម្មឌីជីថល", "digital literacy", "digital"],
+  ទស្សនវិទ្យា: ["ទស្សនវិទ្យា", "philosophy", "psychology", "ចិត្តវិទ្យា"],
+  ស្នេហា: ["love", "ស្នេហា", "សេច"],
+  កម្រងវិញ្ញាសារ: ["exam preparation book", "វិញ្ញាសា", "ប្រឡង"],
+  ផ្សេងៗទៀត: ["other", "ផ្សេងៗ"],
+};
+
 const Lesson = () => {
+  const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+  const [activeFilter, setActiveFilter] = useState("ទាំងអស់");
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [data, setData] = useState([]);
-  const [filteredData, setFilteredData] = useState([]);
-  const [activeFilter, setActiveFilter] = useState("All");
+
   useEffect(() => {
     fetchLessons(1);
   }, []);
@@ -31,11 +59,11 @@ const Lesson = () => {
         setData(data.results);
         setFilteredData(data.results); // Initialize filtered data
         setCurrentPage(page);
-        setTotalPages(Math.ceil(data.count / 10)); // Assuming 10 books per page
+        setTotalPages(Math.ceil(data.count / 10)); // Assuming 10 lessons per page
         setIsLoading(false);
       })
       .catch((error) => {
-        console.error("Error fetching books:", error);
+        console.error("Error fetching lessons:", error);
         setIsLoading(false);
       });
   };
@@ -44,71 +72,42 @@ const Lesson = () => {
     if (pageNumber < 1 || pageNumber > totalPages) return;
     fetchLessons(pageNumber);
   };
+
   const handleFilterClick = (filter) => {
     setActiveFilter(filter);
-
-    // Special handling for "History"
     if (filter === "ទាំងអស់") {
       setFilteredData(data);
-    } else if (filter === "គណិតវិទ្យា") {
-      const historyKeywords = ["គណិតវិទ្យា", "គណិតវីទ្យា", "គណិត"];
-
-      const filtered = data.filter((item) =>
-        historyKeywords.some((keyword) =>
-          item.lesson_title.toLowerCase().includes(keyword.toLowerCase())
-        )
-      );
-      setFilteredData(filtered);
-    } else if (filter === "រូបវិទ្យា") {
-      const historyKeywords = ["រូបវិទ្យា", "រូបវីទ្យា", "រូប"];
-      const filtered = data.filter((item) =>
-        historyKeywords.some((keyword) =>
-          item.lesson_title.toLowerCase().includes(keyword.toLowerCase())
-        )
-      );
-      setFilteredData(filtered);
-    } else if (filter === "ជីវវិទ្យា") {
-      const historyKeywords = ["ជីវវិទ្យា", "ជីវវីទ្យា", "ជីវ"];
-      const filtered = data.filter((item) =>
-        historyKeywords.some((keyword) =>
-          item.lesson_title.toLowerCase().includes(keyword.toLowerCase())
-        )
-      );
-      setFilteredData(filtered);
-    } else if (filter === "គីមីវិទ្យា") {
-      const historyKeywords = ["គីមីវីទ្យា", "គីមីវិទ្យា", "គីមី"];
-      const filtered = data.filter((item) =>
-        historyKeywords.some((keyword) =>
-          item.lesson_title.toLowerCase().includes(keyword.toLowerCase())
-        )
-      );
-      setFilteredData(filtered);
     } else {
+      const keywords = filterKeywords[filter] || [filter.toLowerCase()];
       const filtered = data.filter((item) =>
-        item.lesson_title.toLowerCase().includes(filter.toLowerCase())
+        keywords.some((keyword) =>
+          item.lesson_title.toLowerCase().includes(keyword)
+        )
       );
       setFilteredData(filtered);
     }
   };
+
   return (
     <>
       <NavbarComponent />
-      <div className="flex flex-wrap gap-2 mt-5 justify-center">
-        {categories.map((category) => (
-          <button
-            key={category}
-            className={`px-4 py-2 rounded-full font-suwannaphum flex flex-wrap gap-2 mt-5  ${
-              activeFilter === category
-                ? "bg-blue-500 text-white"
-                : "bg-gray-200"
-            }`}
-            onClick={() => handleFilterClick(category)}
-          >
-            {category}
-          </button>
-        ))}
+      <div className="ml-10 mt-5 justify-center">
+        <div className="flex flex-wrap gap-1.5">
+          {categories.map((category) => (
+            <button
+              key={category}
+              className={`px-2 py-1 sm:px-3 sm:py-2 md:px-3 md:py-2 lg:px-5 lg:py-3 xl:px-6 xl:py-3 rounded-full text-[12px] sm:text-[14px] md:text-[15px] lg:text-[16px] xl:text-[15px] font-suwannaphum gap-1 mt-5 ${
+                activeFilter === category
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-200"
+              }`}
+              onClick={() => handleFilterClick(category)}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
       </div>
-
       {isLoading ? (
         <Spinner />
       ) : (
@@ -121,7 +120,7 @@ const Lesson = () => {
               <LessonAllCard key={lesson.id} lesson={lesson} />
             ))
           ) : (
-            <p>No courses found</p>
+            <p>No lessons found</p>
           )}
         </section>
       )}

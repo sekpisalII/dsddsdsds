@@ -28,16 +28,16 @@ const LessonAllCard = ({ lesson }) => {
         <h2 className="text-[18px] font-bold text-gray-800 mb-2 font-suwannaphum line-clamp-1">
           {lesson.lesson_title}
         </h2>
-        <p className="text-gray-700 text-[17px] leading-tight mt-3 font-suwannaphum line-clamp-2">
+        <p className="text-gray-700 text-[17px] leading-tight mt-3 font-suwannaphum line-clamp-1">
           {lesson.lesson_description}
         </p>
         <div className="flex justify-between items-center">
           <div className="flex justify-center">
-            <button className="h-[30px] mt-4 rounded-md bg-gradient-to-r from-blue-500 to-blue-700 px-2 py-1 text-white text-[15px] font-suwannaphum">
+            <button className="h-[35px] mt-4  rounded-md bg-gradient-to-r from-blue-500 to-blue-700 px-2 py-1 text-white text-[18px] font-suwannaphum">
               ឥតគិតថ្លៃ
             </button>
           </div>
-          <span className="text-gray-600 mt-5 font-suwannaphum">
+          <span className="text-gray-600 mt-5 font-suwannaphum text-[18px]">
             ចំនួនអ្នកមើល​​ : {lesson.views_count}
           </span>
         </div>

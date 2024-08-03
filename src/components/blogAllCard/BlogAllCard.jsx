@@ -33,7 +33,7 @@ const BlogAllCard = ({ blog }) => {
 
   useEffect(() => {
     fetchTotalFollowers();
-  }, [blog.author_id]); // Dependency on `blog.author_id` to refetch if it changes
+  }, [blog.author_id]);
 
   return (
     <Link to={`/blogDetail/${blog.id}`} className="block mb-4">
@@ -42,7 +42,7 @@ const BlogAllCard = ({ blog }) => {
         <img
             src={blog.image || "../src/assets/placeholder.png"}
             onError={(e) => {
-              e.target.onerror = null; // Prevent infinite loop in case placeholder image also fails
+              e.target.onerror = null;
               e.target.src = "../src/assets/placeholder.png";
             }}
             className="w-full h-[250px] object-cover rounded-t-lg"
@@ -50,9 +50,12 @@ const BlogAllCard = ({ blog }) => {
           />
           <div className="p-2 pt-2">
             <div className="mb-0">
-              <p className="text-gray-700 text-[20px] blog-card-title line-clamp-1 -mt-1 pt-3 font-suwannaphum">
+              <p className="text-gray-700 font-bold text-[18px] blog-card-title line-clamp-1 -mt-1 pt-3 font-suwannaphum">
                 {blog.title}
               </p>
+              <span className="text-gray-700 text-[16px] blog-card-title line-clamp-1 -mt-1 pt-3 font-suwannaphum">
+                {blog.content}
+              </span>
             </div>
             <div className="flex items-center mt-3">
               <a href="#">
