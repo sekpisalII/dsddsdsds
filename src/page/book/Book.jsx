@@ -91,12 +91,12 @@ const Book = () => {
   return (
     <>
       <NavbarComponent />
-      <div className="ml-10 mt-5 justify-center">
-      <div className="flex flex-wrap gap-1.5">
+      <div className="ml-10 mt-5 justify-center font-suwannaphum">
+      <div className="flex flex-wrap gap-1.5 font-suwannaphum">
         {categories.map((category) => (
           <button
             key={category}
-            className={`px-2 py-1 sm:px-3 sm:py-2 md:px-3 md:py-2 lg:px-5 lg:py-3 xl:px-6 xl:py-3 rounded-full text-[12px] sm:text-[14px] md:text-[15px] lg:text-[16px] xl:text-[15px] font-suwannaphum gap-1 mt-5 ${
+            className={`px-2 py-1 sm:px-3  sm:py-2 md:px-3 md:py-2 lg:px-5 lg:py-3 xl:px-6 xl:py-3 rounded-full text-[12px] sm:text-[14px] md:text-[15px] lg:text-[16px] xl:text-[15px] font-suwannaphum gap-1 mt-5 ${
               activeFilter === category
                 ? "bg-blue-500 text-white"
                 : "bg-gray-200"
@@ -113,7 +113,7 @@ const Book = () => {
       ) : (
         <section
           id="Projects"
-          className="p-10 mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mb-5"
+          className="p-10 font-suwannaphum mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mb-5"
         >
           {filteredData.length > 0 ? (
             filteredData.map((book) => (
@@ -124,7 +124,6 @@ const Book = () => {
           )}
         </section>
       )}
-
         <div className="flex justify-center mt-4">
         <div className="bg-white p-4 flex items-center flex-wrap">
           <button

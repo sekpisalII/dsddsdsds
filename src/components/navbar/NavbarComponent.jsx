@@ -2,11 +2,8 @@ import React, { useEffect, useState } from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { Avatar, Dropdown, Navbar, Button } from "flowbite-react";
 import { LuLayoutDashboard } from "react-icons/lu";
-import { GrArticle } from "react-icons/gr";
-import { IoSettingsSharp } from "react-icons/io5";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { AUTH_HEADER } from "../../services/constants";
-
 const NavbarComponent = () => {
   const navigate = useNavigate();
   const [hasAccessToken, setHasAccessToken] = useState(false);
@@ -46,6 +43,7 @@ const NavbarComponent = () => {
                 />
               </Link>
             </span>
+ 
           </Navbar.Brand>
           <div className="flex md:order-2 items-center space-x-4">
             <Link to="/login" className="hidden sm:block">
@@ -148,3 +146,6 @@ const NavbarComponent = () => {
 };
 
 export default NavbarComponent;
+
+
+

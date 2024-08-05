@@ -67,10 +67,10 @@ const Create_Forum = () => {
             />
             <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
               <div className="text-center">
-                <h1 className="text-3xl font-bold text-white">
+                <h1 className="text-3xl font-suwannaphum font-bold text-white">
                   សំណួរ និង ដំណោះស្រាយ
                 </h1>
-                <p className="text-gray-200 mt-2">
+                <p className="text-gray-200 font-suwannaphum mt-2">
                   ចួលរួមជាមួយពួកយើង​
                   អ្នកអាចធ្វើការបង្កើតសំណួរនិងធ្វើការឆ្លើយសំណួរដែលទាក់ទងនិងស្ទែម
                 </p>
@@ -85,7 +85,7 @@ const Create_Forum = () => {
           <form onSubmit={onFormSubmited}>
             <label
               htmlFor="title"
-              className="block text-md leading-6 text-gray-900 font-bold"
+              className="block text-md leading-6 text-gray-900 font-bold font-suwannaphum"
             >
               ចំណងជើង**
             </label>
@@ -105,12 +105,12 @@ const Create_Forum = () => {
             </div>
             <label
               htmlFor="description"
-              className="block text-md leading-6 text-gray-900 font-bold"
+              className="block text-md leading-6 text-gray-900 font-bold font-suwannaphum"
             >
               ចម្ងល់របស់អ្នក**
             </label>
             <div className="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
-              <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
+              <div className="px-4 py-2 bg-white font-suwannaphum rounded-t-lg dark:bg-gray-800">
                 <textarea
                   id="description"
                   rows="4"
@@ -126,7 +126,7 @@ const Create_Forum = () => {
             <div className="col-span-full">
               <label
                 htmlFor="file-upload"
-                className="block text-md font-bold leading-6 text-gray-900"
+                className="block text-md font-bold leading-6 text-gray-900 font-suwannaphum"
               >
                 រូបភាព**
               </label>
@@ -147,7 +147,7 @@ const Create_Forum = () => {
                   <div className="mt-4 flex text-sm leading-6 text-gray-600">
                     <label
                       htmlFor="file-upload"
-                      className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
+                      className="relative cursor-pointer font-suwannaphum rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                     >
                       <span>ដាក់បញ្ចូលរូបភាព</span>
                       <div>
@@ -174,15 +174,10 @@ const Create_Forum = () => {
             <div className="flex items-center justify-between py-2 border-t dark:border-gray-600">
               <button
                 type="submit"
-                className="inline-flex w-[100px] items-center py-2.5 px-4 text-md font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
+                className="inline-flex font-suwannaphum w-[100px] items-center py-2.5 px-4 text-md font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
               >
                 បង្ហោះ
               </button>
-              {/* <div className="dp">
-                <SpinnerSave />
-              </div> */}
-
-              {/* <div className="flex space-x-1 rtl:space-x-reverse sm:space-x-2"></div> */}
             </div>
           </form>
         </div>

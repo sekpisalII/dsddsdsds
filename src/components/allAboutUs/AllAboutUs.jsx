@@ -13,7 +13,7 @@ const AllAboutUs = () => {
           src="../src/assets/AboutUs_content.jpg"
           alt="About STEM"
         />
-        <div className="absolute inset-0 flex flex-col justify-center items-center text-white bg-black bg-opacity-50">
+        <div className="absolute inset-0 font-suwannaphum flex flex-col justify-center items-center text-white bg-black bg-opacity-50">
           <div className="w-max">
             <h1 className="animate-typing overflow-hidden whitespace-nowrap border-r-4 border-r-white pr-5 text-2xl p-3 text-white font-bold sm:text-3xl">
               អំពីយើង
@@ -63,7 +63,7 @@ const AllAboutUs = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
             <div className="lg:pr-[100px] flex items-center">
               <div className="data w-full">
-                <h1 className="font-suwannaphum uppercase font-bold text-2xl text-[#0056B1] text-center sm:text-3xl">
+                <h1 className="font-suwannaphum  uppercase font-bold text-2xl text-[#0056B1] text-center sm:text-3xl">
                   គោលបំណងរបស់ពួកយើង
                 </h1>
                 <p className="max-w-2xl font-suwannaphum mx-auto-normal text-base leading-8 text-gray-700 text-center sm:text-left sm:text-lg">

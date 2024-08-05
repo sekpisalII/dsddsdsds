@@ -4,7 +4,7 @@ import Home from './page/home/Home';
 import NavbarComponent from './components/navbar/NavbarComponent';
 const App = () => {
   return (
-      <div>
+      <div className="font-suwannaphum">
         <NavbarComponent />
         <Home />
       </div>

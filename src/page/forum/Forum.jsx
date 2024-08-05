@@ -10,7 +10,6 @@ const Forum = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   useEffect(() => {
-    // Fetch the initial set of forums
     fetchForums(1);
   }, []);
 
