@@ -2,11 +2,6 @@ import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import Dashboard from "../../components/dashboard/Dashboard";
 import { Link, useSearchParams } from "react-router-dom";
-import styled from 'styled-components';
-
-const CustomCell = styled.div`
-  text-align: ${props => props.$align};
-`;
 
 const Article = () => {
   const [search, setSearch] = useState("");
@@ -23,45 +18,57 @@ const Article = () => {
       name: "ID",
       selector: (row) => row.id,
       sortable: true,
-      cell: (row) => <CustomCell $align="left" className="text-base sm:text-sm md:text-lg font-suwannaphum">{row.id}</CustomCell>,
+      cell: (row) => <span className="text-base sm:text-sm md:text-lg font-suwannaphum">{row.id}</span>,
     },
     {
       name: "Username",
       selector: (row) => row.author,
       sortable: true,
-      cell: (row) => <CustomCell $align="left" className="text-base sm:text-sm md:text-lg font-suwannaphum">{row.author}</CustomCell>,
+      cell: (row) => (
+        <span className="text-base sm:text-sm md:text-lg font-suwannaphum">{row.author}</span>
+      ),
     },
     {
       name: "Title",
       selector: (row) => row.title,
       sortable: true,
-      cell: (row) => <CustomCell $align="left" className="text-base sm:text-sm md:text-lg line-clamp-2 font-suwannaphum">{row.title}</CustomCell>,
+      cell: (row) => (
+        <span className="text-base sm:text-sm md:text-lg line-clamp-2 font-suwannaphum">
+          {row.title}
+        </span>
+      ),
     },
     {
       name: "Description",
       selector: (row) => row.content,
       sortable: true,
-      cell: (row) => <CustomCell $align="left" className="text-base sm:text-sm md:text-lg line-clamp-2 font-suwannaphum">{row.content}</CustomCell>,
+      cell: (row) => (
+        <span className="text-base sm:text-sm md:text-lg line-clamp-2 font-suwannaphum">
+          {row.content}
+        </span>
+      ),
     },
     {
       name: "Image",
       selector: (row) => row.image,
       sortable: true,
       cell: (row) => (
-        <CustomCell $align="left">
-          <img
-            src={row.image}
-            alt={row.title}
-            className="w-16 h-16 object-cover"
-          />
-        </CustomCell>
+        <img
+          src={row.image}
+          alt={row.title}
+          className="w-16 h-16 object-cover"
+        />
       ),
     },
     {
       name: "Created",
       selector: (row) => row.created_at,
       sortable: true,
-      cell: (row) => <CustomCell $align="left" className="text-base sm:text-sm md:text-lg font-suwannaphum">{new Date(row.created_at).toLocaleDateString()}</CustomCell>,
+      cell: (row) => (
+        <span className="text-base sm:text-sm md:text-lg font-suwannaphum">
+          {new Date(row.created_at).toLocaleDateString()}
+        </span>
+      ),
     },
     {
       name: "Actions",
@@ -128,6 +135,7 @@ const Article = () => {
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
+
 
       const result = await response.json();
       const user = localStorage.getItem("user");
