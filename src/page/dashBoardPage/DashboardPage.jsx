@@ -1,16 +1,113 @@
-import React from 'react';
-import { FaShoppingBag, FaChartBar, FaUserFriends, FaChartLine } from 'react-icons/fa'; // Importing specific icons from react-icons
-import Dashboard from '../../components/dashboard/Dashboard';
-import DashboardDetail from '../../components/dashboardDetail/DashboardDetail';
-import DashboardDetailChart from '../../components/dashboardDetailchart/DashboardDetailChart';
+import React, { useEffect, useState } from 'react';
 import { MdForum } from "react-icons/md";
 import { GrArticle } from "react-icons/gr";
 import { GiShadowFollower } from "react-icons/gi";
 import { AiFillLike } from "react-icons/ai";
+import axios from 'axios';
+import Dashboard from '../../components/dashboard/Dashboard';
+import DashboardDetail from '../../components/dashboardDetail/DashboardDetail';
+import DashboardDetailChart from '../../components/dashboardDetailchart/DashboardDetailChart';
+
 const DashboardPage = () => {
+  const [data, setData] = useState({
+    posts: [],
+    articles: [],
+    // followers: 0,
+    // likes: 0,
+  });
+  const [error, setError] = useState(null);
+  const accessToken = localStorage.getItem("access_token");
+  const user = JSON.parse(localStorage.getItem("user"));
+  const userId = user ? user.id : 1; // Replace with actual user ID from user object
+  const fetchPosts = async () => {
+    try {
+      const response = await axios.get('http://136.228.158.126:50001/api/forums/', {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      console.log('Posts Response:', response.data);
+      return response.data.results.filter(post => post.user === userId);
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+      throw error;
+    }
+  };
+
+  const fetchArticles = async () => {
+    try {
+      const response = await axios.get('http://136.228.158.126:50001/api/articles/', {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      console.log('Articles Response:', response.data);
+      return response.data.results.filter(article => article.user === userId);
+    } catch (error) {
+      console.error("Error fetching articles:", error);
+      throw error;
+    }
+  };
+
+  // const fetchFollowers = async (userId) => {
+  //   try {
+  //     const response = await axios.get(`http://136.228.158.126:50001/api/follow/${userId}/followers/`, {
+  //       headers: {
+  //         Authorization: `Bearer ${accessToken}`,
+  //       },
+  //     });
+  //     console.log('Followers Response:', response.data);
+  //     return response.data.total_followers || 0;
+  //   } catch (error) {
+  //     console.error("Error fetching followers:", error);
+  //     throw error;
+  //   }
+  // };
+
+  // const fetchLikes = async () => {
+  //   try {
+  //     // Replace with actual API endpoint for likes
+  //     const response = await axios.get('http://136.228.158.126:50001/api/likes/', {
+  //       headers: {
+  //         Authorization: `Bearer ${accessToken}`,
+  //       },
+  //     });
+  //     console.log('Likes Response:', response.data);
+  //     return response.data.total_likes || 0;
+  //   } catch (error) {
+  //     console.error("Error fetching likes:", error);
+  //     throw error;
+  //   }
+  // };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [posts, articles] = await Promise.all([
+          fetchPosts(),
+          fetchArticles(),
+          // fetchFollowers(userId),
+          // fetchLikes()
+        ]);
+
+        setData({
+          posts,
+          articles,
+          // followers,
+          // likes,
+        });
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+
+    fetchData();
+  }, [accessToken, userId]);
+
   return (
     <div>
       <Dashboard />
+      {error && <p className="text-red-500">Error fetching data: {error}</p>}
       <section className="flex max-w-screen-xl mx-auto mt-5">
         <main className="w-full">
           <div className="grid mb-4 pb-10 px-8 mx-4 rounded-3xl bg-gray-100 border-4 border-green-400">
@@ -28,14 +125,14 @@ const DashboardPage = () => {
                       >
                         <div className="p-5">
                           <div className="flex justify-between">
-                          <MdForum  className="h-7 w-7 text-blue-400" />
+                            <MdForum className="h-7 w-7 text-blue-400" />
                             <div className="bg-green-500 rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm">
                               <span className="flex items-center">30%</span>
                             </div>
                           </div>
                           <div className="ml-2 w-full flex-1">
                             <div>
-                              <div className="mt-3 text-3xl font-bold leading-8">4.510</div>
+                              <div className="mt-3 text-3xl font-bold leading-8">{data.posts.length}</div>
                               <div className="mt-1 text-base text-gray-600">Total Postforum</div>
                             </div>
                           </div>
@@ -48,14 +145,14 @@ const DashboardPage = () => {
                       >
                         <div className="p-5">
                           <div className="flex justify-between">
-                          <GrArticle   className="h-7 w-7 text-yellow-400" />
+                            <GrArticle className="h-7 w-7 text-yellow-400" />
                             <div className="bg-red-500 rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm">
                               <span className="flex items-center">30%</span>
                             </div>
                           </div>
                           <div className="ml-2 w-full flex-1">
                             <div>
-                              <div className="mt-3 text-3xl font-bold leading-8">4.510</div>
+                              <div className="mt-3 text-3xl font-bold leading-8">{data.articles.length}</div>
                               <div className="mt-1 text-base text-gray-600">Total postarticle</div>
                             </div>
                           </div>
@@ -68,14 +165,15 @@ const DashboardPage = () => {
                       >
                         <div className="p-5">
                           <div className="flex justify-between">
-                          <GiShadowFollower  className="h-7 w-7 text-yellow-400" />
+                            <GiShadowFollower className="h-7 w-7 text-yellow-400" />
                             <div className="bg-red-500 rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm">
                               <span className="flex items-center">30%</span>
                             </div>
                           </div>
                           <div className="ml-2 w-full flex-1">
                             <div>
-                              <div className="mt-3 text-3xl font-bold leading-8">4.510</div>
+                              {/* <div className="mt-3 text-3xl font-bold leading-8">{data.total_followers}</div> */}
+                              <div className="mt-3 text-3xl font-bold leading-8">2</div>
                               <div className="mt-1 text-base text-gray-600">Total Follower</div>
                             </div>
                           </div>
@@ -88,15 +186,16 @@ const DashboardPage = () => {
                       >
                         <div className="p-5">
                           <div className="flex justify-between">
-                          <AiFillLike className="h-7 w-7 text-yellow-400" />
+                            <AiFillLike className="h-7 w-7 text-yellow-400" />
                             <div className="bg-red-500 rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm">
                               <span className="flex items-center">30%</span>
                             </div>
                           </div>
                           <div className="ml-2 w-full flex-1">
                             <div>
-                              <div className="mt-3 text-3xl font-bold leading-8">4.510</div>
-                              <div className="mt-1 text-base text-gray-600">Totla Like</div>
+                              {/* <div className="mt-3 text-3xl font-bold leading-8">{data.likes}</div> */}
+                              <div className="mt-3 text-3xl font-bold leading-8">0</div>
+                              <div className="mt-1 text-base text-gray-600">Total Like</div>
                             </div>
                           </div>
                         </div>

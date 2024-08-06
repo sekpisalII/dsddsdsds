@@ -3,17 +3,23 @@ import BlogAllCard from "../../components/blogAllCard/BlogAllCard";
 import FooterCard from "../../components/footer/FooterCard";
 import Spinner from "../../components/appSpinner/Spinner";
 import NavbarComponent from "../../components/navbar/NavbarComponent";
-
-// Define the categories for filtering
-const categories = ["All", "Technology", "School", "education", "Other"];
-
+const categories = ["ទាំងអស់", "បច្ចេកវិទ្យា", "សាលារៀន", "អប់រំ","ផ្សព្វផ្សាយ","កម្មវិធី","ផ្សេងៗទៀត"];
+const filterKeywords = {
+  បច្ចេកវិទ្យា: ["បច្ចេកវិទ្យា", "Technology", "programming", "programing", "ឌីជីថល"],
+  សាលារៀន: ["សាលារៀន", "School", "ចំណេះដឹង"],
+  អប់រំ: ["អប់រំ", "Education", "ការអប់រំ"],
+  ផ្សព្វផ្សាយ: ["ផ្សព្វផ្សាយ","ប្រព័ន្ធផ្សព្វផ្សាយ","ព័ឥមានផ្សព្វផ្សាយ"],
+  កម្មវិធី: ["កម្មវិធី","program","technology"],
+  ផ្សេងៗទៀត: ["ផ្សេងៗទៀត", "Other"]
+};
 export const Blog = () => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [filteredData, setFilteredData] = useState([]);
-  const [activeFilter, setActiveFilter] = useState("All");
+  const [activeFilter, setActiveFilter] = useState("ទាំងអស់");
+
   useEffect(() => {
     // Fetch the initial set of blogs
     fetchBlogs(1);
@@ -40,46 +46,18 @@ export const Blog = () => {
     if (pageNumber < 1 || pageNumber > totalPages) return;
     fetchBlogs(pageNumber);
   };
+
   const handleFilterClick = (filter) => {
     setActiveFilter(filter);
 
-    // Special handling for "History"
-    if (filter === "All") {
+    if (filter === "ទាំងអស់") {
       setFilteredData(data);
-    } else if (filter === "Technology") {
-      const historyKeywords = [
-        "Technology",
-        "programming",
-        "programing",
-        "បច្ចេកវិទ្យា",
-        "ឌីជីថល",
-      ];
-
-      const filtered = data.filter((item) =>
-        historyKeywords.some((keyword) =>
-          item.title.toLowerCase().includes(keyword.toLowerCase())
-        )
-      );
-      setFilteredData(filtered);
-    } else if (filter === "School") {
-      const historyKeywords = ["School", "សាលា", "ចំណេះដឹង"];
-      const filtered = data.filter((item) =>
-        historyKeywords.some((keyword) =>
-          item.title.toLowerCase().includes(keyword.toLowerCase())
-        )
-      );
-      setFilteredData(filtered);
-    } else if (filter === "Education") {
-      const historyKeywords = ["Education", "អប់រំ", "ការអប់រំ"];
-      const filtered = data.filter((item) =>
-        historyKeywords.some((keyword) =>
-          item.title.toLowerCase().includes(keyword.toLowerCase())
-        )
-      );
-      setFilteredData(filtered);
     } else {
+      const keywords = filterKeywords[filter] || [filter.toLowerCase()];
       const filtered = data.filter((item) =>
-        item.title.toLowerCase().includes(filter.toLowerCase())
+        keywords.some((keyword) =>
+          item.title.toLowerCase().includes(keyword.toLowerCase())
+        )
       );
       setFilteredData(filtered);
     }
@@ -87,22 +65,23 @@ export const Blog = () => {
   return (
     <>
       <NavbarComponent />
-      <div className="flex flex-wrap gap-2 mt-5 justify-center">
-        {categories.map((category) => (
-          <button
-            key={category}
-            className={`px-4 py-2 rounded-full font-suwannaphum flex flex-wrap gap-2 mt-5  ${
-              activeFilter === category
-                ? "bg-blue-500 text-white"
-                : "bg-gray-200"
-            }`}
-            onClick={() => handleFilterClick(category)}
-          >
-            {category}
-          </button>
-        ))}
+      <div className="ml-10 mt-5 justify-center">
+        <div className="flex flex-wrap gap-1.5">
+            {categories.map((category) => (
+              <button
+                key={category}
+                className={`px-4 py-2 rounded-full font-suwannaphum flex items-center justify-center gap-2 mt-5 ${
+                  activeFilter === category
+                    ? "bg-blue-500 text-white"
+                    : "bg-gray-200"
+                } sm:px-3 sm:py-1.5 md:px-4 md:py-2 xl:px-6 xl:py-3 xl:text-[15px] `}
+                onClick={() => handleFilterClick(category)}
+              >
+                {category}
+              </button>
+            ))}
+        </div>
       </div>
-
       {isLoading ? (
         <Spinner />
       ) : (
@@ -115,11 +94,10 @@ export const Blog = () => {
               <BlogAllCard key={blog.id} blog={blog} />
             ))
           ) : (
-            <p>No courses found</p>
+            <p>No blogs found</p>
           )}
         </section>
       )}
-
       <div className="flex justify-center mt-4">
         <div className="bg-white p-4 flex items-center flex-wrap">
           <button

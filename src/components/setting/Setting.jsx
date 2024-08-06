@@ -279,20 +279,26 @@ const Setting = () => {
             </header>
             {profileData ? (
               <div>
-                <div className="card-content">
-                  <div className="image-container flex justify-center mb-4">
-                    <img
-                      src={
-                        profileData.image ||
-                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL_JlCFnIGX5omgjEjgV9F3sBRq14eTERK9w&s"
-                      }
-                      alt="Profile"
-                      className="avatar w-24 h-24 rounded-full object-cover"
-                    />
+              <div className="card-content h-[250px] flex justify-center items-center">
+              <div className="card-content h-[250px] flex justify-center items-center">
+                    <div className="relative flex justify-center items-center">
+                      <div className="w-40 h-40 bg-blue-500 rounded-full flex justify-center items-center ">
+                        <img
+                          src={
+                            profileData.image ||
+                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL_JlCFnIGX5omgjEjgV9F3sBRq14eTERK9w&s"
+                          }
+                          alt="Profile"
+                          className="avatar w-25 h-25 rounded-full object-cover border-4 border-[#16A1DF]"
+                        />
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <span className="font-suwannaphum text-center mx-3 text-2xl text-gray-900 font-medium">
-                  ពណ៏មានរបស់អ្នកប្រើប្រាស់
+
+                  </div>
+
+                <span className="font-suwannaphum text-center mx-3 text-[20px] text-gray-900 font-medium">
+                  ព័ឥមានរបស់អ្នកប្រើប្រាស់
                 </span>
                 <div className="w-full p-4">
                   <ul className="space-y-2 font-suwannaphum">

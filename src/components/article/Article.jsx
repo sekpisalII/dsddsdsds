@@ -144,6 +144,7 @@ const Article = () => {
         throw new Error("Network response was not ok");
       }
 
+
       const result = await response.json();
 
       const user = localStorage.getItem("user");

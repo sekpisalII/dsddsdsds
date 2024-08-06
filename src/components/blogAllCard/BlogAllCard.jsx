@@ -33,30 +33,34 @@ const BlogAllCard = ({ blog }) => {
 
   useEffect(() => {
     fetchTotalFollowers();
-  }, [blog.author_id]); // Dependency on `blog.author_id` to refetch if it changes
+  }, [blog.author_id]);
 
   return (
     <Link to={`/blogDetail/${blog.id}`} className="block mb-4">
-      <div className="bg-white rounded-lg shadow-lg overflow-hidden max-w-lg">
+      <div className="bg-white rounded-lg shadow-md border overflow-hidden max-w-lg ">
         <div className="flex flex-col justify-between leading-normal rounded-lg w-full">
-          <img
-            src={
-              blog.image ||
-              "https://cdna.artstation.com/p/assets/images/images/034/807/864/large/gil-lagziel-oggy-artstation1.jpg?1613299994"
-            }
-            className="w-full h-[250px] object-cover rounded-lg"
+        <img
+            src={blog.image || "../src/assets/placeholder.png"}
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = "../src/assets/placeholder.png";
+            }}
+            className="w-full h-[250px] object-cover rounded-t-lg"
             alt="Blog"
           />
           <div className="p-2 pt-2">
             <div className="mb-0">
-              <p className="text-gray-700 text-[20px] blog-card-title line-clamp-1 -mt-1 pt-3 font-suwannaphum">
+              <p className="text-gray-700 font-bold text-[18px] blog-card-title line-clamp-1 -mt-1 pt-3 font-suwannaphum">
                 {blog.title}
               </p>
+              <span className="text-gray-700 text-[16px] blog-card-title line-clamp-1 -mt-1 pt-3 font-suwannaphum">
+                {blog.content}
+              </span>
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center mt-3">
               <a href="#">
-                <img
-                  className="w-10 h-10 rounded-full mr-4 object-cover"
+              <img
+                  className="w-10 h-10 rounded-full object-cover"
                   src={
                     blog.profileUser ||
                     "https://cdna.artstation.com/p/assets/images/images/034/807/864/large/gil-lagziel-oggy-artstation1.jpg?1613299994"
@@ -64,19 +68,21 @@ const BlogAllCard = ({ blog }) => {
                   alt="Avatar"
                 />
               </a>
-              <a
-                href="#"
-                className="text-gray-600 font-semibold leading-none hover:text-indigo-600 font-suwannaphum text-[16px] -mt-4"
-              >
-                {blog.author}
-              </a>
-              <p className="text-gray-600 font-suwannaphum mb-4 text-[15px] pt-7">
-                {loading
-                  ? "Loading followers..."
-                  : error
-                  ? `Error: ${error}`
-                  : `អ្នកតាមដាន ${totalFollowers} នាក់`}
-              </p>
+              <div class="flex flex-col">
+                <span
+                  href="#"
+                  className="ml-3 mr-2 rounded m-2 text-gray-600 font-semibold hover:text-indigo-600 font-suwannaphum text-[16px]"
+                >
+                  {blog.author}
+                </span>
+                <p className="text-gray-600 font-suwannaphum text-[15px] ml-4  -mt-1">
+                  {loading
+                    ? "Loading followers..."
+                    : error
+                    ? `Error: ${error}`
+                    : `អ្នកតាមដាន ${totalFollowers} នាក់`}
+                </p>
+              </div>
             </div>
           </div>
         </div>

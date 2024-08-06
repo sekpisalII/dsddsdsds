@@ -19,7 +19,7 @@ const FooterCard = () => {
                 className="w-16 h-16 sm:w-20 sm:h-20 md:w-13 md:h-13 lg:w-15 lg:h-15 xl:w-15 xl:h-20 rounded-full object-cover mt-4"
                 alt="Stem Logo"
               />
-              <p className="text-base text-gray-500/90">
+              <p className="text-base font-suwannaphum text-gray-500/90">
                 STEM website
                 ​ដែល​រចនា​ឡើង​សម្រាប់​សិស្សដើម្បី​ចូល​រួម​ក្នុង​ការ​សិក្សា​សហការ
                 និង​ការ​ចែក​រំលែក​ចំណេះដឹង <br />
