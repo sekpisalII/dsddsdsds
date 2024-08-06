@@ -2,14 +2,13 @@ import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import Dashboard from "../../components/dashboard/Dashboard";
 import { Link, useSearchParams } from "react-router-dom";
-
 const GetForum = () => {
   const [search, setSearch] = useState("");
   const [filteredData, setFilteredData] = useState([]);
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [page, setPage] = useState(1);
-  const [totalRows, setTotalRows] = useState(0);
+  const [page, setPage] = useState(10);
+  const [totalRows, setTotalRows] = useState(10);
   const [param, setParam] = useSearchParams();
 
   const columns = [
@@ -76,7 +75,7 @@ const GetForum = () => {
     {
       name: "Actions",
       cell: (row) => (
-        <div class="flex flex-col gap-1">
+        <div className="flex flex-col gap-1">
           <Link
             to={`/editForum/${row.id}`}
             class="bg-green-500 text-sm px-3 py-1 rounded-lg text-center md:px-4 md:py-2"
@@ -85,7 +84,7 @@ const GetForum = () => {
           </Link>
           <button
             onClick={() => handleDelete(row.id)}
-            class="bg-red-600 text-sm px-3 py-1 rounded-lg text-center md:px-4 md:py-2"
+            className="bg-red-600 text-sm px-3 py-1 rounded-lg text-center md:px-4 md:py-2"
           >
             Delete
           </button>
@@ -118,7 +117,7 @@ const GetForum = () => {
       const updatedData = data.filter((item) => item.id !== id);
       setData(updatedData);
       setFilteredData(updatedData);
-      setTotalRows(totalRows - 1); 
+      setTotalRows(totalRows - 1);
     } catch (error) {
       console.error("Error deleting article:", error);
     }

@@ -12,6 +12,7 @@ import FooterCard from "../../components/footer/FooterCard";
 import LessonCard from "../../components/lessonCard/LessonCard";
 import BlogCard from "../../components/blogCard/BlogCard";
 import ForumCard from "../../components/forumCard/ForumCard";
+import NavbarComponent from "../../components/navbar/NavbarComponent";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -40,7 +41,7 @@ const Home = () => {
 
   return (
     <div>
-      <nav className="w-full bg-[#16A1DF] sticky top-0 z-50">
+      {/* <nav className="w-full bg-[#16A1DF] sticky top-0 z-50">
         <Navbar fluid rounded className="bg-[#16A1DF] ">
           <Navbar.Brand>
             <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
@@ -148,7 +149,8 @@ const Home = () => {
             </NavLink>
           </Navbar.Collapse>
         </Navbar>
-      </nav>
+      </nav> */}
+      <NavbarComponent />
 
       <Background />
       <section className="mt-[10px] m-3">

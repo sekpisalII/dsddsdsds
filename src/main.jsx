@@ -121,12 +121,12 @@ const router = createBrowserRouter([
     element: <BlogDetailPage />,
   },
   {
-    path: '/editArticle/:id',
-    element: <EditArticlePage />
+    path: "/editArticle/:id",
+    element: <EditArticlePage />,
   },
   {
-    path: '/editForum/:id',
-    element: <EditForumPage />
+    path: "/editForum/:id",
+    element: <EditForumPage />,
   },
   {
     path: "/otp",
@@ -146,7 +146,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/getForum",
-    element: <GetForumPage />
+    element: <GetForumPage />,
   },
   {
     path: "/setting",
@@ -158,8 +158,8 @@ const router = createBrowserRouter([
   },
   {
     path: "/home",
-    element: <Home />
-  }
+    element: <Home />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
