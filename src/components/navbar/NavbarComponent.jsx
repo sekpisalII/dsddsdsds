@@ -28,7 +28,6 @@ const NavbarComponent = () => {
       console.error(error);
     }
   };
-
   return (
     <>
       <nav className="w-full bg-[#16A1DF] sticky top-0 z-50">

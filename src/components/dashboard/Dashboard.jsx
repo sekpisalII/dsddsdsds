@@ -11,14 +11,16 @@ import axios from "axios";
 const Dashboard = () => {
   const [activeLink, setActiveLink] = useState(0);
   const [profile, setProfile] = useState(null);
+
   const handleLinkClick = (index) => {
     setActiveLink(index);
   };
+
   const SIDEBAR_LINKS = [
     { id: 1, path: "/dashboard", name: "Dashboard", icon: RxDashboard },
-    { id: 2, path: "/article?page=1", name: "Article", icon: GrArticle },
+    { id: 2, path: "/article", name: "Article", icon: GrArticle },
     { id: 3, path: "/setting", name: "Setting", icon: IoSettingsOutline },
-    { id: 4, path: "/getforum?page=1", name: "Forum", icon: MdForum },
+    { id: 4, path: "/getforum", name: "Forum", icon: MdForum },
   ];
 
   useEffect(() => {
@@ -35,8 +37,8 @@ const Dashboard = () => {
         );
         const data = await response.json();
         setProfile(data);
-        localStorage.setItem('user',JSON.stringify({
-          name:data.username
+        localStorage.setItem('user', JSON.stringify({
+          name: data.username
         }));
       } catch (error) {
         console.error("Error fetching profile:", error);
@@ -52,7 +54,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <div className=" flex justify-between md:items-center p-5 bg-blue-500">
+      <div className="flex justify-between md:items-center p-5 bg-blue-500">
         <div className="flex flex-row items-center w-full sm:w-auto">
           <h1 className="text-[20px] sm:text-[30px] text-white font-suwannaphum ml-8 sm:ml-14 md:ml-60">
             <input
@@ -67,7 +69,7 @@ const Dashboard = () => {
           <div className="flex items-center space-x-2 sm:space-x-5">
             <button className="relative text-lg sm:text-2xl text-gray-100">
               <GoBell size={20} sm:size={28} />
-              <span className="absolute top-0 right-0 -mt-1 -mr-1 flex justify-center items-center  text-white font-semibold text-[8px] sm:text-[10px] w-4 h-3 sm:w-5 sm:h-4 rounded-full border-2 border-white">
+              <span className="absolute top-0 right-0 -mt-1 -mr-1 flex justify-center items-center text-white font-semibold text-[8px] sm:text-[10px] w-4 h-3 sm:w-5 sm:h-4 rounded-full border-2 border-white">
                 9
               </span>
             </button>
@@ -94,9 +96,7 @@ const Dashboard = () => {
                 className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 rounded-full object-cover"
               />
             </main>
-           
           </Link>
-
         </div>
         {/* Navigation Links */}
         <ul className="mt-6 space-y-3 sm:space-y-6">
@@ -109,7 +109,6 @@ const Dashboard = () => {
             >
               <Link
                 to={link.path}
-
                 className="flex justify-center md:justify-start items-center space-x-2 sm:space-x-5"
                 onClick={() => handleLinkClick(index)}
               >

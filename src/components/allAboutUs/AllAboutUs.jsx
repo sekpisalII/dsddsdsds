@@ -1,7 +1,10 @@
 import React from "react";
 import { FaFacebook, FaGithub, FaTelegram } from "react-icons/fa";
 import { Avatar } from "flowbite-react";
-
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // You can also use <link> for styles
+// ..
+AOS.init();
 const AllAboutUs = () => {
   return (
     <>
@@ -28,11 +31,10 @@ const AllAboutUs = () => {
         </div>
       </section>
       {/* section 1 */}
-      <main className="bg-gray-100">
       <section className="py-14 lg:py-24 relative">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-            <div className="img-box">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 " data-aos="fade-up" data-aos-duration="1500">
+            <div className="img-box" >
               <img
                 src="../src/assets/Online-learning.gif"
                 alt="Online Learning"
@@ -40,7 +42,7 @@ const AllAboutUs = () => {
               />
             </div>
             <div className="lg:pl-[100px] flex items-center">
-              <div className="data w-full">
+              <div className="data w-full" data-aos="zoom-in-up" data-aos-duration="1500">
                 <h2 className="font-suwannaphum uppercase font-bold text-2xl text-[#0056B1] mb-9 text-center sm:text-3xl">
                   អំពី STEM
                 </h2>
@@ -59,9 +61,10 @@ const AllAboutUs = () => {
 
       {/* section 2 */}
       <section className="py-14 lg:py-24 relative">
+        
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-            <div className="lg:pr-[100px] flex items-center">
+            <div className="lg:pr-[100px] flex items-center" data-aos="fade-up" data-aos-duration="1500">
               <div className="data w-full">
                 <h1 className="font-suwannaphum  uppercase font-bold text-2xl text-[#0056B1] text-center sm:text-3xl">
                   គោលបំណងរបស់ពួកយើង
@@ -73,7 +76,7 @@ const AllAboutUs = () => {
                 </p>
               </div>
             </div>
-            <div className="img-box ml-14">
+            <div className="img-box ml-14"  data-aos="fade-up" data-aos-duration="1500">
               <img
                 src="../src/assets/Course app.gif"
                 alt="Purpose of STEM"
@@ -86,10 +89,11 @@ const AllAboutUs = () => {
 
       {/* Our Mentor */}
       <div className="mt-10 flex  flex-col justify-center w-max gap-20 mx-auto">
-        <h1 className="text-center text-3xl p-3 text-[#0056B1] font-bold sm:text-4xl">
+        <marquee behavior="" direction="">
+        <h1 className="text-center text-3xl p-3 text-[#0056B1] font-bold sm:text-4xl font-suwannaphum" >
           លោកគ្រូអ្នកគ្រូរបស់យើង
         </h1>
-
+        </marquee>
         <div className="mt-10 grid justify-center selection  sm:px-4 gap-20 md:gap-20 lg:gap-40  sm:grid-cols-2">
           {/* Mentor 1 */}
           <div className="w-[300px] text-center py-4 px-6 bg-[#16A1DF] shadow-sm rounded-xl transform transition-all duration-300 hover:scale-105 hover:shadow-sm">
@@ -163,7 +167,8 @@ const AllAboutUs = () => {
 
       {/* Our member*/}
       <div className="flex flex-col justify-center mt-14 w-max mx-auto">
-        <h1 className="text-center text-3xl p-3 text-[#0056B1] font-bold sm:text-4xl">
+        <h1 className="text-center text-3xl p-3 text-[#0056B1] font-bold sm:text-4xl font-suwannaphum" data-aos="fade-up"
+     data-aos-anchor-placement="center-bottom" data-aos-duration="1500">
           សមាជិកក្រុមរបស់យើង
         </h1>
         
@@ -469,7 +474,6 @@ const AllAboutUs = () => {
           </div>
         </div>
       </div>
-      </main>
         </>
     
   );

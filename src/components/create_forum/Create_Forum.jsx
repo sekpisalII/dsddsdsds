@@ -61,9 +61,9 @@ const Create_Forum = () => {
         <div className="bg-white shadow rounded-lg p-6">
           <div className="relative w-full bg-blue-600 rounded-lg overflow-hidden">
             <img
-              src="../src/assets/forum_detail.jpg"
+              src="../src/assets/Discussion.gif"
               alt="Cartoon"
-              className="object-cover w-full h-[300px]"
+              className="object-cover  h-[500px]"
             />
             <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
               <div className="text-center">
