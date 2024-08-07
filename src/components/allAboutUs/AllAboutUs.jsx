@@ -9,6 +9,7 @@ const AllAboutUs = () => {
   return (
     <>
     {/* Hero */}
+    
       <section className="relative">
       <div className="absolute inset-0 backdrop-blur-sm"></div>
         <img
@@ -94,10 +95,10 @@ const AllAboutUs = () => {
           លោកគ្រូអ្នកគ្រូរបស់យើង
         </h1>
         </marquee>
-        <div className="mt-10 grid justify-center selection  sm:px-4 gap-20 md:gap-20 lg:gap-40  sm:grid-cols-2">
+        <div className="mt-10 grid justify-center selection  sm:px-4 gap-20 md:gap-20 lg:gap-40  sm:grid-cols-2" >
           {/* Mentor 1 */}
-          <div className="w-[300px] text-center py-4 px-6 bg-[#16A1DF] shadow-sm rounded-xl transform transition-all duration-300 hover:scale-105 hover:shadow-sm">
-      <div className="flex justify-center items-center">
+          <div className="w-[300px] text-center py-4 px-6 bg-[#16A1DF] shadow-sm rounded-xl transform transition-all duration-300 hover:scale-105 hover:shadow-sm" data-aos="fade-up" data-aos-duration="1500">
+      <div className="flex justify-center items-center" >
         <img
           src="../src/assets/Mentor_MuyleangDevOps.jpg"
           alt="Mentor"
@@ -130,8 +131,8 @@ const AllAboutUs = () => {
           </div>
               
           {/* Mentor 2 */}
-          <div className="w-[300px] text-center py-4 px-6 bg-[#16A1DF] shadow-sm rounded-xl transform transition-all duration-300 hover:scale-105 hover:shadow-sm">
-            <div className="flex justify-center items-center">
+          <div className="w-[300px] text-center py-4 px-6 bg-[#16A1DF] shadow-sm rounded-xl transform transition-all duration-300 hover:scale-105 hover:shadow-sm" data-aos="fade-up" data-aos-duration="1500">
+            <div className="flex justify-center items-center" >
               <img
                   src="../src/assets/Mentor_Jessica1.jpg"
                 alt="Mentor"
@@ -174,7 +175,7 @@ const AllAboutUs = () => {
         
         {/* Member */}
         <div className="mt-10 grid justify-center items-center lg:gap-40 md:gap-20 gap-20 sm:grid-cols-2 lg:grid-cols-3">
-        <div className="w-[300px] text-center py-4 px-6 bg-[#16A1DF] shadow-sm rounded-xl transform transition-all duration-300 hover:scale-105 hover:shadow-sm">
+        <div className="w-[300px] text-center py-4 px-6 bg-[#16A1DF] shadow-sm rounded-xl transform transition-all duration-300 hover:scale-105 hover:shadow-sm" data-aos="fade-up" data-aos-duration="1500">
       <div className="flex justify-center items-center">
         <img
           src="../src/assets/cuteis.jpg"
@@ -208,7 +209,7 @@ const AllAboutUs = () => {
           </div>
 
 
-          <div className="w-[300px] text-center py-4 px-6 bg-[#16A1DF] shadow-sm rounded-xl transform transition-all duration-300 hover:scale-105 hover:shadow-sm">
+          <div className="w-[300px] text-center py-4 px-6 bg-[#16A1DF] shadow-sm rounded-xl transform transition-all duration-300 hover:scale-105 hover:shadow-sm" data-aos="fade-up" data-aos-duration="1500">
       <div className="flex justify-center items-center">
         <img
           src="../src/assets/sreyneang.jpg"
@@ -241,7 +242,7 @@ const AllAboutUs = () => {
       </ul>
           </div>
 
-          <div className="w-[300px] text-center py-4 px-6 bg-[#16A1DF] shadow-sm rounded-xl transform transition-all duration-300 hover:scale-105 hover:shadow-sm">
+          <div className="w-[300px] text-center py-4 px-6 bg-[#16A1DF] shadow-sm rounded-xl transform transition-all duration-300 hover:scale-105 hover:shadow-sm" data-aos="fade-up" data-aos-duration="1500">
       <div className="flex justify-center items-center">
         <img
           src="../src/assets/channarith_offical.jpg"
@@ -274,7 +275,7 @@ const AllAboutUs = () => {
       </ul>
           </div>
 
-          <div className="w-[300px] text-center py-4 px-6 bg-[#16A1DF] shadow-sm rounded-xl transform transition-all duration-300 hover:scale-105 hover:shadow-sm">
+          <div className="w-[300px] text-center py-4 px-6 bg-[#16A1DF] shadow-sm rounded-xl transform transition-all duration-300 hover:scale-105 hover:shadow-sm" data-aos="fade-up" data-aos-duration="1500">
       <div className="flex justify-center items-center">
         <img
           src="../src/assets/Sokvan.jpg"
@@ -307,7 +308,7 @@ const AllAboutUs = () => {
       </ul>
           </div>
 
-          <div className="w-[300px] text-center py-4 px-6 bg-[#16A1DF] shadow-sm rounded-xl transform transition-all duration-300 hover:scale-105 hover:shadow-sm">
+          <div className="w-[300px] text-center py-4 px-6 bg-[#16A1DF] shadow-sm rounded-xl transform transition-all duration-300 hover:scale-105 hover:shadow-sm" data-aos="fade-up" data-aos-duration="1500">
       <div className="flex justify-center items-center">
         <img
           src="../src/assets/kanika.jpg"
@@ -340,7 +341,7 @@ const AllAboutUs = () => {
       </ul>
           </div>
 
-          <div className="w-[300px] text-center py-4 px-6 bg-[#16A1DF] shadow-sm rounded-xl transform transition-all duration-300 hover:scale-105 hover:shadow-sm">
+          <div className="w-[300px] text-center py-4 px-6 bg-[#16A1DF] shadow-sm rounded-xl transform transition-all duration-300 hover:scale-105 hover:shadow-sm" data-aos="fade-up" data-aos-duration="1500">
       <div className="flex justify-center items-center">
         <img
           src="../src/assets/ponleu.jpg"
@@ -373,7 +374,7 @@ const AllAboutUs = () => {
       </ul>
           </div>
 
-          <div className="w-[300px] text-center py-4 px-6 bg-[#16A1DF] shadow-sm rounded-xl transform transition-all duration-300 hover:scale-105 hover:shadow-sm">
+          <div className="w-[300px] text-center py-4 px-6 bg-[#16A1DF] shadow-sm rounded-xl transform transition-all duration-300 hover:scale-105 hover:shadow-sm" data-aos="fade-up" data-aos-duration="1500">
       <div className="flex justify-center items-center">
         <img
           src="../src/assets/mengeam.jpg"
@@ -406,7 +407,7 @@ const AllAboutUs = () => {
       </ul>
           </div>
 
-          <div className="w-[300px] text-center py-4 px-6 bg-[#16A1DF] shadow-sm rounded-xl transform transition-all duration-300 hover:scale-105 hover:shadow-sm">
+          <div className="w-[300px] text-center py-4 px-6 bg-[#16A1DF] shadow-sm rounded-xl transform transition-all duration-300 hover:scale-105 hover:shadow-sm" data-aos="fade-up" data-aos-duration="1500">
       <div className="flex justify-center items-center">
         <img
           src="../src/assets/Bunthi.jpg"
@@ -438,9 +439,7 @@ const AllAboutUs = () => {
         </li>
       </ul>
           </div>
-
-
-          <div className="w-[300px] text-center py-4 px-6 bg-[#16A1DF] shadow-sm rounded-xl transform transition-all duration-300 hover:scale-105 hover:shadow-sm">
+          <div className="w-[300px] text-center py-4 px-6 bg-[#16A1DF] shadow-sm rounded-xl transform transition-all duration-300 hover:scale-105 hover:shadow-sm" data-aos="fade-up" data-aos-duration="1500">
       <div className="flex justify-center items-center">
         <img
           src="../src/assets/cuteis.jpg"

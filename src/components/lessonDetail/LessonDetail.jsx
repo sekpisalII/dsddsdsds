@@ -30,7 +30,6 @@ const LessonDetail = () => {
 
           {/*
            */}
-
           {lesson.sections.flatMap((section) =>
             section.contents.map(
               (content) =>

@@ -5,14 +5,11 @@ const EditForum = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [forumData, setForumData] = useState({
-    id: '',
-    author: '',
-    title: '',
-    description: '',
-    image: '',
-    created_at: '',
+    title: "",
+    description: "",
+    image: "",
   });
-
+  const [file, setFile] = useState(null);
   useEffect(() => {
     // Fetch the forum data by ID
     const fetchForumData = async () => {
@@ -86,30 +83,10 @@ const EditForum = () => {
           <input
             type="text"
             name="id"
-            value={forumData.id}
-            onChange={handleChange}
-            className="w-full px-3 py-2 border rounded"
-            readOnly
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 line-clamp-1">Author</label>
-          <input
-            type="text"
-            name="author"
-            value={forumData.author}
-            onChange={handleChange}
-            className="w-full px-3 py-2 border rounded"
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 line-clamp-1">Title</label>
-          <input
-            type="text"
-            name="title"
             value={forumData.title}
             onChange={handleChange}
             className="w-full px-3 py-2 border rounded"
+            readOnly
           />
         </div>
         <div className="mb-4">
@@ -129,17 +106,6 @@ const EditForum = () => {
             value={forumData.image}
             onChange={handleChange}
             className="w-full px-3 py-2 border rounded"
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 line-clamp-1">Created At</label>
-          <input
-            type="text"
-            name="created_at"
-            value={forumData.created_at}
-            onChange={handleChange}
-            className="w-full px-3 py-2 border rounded"
-            readOnly
           />
         </div>
         <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded">
