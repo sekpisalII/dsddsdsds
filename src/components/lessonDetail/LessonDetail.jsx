@@ -56,7 +56,7 @@ const LessonDetail = () => {
             )
           )}
 
-          <h3 className="p-8 text-center">ត្រីកោណប៉ុនគ្នា</h3>
+          <h3 className="p-8 text-center text-black">ត្រីកោណប៉ុនគ្នា</h3>
         </div>
         <div className="w-full bg-[#F5F5F5] p-5 md:p-8">
           {lesson.sections.map((sections) => (

@@ -136,7 +136,7 @@ const CreateComment = () => {
             <h3 className="text-[20px] leading-relaxed mb-6 font-bold ml-5">
               {forum.title}
             </h3>
-            <p className="text-lg leading-relaxed mb-6 ml-5">
+            <p className="text-lg leading-relaxed mb-6 ml-5 text-black">
               {" "}
               {forum.description}
             </p>

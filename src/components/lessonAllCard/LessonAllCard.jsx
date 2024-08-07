@@ -37,9 +37,9 @@ const LessonAllCard = ({ lesson }) => {
               ឥតគិតថ្លៃ
             </button>
           </div>
-          <span className="text-gray-600 mt-5 font-suwannaphum text-[18px]">
-            ចំនួនអ្នកមើល​​ : {lesson.views_count}
-          </span>
+          {/* <span className="text-gray-600 mt-5 font-suwannaphum text-[18px]">
+            ចនួនអ្នកមើល​​ : {lesson.views_count}
+          </span> */}
         </div>
       </div>
     </div>
