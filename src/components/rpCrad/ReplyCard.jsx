@@ -166,7 +166,20 @@ const ReplyCard = ({ forumId }) => {
       ) : isLoading ? (
         <div>Loading...</div>
       ) : (
-        <div>No comments found for this forum.</div>
+        <div className="flex items-center justify-center h-64">
+          <div className="text-center">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/7486/7486754.png"
+              width="100"
+              height="100"
+              alt="Empty Box"
+              className="mx-auto mb-4"
+            />
+            <p className="text-gray-500 font-suwannaphum">
+              មិនមានទាន់ការឆ្លើយតបទេ
+            </p>
+          </div>
+        </div>
       )}
 
       {showReplyForm && !replySuccess && (
