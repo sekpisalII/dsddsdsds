@@ -6,6 +6,8 @@ import FooterCard from "../footer/FooterCard";
 import ReplyCard from "../rpCrad/ReplyCard";
 import axios from "axios";
 import { AUTH_HEADER } from "../../services/constants";
+import Swal from "sweetalert2";
+
 const CreateComment = () => {
   const { id } = useParams();
   const bookId = decodeURIComponent(id);
@@ -17,6 +19,7 @@ const CreateComment = () => {
     forum_id: id,
     content: "",
   });
+
   useEffect(() => {
     const fetchForumData = async () => {
       try {
@@ -48,16 +51,58 @@ const CreateComment = () => {
     setReplyText(event.target.value);
   };
 
-  const handleReplySubmit = () => {
-    // Handle the reply submission logic here
-    console.log("Reply text:", replyText);
-    setReplyText("");
-    setShowReplyForm(false);
-  };
+  const handleReplySubmit = async (e) => {
+    e.preventDefault();
 
-  if (!forum) {
-    return <div>Loading...</div>;
-  }
+    if (!replyText.trim()) {
+      Swal.fire({
+        icon: "warning",
+        title: "Oops...",
+        text: "Reply content cannot be empty.",
+      });
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        "http://136.228.158.126:50001/api/comments/",
+        {
+          forum_id: id,
+          content: replyText,
+        },
+        {
+          headers: {
+            ...AUTH_HEADER,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.status === 201) {
+        Swal.fire({
+          icon: "success",
+          title: "Success!",
+          text: "Your reply has been submitted.",
+        }).then(() => {
+          setReplyText("");
+          setShowReplyForm(false);
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Error!",
+          text: response.data.message || "Error submitting reply",
+        });
+      }
+    } catch (error) {
+      console.error("Error submitting reply:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Error!",
+        text: error.message,
+      });
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -72,13 +117,36 @@ const CreateComment = () => {
           },
         }
       );
-      console.log("Post created successfully!");
+      if (response.status === 201) {
+        Swal.fire({
+          icon: "success",
+          title: "Post Created!",
+          text: "Your post has been created successfully.",
+        }).then(() => {
+          setFormData({
+            forum_id: id,
+            content: "",
+          });
+          // Optionally, you can refresh the page or fetch updated data here
+          location.reload();
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Error!",
+          text: response.data.message || "Error creating post",
+        });
+      }
     } catch (error) {
       console.error(
         `Error creating post: ${error.response.status} - ${error.response.data}`
       );
+      Swal.fire({
+        icon: "error",
+        title: "Error!",
+        text: error.message,
+      });
     }
-    location.reload();
   };
 
   const handleFormDataChange = (event) => {
@@ -87,6 +155,10 @@ const CreateComment = () => {
       [event.target.name]: event.target.value,
     });
   };
+
+  if (!forum) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
@@ -103,7 +175,7 @@ const CreateComment = () => {
             <img
               className="w-full h-full rounded-xl object-cover p-5"
               src="../src/assets/Online learning (2).gif"
-              alt="Learing by yourself "
+              alt="Learning by yourself "
             />
           </div>
           <div className="px-[15px] py-2 left-[30px] top-[148px] absolute bg-sky-500 rounded-lg justify-start items-start gap-[5px] inline-flex">
@@ -113,7 +185,6 @@ const CreateComment = () => {
             <div className="w-5 h-5 relative" />
           </div>
         </div>
-        {/*  */}
         <section className="max-w-screen-xl mx-auto mt-10 px-4 sm:px-0 shadow-md rounded-xl font-suwannaphum">
           <div className="relative">
             <div className="flex items-center mb-6">
@@ -136,7 +207,6 @@ const CreateComment = () => {
               {forum.title}
             </h3>
             <p className="text-lg leading-relaxed mb-6 ml-5 text-black">
-              {" "}
               {forum.description}
             </p>
             <div className="flex justify-end items-center mr-5">
@@ -147,7 +217,6 @@ const CreateComment = () => {
                 >
                   <i className="far fa-thumbs-up"></i> Like
                 </a>
-
                 <a
                   className="text-gray-500 hover:text-gray-700"
                   onClick={handleReplyClick}
@@ -158,22 +227,28 @@ const CreateComment = () => {
                   <div className="mt-4">
                     <Label className="font-suwannaphum">Your Reply</Label>
                     <form
-                      onSubmit={handleSubmit}
-                      className="max-w-2xl bg-white rounded-lg border p-2 mx-auto "
+                      onSubmit={handleReplySubmit}
+                      className="max-w-2xl bg-white rounded-lg border p-2 mx-auto"
                     >
                       <Textarea
                         type="text"
-                        name="content"
-                        value={formData.content}
-                        onChange={handleFormDataChange}
-                        class="w-full  bg-gray-100 rounded border border-gray-400 leading-normal resize-none h-10 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
+                        name="replyText"
+                        value={replyText}
+                        onChange={handleReplyTextChange}
+                        className="w-full bg-gray-100 rounded border border-gray-400 leading-normal resize-none h-10 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
                       />
-
                       <button
                         type="submit"
                         className="px-2.5 py-1.5 rounded-md text-white text-sm bg-indigo-500"
                       >
                         Submit
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setShowReplyForm(false)}
+                        className="ml-4 px-2.5 py-1.5 rounded-md text-white text-sm bg-gray-500"
+                      >
+                        Cancel
                       </button>
                     </form>
                   </div>

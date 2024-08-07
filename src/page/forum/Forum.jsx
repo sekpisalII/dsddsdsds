@@ -48,10 +48,10 @@ const Forum = () => {
       ) : (
         <section
           id="Projects"
-          className="card-container"  // Apply the container class here
+          className="card-container" // Apply the container class here
         >
           {forums.map((forum, index) => (
-            <div key={index} className="card-wrapper">  
+            <div key={index} className="card-wrapper">
               <CardForum forums={forum} />
             </div>
           ))}

@@ -122,14 +122,15 @@ const Setting = () => {
     fetchProfileData();
   }, []);
 
+
   return (
     <>
       <Dashboard />
-      <section className="section main-section w-[80%] ml-[16%] sm:ml-[14%] md:ml-[22%] lg:ml-[20%] xl:ml-[18%] mt-10 px-4">
+      <section className="section main-section w-[80%] ml-[16%] sm:ml-[14%] md:ml-[22%] lg:ml-[20%] xl:ml-[18%] mt-7 px-4">
         <div className="profile-container grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="card">
             <header className="card-header">
-              <p className="card-header-title font-suwannaphum flex items-center text-black">
+              <p className="card-header-title font-suwannaphum flex items-center">
                 <span className="icon mr-2">👤</span>
                 Edit Profile
               </p>
@@ -222,6 +223,7 @@ const Setting = () => {
                     placeholder="បញ្ចូលអុីមែល"
                   />
                 </div>
+
                 <div className="text-[20px] font-suwannaphum mb-4">
                   <div className="mb-2 block font-suwannaphum">
                     <Label
@@ -272,8 +274,8 @@ const Setting = () => {
           </div>
           <div className="card">
             <header className="card-header">
-              <p className="card-header-title flex items-center text-black font-suwannaphum">
-                <span className="icon mr-2 text-black font-suwannaphum" >👥</span>
+              <p className="card-header-title flex items-center">
+                <span className="icon mr-2">👥</span>
                 Profile
               </p>
             </header>
@@ -297,7 +299,8 @@ const Setting = () => {
 
                   </div>
 
-                <span className="font-suwannaphum text-center mx-3 text-[20px] text-gray-900 font-medium">
+
+                  <span className="font-suwannaphum text-center mx-3 text-[20px] text-gray-900 font-medium">
                   ព័ឥមានរបស់អ្នកប្រើប្រាស់
                 </span>
                 <div className="w-full p-4">
