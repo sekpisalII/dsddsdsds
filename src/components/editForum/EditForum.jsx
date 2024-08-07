@@ -6,9 +6,11 @@ const EditForum = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [forumData, setForumData] = useState({
+    author: "",
     title: "",
     description: "",
     image: "",
+    created_at: "",
   });
   const [file, setFile] = useState(null);
 

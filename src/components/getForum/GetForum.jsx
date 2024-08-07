@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import Dashboard from "../../components/dashboard/Dashboard";
 import { Link, useSearchParams } from "react-router-dom";
-import Swal from "sweetalert2";
 
 const GetForum = () => {
   const [search, setSearch] = useState("");
@@ -97,52 +96,33 @@ const GetForum = () => {
   ];
 
   const handleDelete = async (id) => {
-    const result = await Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    });
-
-    if (result.isConfirmed) {
-      try {
-        const accessToken = localStorage.getItem("access_token");
-        if (!accessToken) {
-          throw new Error("No access token found");
-        }
-
-        const response = await fetch(
-          `http://136.228.158.126:50001/api/forums/${id}/`,
-          {
-            method: "DELETE",
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          }
-        );
-
-        if (!response.ok) {
-          throw new Error("Failed to delete forum");
-        }
-
-        // Remove the deleted forum from the current data set
-        const updatedData = data.filter((item) => item.id !== id);
-        setData(updatedData);
-        setFilteredData(updatedData);
-        setTotalRows(totalRows - 1);
-
-        Swal.fire("Deleted!", "Your forum has been deleted.", "success");
-      } catch (error) {
-        console.error("Error deleting forum:", error);
-        Swal.fire(
-          "Error!",
-          "Failed to delete forum. Please try again.",
-          "error"
-        );
+    try {
+      const accessToken = localStorage.getItem("access_token");
+      if (!accessToken) {
+        throw new Error("No access token found");
       }
+
+      const response = await fetch(
+        `http://136.228.158.126:50001/api/forums/${id}/`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to delete article");
+      }
+
+      // Remove the deleted article from the current data set
+      const updatedData = data.filter((item) => item.id !== id);
+      setData(updatedData);
+      setFilteredData(updatedData);
+      setTotalRows(totalRows - 1);
+    } catch (error) {
+      console.error("Error deleting article:", error);
     }
   };
 
