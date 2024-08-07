@@ -2,14 +2,16 @@ import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import Dashboard from "../../components/dashboard/Dashboard";
 import { Link, useSearchParams } from "react-router-dom";
+
 const GetForum = () => {
   const [search, setSearch] = useState("");
   const [filteredData, setFilteredData] = useState([]);
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [page, setPage] = useState(10);
-  const [totalRows, setTotalRows] = useState(10);
+  const [page, setPage] = useState(1);
+  const [totalRows, setTotalRows] = useState(0);
   const [param, setParam] = useSearchParams();
+  const [checkAllPages, setCheckAllPages] = useState(false);
 
   const columns = [
     {
@@ -78,7 +80,7 @@ const GetForum = () => {
         <div className="flex flex-col gap-1">
           <Link
             to={`/editForum/${row.id}`}
-            class="bg-green-500 text-sm px-3 py-1 rounded-lg text-center md:px-4 md:py-2"
+            className="bg-green-500 text-sm px-3 py-1 rounded-lg text-center md:px-4 md:py-2"
           >
             Edit
           </Link>
@@ -114,6 +116,7 @@ const GetForum = () => {
         throw new Error("Failed to delete article");
       }
 
+      // Remove the deleted article from the current data set
       const updatedData = data.filter((item) => item.id !== id);
       setData(updatedData);
       setFilteredData(updatedData);
@@ -123,14 +126,13 @@ const GetForum = () => {
     }
   };
 
-  const fetchData = async () => {
+  const fetchData = async (currentPage = page, fetchAll = false) => {
     try {
       const accessToken = localStorage.getItem("access_token");
       if (!accessToken) {
         throw new Error("No access token found");
       }
 
-      const currentPage = param.get("page") || 1; // Use current page from URL or default to 1
       const response = await fetch(
         `http://136.228.158.126:50001/api/forums/?page=${currentPage}`,
         {
@@ -139,23 +141,38 @@ const GetForum = () => {
           },
         }
       );
+
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
 
       const result = await response.json();
-
       const user = localStorage.getItem("user");
       const nameUser = JSON.parse(user);
 
       const data = result.results;
       const userData = data.filter((users) => users.author === nameUser.name);
 
-      setData(userData);
-      setFilteredData(userData);
+      setData((prevData) => {
+        // Merge previous and new data
+        const newData = [...prevData, ...userData];
+        return [...new Set(newData.map((item) => item.id))].map((id) =>
+          newData.find((item) => item.id === id)
+        );
+      });
+      setFilteredData((prevData) => {
+        const newData = [...prevData, ...userData];
+        return [...new Set(newData.map((item) => item.id))].map((id) =>
+          newData.find((item) => item.id === id)
+        );
+      });
       setTotalRows(result.count);
       setPage(Number(currentPage));
       setIsLoading(false);
+
+      if (fetchAll && result.next) {
+        fetchData(currentPage + 1, fetchAll);
+      }
     } catch (error) {
       console.error("Error fetching data:", error);
       setIsLoading(false);
@@ -164,7 +181,7 @@ const GetForum = () => {
 
   useEffect(() => {
     fetchData();
-  }, [param]); // Refetch data whenever the URL parameters change
+  }, [param]);
 
   useEffect(() => {
     if (!search) {
@@ -197,8 +214,16 @@ const GetForum = () => {
   };
 
   const handlePageChange = (page) => {
-    setParam({ page: page });
+    setParam({ page });
     setPage(page);
+    if (!checkAllPages) {
+      fetchData(page);
+    }
+  };
+
+  const handleCheckAllPages = () => {
+    setCheckAllPages(true);
+    fetchData(1, true);
   };
 
   return (
@@ -228,6 +253,16 @@ const GetForum = () => {
           fixedHeaderScrollHeight="600px"
           customStyles={customStyles}
         />
+        {filteredData.length === 0 && !isLoading && (
+          <div className="text-center mt-4">
+            <button
+              onClick={handleCheckAllPages}
+              className="bg-blue-500 px-4 py-2 font-suwannaphum font-semibold text-white rounded-md"
+            >
+              Check All Pages
+            </button>
+          </div>
+        )}
       </section>
     </>
   );
