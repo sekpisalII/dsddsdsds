@@ -6,7 +6,7 @@ import { GrArticle } from "react-icons/gr";
 import { IoSettingsSharp } from "react-icons/io5";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { AUTH_HEADER } from "../../services/constants";
-import Background from "../../components/background/Background"
+import Background from "../../components/background/Background";
 import BookCard from "../../components/bookCard/BookCard";
 import FooterCard from "../../components/footer/FooterCard";
 import LessonCard from "../../components/lessonCard/LessonCard";
@@ -17,10 +17,29 @@ import NavbarComponent from "../../components/navbar/NavbarComponent";
 const Home = () => {
   const navigate = useNavigate();
   const [hasAccessToken, setHasAccessToken] = useState(false);
+  const handleNavigate = (path) => {
+    const access_token = localStorage.getItem("access_token");
+    if (!access_token) {
+      navigate("/login");
+    } else {
+      navigate(path);
+    }
+  };
+
+  const handleSignOut = () => {
+    try {
+      localStorage.removeItem("access_token");
+      delete AUTH_HEADER.Authorization;
+      alert("You have been successfully signed out.");
+      navigate("/login");
+    } catch (error) {
+      alert("There was an error signing you out. Please try again.");
+      console.error(error);
+    }
+  };
+
   return (
     <div>
-      <NavbarComponent />
-
       <Background />
       <section className="mt-[10px] m-3">
         <BookCard />

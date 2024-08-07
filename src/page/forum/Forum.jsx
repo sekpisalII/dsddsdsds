@@ -39,7 +39,6 @@ const Forum = () => {
 
   return (
     <div>
-      <NavbarComponent />
       <ForumContent />
       {isLoading ? (
         <div className="flex justify-center items-center h-screen">
