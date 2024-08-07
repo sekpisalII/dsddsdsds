@@ -3,6 +3,7 @@ import Dashboard from "../dashboard/Dashboard";
 import axios from "axios";
 import { AUTH_HEADER } from "../../services/constants";
 import { Label, TextInput } from "flowbite-react";
+import Swal from "sweetalert2";
 
 const Setting = () => {
   const [profileData, setProfileData] = useState(null);
@@ -40,7 +41,6 @@ const Setting = () => {
     e.preventDefault();
 
     try {
-      // Upload the image first if an image is selected
       let imageUrl = formData.image;
       if (formData.image) {
         const imageFormData = new FormData();
@@ -58,13 +58,11 @@ const Setting = () => {
         imageUrl = imageResponse.data.url;
       }
 
-      // Update the form data with the image URL if the image was uploaded
       const updatedFormData = {
         ...formData,
         image: imageUrl,
       };
 
-      // Submit the updated form data
       const response = await axios.put(
         "http://136.228.158.126:50001/api/profile/",
         updatedFormData,
@@ -76,12 +74,17 @@ const Setting = () => {
         }
       );
 
-      // Update local state with the new data
       setProfileData(response.data);
       setSuccessMessage("Profile updated successfully!");
       setErrorMessage("");
+
+      Swal.fire({
+        icon: "success",
+        title: "Success!",
+        text: "Your profile has been updated.",
+      });
     } catch (error) {
-      console.error(error.response?.data); // Inspect the server's response data
+      console.error(error.response?.data);
       if (
         error.response &&
         error.response.data &&
@@ -91,9 +94,19 @@ const Setting = () => {
           "Username already exists. Please choose a different username."
         );
         setSuccessMessage("");
+        Swal.fire({
+          icon: "error",
+          title: "Error!",
+          text: "Username already exists. Please choose a different username.",
+        });
       } else {
         setErrorMessage("An error occurred while updating your profile.");
         setSuccessMessage("");
+        Swal.fire({
+          icon: "error",
+          title: "Error!",
+          text: "An error occurred while updating your profile.",
+        });
       }
     }
   };
@@ -111,7 +124,7 @@ const Setting = () => {
           }
         );
         setProfileData(response.data);
-        setFormData(response.data); // Initialize formData with the fetched profile data
+        setFormData(response.data);
       } catch (error) {
         console.error(error);
         setErrorMessage("An error occurred while fetching your profile data.");
@@ -127,10 +140,10 @@ const Setting = () => {
     <>
       <Dashboard />
       <section className="section main-section w-[80%] ml-[16%] sm:ml-[14%] md:ml-[22%] lg:ml-[20%] xl:ml-[18%] mt-7 px-4">
-        <div className="profile-container grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="card">
+        <div className="profile-container  grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="card w-full">
             <header className="card-header">
-              <p className="card-header-title font-suwannaphum flex items-center">
+              <p className="card-header-title font-suwannaphum flex items-center text-black">
                 <span className="icon mr-2">👤</span>
                 Edit Profile
               </p>
@@ -272,35 +285,30 @@ const Setting = () => {
               </form>
             </div>
           </div>
-          <div className="card">
+          <div className="card w-full">
             <header className="card-header">
-              <p className="card-header-title flex items-center">
+              <p className="card-header-title flex items-center text-black">
                 <span className="icon mr-2">👥</span>
                 Profile
               </p>
             </header>
             {profileData ? (
               <div>
-              <div className="card-content h-[250px] flex justify-center items-center">
-              <div className="card-content h-[250px] flex justify-center items-center">
-                    <div className="relative flex justify-center items-center">
-                      <div className="w-40 h-40 bg-blue-500 rounded-full flex justify-center items-center ">
-                        <img
-                          src={
-                            profileData.image ||
-                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL_JlCFnIGX5omgjEjgV9F3sBRq14eTERK9w&s"
-                          }
-                          alt="Profile"
-                          className="avatar w-25 h-25 rounded-full object-cover border-4 border-[#16A1DF]"
-                        />
-                      </div>
+                <div className="card-content h-[250px] flex justify-center items-center">
+                  <div className="relative flex justify-center items-center">
+                    <div className="w-40 h-40 bg-blue-500 rounded-full flex justify-center items-center ">
+                      <img
+                        src={
+                          profileData.image ||
+                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL_JlCFnIGX5omgjEjgV9F3sBRq14eTERK9w&s"
+                        }
+                        alt="Profile"
+                        className="avatar w-25 h-25 rounded-full object-cover border-4 border-[#16A1DF]"
+                      />
                     </div>
                   </div>
-
-                  </div>
-
-
-                  <span className="font-suwannaphum text-center mx-3 text-[20px] text-gray-900 font-medium">
+                </div>
+                <span className="font-suwannaphum text-center mx-3 text-[20px] text-gray-900 font-medium">
                   ព័ឥមានរបស់អ្នកប្រើប្រាស់
                 </span>
                 <div className="w-full p-4">
@@ -325,6 +333,7 @@ const Setting = () => {
                       <span>អុីមែល</span>
                       <span>{profileData.email}</span>
                     </li>
+
                     <li className="flex justify-between">
                       <span>ថ្ងៃខែឆ្នាំកំណើត</span>
                       <span>{profileData.dob}</span>

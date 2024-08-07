@@ -11,6 +11,7 @@ const EditForum = () => {
     image: "",
   });
   const [file, setFile] = useState(null);
+
   useEffect(() => {
     // Fetch the forum data by ID
     const fetchForumData = async () => {
@@ -123,6 +124,7 @@ const EditForum = () => {
     }
   };
 
+
   return (
     <div className="container mx-auto p-4 font-suwannaphum bg-[#15A1DF] mt-10 rounded-lg">
       <div className="text-2xl font-bold mb-4 text-black text-center mx-auto">
@@ -137,7 +139,6 @@ const EditForum = () => {
             value={forumData.title}
             onChange={handleChange}
             className="w-full px-3 py-2 border rounded"
-            readOnly
           />
         </div>
         <div className="mb-4">

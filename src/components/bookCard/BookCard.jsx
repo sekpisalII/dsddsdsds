@@ -20,7 +20,7 @@ const BookCard = () => {
         <div className="relative h-full w-full overflow-hidden">
           <img
             className="h-full w-full object-cover opacity-100 transition duration-300 ease-in-out transform scale-100"
-            src="../src/assets/stem_book.jpg"
+            src="../src/assets/book_stem1.jpg"
             alt="Stem Book"
           />
           <div className="absolute inset-0 font-suwannaphum bg-transparent hover:bg-slate-300 opacity-0 hover:opacity-60 transition-opacity duration-300 ease-in-out flex items-center justify-center">
