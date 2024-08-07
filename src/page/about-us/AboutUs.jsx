@@ -14,7 +14,6 @@ const AboutUs = () => {
 
   return (
     <>
-      <NavbarComponent />
       {isloading ? <Spinner /> : <AllAboutUs />}
 
       <div className="mt-20">

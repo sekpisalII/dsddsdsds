@@ -30,7 +30,7 @@ const filterKeywords = {
   ប្រវត្តវិទ្យា: ["ប្រវត្តវិទ្យា", "history", "his", "ប្រវត្តិ"],
   ជីវះវិទ្យា: ["ជីវះវិទ្យា", "biology", "bio"],
   រូបវិទ្យា: ["រូបវិទ្យា", "physics", "phys"],
-  គីមីវិទ្យា: ["គីមីវិទ្យា", "chemistry", "chem","គ្រឹះនៃការសិក្សាគីមី"],
+  គីមីវិទ្យា: ["គីមីវិទ្យា", "chemistry", "chem", "គ្រឹះនៃការសិក្សាគីមី"],
   បច្ចេកវិទ្យា: ["បច្ចេកវិទ្យា", "technology", "tech"],
   អក្ខរកម្មឌីជីថល: ["អក្ខរកម្មឌីជីថល", "digital literacy", "digital"],
   ទស្សនវិទ្យា: ["ទស្សនវិទ្យា", "philosophy", "psychology", "ចិត្តវិទ្យា"],
@@ -90,7 +90,6 @@ const Lesson = () => {
 
   return (
     <>
-      <NavbarComponent />
       <div className="ml-10 mt-5 justify-center">
         <div className="flex flex-wrap gap-1.5">
           {categories.map((category) => (
