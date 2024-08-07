@@ -16,7 +16,7 @@ const FooterCard = () => {
             <div>
             <Footer.Brand
                 src="../src/assets/STEM_LOGO_TUTOR.png"
-                className="w-16 h-16 sm:w-20 sm:h-20 md:w-13 md:h-13 lg:w-15 lg:h-15 xl:w-15 xl:h-20 rounded-full object-cover mt-4"
+                className="w-16 h-16 sm:w-7 sm:h-7 md:w-9 md:h-9 lg:w-10 lg:h-10 xl:w-16 xl:h-16 rounded-full object-cover m-4"
                 alt="Stem Logo"
               />
               <p className="text-base font-suwannaphum text-gray-500/90">

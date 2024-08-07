@@ -2,30 +2,35 @@ import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import Dashboard from "../../components/dashboard/Dashboard";
 import { Link, useSearchParams } from "react-router-dom";
+import Swal from "sweetalert2"; // Import SweetAlert2
 
 const Article = () => {
   const [search, setSearch] = useState("");
   const [filteredData, setFilteredData] = useState([]);
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [totalRows, setTotalRows] = useState(0);
   const [param, setParam] = useSearchParams();
-  const [articleToDelete, setArticleToDelete] = useState(null);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [checkAllPages, setCheckAllPages] = useState(false);
 
   const columns = [
     {
       name: "ID",
       selector: (row) => row.id,
       sortable: true,
-      cell: (row) => <span className="text-base sm:text-sm md:text-lg font-suwannaphum">{row.id}</span>,
+      cell: (row) => (
+        <span className="text-base sm:text-sm md:text-lg font-suwannaphum">
+          {row.id}
+        </span>
+      ),
     },
     {
       name: "Username",
       selector: (row) => row.author,
       sortable: true,
       cell: (row) => (
-        <span className="text-base sm:text-sm md:text-lg font-suwannaphum">{row.author}</span>
+        <span className="text-lg font-suwannaphum">{row.author}</span>
       ),
     },
     {
@@ -33,7 +38,7 @@ const Article = () => {
       selector: (row) => row.title,
       sortable: true,
       cell: (row) => (
-        <span className="text-base sm:text-sm md:text-lg line-clamp-2 font-suwannaphum">
+        <span className="text-lg line-clamp-2 font-suwannaphum">
           {row.title}
         </span>
       ),
@@ -43,7 +48,7 @@ const Article = () => {
       selector: (row) => row.content,
       sortable: true,
       cell: (row) => (
-        <span className="text-base sm:text-sm md:text-lg line-clamp-2 font-suwannaphum">
+        <span className="text-lg line-clamp-2 font-suwannaphum">
           {row.content}
         </span>
       ),
@@ -65,7 +70,7 @@ const Article = () => {
       selector: (row) => row.created_at,
       sortable: true,
       cell: (row) => (
-        <span className="text-base sm:text-sm md:text-lg font-suwannaphum">
+        <span className="text-lg font-suwannaphum">
           {new Date(row.created_at).toLocaleDateString()}
         </span>
       ),
@@ -76,13 +81,13 @@ const Article = () => {
         <div className="flex flex-col gap-1">
           <Link
             to={`/editArticle/${row.id}`}
-            className="button bg-green-500 text-sm px-3 py-1 rounded-lg text-center md:px-4 md:py-2"
+            className="bg-green-500 text-sm px-3 py-1 rounded-lg text-center md:px-4 md:py-2"
           >
             Edit
           </Link>
           <button
             onClick={() => handleDelete(row.id)}
-            className="button bg-red-600 text-sm px-3 py-1 rounded-lg text-center md:px-4 md:py-2"
+            className="bg-red-600 text-sm px-3 py-1 rounded-lg text-center md:px-4 md:py-2"
           >
             Delete
           </button>
@@ -92,9 +97,25 @@ const Article = () => {
   ];
 
   const handleDelete = async (id) => {
-    if (window.confirm("Are you sure you want to delete this article?")) {
-      const accessToken = localStorage.getItem("access_token");
-      try {
+    try {
+      // Show confirmation dialog
+      const result = await Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+      });
+
+      if (result.isConfirmed) {
+        const accessToken = localStorage.getItem("access_token");
+        if (!accessToken) {
+          throw new Error("No access token found");
+        }
+
         const response = await fetch(
           `http://136.228.158.126:50001/api/articles/${id}/`,
           {
@@ -104,20 +125,27 @@ const Article = () => {
             },
           }
         );
+
         if (!response.ok) {
-          throw new Error("Network response was not ok");
+          throw new Error("Failed to delete article");
         }
-        setData(data.filter((item) => item.id !== id));
-        setFilteredData(filteredData.filter((item) => item.id !== id));
-        alert("Article deleted successfully");
-      } catch (error) {
-        console.error("Error deleting data:", error);
-        alert("Failed to delete the article");
+
+        // Remove the deleted article from the current data set
+        const updatedData = data.filter((item) => item.id !== id);
+        setData(updatedData);
+        setFilteredData(updatedData);
+        setTotalRows(totalRows - 1);
+
+        // Show success message
+        Swal.fire("Deleted!", "Your article has been deleted.", "success");
       }
+    } catch (error) {
+      console.error("Error deleting article:", error);
+      Swal.fire("Error!", "There was an issue deleting the article.", "error");
     }
   };
 
-  const fetchData = async (page = 1) => {
+  const fetchData = async (currentPage = page, fetchAll = false) => {
     try {
       const accessToken = localStorage.getItem("access_token");
       if (!accessToken) {
@@ -125,27 +153,45 @@ const Article = () => {
       }
 
       const response = await fetch(
-        `http://136.228.158.126:50001/api/articles/?page=${page}&limit=${rowsPerPage}`,
+        `http://136.228.158.126:50001/api/articles/?page=${currentPage}`,
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
         }
       );
+
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
 
-
       const result = await response.json();
       const user = localStorage.getItem("user");
       const nameUser = JSON.parse(user);
+
       const data = result.results;
       const userData = data.filter((users) => users.author === nameUser.name);
 
-      setData(userData);
-      setFilteredData(userData);
+      setData((prevData) => {
+        // Merge previous and new data
+        const newData = [...prevData, ...userData];
+        return [...new Set(newData.map((item) => item.id))].map((id) =>
+          newData.find((item) => item.id === id)
+        );
+      });
+      setFilteredData((prevData) => {
+        const newData = [...prevData, ...userData];
+        return [...new Set(newData.map((item) => item.id))].map((id) =>
+          newData.find((item) => item.id === id)
+        );
+      });
+      setTotalRows(result.count);
+      setPage(Number(currentPage));
       setIsLoading(false);
+
+      if (fetchAll && result.next) {
+        fetchData(currentPage + 1, fetchAll);
+      }
     } catch (error) {
       console.error("Error fetching data:", error);
       setIsLoading(false);
@@ -153,8 +199,8 @@ const Article = () => {
   };
 
   useEffect(() => {
-    fetchData(currentPage);
-  }, [currentPage, rowsPerPage]);
+    fetchData();
+  }, [param]);
 
   useEffect(() => {
     if (!search) {
@@ -170,62 +216,80 @@ const Article = () => {
     setFilteredData(results);
   }, [search, data]);
 
-  const handlePageChange = page => {
-    setCurrentPage(page);
-    fetchData(page);
-  };
-
-  const handleRowsPerPageChange = rowsPerPage => {
-    setRowsPerPage(rowsPerPage);
-    fetchData(currentPage);
-  };
-
   const customStyles = {
     headCells: {
       style: {
-        fontSize: "25px",
+        fontSize: "20px",
         fontFamily: "suwannaphum",
       },
     },
+  };
+
+  const paginationComponentOptions = {
+    rowsPerPageText: "Rows per page",
+    rangeSeparatorText: "of",
+    selectAllRowsItem: true,
+    selectAllRowsItemText: "All",
+  };
+
+  const handlePageChange = (page) => {
+    setParam({ page });
+    setPage(page);
+    if (!checkAllPages) {
+      fetchData(page);
+    }
+  };
+
+  const handleCheckAllPages = () => {
+    setCheckAllPages(true);
+    fetchData(1, true);
   };
 
   return (
     <>
       <Dashboard />
       <section className="bg-gray-100 p-2 ml-[50px] w-[calc(100%-50px)] sm:ml-[65px] sm:w-[calc(100%-65px)] md:ml-[225px] md:w-[calc(100%-225px)] lg:ml-[225px] lg:w-[calc(100%-225px)] xl:ml-[225px] xl:w-[calc(100%-225px)]">
-        <div className="container mx-auto">
-          <DataTable
-            columns={columns}
-            data={filteredData}
-            pagination
-            paginationServer
-            paginationTotalRows={data.length}
-            onChangePage={handlePageChange}
-            onChangeRowsPerPage={handleRowsPerPageChange}
-            subHeader
-            subHeaderComponent={
-              <input
-                onChange={(e) => setSearch(e.target.value)}
-                className="rounded-md border-gray-500 px-3 py-2 mt-5 font-suwannaphum ml-2 text-base sm:text-lg w-full sm:w-auto"
-                placeholder="Search ..."
-                type="text"
-              />
-            }
-            progressPending={isLoading}
-            progressComponent={<div>Loading...</div>}
-            fixedHeader
-            fixedHeaderScrollHeight="600px"
-            actions={
-              <Link
-                to="/postArticle"
-                className="bg-blue-500 px-2 py-2 font-suwannaphum font-semibold text-white rounded-md text-sm md:text-base lg:text-lg"
-              >
-                +New
-              </Link>
-            }
-            customStyles={customStyles}
-          />
-        </div>
+        <DataTable
+          columns={columns}
+          data={filteredData}
+          pagination
+          paginationServer
+          paginationTotalRows={totalRows}
+          paginationComponentOptions={paginationComponentOptions}
+          onChangePage={handlePageChange}
+          subHeader
+          subHeaderComponent={
+            <input
+              onChange={(e) => setSearch(e.target.value)}
+              className="rounded-md border-gray-500 px-3 py-2 mt-5 font-suwannaphum text-base sm:text-lg w-full sm:w-auto"
+              placeholder="Search ..."
+              type="text"
+            />
+          }
+          progressPending={isLoading}
+          progressComponent={<div>Loading...</div>}
+          fixedHeader
+          fixedHeaderScrollHeight="600px"
+          actions={
+            <Link
+              to="/postArticle"
+              className="bg-blue-500 px-2 py-2 font-suwannaphum font-semibold text-white rounded-md text-sm md:text-base lg:text-lg"
+            >
+              +New
+            </Link>
+          }
+          customStyles={customStyles}
+        />
+        {filteredData.length === 0 && !isLoading && (
+          <div className="text-center mt-4">
+            <button
+              onClick={handleCheckAllPages}
+              className="bg-blue-500 px-4 py-2 font-suwannaphum font-semibold text-white rounded-md"
+            >
+              Check All Pages
+            </button>
+          </div>
+        )}
       </section>
     </>
   );

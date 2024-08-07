@@ -122,6 +122,7 @@ const Setting = () => {
     fetchProfileData();
   }, []);
 
+
   return (
     <>
       <Dashboard />
@@ -222,6 +223,7 @@ const Setting = () => {
                     placeholder="បញ្ចូលអុីមែល"
                   />
                 </div>
+
                 <div className="text-[20px] font-suwannaphum mb-4">
                   <div className="mb-2 block font-suwannaphum">
                     <Label
@@ -297,7 +299,8 @@ const Setting = () => {
 
                   </div>
 
-                <span className="font-suwannaphum text-center mx-3 text-[20px] text-gray-900 font-medium">
+
+                  <span className="font-suwannaphum text-center mx-3 text-[20px] text-gray-900 font-medium">
                   ព័ឥមានរបស់អ្នកប្រើប្រាស់
                 </span>
                 <div className="w-full p-4">
