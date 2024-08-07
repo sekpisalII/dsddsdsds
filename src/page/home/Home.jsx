@@ -20,6 +20,7 @@ const Home = () => {
   return (
     <div>
       <NavbarComponent />
+
       <Background />
       <section className="mt-[10px] m-3">
         <BookCard />

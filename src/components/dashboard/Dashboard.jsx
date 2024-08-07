@@ -107,8 +107,7 @@ const Dashboard = () => {
                 activeLink === index ? "bg-indigo-100 text-indigo-500" : ""
               }`}
             >
-
-<Link
+              <Link
                 to={link.path}
                 className="flex justify-center md:justify-start items-center space-x-2 sm:space-x-5"
                 onClick={() => handleLinkClick(index)}

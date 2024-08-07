@@ -6,7 +6,6 @@ import FooterCard from "../footer/FooterCard";
 import ReplyCard from "../rpCrad/ReplyCard";
 import axios from "axios";
 import { AUTH_HEADER } from "../../services/constants";
-
 const CreateComment = () => {
   const { id } = useParams();
   const bookId = decodeURIComponent(id);

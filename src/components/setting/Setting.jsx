@@ -125,11 +125,11 @@ const Setting = () => {
   return (
     <>
       <Dashboard />
-      <section className="section main-section w-[80%] ml-[16%] sm:ml-[14%] md:ml-[22%] lg:ml-[20%] xl:ml-[18%] mt-7 px-4">
+      <section className="section main-section w-[80%] ml-[16%] sm:ml-[14%] md:ml-[22%] lg:ml-[20%] xl:ml-[18%] mt-10 px-4">
         <div className="profile-container grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="card">
             <header className="card-header">
-              <p className="card-header-title font-suwannaphum flex items-center">
+              <p className="card-header-title font-suwannaphum flex items-center text-black">
                 <span className="icon mr-2">👤</span>
                 Edit Profile
               </p>
@@ -272,8 +272,8 @@ const Setting = () => {
           </div>
           <div className="card">
             <header className="card-header">
-              <p className="card-header-title flex items-center">
-                <span className="icon mr-2">👥</span>
+              <p className="card-header-title flex items-center text-black font-suwannaphum">
+                <span className="icon mr-2 text-black font-suwannaphum" >👥</span>
                 Profile
               </p>
             </header>
