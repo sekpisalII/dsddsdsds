@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { Avatar, Dropdown, Navbar, Button } from "flowbite-react";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { RiLogoutBoxLine } from "react-icons/ri";
+import Swal from "sweetalert2"; // Import SweetAlert2
 import { AUTH_HEADER } from "../../services/constants";
+
 const NavbarComponent = () => {
   const navigate = useNavigate();
   const [hasAccessToken, setHasAccessToken] = useState(false);
@@ -17,32 +19,53 @@ const NavbarComponent = () => {
     }
   };
 
-  const handleSignOut = () => {
-    try {
-      localStorage.removeItem("access_token");
-      delete AUTH_HEADER.Authorization;
-      alert("You have been successfully signed out.");
-      navigate("/login");
-    } catch (error) {
-      alert("There was an error signing you out. Please try again.");
-      console.error(error);
+  const handleSignOut = async () => {
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "Do you really want to sign out?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, sign out!",
+      cancelButtonText: "No, cancel",
+    });
+
+    if (result.isConfirmed) {
+      try {
+        localStorage.removeItem("access_token");
+        delete AUTH_HEADER.Authorization;
+        await Swal.fire(
+          "Signed Out!",
+          "You have been successfully signed out.",
+          "success"
+        );
+        navigate("/login");
+      } catch (error) {
+        await Swal.fire(
+          "Error!",
+          "There was an error signing you out. Please try again.",
+          "error"
+        );
+        console.error(error);
+      }
     }
   };
+
   return (
     <>
       <nav className="w-full bg-[#16A1DF] sticky top-0 z-50">
-        <Navbar fluid rounded className="bg-[#16A1DF] ">
+        <Navbar fluid rounded className="bg-[#16A1DF]">
           <Navbar.Brand>
             <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-              <Link as={Link} to="/">
+              <Link to="/">
                 <img
                   className="w-[80px] h-[50px] md:w-[100px] md:h-[60px] object-cover"
                   src="../src/assets/STEM_LOGO_TUTOR.png"
-                  alt=""
+                  alt="STEM Logo"
                 />
               </Link>
             </span>
- 
           </Navbar.Brand>
           <div className="flex md:order-2 items-center space-x-4">
             <Link to="/login" className="hidden sm:block">
@@ -145,6 +168,3 @@ const NavbarComponent = () => {
 };
 
 export default NavbarComponent;
-
-
-

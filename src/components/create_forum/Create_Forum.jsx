@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { saveBook } from "../../services/fetchBooks";
 import { useNavigate } from "react-router-dom";
 import { API_BASE_URI } from "../../services/constants";
+import Swal from "sweetalert2"; // Import SweetAlert2
+
 const Create_Forum = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
@@ -34,10 +36,24 @@ const Create_Forum = () => {
         image: json.url,
       });
 
-      navigate("/forum");
+      // Show success message
+      Swal.fire({
+        title: "Success!",
+        text: "Your post has been submitted successfully.",
+        icon: "success",
+        confirmButtonText: "OK",
+      }).then(() => {
+        navigate("/forum");
+      });
     } catch (error) {
       console.error(error);
-      // Handle any errors that occurred during the upload
+      // Show error message
+      Swal.fire({
+        title: "Error!",
+        text: "There was an issue submitting your post.",
+        icon: "error",
+        confirmButtonText: "Try Again",
+      });
     }
   };
 

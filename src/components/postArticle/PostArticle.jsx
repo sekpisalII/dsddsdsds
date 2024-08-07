@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { saveBlog } from "../../services/fetchBooks";
 import { useNavigate } from "react-router-dom";
 import { API_BASE_URI } from "../../services/constants";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const PostArticle = () => {
   const navigate = useNavigate();
@@ -9,6 +11,7 @@ const PostArticle = () => {
   const [content, setContent] = useState("");
   const [image, setImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
+  const MySwal = withReactContent(Swal);
 
   const onFormSubmited = async (e) => {
     e.preventDefault();
@@ -35,10 +38,22 @@ const PostArticle = () => {
         image: json.url,
       });
 
-      navigate("/");
+      MySwal.fire({
+        title: "Success!",
+        text: "Blog posted successfully!",
+        icon: "success",
+        confirmButtonText: "OK",
+      }).then(() => {
+        navigate("/");
+      });
     } catch (error) {
       console.error(error);
-      // Handle any errors that occurred during the upload
+      MySwal.fire({
+        title: "Error!",
+        text: "Failed to post article. Please try again.",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
     }
   };
 

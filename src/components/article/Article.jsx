@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import Dashboard from "../../components/dashboard/Dashboard";
 import { Link, useSearchParams } from "react-router-dom";
+import Swal from "sweetalert2"; // Import SweetAlert2
 
 const Article = () => {
   const [search, setSearch] = useState("");
@@ -79,7 +80,7 @@ const Article = () => {
       cell: (row) => (
         <div className="flex flex-col gap-1">
           <Link
-            to={`/editForum/${row.id}`}
+            to={`/editArticle/${row.id}`}
             className="bg-green-500 text-sm px-3 py-1 rounded-lg text-center md:px-4 md:py-2"
           >
             Edit
@@ -97,32 +98,50 @@ const Article = () => {
 
   const handleDelete = async (id) => {
     try {
-      const accessToken = localStorage.getItem("access_token");
-      if (!accessToken) {
-        throw new Error("No access token found");
-      }
+      // Show confirmation dialog
+      const result = await Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+      });
 
-      const response = await fetch(
-        `http://136.228.158.126:50001/api/articles/${id}/`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
+      if (result.isConfirmed) {
+        const accessToken = localStorage.getItem("access_token");
+        if (!accessToken) {
+          throw new Error("No access token found");
         }
-      );
 
-      if (!response.ok) {
-        throw new Error("Failed to delete article");
+        const response = await fetch(
+          `http://136.228.158.126:50001/api/articles/${id}/`,
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to delete article");
+        }
+
+        // Remove the deleted article from the current data set
+        const updatedData = data.filter((item) => item.id !== id);
+        setData(updatedData);
+        setFilteredData(updatedData);
+        setTotalRows(totalRows - 1);
+
+        // Show success message
+        Swal.fire("Deleted!", "Your article has been deleted.", "success");
       }
-
-      // Remove the deleted article from the current data set
-      const updatedData = data.filter((item) => item.id !== id);
-      setData(updatedData);
-      setFilteredData(updatedData);
-      setTotalRows(totalRows - 1);
     } catch (error) {
       console.error("Error deleting article:", error);
+      Swal.fire("Error!", "There was an issue deleting the article.", "error");
     }
   };
 

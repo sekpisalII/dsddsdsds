@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const EditArticle = () => {
   const { id } = useParams();
@@ -80,6 +81,11 @@ const EditArticle = () => {
         imageUrl = uploadResult.url; // Extract URL from the response
       } catch (error) {
         console.error("Error uploading image:", error);
+        Swal.fire(
+          "Error",
+          "Failed to upload image. Please try again.",
+          "error"
+        );
         return;
       }
     }
@@ -103,7 +109,8 @@ const EditArticle = () => {
       );
 
       if (response.ok) {
-        navigate("/article"); // Redirect to the articles list page
+        Swal.fire("Success", "Article updated successfully.", "success");
+        navigate("/blog"); // Redirect to the articles list page
       } else {
         const errorText = await response.text(); // Get response text
         console.error("Error response:", errorText);
@@ -111,6 +118,11 @@ const EditArticle = () => {
       }
     } catch (error) {
       console.error("Error updating article:", error);
+      Swal.fire(
+        "Error",
+        "Failed to update article. Please try again.",
+        "error"
+      );
     }
   };
 
@@ -158,6 +170,7 @@ const EditArticle = () => {
             />
           </div>
         )}
+
         <button
           type="submit"
           className="px-4 py-2 bg-blue-600 text-white rounded"
