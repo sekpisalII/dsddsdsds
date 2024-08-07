@@ -28,139 +28,49 @@ import PostArticlePage from "./page/postArticlePage/PostArticlePage";
 import GetForumPage from "./page/getForumPage/GetForumPage";
 import EditArticlePage from "./page/editArticlePage/EditArticlePage";
 import EditForumPage from "./page/editForumPage/EditForumPage";
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
     errorElement: <Error />,
     children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
-      
-      {
-        path: "/book",
-        element: <Book />,
-      },
-      {
-        path: "/lesson",
-        element: <Lesson />,
-      },
-      {
-        path: "/forum",
-        element: <Forum />, 
-      },
-      {
-        path: "/blog",
-        element: <Blog />,
-      },
-      {
-        path: "/about-us",
-        element: <AboutUs />,
-      },
-      {
-        path: "/create",
-        element: <Create />,
-      },
-      {
-        path: "/createComment/:id",
-        element: <CreateCommentPage />,
-      },
+      { path: "/", element: <Home /> },
+      { path: "/book", element: <Book /> },
+      { path: "/lesson", element: <Lesson /> },
+      { path: "/forum", element: <Forum /> },
+      { path: "/blog", element: <Blog /> },
+      { path: "/about-us", element: <AboutUs /> },
+      { path: "/create", element: <Create /> },
+      { path: "/createComment/:id", element: <CreateCommentPage /> },
+      { path: "/home", element: <Home /> },
+      { path: "/book", element: <Book /> },
+      { path: "/lesson", element: <Lesson /> },
+      { path: "/forum", element: <ForumContent /> },
+      { path: "/blog", element: <Blog /> },
     ],
   },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/register",
-    element: <Register />,
-  },
-  {
-    path: "/lessonDetail",
-    element: <LessonDetailPage />,
-  },
-  {
-    path: "/bookDetail",
-    element: <BookDetailPage />,
-  },
-  {
-    path: "/create_forum",
-    element: <Create_forum_detail />,
-  },
-  {
-    path: "/blogAllCard",
-    element: <Blog />,
-  },
-  {
-    path: "/bookAllCard",
-    element: <Book />,
-  },
-  {
-    path: "/lessonAllCard",
-    element: <Lesson />,
-  },
-  {
-    path: "/forumContent",
-    element: <ForumContent />,
-  },
-  {
-    path: "/blogDetail",
-    element: <BlogDetailPage />,
-  },
-  {
-    path: "/bookDetail/:id",
-    element: <BookDetailPage />,
-  },
-  {
-    path: "/lessonDetail/:id",
-    element: <LessonDetailPage />,
-  },
-  {
-    path: "/blogDetail/:id",
-    element: <BlogDetailPage />,
-  },
-  {
-    path: "/editArticle/:id",
-    element: <EditArticlePage />,
-  },
-  {
-    path: "/editForum/:id",
-    element: <EditForumPage />,
-  },
-  {
-    path: "/otp",
-    element: <PageVerify />,
-  },
-  {
-    path: "/dashboard",
-    element: <DashboardPage />,
-  },
-  {
-    path: "/dashboardDetail",
-    element: <DashboardPageDetail />,
-  },
-  {
-    path: "/article",
-    element: <ArticlePage />,
-  },
-  {
-    path: "/getForum",
-    element: <GetForumPage />,
-  },
-  {
-    path: "/setting",
-    element: <SettingPage />,
-  },
-  {
-    path: "/postArticle",
-    element: <PostArticlePage />,
-  },
-  {
-    path: "/home",
-    element: <Home />,
-  },
+  { path: "/login", element: <Login /> },
+  { path: "/register", element: <Register /> },
+  { path: "/lessonDetail", element: <LessonDetailPage /> },
+  { path: "/bookDetail", element: <BookDetailPage /> },
+  { path: "/create_forum", element: <Create_forum_detail /> },
+
+  { path: "/bookAllCard", element: <Book /> },
+
+  { path: "/blogDetail", element: <BlogDetailPage /> },
+  { path: "/bookDetail/:id", element: <BookDetailPage /> },
+  { path: "/lessonDetail/:id", element: <LessonDetailPage /> },
+  { path: "/blogDetail/:id", element: <BlogDetailPage /> },
+  { path: "/editArticle/:id", element: <EditArticlePage /> },
+  { path: "/editForum/:id", element: <EditForumPage /> },
+  { path: "/otp", element: <PageVerify /> },
+  { path: "/dashboard", element: <DashboardPage /> },
+  { path: "/dashboardDetail", element: <DashboardPageDetail /> },
+  { path: "/article", element: <ArticlePage /> },
+  { path: "/getForum", element: <GetForumPage /> },
+  { path: "/setting", element: <SettingPage /> },
+  { path: "/postArticle", element: <PostArticlePage /> },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

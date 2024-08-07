@@ -3,14 +3,28 @@ import BlogAllCard from "../../components/blogAllCard/BlogAllCard";
 import FooterCard from "../../components/footer/FooterCard";
 import Spinner from "../../components/appSpinner/Spinner";
 import NavbarComponent from "../../components/navbar/NavbarComponent";
-const categories = ["ទាំងអស់", "បច្ចេកវិទ្យា", "សាលារៀន", "អប់រំ","ផ្សព្វផ្សាយ","កម្មវិធី","ផ្សេងៗទៀត"];
+const categories = [
+  "ទាំងអស់",
+  "បច្ចេកវិទ្យា",
+  "សាលារៀន",
+  "អប់រំ",
+  "ផ្សព្វផ្សាយ",
+  "កម្មវិធី",
+  "ផ្សេងៗទៀត",
+];
 const filterKeywords = {
-  បច្ចេកវិទ្យា: ["បច្ចេកវិទ្យា", "Technology", "programming", "programing", "ឌីជីថល"],
+  បច្ចេកវិទ្យា: [
+    "បច្ចេកវិទ្យា",
+    "Technology",
+    "programming",
+    "programing",
+    "ឌីជីថល",
+  ],
   សាលារៀន: ["សាលារៀន", "School", "ចំណេះដឹង"],
   អប់រំ: ["អប់រំ", "Education", "ការអប់រំ"],
-  ផ្សព្វផ្សាយ: ["ផ្សព្វផ្សាយ","ប្រព័ន្ធផ្សព្វផ្សាយ","ព័ឥមានផ្សព្វផ្សាយ"],
-  កម្មវិធី: ["កម្មវិធី","program","technology"],
-  ផ្សេងៗទៀត: ["ផ្សេងៗទៀត", "Other"]
+  ផ្សព្វផ្សាយ: ["ផ្សព្វផ្សាយ", "ប្រព័ន្ធផ្សព្វផ្សាយ", "ព័ឥមានផ្សព្វផ្សាយ"],
+  កម្មវិធី: ["កម្មវិធី", "program", "technology"],
+  ផ្សេងៗទៀត: ["ផ្សេងៗទៀត", "Other"],
 };
 export const Blog = () => {
   const [data, setData] = useState([]);
@@ -64,22 +78,21 @@ export const Blog = () => {
   };
   return (
     <>
-      <NavbarComponent />
       <div className="ml-10 mt-5 justify-center">
         <div className="flex flex-wrap gap-1.5">
-            {categories.map((category) => (
-              <button
-                key={category}
-                className={`px-4 py-2 rounded-full font-suwannaphum flex items-center justify-center gap-2 mt-5 ${
-                  activeFilter === category
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-200"
-                } sm:px-3 sm:py-1.5 md:px-4 md:py-2 xl:px-6 xl:py-3 xl:text-[15px] `}
-                onClick={() => handleFilterClick(category)}
-              >
-                {category}
-              </button>
-            ))}
+          {categories.map((category) => (
+            <button
+              key={category}
+              className={`px-4 py-2 rounded-full font-suwannaphum flex items-center justify-center gap-2 mt-5 ${
+                activeFilter === category
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-200"
+              } sm:px-3 sm:py-1.5 md:px-4 md:py-2 xl:px-6 xl:py-3 xl:text-[15px] `}
+              onClick={() => handleFilterClick(category)}
+            >
+              {category}
+            </button>
+          ))}
         </div>
       </div>
       {isLoading ? (
