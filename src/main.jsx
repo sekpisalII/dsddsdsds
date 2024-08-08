@@ -28,6 +28,7 @@ import PostArticlePage from "./page/postArticlePage/PostArticlePage";
 import GetForumPage from "./page/getForumPage/GetForumPage";
 import EditArticlePage from "./page/editArticlePage/EditArticlePage";
 import EditForumPage from "./page/editForumPage/EditForumPage";
+import GeminiChat from "./components/gemini/gemini";
 
 const router = createBrowserRouter([
   {
@@ -48,22 +49,22 @@ const router = createBrowserRouter([
       { path: "/lesson", element: <Lesson /> },
       { path: "/forum", element: <ForumContent /> },
       { path: "/blog", element: <Blog /> },
+      { path: "/bookDetail/:id", element: <BookDetailPage /> },
+      { path: "/lessonDetail/:id", element: <LessonDetailPage /> },
+      { path: "/blogDetail/:id", element: <BlogDetailPage /> },
+      { path: "/editArticle/:id", element: <EditArticlePage /> },
+      { path: "/editForum/:id", element: <EditForumPage /> },
     ],
   },
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
-  { path: "/lessonDetail", element: <LessonDetailPage /> },
-  { path: "/bookDetail", element: <BookDetailPage /> },
+
   { path: "/create_forum", element: <Create_forum_detail /> },
 
   { path: "/bookAllCard", element: <Book /> },
 
   { path: "/blogDetail", element: <BlogDetailPage /> },
-  { path: "/bookDetail/:id", element: <BookDetailPage /> },
-  { path: "/lessonDetail/:id", element: <LessonDetailPage /> },
-  { path: "/blogDetail/:id", element: <BlogDetailPage /> },
-  { path: "/editArticle/:id", element: <EditArticlePage /> },
-  { path: "/editForum/:id", element: <EditForumPage /> },
+
   { path: "/otp", element: <PageVerify /> },
   { path: "/dashboard", element: <DashboardPage /> },
   { path: "/dashboardDetail", element: <DashboardPageDetail /> },
