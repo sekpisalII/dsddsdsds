@@ -5,7 +5,6 @@ import NavbarComponent from "../../components/navbar/NavbarComponent";
 const LessonDetailPage = () => {
   return (
     <div>
-      <NavbarComponent />
       <LessonDetail />
       <FooterCard />
     </div>

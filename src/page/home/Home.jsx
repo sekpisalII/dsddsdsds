@@ -13,6 +13,7 @@ import LessonCard from "../../components/lessonCard/LessonCard";
 import BlogCard from "../../components/blogCard/BlogCard";
 import ForumCard from "../../components/forumCard/ForumCard";
 import NavbarComponent from "../../components/navbar/NavbarComponent";
+import GeminiChat from "../../components/gemini/gemini";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -49,6 +50,7 @@ const Home = () => {
       <section className="mt-[10px]">
         <ForumCard />
       </section>
+      <GeminiChat />
       <section className="mt-[10px] ">
         <BlogCard />
       </section>

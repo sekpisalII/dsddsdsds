@@ -6,14 +6,29 @@ import { MdForum } from "react-icons/md";
 import { IoSettingsOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { AUTH_HEADER } from "../../services/constants";
-import axios from "axios";
+import BlogDetail from "../blogDetail/BlogDetail";
 
 const Dashboard = () => {
   const [activeLink, setActiveLink] = useState(0);
   const [profile, setProfile] = useState(null);
+  const [notifications, setNotifications] = useState([]);
+  const [notificationCount, setNotificationCount] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleLinkClick = (index) => {
     setActiveLink(index);
+  };
+
+  const handleNotificationClick = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
+  const addNotification = (notification) => {
+    setNotifications((prevNotifications) => [
+      notification,
+      ...prevNotifications,
+    ]);
+    setNotificationCount((prevCount) => prevCount + 1);
   };
 
   const SIDEBAR_LINKS = [
@@ -37,15 +52,35 @@ const Dashboard = () => {
         );
         const data = await response.json();
         setProfile(data);
-        localStorage.setItem('user', JSON.stringify({
-          name: data.username
-        }));
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            name: data.username,
+          })
+        );
       } catch (error) {
         console.error("Error fetching profile:", error);
       }
     };
 
+    const fetchNotifications = async () => {
+      try {
+        const response = await fetch("http://your-api-url/api/notifications", {
+          headers: {
+            ...AUTH_HEADER,
+            "Content-Type": "application/json",
+          },
+        });
+        const data = await response.json();
+        setNotifications(data);
+        setNotificationCount(data.length);
+      } catch (error) {
+        console.error("Error fetching notifications:", error);
+      }
+    };
+
     fetchProfile();
+    fetchNotifications();
   }, []);
 
   if (!profile) {
@@ -67,11 +102,16 @@ const Dashboard = () => {
         <div className="flex items-center space-x-2 sm:space-x-5">
           <div className="hidden md:flex">{/* Any additional content */}</div>
           <div className="flex items-center space-x-2 sm:space-x-5">
-            <button className="relative text-lg sm:text-2xl text-gray-100">
+            <button
+              className="relative text-lg sm:text-2xl text-gray-100"
+              onClick={handleNotificationClick}
+            >
               <GoBell size={20} sm:size={28} />
-              <span className="absolute top-0 right-0 -mt-1 -mr-1 flex justify-center items-center text-white font-semibold text-[8px] sm:text-[10px] w-4 h-3 sm:w-5 sm:h-4 rounded-full border-2 border-white">
-                9
-              </span>
+              {notificationCount > 0 && (
+                <span className="absolute top-0 right-0 -mt-1 -mr-1 flex justify-center items-center text-white font-semibold text-[8px] sm:text-[10px] w-4 h-3 sm:w-5 sm:h-4 rounded-full bg-red-600 border-2 border-white">
+                  {notificationCount}
+                </span>
+              )}
             </button>
             <img
               className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 sm:border-4 border-gray-100"
@@ -121,6 +161,46 @@ const Dashboard = () => {
           ))}
         </ul>
       </div>
+
+      {/* Notifications Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-4 rounded-lg w-80">
+            <h2 className="text-lg font-semibold mb-2">Notifications</h2>
+            <ul className="space-y-2">
+              {notifications.map((notification) => (
+                <li
+                  key={notification.id}
+                  className="p-2 border-b border-gray-200"
+                >
+                  {notification.type === "follow" && (
+                    <span className="text-blue-600 font-semibold">
+                      {notification.username} started following you.
+                    </span>
+                  )}
+                  {notification.type === "unfollow" && (
+                    <span className="text-red-600 font-semibold">
+                      {notification.username} unfollowed you.
+                    </span>
+                  )}
+                  {notification.type !== "follow" &&
+                    notification.type !== "unfollow" &&
+                    notification.message}
+                </li>
+              ))}
+            </ul>
+            <button
+              onClick={handleNotificationClick}
+              className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* BlogDetail component */}
+      <BlogDetail addNotification={addNotification} />
     </>
   );
 };

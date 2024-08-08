@@ -8,10 +8,10 @@ const categories = [
   "ទាំងអស់",
   "Google",
   "គណិតវិទ្យា",
-  "វិទ្យាសាស្រ្តេពិត",
-  "វិទ្យាសាស្រ្តេសង្គម",
+  "វិទ្យាសាស្រ្តពិត",
+  "វិទ្យាសាស្ត្រសង្គម",
   "ប្រវត្តវិទ្យា",
-  "ជីវះវិទ្យា",
+  "ជីវៈវិទ្យា",
   "រូបវិទ្យា",
   "គីមីវិទ្យា",
   "បច្ចេកវិទ្យា",
@@ -28,7 +28,7 @@ const filterKeywords = {
   វិទ្យាសាស្រ្តពិត: ["វិទ្យាសាស្រ្តពិត", "វិទ្យាសាស្រ្ត", "science"],
   វិទ្យាសាស្រ្តសង្គម: ["វិទ្យាសាស្រ្តសង្គម", "វិទ្យាសាស្រ្ត", "science"],
   ប្រវត្តវិទ្យា: ["ប្រវត្តវិទ្យា", "history", "his", "ប្រវត្តិ"],
-  ជីវះវិទ្យា: ["ជីវះវិទ្យា", "biology", "bio"],
+  ជីវៈវិទ្យា: ["ជីវៈវិទ្យា", "biology", "bio"],
   រូបវិទ្យា: ["រូបវិទ្យា", "physics", "phys"],
   គីមីវិទ្យា: ["គីមីវិទ្យា", "chemistry", "chem"],
   បច្ចេកវិទ្យា: ["បច្ចេកវិទ្យា", "technology", "tech"],
@@ -119,7 +119,20 @@ const Book = () => {
               <BookAllCard key={book.id} book={book} />
             ))
           ) : (
-            <p>No courses found</p>
+            <div className="flex items-center justify-center h-64">
+              <div className="text-center">
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/7486/7486754.png"
+                  width="100"
+                  height="100"
+                  alt="Empty Box"
+                  className="mx-auto mb-4"
+                />
+                <p className="text-gray-500 font-suwannaphum">
+                  មិនមានទាន់ការឆ្លើយតបទេ
+                </p>
+              </div>
+            </div>
           )}
         </section>
       )}
