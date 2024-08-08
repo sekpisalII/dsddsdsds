@@ -46,10 +46,10 @@ const Forum = () => {
       ) : (
         <section
           id="Projects"
-          className="p-10 mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mb-5"
+          className="card-container" // Apply the container class here
         >
           {forums.map((forum, index) => (
-            <div key={index}>
+            <div key={index} className="card-wrapper">
               <CardForum forums={forum} />
             </div>
           ))}

@@ -364,12 +364,9 @@ const CreateComment = () => {
     });
   };
 
-<<<<<<< HEAD
-=======
   if (!forum) {
     return <div>Loading...</div>;
   }
->>>>>>> f3fb7d8b8565e2d48615add7d748ffb2617e5a25
   return (
     <>
       <main className="max-w-screen-xl mx-auto mt-10 px-4 sm:px-0">
@@ -391,11 +388,6 @@ const CreateComment = () => {
             />
           </div>
         </div>
-<<<<<<< HEAD
-        {/*  */}
-=======
-
->>>>>>> f3fb7d8b8565e2d48615add7d748ffb2617e5a25
         <section className="max-w-screen-xl mx-auto mt-10 px-4 sm:px-0 shadow-md rounded-xl font-suwannaphum">
           <div className="w-[80%] mx-auto">
             <div className="flex items-center mb-6">
@@ -414,18 +406,10 @@ const CreateComment = () => {
                 <div className="text-gray-500 ml-5"> {formattedDate}</div>
               </div>
             </div>
-<<<<<<< HEAD
-            <h3 className="text-[20px] leading-relaxed mb-6 font-bold ml-5">
-              {forum.title}
-            </h3>
-            <p className="text-lg leading-relaxed mb-6 ml-5 text-black">
-              {" "}
-=======
             <h3 className="text-[20px] leading-relaxed mb-6 font-bold ml-5 text-gray-500">
               {forum.title}
             </h3>
             <p className="text-lg leading-relaxed mb-6 ml-5  text-gray-500">
->>>>>>> f3fb7d8b8565e2d48615add7d748ffb2617e5a25
               {forum.description}
             </p>
             <div className="flex justify-center items-center hover:scale-95 transition-shadow duration-300">
