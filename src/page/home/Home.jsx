@@ -25,7 +25,6 @@ const Home = () => {
       navigate(path);
     }
   };
-
   const handleSignOut = () => {
     try {
       localStorage.removeItem("access_token");

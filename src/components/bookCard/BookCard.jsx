@@ -40,7 +40,7 @@ const BookCard = () => {
             <div className="bg-transparent">
               <img
                 className="h-[250px] w-full object-cover rounded-t-lg"
-                src="../src/assets/Book_layout.png"
+                src="../src/assets/book_stem1.jpg"
                 alt=""
               />
             </div>
@@ -81,7 +81,7 @@ const BookCard = () => {
             <div className="bg-transparent ">
               <img
                 className="h-[250px]  rounded-t-lg w-full object-cover"
-                src="../src/assets/Book_layout.png"
+                src="../src/assets/book_stem2.jpg"
                 alt=""
               />
             </div>
@@ -123,7 +123,7 @@ const BookCard = () => {
             <div className="bg-transparent rounded-none">
               <img
                 className="h-[250px] w-full object-cover rounded-t-lg"
-                src="../src/assets/Book_layout.png"
+                src="../src/assets/book_stem3.jpg"
                 alt=""
               />
             </div>

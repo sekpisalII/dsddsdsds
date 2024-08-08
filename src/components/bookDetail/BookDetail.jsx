@@ -92,7 +92,7 @@ const BookDetail = () => {
               <li key={index} className="flex items-center space-x-4">
                 <div className="w-[60px] h-[60px]">
                   <img
-                    src="https://tono.edu.vn/wp-content/uploads/2023/08/STEM-mBot.png"
+                    src="../src/assets/BookDetail-removebg-preview.png"
                     alt="Related article image"
                     className="w-full h-full object-cover"
                   />
