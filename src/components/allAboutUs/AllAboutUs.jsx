@@ -442,7 +442,7 @@ const AllAboutUs = () => {
           <div className="w-[300px] text-center py-4 px-6 bg-[#16A1DF] shadow-sm rounded-xl transform transition-all duration-300 hover:scale-105 hover:shadow-sm" data-aos="fade-up" data-aos-duration="1500">
       <div className="flex justify-center items-center">
         <img
-          src="../src/assets/cuteis.jpg"
+          src="../src/assets/Piseth_offical.jpg"
           alt="Mentor"
           height={200}
           className="mb-4 rounded-full border-4 border-yellow-400 w-28 h-28 md:w-32 md:h-32 lg:w-36 lg:h-36"
