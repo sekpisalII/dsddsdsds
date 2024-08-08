@@ -28,6 +28,7 @@ import PostArticlePage from "./page/postArticlePage/PostArticlePage";
 import GetForumPage from "./page/getForumPage/GetForumPage";
 import EditArticlePage from "./page/editArticlePage/EditArticlePage";
 import EditForumPage from "./page/editForumPage/EditForumPage";
+import GeminiChat from "./components/gemini/gemini";
 
 const router = createBrowserRouter([
   {

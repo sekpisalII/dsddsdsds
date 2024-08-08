@@ -133,18 +133,6 @@ const Book = () => {
                 </p>
               </div>
             </div>
-            // <div className="flex items-center justify-center h-64">
-            //   <div className="text-center">
-            //     <img
-            //       src="https://cdn-icons-png.flaticon.com/512/7486/7486754.png"
-            //       width="100"
-            //       height="100"
-            //       alt="No Results"
-            //       className="mx-auto mb-4"
-            //     />
-            //     <p className="text-gray-400 font-suwannaphum">មិនមានសៀវភៅទេ</p>
-            //   </div>
-            // </div>
           )}
         </section>
       )}

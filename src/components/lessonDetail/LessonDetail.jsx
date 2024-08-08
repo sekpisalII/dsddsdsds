@@ -26,7 +26,9 @@ const LessonDetail = () => {
       {" "}
       <section className="w-[80%] h-auto mx-auto mt-8 grid grid-cols-1 lg:grid-cols-[69%_29%] gap-[2%] font-suwannaphum">
         <div className="w-full p-2 bg-[#F5F5F5]">
-          <h3 className="text-[24px] font-semibold text-black">{lesson.lesson_title}</h3>
+          <h3 className="text-[24px] font-semibold text-black">
+            {lesson.lesson_title}
+          </h3>
 
           {/*
            */}
@@ -55,7 +57,7 @@ const LessonDetail = () => {
             )
           )}
 
-          <h3 className="p-8 text-center text-black ">ត្រីកោណប៉ុនគ្នា</h3>
+          {/* <h3 className="p-8 text-center text-black ">ត្រីកោណប៉ុនគ្នា</h3> */}
         </div>
         <div className="w-full bg-[#F5F5F5] p-5 md:p-8">
           {lesson.sections.map((sections) => (
