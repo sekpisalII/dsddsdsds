@@ -37,7 +37,6 @@ const Home = () => {
       console.error(error);
     }
   };
-
   return (
     <div>
       <Background />
@@ -50,6 +49,7 @@ const Home = () => {
       <section className="mt-[10px]">
         <ForumCard />
       </section>
+      {/* gemini chat AI */}
       <GeminiChat />
       <section className="mt-[10px] ">
         <BlogCard />
