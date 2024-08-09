@@ -15,14 +15,13 @@ const ForumCard = () => {
       </section>
       <Link to="/forum">
         <section className="grid grid-cols-1 h-auto sm:grid-cols-2 lg:grid-cols-4 gap-5 w-[96%] mx-auto">
-          <div className="border rounded-lg bg-white text-gray-700 shadow-md">
-            <div className="relative h-full w-full overflow-hidden">
+              <div className="relative border rounded-lg bg-white text-gray-700 shadow-md overflow-hidden">
               <img
-                className="h-full w-full object-cover opacity-100 transition duration-300 ease-in-out transform scale-100"
-                src="../src/assets/stem_book.jpg"
-                alt="Stem Book"
+                className="absolute inset-0 h-full w-full object-cover opacity-100 transition duration-300 ease-in-out transform scale-100"
+                src="../src/assets/stem_forum-technology.webp"
+                alt="STEM Book"
               />
-              <div className="absolute inset-0 font-suwannaphum bg-transparent hover:bg-slate-300 opacity-0 hover:opacity-60 transition-opacity duration-300 ease-in-out flex items-center justify-center">
+              <div className="absolute inset-0 flex items-center justify-center bg-transparent hover:bg-slate-300 opacity-0 hover:opacity-60 transition-opacity duration-300 ease-in-out">
                 <h2 className="text-black text-[25px] font-suwannaphum text-center font-bold">
                   ការសិក្សាផ្សេងៗដែលទាក់ទងទៅនិង STEM
                   <br />
@@ -32,7 +31,7 @@ const ForumCard = () => {
                 </h2>
               </div>
             </div>
-          </div>
+
 
           {/* Card1 */}
           <div className="border rounded-lg bg-white text-gray-700 shadow-md">

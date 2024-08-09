@@ -40,22 +40,21 @@ const BookCard = () => {
             <div className="bg-transparent">
               <img
                 className="h-[250px] w-full object-cover rounded-t-lg"
-                src="../src/assets/book_stem1.jpg"
+                src="../src/assets/stem_book_technology.webp"
                 alt=""
               />
             </div>
             <div className="p-3">
               <h4 className="block font-suwannaphum text-2xl font-medium leading-snug tracking-normal text-blue-gray-900">
-                សន្ទានុក្រមពាក្យផ្ទុយ
+                STEM sister Cambodia
               </h4>
               <span className="block font-suwannaphum mt-2 text-[18px] antialiased font-normal leading-relaxed text-gray-700">
-                សៀវភៅនេះត្រូវបានរៀបចំឡើងដើម្បីជួយសម្រួលដល់ ការសិក្សា
-                របស់និស្សិតកម្ពុជា.......
+                បទសម្ភាសន៍អ្នកនាង អេង ឡេងស៊ា អំពីចំណាប់អារម្មណ៍ និងបទពិសោធន៍ ជ្រើសរើសបំពេញការងារក្នុងវិស័យស្ទែម (STEM) ?
               </span>
             </div>
             <div className="flex items-center justify-between p-4 -mt-5">
               <p className="font-suwannaphum text-[17px] text-black">
-                ចំនួនអ្នកមេីល: 144
+                ចំនួនអ្នកមេីល: 10 នាក់
               </p>
               <div className="flex items-center text-[15px] ">
                 {[...Array(5)].map((_, i) => (
@@ -81,23 +80,21 @@ const BookCard = () => {
             <div className="bg-transparent ">
               <img
                 className="h-[250px]  rounded-t-lg w-full object-cover"
-                src="../src/assets/book_stem2.jpg"
+                src="../src/assets/Stem_book_technology1.webp"
                 alt=""
               />
             </div>
             <div className="p-3">
-
             <h4 className="block font-suwannaphum text-2xl font-medium leading-snug tracking-normal text-blue-gray-900">
-                សន្ទានុក្រមពាក្យផ្ទុយ
+                ការអនុវត្តកម្មវិធីអប់រំបង្កើតហ្គេម
               </h4>
               <span className="block font-suwannaphum mt-2 text-[18px] antialiased font-normal leading-relaxed text-gray-700">
-                សៀវភៅនេះត្រូវបានរៀបចំឡើងដើម្បីជួយសម្រួលដល់ ការសិក្សា
-                របស់និស្សិតកម្ពុជា.......
+                ការអនុវត្តកម្មវិធីអប់រំបង្កើតហ្គេម នៅអនុវិទ្យាល៍័យកែវពណ៌ ខេត្តសៀមរាប Game Changers Coalition ក្រោមប្រធានបទ Technology
               </span>
             </div>
             <div className="flex items-center justify-between p-3 -mt-3">
               <p className="font-suwannaphum text-[17px] text-black ">
-                ចំនួនអ្នកមេីល: 144
+                ចំនួនអ្នកមេីល: 22 នាក់
               </p>
               <div className="flex items-center text-[15px] ">
                 {[...Array(5)].map((_, i) => (
@@ -124,21 +121,20 @@ const BookCard = () => {
               <img
                 className="h-[250px] w-full object-cover rounded-t-lg"
                 src="../src/assets/book_stem3.jpg"
-                alt=""
+                alt="STEM Book"
               />
             </div>
             <div className="p-3">
               <h4 className="block font-suwannaphum text-2xl font-medium leading-snug tracking-normal text-blue-gray-900">
-                សន្ទានុក្រមពាក្យផ្ទុយ
+                Exploring STEM Innovations
               </h4>
-              <span className="block font-suwannaphum mt-2 text-[18px] antialiased font-normal leading-relaxed text-gray-700">
-                សៀវភៅនេះត្រូវបានរៀបចំឡើងដើម្បីជួយសម្រួលដល់ ការសិក្សា
-                របស់និស្សិតកម្ពុជា.......
+              <span className="block font-suwannaphum mt-2 text-[18px] antialiased line-clamp-3 font-normal leading-relaxed text-gray-700">
+                This book is designed to facilitate the study of STEM concepts, providing insights and knowledge
               </span>
             </div>
             <div className="flex items-center justify-between p-3 -mt-3">
               <p className="font-suwannaphum text-[17px] text-black ">
-                ចំនួនអ្នកមេីល: 144
+              ចំនួនអ្នកមេីល: 27 នាក់
               </p>
               <div className="flex items-center text-[15px] ">
                 {[...Array(5)].map((_, i) => (
@@ -159,6 +155,7 @@ const BookCard = () => {
               </div>
             </div>
           </div>
+
         </section>
       </Link>
     </>

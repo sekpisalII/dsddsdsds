@@ -19,22 +19,21 @@ const LessonCard = () => {
             <div className="bg-transparent">
               <img
                 className="h-[250px] w-full object-cover rounded-t-lg"
-                src="../src/assets/stem_lesson.png"
+                src="../src/assets/stem_lesson_technology1.webp"
                 alt=""
               />
             </div>
-            <div className="p-3">
-              <h4 className="block font-suwannaphum text-2xl font-medium leading-snug tracking-normal text-blue-gray-900">
-                សន្ទានុក្រមពាក្យផ្ទុយ
+            <div className="p-3 line-clamp-3">
+              <h4 className="block font-suwannaphum  text-2xl font-medium leading-snug tracking-normal text-blue-gray-900">
+                ការសិក្សា និង​ការប្រើប្រាស់ប្រព័ន្ធគណនេយ្យ​
               </h4>
-              <span className="block font-suwannaphum mt-2 text-[18px] antialiased font-normal leading-relaxed text-gray-700">
-                សៀវភៅនេះត្រូវបានរៀបចំឡើងដើម្បីជួយសម្រួលដល់ ការសិក្សា
-                របស់និស្សិតកម្ពុជា.......
+              <span className="block font-suwannaphum line-clamp-3 mt-2 text-[18px] antialiased font-normal leading-relaxed text-gray-700">
+                ការសិក្សា និង​ការប្រើប្រាស់ប្រព័ន្ធគណនេយ្យ​ គឺ​ជាជំហ៊ានដ៏តឹងតែងមួយរបស់​សិស្សនិស្សិតគណនេយ្យ ព្រោះថាពួកគេ​មិនសូវទម្លាប់នឹង​ការប្រើប្រាស់​កុំព្យូទ័រ​​​ ។
               </span>
             </div>
             <div className="flex items-center justify-between p-4 -mt-5">
               <p className="font-suwannaphum text-[17px] text-black">
-                ចំនួនអ្នកមេីល: 144
+                ចំនួនអ្នកមេីល: 32 នាក់
               </p>
               <div className="flex items-center text-[15px] ">
                 {[...Array(5)].map((_, i) => (
@@ -61,22 +60,22 @@ const LessonCard = () => {
             <div className="bg-transparent">
               <img
                 className="h-[250px] w-full object-cover rounded-t-lg"
-                src="../src/assets/stem_lesson_full_image.jpg"
+                src="../src/assets/stem_lesson_technology2.webp"
                 alt=""
               />
             </div>
             <div className="p-3">
               <h4 className="block font-suwannaphum text-2xl font-medium leading-snug tracking-normal text-blue-gray-900">
-                សន្ទានុក្រមពាក្យផ្ទុយ
+                ប្រព័ន្ធដំណើរការនៃកុំព្យូទ័រ​​
               </h4>
               <span className="block font-suwannaphum mt-2 text-[18px] antialiased font-normal leading-relaxed text-gray-700">
-                សៀវភៅនេះត្រូវបានរៀបចំឡើងដើម្បីជួយសម្រួលដល់ ការសិក្សា
-                របស់និស្សិតកម្ពុជា.......
+                  តើអ្នកដឹងទេថាកុំព្យូទ័រមានការប្រស្រ័យទាក់ទងគ្នា? 
+                  វានិយាយគ្នាទៅតាមភាសាមួយគឺ ១ (មួយ )​ និង០ (សូន្យ) ហើយមនុស្សយើងមិនអាចនិយាយតាមភាសា១និងសូន្យបានទេ។
               </span>
             </div>
             <div className="flex items-center justify-between p-4 -mt-5">
               <p className="font-suwannaphum text-[17px] text-black">
-                ចំនួនអ្នកមេីល: 144
+                ចំនួនអ្នកមេីល: 37​ នាក់
               </p>
               <div className="flex items-center text-[15px] ">
                 {[...Array(5)].map((_, i) => (
@@ -102,22 +101,21 @@ const LessonCard = () => {
             <div className="bg-transparent ">
               <img
                 className="h-[250px]  rounded-t-lg w-full object-cover"
-                src="../src/assets/lesson_card1.jpg"
+                src="../src/assets/stem_lesson_technology3.webp"
                 alt=""
               />
             </div>
             <div className="p-3">
               <h4 className="block font-suwannaphum text-2xl font-medium leading-snug tracking-normal text-blue-gray-900">
-                សន្ទានុក្រមពាក្យផ្ទុយ
+                Learn Internet
               </h4>
               <span className="block font-suwannaphum mt-2 text-[18px] antialiased font-normal leading-relaxed text-gray-700">
-                សៀវភៅនេះត្រូវបានរៀបចំឡើងដើម្បីជួយសម្រួលដល់ ការសិក្សា
-                របស់និស្សិតកម្ពុជា.......
+                អ៊ីនធឺណែតគឺជាប្រព័ន្ធសកលលោកនៃបណ្តាញកុំព្យូទ័រដែលមានទំនាក់ទំនងគ្នាទៅវិញទៅមក។ ទោះយ៉ាងណាក៏ដោយ វាអាចត្រូវបានកំណត់...
               </span>
             </div>
             <div className="flex items-center justify-between p-3 -mt-3">
               <p className="font-suwannaphum text-[17px] text-black ">
-                ចំនួនអ្នកមេីល: 144
+                ចំនួនអ្នកមេីល: 29​​ នាក់
               </p>
               <div className="flex items-center text-[15px] ">
                 {[...Array(5)].map((_, i) => (
@@ -142,8 +140,8 @@ const LessonCard = () => {
           <div className="border rounded-lg bg-white text-gray-700 shadow-md">
             <div className="relative h-full w-full overflow-hidden">
               <img
-                className="h-full w-full object-cover opacity-100 transition duration-300 ease-in-out transform scale-100"
-                src="../src/assets/StemLearning.jpg"
+                className="h-full w-full object-cover rounded-md opacity-100 transition duration-300 ease-in-out transform scale-100"
+                src="../src/assets/stem_lesson_technology.webp"
                 alt="Stem Book"
               />
               <div className="absolute inset-0 font-suwannaphum bg-transparent hover:bg-slate-300 opacity-0 hover:opacity-60 transition-opacity duration-300 ease-in-out flex items-center justify-center">

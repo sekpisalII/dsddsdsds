@@ -79,7 +79,7 @@ function GeminiChat() {
 
 
   return (
-    <Card className="max-w-lg mx-auto shadow-lg rounded-lg border bg-blue-400 font-suwannaphum">
+    <Card className="w-full mx-auto shadow-lg rounded-lg border bg-gray-200 font-suwannaphum">
       {/* Header */}
       <header className="bg-[#16A1DF] font-suwannaphum rounded-lg">
         <div className="flex justify-between items-center p-5">
@@ -194,7 +194,7 @@ function App() {
   };
 
   return (
-    <div className="p-4" style={{ position: 'relative', width: '100vw', height: '100vh' }}>
+    <div className="p-4" style={{ position: 'relative'}}>
       <section
         className="w-20 h-20 cursor-pointer absolute"
         style={{ left: `${imagePosition.x}px`, top: `${imagePosition.y}px` }}
@@ -204,9 +204,9 @@ function App() {
         onClick={() => setShowChat(!showChat)}
       >
         <img
-          src="../src/assets/robot.png"
+          src="../src/assets/robot (1).png"
           alt="Robot"
-          className="w-full h-full"
+          className="w-full h-full ml-10 -mt-5"
         />
       </section>
       <Modal show={showChat} onClose={() => setShowChat(false)} size="lg">
