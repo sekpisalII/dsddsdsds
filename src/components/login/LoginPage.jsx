@@ -248,11 +248,6 @@ const LoginPage = () => {
                   >
                     Login with Google
                   </button>
-                  <Profile
-                    profileDetails={profile}
-                    login={login}
-                    logout={logOut}
-                  />
                 </form>
               </div>
               <div>
