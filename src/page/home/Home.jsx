@@ -38,7 +38,7 @@ const Home = () => {
     }
   };
   return (
-    <div>
+    <div className="w-full h-auto mx-auto bg-gray-50">
       <Background />
       <section className="mt-[10px] m-3">
         <BookCard />
@@ -50,7 +50,7 @@ const Home = () => {
         <ForumCard />
       </section>
       {/* gemini chat AI */}
-      <GeminiChat />
+      <GeminiChat className=" absolute left-0 top-3 " />
       <section className="mt-[10px] ">
         <BlogCard />
       </section>

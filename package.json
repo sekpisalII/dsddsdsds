@@ -25,7 +25,11 @@
     "axios": "^1.7.2",
     "chart": "^0.1.2",
     "cors": "^2.8.5",
+<<<<<<< HEAD
     "firebase": "^10.12.5",
+=======
+    "flowbite": "^2.5.1",
+>>>>>>> 34244d9c391b66c0a41ae52c9a5b96aeba9632cc
     "flowbite-react": "^0.10.1",
     "formik": "^2.4.6",
     "gsap": "^3.12.5",
