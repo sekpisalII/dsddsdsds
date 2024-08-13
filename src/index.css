@@ -37,6 +37,7 @@
     stroke-dashoffset: calc(377 * (1 - 70 / 100));
   }
 
+
 /* article */
 table {
   @apply w-full;
@@ -229,3 +230,9 @@ button{
   margin-top: 5px;
 }
 
+
+element.style {
+  position: relative;
+  width: 100vw;
+   height:10px !important;
+}
