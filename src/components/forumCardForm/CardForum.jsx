@@ -22,7 +22,7 @@ export default function CardForum({ forums }) {
   const handleToggle = () => setIsExpanded(!isExpanded);
 
   return (
-    <div className="card bg-white shadow rounded-lg hover:shadow-md transition-shadow duration-300">
+    <div className="card bg-white shadow rounded-lg hover:shadow-md transition-shadow duration-300 xl:w-[95%]">
       <Link to={`/createComment/${forums.id}`} className="block">
         <div className="flex items-center mb-3">
           <img

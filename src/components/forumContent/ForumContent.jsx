@@ -105,11 +105,12 @@ const ForumContent = () => {
               </li>
             </ul>
           </div>
-        </aside> 
+        </aside>
 
     </main>
-  </div>
+   </div>
   );
+
 };
 
 export default ForumContent;
