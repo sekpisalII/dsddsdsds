@@ -3,7 +3,6 @@ import { FaFacebook, FaGithub, FaTelegram } from "react-icons/fa";
 import { Avatar } from "flowbite-react";
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // You can also use <link> for styles
-// ..
 AOS.init();
 const AllAboutUs = () => {
   return (

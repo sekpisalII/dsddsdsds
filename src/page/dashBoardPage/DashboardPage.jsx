@@ -49,37 +49,6 @@ const DashboardPage = () => {
     }
   };
 
-  // const fetchFollowers = async (userId) => {
-  //   try {
-  //     const response = await axios.get(`http://136.228.158.126:50001/api/follow/${userId}/followers/`, {
-  //       headers: {
-  //         Authorization: `Bearer ${accessToken}`,
-  //       },
-  //     });
-  //     console.log('Followers Response:', response.data);
-  //     return response.data.total_followers || 0;
-  //   } catch (error) {
-  //     console.error("Error fetching followers:", error);
-  //     throw error;
-  //   }
-  // };
-
-  // const fetchLikes = async () => {
-  //   try {
-  //     // Replace with actual API endpoint for likes
-  //     const response = await axios.get('http://136.228.158.126:50001/api/likes/', {
-  //       headers: {
-  //         Authorization: `Bearer ${accessToken}`,
-  //       },
-  //     });
-  //     console.log('Likes Response:', response.data);
-  //     return response.data.total_likes || 0;
-  //   } catch (error) {
-  //     console.error("Error fetching likes:", error);
-  //     throw error;
-  //   }
-  // };
-
   useEffect(() => {
     const fetchData = async () => {
       try {
