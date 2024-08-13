@@ -103,11 +103,7 @@ const NavbarComponent = () => {
                 ចូលគណនី
               </Button>
             </Link>
-            <Dropdown
-              arrowIcon={false}
-              inline
-              label={<Avatar alt="User settings" img={profile.image} rounded />}
-            >
+            <Dropdown arrowIcon={false} inline>
               <Dropdown.Header className="font-suwannaphum text-sm">
                 User Actions
               </Dropdown.Header>

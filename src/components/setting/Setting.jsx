@@ -296,16 +296,17 @@ const Setting = () => {
               <div>
                 <div className="card-content h-[250px] flex justify-center items-center">
                   <div className="relative flex justify-center items-center">
-                    <div className="w-40 h-40 bg-blue-500 rounded-full flex justify-center items-center ">
+                  <div className="w-40 h-40 bg-blue-500 rounded-full flex justify-center items-center">
                       <img
                         src={
                           profileData.image ||
                           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL_JlCFnIGX5omgjEjgV9F3sBRq14eTERK9w&s"
                         }
                         alt="Profile"
-                        className="avatar w-25 h-25 rounded-full object-cover border-4 border-[#16A1DF]"
+                        className="w-40 h-40 rounded-full object-cover border-4 border-[#16A1DF]"
                       />
                     </div>
+
                   </div>
                 </div>
                 <span className="font-suwannaphum text-center mx-3 text-[20px] text-gray-900 font-medium">

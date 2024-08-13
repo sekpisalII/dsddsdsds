@@ -3,7 +3,7 @@ import { saveBook } from "../../services/fetchBooks";
 import { useNavigate } from "react-router-dom";
 import { API_BASE_URI } from "../../services/constants";
 import Swal from "sweetalert2"; // Import SweetAlert2
-
+import GeminiChat from "../../components/gemini/gemini";
 const Create_Forum = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
@@ -196,6 +196,7 @@ const Create_Forum = () => {
               </button>
             </div>
           </form>
+          <GeminiChat className=" absolute left-0 top-3 " />
         </div>
       </main>
     </>
