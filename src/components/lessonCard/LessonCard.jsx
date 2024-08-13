@@ -91,7 +91,7 @@ const LessonCard = () => {
 
   return (
     <>
-      <section className="flex justify-between mt-5 w-[96%] mx-auto font-suwannaphum mb-4">
+      <section className="flex justify-between mt-5 w-[95%] mx-auto font-suwannaphum mb-4">
         <h3 className="font-bold text-[#16A1DF] text-3xl">មេរៀន</h3>
         <Link to="/lesson">
           <span className="flex items-center text-black text-[20px]">
@@ -102,14 +102,14 @@ const LessonCard = () => {
       </section>
 
       {/* slide bar */}
-      <section className="relative w-[96%] mx-auto overflow-hidden rounded-lg mb-5 gap-5">
+      <section className="relative w-[95%] mx-auto overflow-hidden rounded-lg mb-5 gap-4">
         <div
           className="flex transition-transform ease-out duration-500"
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
           {lessons.map((book, index) => (
             <Link
-              to="/bookAllCard"
+              to="/lesson"
               key={index}
               className="flex-shrink-0 w-[96%] sm:w-1/2 lg:w-1/4 px-2"
             >
@@ -177,7 +177,8 @@ const LessonCard = () => {
       </section>
 
       {/* second section */}
-      <section className="grid grid-cols-1 h-auto sm:grid-cols-2 lg:grid-cols-4 gap-4  w-[95%] mx-auto">
+      <Link to="/lesson">
+        <section className="grid grid-cols-1 h-auto sm:grid-cols-2 lg:grid-cols-4 gap-4  w-[95%] mx-auto">
           <div className="border rounded-lg bg-white text-gray-700 shadow-sm ">
             <div className="relative h-full w-full overflow-hidden">
               <img
@@ -319,6 +320,7 @@ const LessonCard = () => {
           </div>
 
         </section>
+      </Link>
     </>
   );
 };

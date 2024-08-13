@@ -208,7 +208,38 @@ const AllAboutUs = () => {
       </ul>
           </div>
 
-
+          <div className="w-[300px] text-center py-4 px-6 bg-[#16A1DF] shadow-sm rounded-xl transform transition-all duration-300 hover:scale-105 hover:shadow-sm" data-aos="fade-up" data-aos-duration="1500">
+      <div className="flex justify-center items-center">
+        <img
+          src="../src/assets/channarith_offical.jpg"
+          alt="Mentor"
+          height={200}
+          className="mb-4 object-cover rounded-full border-4 border-yellow-400 w-28 h-28 md:w-32 md:h-32 lg:w-36 lg:h-36"
+        />
+      </div>
+      <h3 className="text-white text-lg tracking-tight md:text-xl lg:text-2xl font-bold font-suwannaphum">Pon Channarith</h3>
+      <h4 className="text-black text-md font-semibold md:text-lg lg:text-xl mb-2 font-suwannaphum">Frontend</h4>
+      <p className="text-gray-200 -mt-2 text-sm md:text-base lg:text-lg font-suwannaphum">
+      Center of Science and Technology Advanced Development
+      </p>
+      <ul className="flex justify-center space-x-6 mt-2">
+        <li>
+          <a href="https://www.facebook.com/profile.php?id=100053897863470&mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer" className="text-xl text-white hover:text-red-600 ">
+            <FaFacebook />
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/Channarith_Pon" target="_blank" rel="noopener noreferrer" className="text-xl text-white hover:text-red-600">
+            <FaGithub />
+          </a>
+        </li>
+        <li>
+          <a href="https://t.me/Channarith11" target="_blank" rel="noopener noreferrer" className="text-xl text-white hover:text-red-600">
+          <FaTelegram />
+          </a>
+        </li>
+      </ul>
+          </div>
           <div className="w-[300px] text-center py-4 px-6 bg-[#16A1DF] shadow-sm rounded-xl transform transition-all duration-300 hover:scale-105 hover:shadow-sm" data-aos="fade-up" data-aos-duration="1500">
       <div className="flex justify-center items-center">
         <img
@@ -242,38 +273,7 @@ const AllAboutUs = () => {
       </ul>
           </div>
 
-          <div className="w-[300px] text-center py-4 px-6 bg-[#16A1DF] shadow-sm rounded-xl transform transition-all duration-300 hover:scale-105 hover:shadow-sm" data-aos="fade-up" data-aos-duration="1500">
-      <div className="flex justify-center items-center">
-        <img
-          src="../src/assets/channarith_offical.jpg"
-          alt="Mentor"
-          height={200}
-          className="mb-4 object-cover rounded-full border-4 border-yellow-400 w-28 h-28 md:w-32 md:h-32 lg:w-36 lg:h-36"
-        />
-      </div>
-      <h3 className="text-white text-lg tracking-tight md:text-xl lg:text-2xl font-bold font-suwannaphum">Pon Channarith</h3>
-      <h4 className="text-black text-md font-semibold md:text-lg lg:text-xl mb-2 font-suwannaphum">Frontend</h4>
-      <p className="text-gray-200 -mt-2 text-sm md:text-base lg:text-lg font-suwannaphum">
-      Center of Science and Technology Advanced Development
-      </p>
-      <ul className="flex justify-center space-x-6 mt-2">
-        <li>
-          <a href="https://www.facebook.com/profile.php?id=100053897863470&mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer" className="text-xl text-white hover:text-red-600 ">
-            <FaFacebook />
-          </a>
-        </li>
-        <li>
-          <a href="https://github.com/Channarith_Pon" target="_blank" rel="noopener noreferrer" className="text-xl text-white hover:text-red-600">
-            <FaGithub />
-          </a>
-        </li>
-        <li>
-          <a href="https://t.me/Channarith11" target="_blank" rel="noopener noreferrer" className="text-xl text-white hover:text-red-600">
-          <FaTelegram />
-          </a>
-        </li>
-      </ul>
-          </div>
+      
 
           <div className="w-[300px] text-center py-4 px-6 bg-[#16A1DF] shadow-sm rounded-xl transform transition-all duration-300 hover:scale-105 hover:shadow-sm" data-aos="fade-up" data-aos-duration="1500">
       <div className="flex justify-center items-center">

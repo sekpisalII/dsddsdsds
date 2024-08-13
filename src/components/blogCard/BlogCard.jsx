@@ -90,7 +90,7 @@ const BlogCard = () => {
   }, []);
   return (
     <>
-      <section className="flex justify-between mt-5 w-[96%] mx-auto font-suwannaphum mb-7">
+      <section className="flex justify-between mt-5 w-[95%] mx-auto font-suwannaphum mb-7">
         <h3 className="font-bold text-[#16A1DF] text-3xl">ប្លុក</h3>
         <Link to="/blog">
           {" "}
@@ -101,7 +101,7 @@ const BlogCard = () => {
         </Link>
       </section>
       <Link to="/blog">
-        <section className="grid grid-cols-1 h-auto sm:grid-cols-2 lg:grid-cols-4 gap-4 w-[94%] mx-auto mb-5">
+        <section className="grid grid-cols-1 h-auto sm:grid-cols-2 lg:grid-cols-4 gap-4 w-[95%] mx-auto mb-5">
           <div className="border rounded-lg bg-white text-gray-700 shadow-md">
             <div className="bg-transparent">
               <img
@@ -247,14 +247,14 @@ const BlogCard = () => {
        
       </Link>
       {/* slide bar */}
-      <section className="relative w-[96%] mx-auto overflow-hidden rounded-lg mb-5">
+      <section className="relative w-[95%] mx-auto overflow-hidden rounded-lg mb-5 gap-4">
         <div
           className="flex transition-transform ease-out duration-500"
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
           {blogs.map((book, index) => (
             <Link
-              to="/bookAllCard"
+              to="/blog"
               key={index}
               className="flex-shrink-0 w-[96%] sm:w-1/2 lg:w-1/4 px-2"
             >
