@@ -17,7 +17,7 @@
   align-items: center;
   color: white;
   text-align: center;
-  animation: backgroundAnimation 35s infinite alternate;
+  animation: backgroundAnimation 20s infinite alternate;
 }
 
 .background::before {
@@ -27,7 +27,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(22, 161, 223, 0.4);
+  background: rgba(25, 26, 26, 0.4);
   z-index: 0;
 }
 

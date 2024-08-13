@@ -44,3 +44,10 @@ html.dark {
   width: 100vw !important;
   height: 100vh !important;
 }
+.max-w-lg {
+  max-width: 40rem !important;
+}
+.items-start {
+  align-items: flex-start !important;
+  margin-top: -10px;
+}

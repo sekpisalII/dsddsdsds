@@ -38,7 +38,7 @@ const Home = () => {
     }
   };
   return (
-    <div className="w-full h-auto mx-auto">
+    <div className="w-full h-auto mx-auto bg-gray-50">
       <Background />
       <section className="mt-[10px] m-3">
         <BookCard />
