@@ -3,7 +3,7 @@ import { saveBook } from "../../services/fetchBooks";
 import { useNavigate } from "react-router-dom";
 import { API_BASE_URI } from "../../services/constants";
 import Swal from "sweetalert2"; // Import SweetAlert2
-
+import TextEditor from "../texteditor/TextEditor";
 const Create_Forum = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
@@ -94,6 +94,7 @@ const Create_Forum = () => {
             </div>
           </div>
         </div>
+        
         <div className="bg-white shadow rounded-lg p-6 font-suwannaphum">
           <h2 className="text-2xl font-semibold text-gray-900 mb-2">
             សួរសំណណួររបស់អ្នកនៅទីនេះ
@@ -105,40 +106,28 @@ const Create_Forum = () => {
             >
               ចំណងជើង**
             </label>
-            <div className="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
-              <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
-                <textarea
-                  id="title"
-                  name="title"
-                  value={title}
-                  rows="4"
-                  className="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
-                  placeholder="សរសេរ ចំណងជើង**"
-                  required
-                  onChange={(e) => setTitle(e.target.value)}
-                ></textarea>
-              </div>
-            </div>
+            <TextEditor 
+              id="title" 
+              value={title} 
+              onChange={(content) => setTitle(content)} 
+              placeholder="សរសេរ ចំណងជើង**" 
+              required 
+            />
+            
             <label
               htmlFor="description"
-              className="block text-md leading-6 text-gray-900 font-bold font-suwannaphum"
+              className="block text-md  leading-6 text-gray-900 font-bold font-suwannaphum"
             >
               ចម្ងល់របស់អ្នក**
             </label>
-            <div className="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
-              <div className="px-4 py-2 bg-white font-suwannaphum rounded-t-lg dark:bg-gray-800">
-                <textarea
-                  id="description"
-                  rows="4"
-                  className="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
-                  placeholder="សរសេរ ចម្ងល់របស់អ្នក**"
-                  onChange={(e) => setDescription(e.target.value)}
-                  name="description"
-                  value={description}
-                  required
-                ></textarea>
-              </div>
-            </div>
+            <TextEditor 
+              id="description" 
+              value={description} 
+              onChange={(content) => setDescription(content)} 
+              placeholder="សរសេរ ចម្ងល់របស់អ្នក**" 
+              required 
+            />
+            
             <div className="col-span-full">
               <label
                 htmlFor="file-upload"
