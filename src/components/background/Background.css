@@ -65,7 +65,7 @@ h3 {
 
 p {
   font-size: 1rem; /* Adjust size as needed */
-  color: white;
+  color: white ;
 }
 
 @media (min-width: 640px) {

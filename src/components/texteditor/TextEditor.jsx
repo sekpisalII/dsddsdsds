@@ -70,11 +70,7 @@ const TextEditor = ({ value, onChange, placeholder }) => {
         ref={editorRef} 
         id="editor"
       />
-      <style jsx>{`
-        #editor .ql-editor {
-          color: black !important; /* Enforce black text color */
-        }
-      `}</style>
+      
     </div>
   );
 }

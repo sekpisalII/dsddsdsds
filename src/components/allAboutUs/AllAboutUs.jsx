@@ -22,12 +22,12 @@ const AllAboutUs = () => {
               អំពីយើង
             </h1>
           </div>
-          <p className="text-center text-base px-4 sm:text-lg">
+          <span className="text-center text-base px-4 sm:text-lg">
             STEM ដែលមាន​ទម្រង់ពេញ​ (Science, technology, engineering, and
             mathematics) <br className="mt-2" />
             ជាការធ្វើការដែលពាក់ព័ន្ធនឹង ផ្នែកវិទ្យាសាស្រ្ត, បច្ចេកវិទ្យា,
             វិស្វកម្ម និងគណិតវិទ្យា។
-          </p>
+          </span>
         </div>
       </section>
       {/* section 1 */}

@@ -1,14 +1,10 @@
-// import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { saveBook } from "../../services/fetchBooks";
 import { useNavigate } from "react-router-dom";
 import { API_BASE_URI } from "../../services/constants";
 import Swal from "sweetalert2"; // Import SweetAlert2
 import DOMPurify from "dompurify";
 import TextEditor from "../texteditor/TextEditor";
-const stripHtmlTags = (html) => {
-  const doc = new DOMParser().parseFromString(html, "text/html");
-  return doc.body.textContent || "";
-};
 
 const Create_Forum = () => {
   const navigate = useNavigate();
@@ -17,8 +13,6 @@ const Create_Forum = () => {
   const [image, setImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
   const [content, setContent] = useState(""); // This holds the rich text content
-  const strippedTitle = stripHtmlTags(title).trim();
-  const strippedDescription = stripHtmlTags(description).trim();
 
   const onFormSubmited = async (e) => {
     e.preventDefault();
@@ -80,7 +74,6 @@ const Create_Forum = () => {
     setImage(file);
     setPreviewImage(URL.createObjectURL(file));
   };
-
   return (
     <>
       <main className="max-w-7xl mx-auto p-4 space-y-4">
@@ -104,23 +97,21 @@ const Create_Forum = () => {
             </div>
           </div>
         </div>
-        {/* TextEditor for Title */}
         <div className="bg-white shadow rounded-lg p-6 font-suwannaphum">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-            សួរសំណល់របស់អ្នកនៅទីนี่
+          <h2 className="text-2xl font-semibold text-gray-800 mb-2 font-suwannaphum">
+            សួរសំណល់របស់អ្នកនៅទីនេះ
           </h2>
           <form onSubmit={onFormSubmited}>
             <label
               htmlFor="title"
-              className="block text-md leading-6 text-gray-900 font-bold font-suwannaphum"
+              className="block text-md leading-6 text-gray-900 font-bold font-suwannaphum" 
             >
               ចំណងជើង**
             </label>
             <TextEditor
               value={title}
               onChange={(content) => setTitle(content)}
-              className="text-black"
-              placeholder="សរសេរ ចំណងជើង**"
+              className="text-black font-suwannaphum text-[20px]"
             />
             <label
               htmlFor="description"
@@ -128,12 +119,10 @@ const Create_Forum = () => {
             >
               ចម្ងល់របស់អ្នក**
             </label>
-            {/* TextEditor for Description */}
             <TextEditor
               value={description}
               onChange={(content) => setDescription(content)}
               className="text-black"
-              placeholder="សរសេរ ចម្ងល់របស់អ្នក**"
             />
             <div className="col-span-full mt-4">
               <label
@@ -174,6 +163,7 @@ const Create_Forum = () => {
                           id="file-upload"
                           name="file-upload"
                           type="file"
+
                           className="sr-only"
                           onChange={onForumImage}
                         />
@@ -197,11 +187,4 @@ const Create_Forum = () => {
     </>
   );
 };
-
 export default Create_Forum;
-
-
-
-
-
-

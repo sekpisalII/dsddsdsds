@@ -236,3 +236,11 @@ element.style {
   width: 100vw;
    height:10px !important;
 }
+/* TextEditor */
+p{
+  font-size: 1rem;
+  color: rgb(26, 25, 25) !important;
+}
+#editor .ql-editor {
+  color: black !important; 
+}
