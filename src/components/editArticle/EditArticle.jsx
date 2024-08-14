@@ -1,12 +1,15 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Card, Dropdown, TextInput, Button, Spinner } from 'flowbite-react';
+import { useState, useEffect, useRef } from "react";
+import { Card, Dropdown, TextInput, Button, Spinner } from "flowbite-react";
 
 function GeminiChat() {
   const [messages, setMessages] = useState([
-    { sender: 'bot', text: 'Hi there! I am Norby, your personal web page assistant.' },
-    { sender: 'bot', text: 'How can I help you?' },
+    {
+      sender: "bot",
+      text: "Hi there! I am Norby, your personal web page assistant.",
+    },
+    { sender: "bot", text: "How can I help you?" },
   ]);
-  const [prompt, setPrompt] = useState('');
+  const [prompt, setPrompt] = useState("");
   const [loading, setLoading] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const typingRef = useRef(null);
@@ -19,7 +22,7 @@ function GeminiChat() {
       setMessages((prevMessages) => {
         const newMessages = [...prevMessages];
         const lastMessage = newMessages[newMessages.length - 1];
-        if (lastMessage.sender === 'bot') {
+        if (lastMessage.sender === "bot") {
           lastMessage.text = text.slice(0, index + 20);
         }
         return newMessages;
@@ -33,26 +36,28 @@ function GeminiChat() {
   };
 
   const scrollToBottom = () => {
-    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   const handleSend = async (event) => {
     event.preventDefault();
 
-    if (prompt.trim() !== '') {
-      setMessages([...messages, { sender: 'user', text: prompt }]);
+    if (prompt.trim() !== "") {
+      setMessages([...messages, { sender: "user", text: prompt }]);
       setLoading(true);
 
       try {
-        const gemini = new GoogleGenerativeAI('AIzaSyD_h8SRy54jyYXns4btKTdFAiHfuMcxb88');
-        const model = gemini.getGenerativeModel({ model: 'gemini-1.5-flash' });
+        const gemini = new GoogleGenerativeAI(
+          "AIzaSyD_h8SRy54jyYXns4btKTdFAiHfuMcxb88"
+        );
+        const model = gemini.getGenerativeModel({ model: "gemini-1.5-flash" });
         const result = await model.generateContent(prompt);
         const response = await result.response;
         const text = await response.text();
 
         setMessages((prevMessages) => [
           ...prevMessages,
-          { sender: 'bot', text: '' },
+          { sender: "bot", text: "" },
         ]);
 
         typeMessage(text);
@@ -60,7 +65,7 @@ function GeminiChat() {
         console.error(error);
       } finally {
         setLoading(false);
-        setPrompt('');
+        setPrompt("");
         scrollToBottom();
       }
     }
@@ -92,10 +97,17 @@ function GeminiChat() {
       {/* Messages */}
       <div className="overflow-auto h-96 p-2">
         {messages.map((message, index) => (
-          <div key={index} className={`flex ${message.sender === 'bot' ? 'justify-start' : 'justify-end'} mb-2`}>
+          <div
+            key={index}
+            className={`flex ${
+              message.sender === "bot" ? "justify-start" : "justify-end"
+            } mb-2`}
+          >
             <div
               className={`p-3 rounded-lg text-sm max-w-xs ${
-                message.sender === 'bot' ? 'bg-gray-100 text-gray-800' : 'bg-red-500 text-white'
+                message.sender === "bot"
+                  ? "bg-gray-100 text-gray-800"
+                  : "bg-red-500 text-white"
               }`}
             >
               {message.text}
@@ -122,8 +134,13 @@ function GeminiChat() {
           disabled={loading}
           className="flex-1"
         />
-        <Button type="submit" className="w-10 h-10 p-0" color="red" disabled={loading}>
-          {loading ? <Spinner size="sm" /> : 'Send'}
+        <Button
+          type="submit"
+          className="w-10 h-10 p-0"
+          color="red"
+          disabled={loading}
+        >
+          {loading ? <Spinner size="sm" /> : "Send"}
         </Button>
       </form>
     </Card>
@@ -134,7 +151,7 @@ function App() {
   const [showChat, setShowChat] = useState(false);
 
   const handleClick = () => {
-    window.alert('This is your alert message!');
+    window.alert("This is your alert message!");
   };
 
   return (

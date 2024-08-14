@@ -31,7 +31,7 @@ export default function CardForum({ forums }) {
               "https://cdna.artstation.com/p/assets/images/images/034/807/864/large/gil-lagziel-oggy-artstation1.jpg?1613299994"
             }
             alt="Avatar"
-            className="h-10 w-10 rounded-full object-cover"  // Slightly smaller avatar
+            className="h-10 w-10 rounded-full object-cover" // Slightly smaller avatar
           />
           <div className="flex flex-col ml-3">
             <p className="text-gray-600 font-semibold hover:text-indigo-600 font-suwannaphum text-[14px]">
@@ -42,13 +42,11 @@ export default function CardForum({ forums }) {
             </p>
           </div>
         </div>
-        <h2 className="card-title">
-          {forums.title}
-        </h2>
+        <p className="card-title">{forums.title}</p>
         <p
           className={`text-base text-gray-700 font-suwannaphum ${
             isExpanded ? "" : "line-clamp-2"
-          }`}  // Adjusted to clamp at 2 lines
+          }`} // Adjusted to clamp at 2 lines
         >
           {forums.description}
         </p>

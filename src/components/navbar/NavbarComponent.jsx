@@ -10,9 +10,43 @@ const NavbarComponent = () => {
   const navigate = useNavigate();
   const [hasAccessToken, setHasAccessToken] = useState(false);
   const [profile, setProfile] = useState(null);
-  const handleNavigate = (path) => {
+
+  // Check if the user has an access token
+  useEffect(() => {
     const access_token = localStorage.getItem("access_token");
-    if (!access_token) {
+    setHasAccessToken(!!access_token); // Set hasAccessToken based on presence of access token
+
+    if (access_token) {
+      const fetchProfile = async () => {
+        try {
+          const response = await fetch(
+            "http://136.228.158.126:50001/api/profile/",
+            {
+              headers: {
+                ...AUTH_HEADER,
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          );
+          const data = await response.json();
+          setProfile(data);
+          localStorage.setItem(
+            "user",
+            JSON.stringify({
+              name: data.username,
+            })
+          );
+        } catch (error) {
+          console.error("Error fetching profile:", error);
+        }
+      };
+
+      fetchProfile();
+    }
+  }, []);
+
+  const handleNavigate = (path) => {
+    if (!hasAccessToken) {
       navigate("/login");
     } else {
       navigate(path);
@@ -35,6 +69,7 @@ const NavbarComponent = () => {
       try {
         localStorage.removeItem("access_token");
         delete AUTH_HEADER.Authorization;
+        setHasAccessToken(false); // Update state on sign out
         await Swal.fire(
           "Signed Out!",
           "You have been successfully signed out.",
@@ -51,59 +86,39 @@ const NavbarComponent = () => {
       }
     }
   };
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const response = await fetch(
-          "http://136.228.158.126:50001/api/profile/",
-          {
-            headers: {
-              ...AUTH_HEADER,
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
-        const data = await response.json();
-        setProfile(data);
-        localStorage.setItem(
-          "user",
-          JSON.stringify({
-            name: data.username,
-          })
-        );
-      } catch (error) {
-        console.error("Error fetching profile:", error);
-      }
-    };
 
-    fetchProfile();
-  }, []);
-
-  if (!profile) {
+  if (!profile && hasAccessToken) {
     return <div>Loading...</div>;
   }
+
   return (
-    <>
-      <nav className="w-full bg-[#16A1DF] sticky top-0 z-50">
-        <Navbar fluid rounded className="bg-[#16A1DF]">
-          <Navbar.Brand>
-            <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-              <Link to="/">
-                <img
-                  className="w-[80px] h-[50px] md:w-[100px] md:h-[60px] object-cover"
-                  src="../src/assets/STEM_LOGO_TUTOR.png"
-                  alt="STEM Logo"
-                />
-              </Link>
-            </span>
-          </Navbar.Brand>
-          <div className="flex md:order-2 items-center space-x-4">
+    <nav className="w-full bg-[#16A1DF] sticky top-0 z-50">
+      <Navbar fluid rounded className="bg-[#16A1DF]">
+        <Navbar.Brand>
+          <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+            <Link to="/">
+              <img
+                className="w-[80px] h-[50px] md:w-[100px] md:h-[60px] object-cover"
+                src="../src/assets/STEM_LOGO_TUTOR.png"
+                alt="STEM Logo"
+              />
+            </Link>
+          </span>
+        </Navbar.Brand>
+        <div className="flex md:order-2 items-center space-x-4">
+          {!hasAccessToken && (
             <Link to="/login" className="hidden sm:block">
               <Button className="border-1 hover:bg-blue-500 text-white font-suwannaphum">
                 ចូលគណនី
               </Button>
             </Link>
-            <Dropdown arrowIcon={false} inline>
+          )}
+          {hasAccessToken && profile && (
+            <Dropdown
+              arrowIcon={false}
+              inline
+              label={<Avatar alt="User settings" img={profile.image} rounded />}
+            >
               <Dropdown.Header className="font-suwannaphum text-sm">
                 User Actions
               </Dropdown.Header>
@@ -117,73 +132,63 @@ const NavbarComponent = () => {
                 <span>Sign Out</span>
               </Dropdown.Item>
             </Dropdown>
-            <Navbar.Toggle />
-          </div>
-          <Navbar.Collapse>
-            <NavLink
-              to="/book"
-              className={({ isActive }) =>
-                `font-suwannaphum text-xl px-4 md:text-2xl font-medium text-white ${
-                  isActive
-                    ? "bg-cyan-400  md:text-[#FF9900] md:bg-[#16A1DF]"
-                    : ""
-                }`
-              }
-            >
-              សៀវភៅ
-            </NavLink>
-            <NavLink
-              to="/lesson"
-              className={({ isActive }) =>
-                `font-suwannaphum text-xl px-4 md:px-0 md:text-2xl font-medium text-white ${
-                  isActive
-                    ? "bg-cyan-400  md:text-[#FF9900] md:bg-[#16A1DF]"
-                    : ""
-                }`
-              }
-            >
-              មេរៀន
-            </NavLink>
-            <NavLink
-              to="/forum"
-              className={({ isActive }) =>
-                `font-suwannaphum text-xl px-4 md:px-0 md:text-2xl font-medium text-white ${
-                  isActive
-                    ? "bg-cyan-400  md:text-[#FF9900] md:bg-[#16A1DF]"
-                    : ""
-                }`
-              }
-            >
-              វេទិកា
-            </NavLink>
-            <NavLink
-              to="/blog"
-              className={({ isActive }) =>
-                `font-suwannaphum text-xl px-4 md:px-0 md:text-2xl font-medium text-white ${
-                  isActive
-                    ? "bg-cyan-400  md:text-[#FF9900] md:bg-[#16A1DF]"
-                    : ""
-                }`
-              }
-            >
-              ប្លុក
-            </NavLink>
-            <NavLink
-              to="/about-us"
-              className={({ isActive }) =>
-                `font-suwannaphum text-xl px-4 md:px-0 md:text-2xl font-medium text-white ${
-                  isActive
-                    ? "bg-cyan-400  md:text-[#FF9900] md:bg-[#16A1DF]"
-                    : ""
-                }`
-              }
-            >
-              អំពីយើង
-            </NavLink>
-          </Navbar.Collapse>
-        </Navbar>
-      </nav>
-    </>
+          )}
+          <Navbar.Toggle />
+        </div>
+        <Navbar.Collapse>
+          <NavLink
+            to="/book"
+            className={({ isActive }) =>
+              `font-suwannaphum text-xl px-4 md:text-2xl font-medium text-white ${
+                isActive ? "bg-cyan-400  md:text-[#FF9900] md:bg-[#16A1DF]" : ""
+              }`
+            }
+          >
+            សៀវភៅ
+          </NavLink>
+          <NavLink
+            to="/lesson"
+            className={({ isActive }) =>
+              `font-suwannaphum text-xl px-4 md:px-0 md:text-2xl font-medium text-white ${
+                isActive ? "bg-cyan-400  md:text-[#FF9900] md:bg-[#16A1DF]" : ""
+              }`
+            }
+          >
+            មេរៀន
+          </NavLink>
+          <NavLink
+            to="/forum"
+            className={({ isActive }) =>
+              `font-suwannaphum text-xl px-4 md:px-0 md:text-2xl font-medium text-white ${
+                isActive ? "bg-cyan-400  md:text-[#FF9900] md:bg-[#16A1DF]" : ""
+              }`
+            }
+          >
+            វេទិកា
+          </NavLink>
+          <NavLink
+            to="/blog"
+            className={({ isActive }) =>
+              `font-suwannaphum text-xl px-4 md:px-0 md:text-2xl font-medium text-white ${
+                isActive ? "bg-cyan-400  md:text-[#FF9900] md:bg-[#16A1DF]" : ""
+              }`
+            }
+          >
+            ប្លុក
+          </NavLink>
+          <NavLink
+            to="/about-us"
+            className={({ isActive }) =>
+              `font-suwannaphum text-xl px-4 md:px-0 md:text-2xl font-medium text-white ${
+                isActive ? "bg-cyan-400  md:text-[#FF9900] md:bg-[#16A1DF]" : ""
+              }`
+            }
+          >
+            អំពីយើង
+          </NavLink>
+        </Navbar.Collapse>
+      </Navbar>
+    </nav>
   );
 };
 
