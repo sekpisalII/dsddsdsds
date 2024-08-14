@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import Quill from 'quill';
-import "quill/dist/quill.snow.css"; // Ensure you import Quill's CSS
+import "quill/dist/quill.snow.css"; // Import Quill's CSS
 import hljs from 'highlight.js';
 import 'highlight.js/styles/monokai.css'; // Import highlight.js style
 
@@ -27,9 +27,9 @@ const toolbarOptions = [
   ['clean'] // remove formatting button
 ];
 
-const TextEditor = () => {
+const TextEditor = ({ value, onChange, placeholder }) => {
   const editorRef = useRef(null);
-  const quillRef = useRef(null);
+  const quillRef = useRef(null); // Ref for Quill instance
 
   useEffect(() => {
     if (editorRef.current && !quillRef.current) {
@@ -40,7 +40,7 @@ const TextEditor = () => {
           syntax: { hljs },
           toolbar: toolbarOptions
         },
-        placeholder: 'Write your content here...',
+        placeholder: placeholder
       });
 
       // Load content from local storage if available
@@ -49,40 +49,30 @@ const TextEditor = () => {
         quillRef.current.root.innerHTML = savedContent;
       }
 
-      // Save content to local storage on text change
+      // Handle editor change event
       quillRef.current.on('text-change', () => {
         const content = quillRef.current.root.innerHTML;
+        onChange(content); // Pass content to parent component
         localStorage.setItem('editorContent', content);
       });
     }
-  }, []);
+  }, [onChange, placeholder]);
+
+  useEffect(() => {
+    if (quillRef.current) {
+      quillRef.current.root.innerHTML = value; // Load initial content
+    }
+  }, [value]);
+
   return (
     <div className="inline-block w-auto">
-      <div ref={editorRef} id="editor" />
-      <style jsx="true">{`
-        #editor .ql-container {
-          height: calc(100% - 42px);
-          border-radius: 0.5rem;
-        }
-        #editor .ql-toolbar {
-          display: block;
-          border-radius: 0.5rem 0.5rem 0 0;
-        }
-        #editor .ql-editor h1 {
-          color: black;
-        }
+      <div 
+        ref={editorRef} 
+        id="editor"
+      />
+      <style jsx>{`
         #editor .ql-editor {
-          color: black;
-        }
-        #editor .ql-editor::selection {
-          color: black;
-        }
-        #editor pre.ql-syntax {
-          background-color: #f3f3f3;
-          color: black; /* Set code color to black */
-          padding: 10px;
-          border-radius: 5px;
-          overflow: auto;
+          color: black !important; /* Enforce black text color */
         }
       `}</style>
     </div>

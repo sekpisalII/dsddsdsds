@@ -25,6 +25,7 @@
     "axios": "^1.7.2",
     "chart": "^0.1.2",
     "cors": "^2.8.5",
+    "dompurify": "^3.1.6",
     "flowbite": "^2.5.1",
     "flowbite-react": "^0.10.1",
     "formik": "^2.4.6",

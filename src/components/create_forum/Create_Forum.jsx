@@ -1,15 +1,24 @@
-import { useEffect, useState } from "react";
+// import React, { useEffect, useState } from "react";
 import { saveBook } from "../../services/fetchBooks";
 import { useNavigate } from "react-router-dom";
 import { API_BASE_URI } from "../../services/constants";
 import Swal from "sweetalert2"; // Import SweetAlert2
+import DOMPurify from "dompurify";
 import TextEditor from "../texteditor/TextEditor";
+const stripHtmlTags = (html) => {
+  const doc = new DOMParser().parseFromString(html, "text/html");
+  return doc.body.textContent || "";
+};
+
 const Create_Forum = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
+  const [content, setContent] = useState(""); // This holds the rich text content
+  const strippedTitle = stripHtmlTags(title).trim();
+  const strippedDescription = stripHtmlTags(description).trim();
 
   const onFormSubmited = async (e) => {
     e.preventDefault();
@@ -34,6 +43,7 @@ const Create_Forum = () => {
         title,
         description,
         image: json.url,
+        content: DOMPurify.sanitize(content), // Sanitize the rich text content
       });
 
       // Show success message
@@ -79,7 +89,7 @@ const Create_Forum = () => {
             <img
               src="../src/assets/Discussion.gif"
               alt="Cartoon"
-              className="object-cover  h-[500px]"
+              className="object-cover h-[500px]"
             />
             <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
               <div className="text-center">
@@ -94,10 +104,10 @@ const Create_Forum = () => {
             </div>
           </div>
         </div>
-        
+        {/* TextEditor for Title */}
         <div className="bg-white shadow rounded-lg p-6 font-suwannaphum">
           <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-            សួរសំណណួររបស់អ្នកនៅទីនេះ
+            សួរសំណល់របស់អ្នកនៅទីนี่
           </h2>
           <form onSubmit={onFormSubmited}>
             <label
@@ -106,29 +116,26 @@ const Create_Forum = () => {
             >
               ចំណងជើង**
             </label>
-            <TextEditor 
-              id="title" 
-              value={title} 
-              onChange={(content) => setTitle(content)} 
-              placeholder="សរសេរ ចំណងជើង**" 
-              required 
+            <TextEditor
+              value={title}
+              onChange={(content) => setTitle(content)}
+              className="text-black"
+              placeholder="សរសេរ ចំណងជើង**"
             />
-            
             <label
               htmlFor="description"
-              className="block text-md  leading-6 text-gray-900 font-bold font-suwannaphum"
+              className="block text-md leading-6 text-black font-bold font-suwannaphum mt-4"
             >
               ចម្ងល់របស់អ្នក**
             </label>
-            <TextEditor 
-              id="description" 
-              value={description} 
-              onChange={(content) => setDescription(content)} 
-              placeholder="សរសេរ ចម្ងល់របស់អ្នក**" 
-              required 
+            {/* TextEditor for Description */}
+            <TextEditor
+              value={description}
+              onChange={(content) => setDescription(content)}
+              className="text-black"
+              placeholder="សរសេរ ចម្ងល់របស់អ្នក**"
             />
-            
-            <div className="col-span-full">
+            <div className="col-span-full mt-4">
               <label
                 htmlFor="file-upload"
                 className="block text-md font-bold leading-6 text-gray-900 font-suwannaphum"
@@ -160,7 +167,7 @@ const Create_Forum = () => {
                           <img
                             src={previewImage}
                             alt="Preview"
-                            className="mt-2  rounded-lg"
+                            className="mt-2 rounded-lg"
                           />
                         )}
                         <input
@@ -192,3 +199,9 @@ const Create_Forum = () => {
 };
 
 export default Create_Forum;
+
+
+
+
+
+
