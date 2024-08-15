@@ -178,7 +178,7 @@ const BookCard = () => {
         >
           <FaChevronLeft />
         </button>
-        <button
+        <button 
           onClick={nextSlide}
           className="absolute top-1/2 right-2 transform -translate-y-1/2 text-white bg-black p-3 rounded-full hover:bg-gray-700 transition-colors"
         >
