@@ -124,8 +124,7 @@ const Create_Forum = () => {
               onChange={(content) => setDescription(content)}
               className="text-black"
             />
-
-<div className="col-span-full mt-4">
+          <div className="col-span-full mt-4">
               <label
                 htmlFor="file-upload"
                 className="block text-md font-bold leading-6 text-gray-900 font-suwannaphum"
@@ -187,4 +186,4 @@ const Create_Forum = () => {
     </>
   );
 };
-export default Create_Forum;
+export default Create_Forum; 
