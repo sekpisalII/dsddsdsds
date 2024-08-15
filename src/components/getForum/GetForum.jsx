@@ -10,9 +10,8 @@ const GetForum = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [totalRows, setTotalRows] = useState(0);
-  const [param, setParam] = useSearchParams();
   const [checkAllPages, setCheckAllPages] = useState(false);
-
+  const [param] = useSearchParams(); // Used for initial data fetch based on URL params
   const columns = [
     {
       name: "ID",
@@ -37,9 +36,7 @@ const GetForum = () => {
       selector: (row) => row.title,
       sortable: true,
       cell: (row) => (
-        <span className="text-lg line-clamp-2 font-suwannaphum">
-          {row.title}
-        </span>
+        <span className="text-lg line-clamp-2 font-suwannaphum" dangerouslySetInnerHTML={{ __html: row.title || "No title" }}></span>
       ),
     },
     {
@@ -47,9 +44,7 @@ const GetForum = () => {
       selector: (row) => row.description,
       sortable: true,
       cell: (row) => (
-        <span className="text-lg line-clamp-2 font-suwannaphum">
-          {row.description}
-        </span>
+        <span className="text-lg line-clamp-2 font-suwannaphum" dangerouslySetInnerHTML={{ __html: row.description || "No description" }}></span>
       ),
     },
     {
@@ -57,11 +52,7 @@ const GetForum = () => {
       selector: (row) => row.image,
       sortable: true,
       cell: (row) => (
-        <img
-          src={row.image}
-          alt={row.title}
-          className="w-16 h-16 object-cover"
-        />
+        <img src={row.image} alt={row.title} className="w-16 h-16 object-cover" />
       ),
     },
     {
@@ -102,15 +93,12 @@ const GetForum = () => {
         throw new Error("No access token found");
       }
 
-      const response = await fetch(
-        `http://136.228.158.126:50001/api/forums/${id}/`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
+      const response = await fetch(`http://136.228.158.126:50001/api/forums/${id}/`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
 
       if (!response.ok) {
         throw new Error("Failed to delete article");
@@ -133,14 +121,11 @@ const GetForum = () => {
         throw new Error("No access token found");
       }
 
-      const response = await fetch(
-        `http://136.228.158.126:50001/api/forums/?page=${currentPage}`,
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
+      const response = await fetch(`http://136.228.158.126:50001/api/forums/?page=${currentPage}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
 
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -154,7 +139,6 @@ const GetForum = () => {
       const userData = data.filter((users) => users.author === nameUser.name);
 
       setData((prevData) => {
-        // Merge previous and new data
         const newData = [...prevData, ...userData];
         return [...new Set(newData.map((item) => item.id))].map((id) =>
           newData.find((item) => item.id === id)
@@ -214,7 +198,6 @@ const GetForum = () => {
   };
 
   const handlePageChange = (page) => {
-    setParam({ page });
     setPage(page);
     if (!checkAllPages) {
       fetchData(page);
@@ -252,6 +235,7 @@ const GetForum = () => {
           fixedHeader
           fixedHeaderScrollHeight="600px"
           customStyles={customStyles}
+          key={page} // Key to force re-render on page change
         />
         {filteredData.length === 0 && !isLoading && (
           <div className="text-center mt-4">

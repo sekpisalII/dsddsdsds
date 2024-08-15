@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { saveBook } from "../../services/fetchBooks";
 import { useNavigate } from "react-router-dom";
 import { API_BASE_URI } from "../../services/constants";
 import Swal from "sweetalert2"; // Import SweetAlert2
+import DOMPurify from "dompurify";
+import TextEditor from "../texteditor/TextEditor";
 
 const Create_Forum = () => {
   const navigate = useNavigate();
@@ -10,6 +12,7 @@ const Create_Forum = () => {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
+  const [content, setContent] = useState(""); // This holds the rich text content
 
   const onFormSubmited = async (e) => {
     e.preventDefault();
@@ -34,6 +37,7 @@ const Create_Forum = () => {
         title,
         description,
         image: json.url,
+        content: DOMPurify.sanitize(content), // Sanitize the rich text content
       });
 
       // Show success message
@@ -70,7 +74,6 @@ const Create_Forum = () => {
     setImage(file);
     setPreviewImage(URL.createObjectURL(file));
   };
-
   return (
     <>
       <main className="max-w-7xl mx-auto p-4 space-y-4">
@@ -79,67 +82,50 @@ const Create_Forum = () => {
             <img
               src="../src/assets/Discussion.gif"
               alt="Cartoon"
-              className="object-cover  h-[500px]"
+              className="object-cover h-[500px]"
             />
             <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
               <div className="text-center">
                 <h1 className="text-3xl font-suwannaphum font-bold text-white">
                   សំណួរ និង ដំណោះស្រាយ
                 </h1>
-                <p className="text-gray-200 font-suwannaphum mt-2">
+                <span className="text-white font-suwannaphum mt-2 text-[20px]">
                   ចួលរួមជាមួយពួកយើង​
                   អ្នកអាចធ្វើការបង្កើតសំណួរនិងធ្វើការឆ្លើយសំណួរដែលទាក់ទងនិងស្ទែម
-                </p>
+                </span>
               </div>
             </div>
           </div>
         </div>
         <div className="bg-white shadow rounded-lg p-6 font-suwannaphum">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-            សួរសំណណួររបស់អ្នកនៅទីនេះ
+          <h2 className="text-2xl font-semibold text-gray-800 mb-2 font-suwannaphum">
+            សួរសំណល់របស់អ្នកនៅទីនេះ
           </h2>
           <form onSubmit={onFormSubmited}>
             <label
               htmlFor="title"
-              className="block text-md leading-6 text-gray-900 font-bold font-suwannaphum"
+              className="block text-md leading-6 text-gray-900 font-bold font-suwannaphum" 
             >
               ចំណងជើង**
             </label>
-            <div className="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
-              <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
-                <textarea
-                  id="title"
-                  name="title"
-                  value={title}
-                  rows="4"
-                  className="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
-                  placeholder="សរសេរ ចំណងជើង**"
-                  required
-                  onChange={(e) => setTitle(e.target.value)}
-                ></textarea>
-              </div>
-            </div>
+            <TextEditor
+              value={title}
+              onChange={(content) => setTitle(content)}
+              className="text-black font-suwannaphum text-[20px]"
+            />
             <label
               htmlFor="description"
-              className="block text-md leading-6 text-gray-900 font-bold font-suwannaphum"
+              className="block text-md leading-6 text-black font-bold font-suwannaphum mt-4"
             >
               ចម្ងល់របស់អ្នក**
             </label>
-            <div className="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
-              <div className="px-4 py-2 bg-white font-suwannaphum rounded-t-lg dark:bg-gray-800">
-                <textarea
-                  id="description"
-                  rows="4"
-                  className="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
-                  placeholder="សរសេរ ចម្ងល់របស់អ្នក**"
-                  onChange={(e) => setDescription(e.target.value)}
-                  name="description"
-                  value={description}
-                  required
-                ></textarea>
-              </div>
-            </div>
-            <div className="col-span-full">
+            <TextEditor
+              value={description}
+              onChange={(content) => setDescription(content)}
+              className="text-black"
+            />
+
+<div className="col-span-full mt-4">
               <label
                 htmlFor="file-upload"
                 className="block text-md font-bold leading-6 text-gray-900 font-suwannaphum"
@@ -171,7 +157,7 @@ const Create_Forum = () => {
                           <img
                             src={previewImage}
                             alt="Preview"
-                            className="mt-2  rounded-lg"
+                            className="mt-2 rounded-lg"
                           />
                         )}
                         <input
@@ -201,5 +187,4 @@ const Create_Forum = () => {
     </>
   );
 };
-
 export default Create_Forum;

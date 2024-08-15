@@ -6,18 +6,18 @@ const EditForum = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [forumData, setForumData] = useState({
-    author: "",
     title: "",
     description: "",
     image: "",
-    created_at: "",
   });
   const [file, setFile] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     // Fetch the forum data by ID
     const fetchForumData = async () => {
       const accessToken = localStorage.getItem("access_token");
+      setLoading(true);
       try {
         const response = await fetch(
           `http://136.228.158.126:50001/api/forums/${id}/`,
@@ -36,6 +36,9 @@ const EditForum = () => {
         setForumData(data);
       } catch (error) {
         console.error("Error fetching forum data:", error);
+        Swal.fire("Error", "Failed to fetch forum data. Please try again.", "error");
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -56,6 +59,7 @@ const EditForum = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     let imageUrl = forumData.image; // Default to existing image URL
 
@@ -73,7 +77,7 @@ const EditForum = () => {
         );
 
         if (!uploadResponse.ok) {
-          const errorText = await uploadResponse.text(); // Get response text
+          const errorText = await uploadResponse.text();
           console.error("Error response:", errorText);
           throw new Error("Failed to upload image");
         }
@@ -82,11 +86,8 @@ const EditForum = () => {
         imageUrl = uploadResult.url; // Extract URL from the response
       } catch (error) {
         console.error("Error uploading image:", error);
-        Swal.fire(
-          "Error",
-          "Failed to upload image. Please try again.",
-          "error"
-        );
+        Swal.fire("Error", "Failed to upload image. Please try again.", "error");
+        setLoading(false);
         return;
       }
     }
@@ -102,7 +103,8 @@ const EditForum = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            ...forumData,
+            title: forumData.title,
+            description: forumData.description,
             image: imageUrl, // Update with the new or existing image URL
           }),
         }
@@ -112,20 +114,17 @@ const EditForum = () => {
         Swal.fire("Success", "Forum updated successfully.", "success");
         navigate("/getforum"); // Redirect to the forums list page
       } else {
-        const errorText = await response.text(); // Get response text
+        const errorText = await response.text();
         console.error("Error response:", errorText);
         throw new Error("Failed to update forum data");
       }
     } catch (error) {
       console.error("Error updating forum data:", error);
-      Swal.fire(
-        "Error",
-        "Failed to update forum data. Please try again.",
-        "error"
-      );
+      Swal.fire("Error", "Failed to update forum data. Please try again.", "error");
+    } finally {
+      setLoading(false);
     }
   };
-
 
   return (
     <div className="container mx-auto p-4 font-suwannaphum bg-[#15A1DF] mt-10 rounded-lg">
@@ -141,6 +140,7 @@ const EditForum = () => {
             value={forumData.title}
             onChange={handleChange}
             className="w-full px-3 py-2 border rounded"
+            required
           />
         </div>
         <div className="mb-4">
@@ -150,6 +150,7 @@ const EditForum = () => {
             value={forumData.description}
             onChange={handleChange}
             className="w-full px-3 py-2 border rounded"
+            required
           />
         </div>
         <div className="mb-4">
@@ -172,8 +173,9 @@ const EditForum = () => {
         <button
           type="submit"
           className="px-4 py-2 bg-blue-600 text-white rounded"
+          disabled={loading}
         >
-          Submit
+          {loading ? 'Submitting...' : 'Submit'}
         </button>
       </form>
     </div>

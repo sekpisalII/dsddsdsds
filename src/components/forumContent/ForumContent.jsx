@@ -9,7 +9,7 @@ const ForumContent = () => {
     if (!access_token) {
       navigate("/login");
     } else {
-      navigate(path);
+      navigate(path);   
     }
   };
   return (
@@ -28,10 +28,10 @@ const ForumContent = () => {
               <h1 className="text-3xl font-bold text-white font-suwannaphum transition-transform duration-300 hover:scale-105">
                 សំណួរ និង ដំណោះស្រាយ
               </h1>
-              <p className="text-gray-200 mt-2 font-suwannaphum transition-transform duration-300 hover:scale-105">
+              <span className="text-white mt-2 text-[20px] font-suwannaphum transition-transform duration-300 hover:scale-105">
                 ចួលរួមជាមួយពួកយើង​
                 អ្នកអាចធ្វើការបង្កើតសំណួរនិងធ្វើការឆ្លើយសំណួរដែលទាក់ទងនិងស្ទែម
-              </p>
+              </span> <br />
               <button
                 onClick={() => handleNavigate("/create_forum")}
                 className="mt-4 bg-white text-blue-600 px-4 py-2 rounded-lg font-suwannaphum transition-transform duration-300 hover:scale-105"

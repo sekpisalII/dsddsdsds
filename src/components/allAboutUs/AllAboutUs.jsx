@@ -3,7 +3,6 @@ import { FaFacebook, FaGithub, FaTelegram } from "react-icons/fa";
 import { Avatar } from "flowbite-react";
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // You can also use <link> for styles
-// ..
 AOS.init();
 const AllAboutUs = () => {
   return (
@@ -23,12 +22,12 @@ const AllAboutUs = () => {
               អំពីយើង
             </h1>
           </div>
-          <p className="text-center text-base px-4 sm:text-lg">
+          <span className="text-center text-base px-4 sm:text-lg">
             STEM ដែលមាន​ទម្រង់ពេញ​ (Science, technology, engineering, and
             mathematics) <br className="mt-2" />
             ជាការធ្វើការដែលពាក់ព័ន្ធនឹង ផ្នែកវិទ្យាសាស្រ្ត, បច្ចេកវិទ្យា,
             វិស្វកម្ម និងគណិតវិទ្យា។
-          </p>
+          </span>
         </div>
       </section>
       {/* section 1 */}
@@ -111,7 +110,7 @@ const AllAboutUs = () => {
       <p className="text-gray-200 -mt-2 text-sm md:text-base lg:text-lg font-suwannaphum">
       Center of Science and Technology Advanced Development
       </p>
-      <ul className="flex justify-center space-x-6 mt-2">
+      <ul className="flex justify-center  mt-2">
         <li>
           <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" className="text-xl text-white hover:text-red-600 ">
             <FaFacebook />
@@ -145,7 +144,7 @@ const AllAboutUs = () => {
               <p className="text-gray-200 -mt-2 text-sm md:text-base lg:text-lg font-suwannaphum">
               Center of Science and Technology Advanced Development
               </p>
-              <ul className="flex justify-center space-x-6 mt-2">
+              <ul className="flex justify-center mt-2">
                 <li>
                   <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" className="text-xl text-white hover:text-red-600 ">
                     <FaFacebook />
@@ -189,7 +188,7 @@ const AllAboutUs = () => {
       <p className="text-gray-200 -mt-2 text-sm md:text-base lg:text-lg font-suwannaphum">
       Center of Science and Technology Advanced Development
       </p>
-      <ul className="flex justify-center space-x-6 mt-2">
+      <ul className="flex justify-center  mt-2">
         <li>
           <a href="https://www.facebook.com/profile.php?id=100028119094073&mibextid=LQQJ4d" target="_blank" rel="noopener noreferrer" className="text-xl text-white hover:text-red-600 ">
             <FaFacebook />
@@ -222,7 +221,7 @@ const AllAboutUs = () => {
       <p className="text-gray-200 -mt-2 text-sm md:text-base lg:text-lg font-suwannaphum">
       Center of Science and Technology Advanced Development
       </p>
-      <ul className="flex justify-center space-x-6 mt-2">
+      <ul className="flex justify-center  mt-2">
         <li>
           <a href="https://www.facebook.com/profile.php?id=100053897863470&mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer" className="text-xl text-white hover:text-red-600 ">
             <FaFacebook />
@@ -254,7 +253,7 @@ const AllAboutUs = () => {
       <p className="text-gray-200 -mt-2 text-sm md:text-base lg:text-lg font-suwannaphum">
       Center of Science and Technology Advanced Development
       </p>
-      <ul className="flex justify-center space-x-6 mt-2">
+      <ul className="flex justify-center  mt-2">
         <li>
           <a href="https://www.facebook.com/HongSreyneang.2004?mibextid=JRoKGi" target="_blank" rel="noopener noreferrer" className="text-xl text-white hover:text-red-600 ">
             <FaFacebook />
@@ -289,7 +288,7 @@ const AllAboutUs = () => {
       <p className="text-gray-200 -mt-2 text-sm md:text-base lg:text-lg font-suwannaphum">
       Center of Science and Technology Advanced Development
       </p>
-      <ul className="flex justify-center space-x-6 mt-2">
+      <ul className="flex justify-center  mt-2">
         <li>
           <a href="https://www.facebook.com/van.sok.980?mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer" className="text-xl text-white hover:text-red-600 ">
             <FaFacebook />
@@ -322,7 +321,7 @@ const AllAboutUs = () => {
       <p className="text-gray-200 -mt-2 text-sm md:text-base lg:text-lg font-suwannaphum">
       Center of Science and Technology Advanced Development
       </p>
-      <ul className="flex justify-center space-x-6 mt-2">
+      <ul className="flex justify-center  mt-2">
         <li>
           <a href="https://www.facebook.com/ka.nika.7737769?mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer" className="text-xl text-white hover:text-red-600 ">
             <FaFacebook />
@@ -355,7 +354,7 @@ const AllAboutUs = () => {
       <p className="text-gray-200 -mt-2 text-sm md:text-base lg:text-lg font-suwannaphum">
       Center of Science and Technology Advanced Development
       </p>
-      <ul className="flex justify-center space-x-6 mt-2">
+      <ul className="flex justify-center  mt-2">
         <li>
           <a href="https://www.facebook.com/nam.ponleu?mibextid=LQQJ4d" target="_blank" rel="noopener noreferrer" className="text-xl text-white hover:text-red-600 ">
             <FaFacebook />
@@ -388,7 +387,7 @@ const AllAboutUs = () => {
       <p className="text-gray-200 -mt-2 text-sm md:text-base lg:text-lg font-suwannaphum">
       Center of Science and Technology Advanced Development
       </p>
-      <ul className="flex justify-center space-x-6 mt-2">
+      <ul className="flex justify-center  mt-2">
         <li>
           <a href="https://www.facebook.com/mengeam.seng?mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer" className="text-xl text-white hover:text-red-600 ">
             <FaFacebook />
@@ -421,7 +420,7 @@ const AllAboutUs = () => {
       <p className="text-gray-200 -mt-2 text-sm md:text-base lg:text-lg font-suwannaphum">
       Center of Science and Technology Advanced Development
       </p>
-      <ul className="flex justify-center space-x-6 mt-2">
+      <ul className="flex justify-center  mt-2">
         <li>
           <a href="https://www.facebook.com/Boen.thi.monster?mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer" className="text-xl text-white hover:text-red-600 ">
             <FaFacebook />
@@ -453,7 +452,7 @@ const AllAboutUs = () => {
       <p className="text-gray-200 -mt-2 text-sm md:text-base lg:text-lg font-suwannaphum">
       Center of Science and Technology Advanced Development
       </p>
-      <ul className="flex justify-center space-x-6 mt-2">
+      <ul className="flex justify-center  mt-2">
         <li>
           <a href="https://web.facebook.com/?_rdc=1&_rdr" target="_blank" rel="noopener noreferrer" className="text-xl text-white hover:text-red-600 ">
             <FaFacebook />
