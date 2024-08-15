@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import Dashboard from "../../components/dashboard/Dashboard";
 import { Link, useSearchParams } from "react-router-dom";
+import Swal from "sweetalert2"; // Import SweetAlert2
 
 const GetForum = () => {
   const [search, setSearch] = useState("");
@@ -12,6 +13,7 @@ const GetForum = () => {
   const [totalRows, setTotalRows] = useState(0);
   const [checkAllPages, setCheckAllPages] = useState(false);
   const [param] = useSearchParams(); // Used for initial data fetch based on URL params
+
   const columns = [
     {
       name: "ID",
@@ -36,7 +38,10 @@ const GetForum = () => {
       selector: (row) => row.title,
       sortable: true,
       cell: (row) => (
-        <span className="text-lg line-clamp-2 font-suwannaphum" dangerouslySetInnerHTML={{ __html: row.title || "No title" }}></span>
+        <span
+          className="text-lg line-clamp-2 font-suwannaphum"
+          dangerouslySetInnerHTML={{ __html: row.title || "No title" }}
+        ></span>
       ),
     },
     {
@@ -44,7 +49,12 @@ const GetForum = () => {
       selector: (row) => row.description,
       sortable: true,
       cell: (row) => (
-        <span className="text-lg line-clamp-2 font-suwannaphum" dangerouslySetInnerHTML={{ __html: row.description || "No description" }}></span>
+        <span
+          className="text-lg line-clamp-2 font-suwannaphum"
+          dangerouslySetInnerHTML={{
+            __html: row.description || "No description",
+          }}
+        ></span>
       ),
     },
     {
@@ -52,7 +62,11 @@ const GetForum = () => {
       selector: (row) => row.image,
       sortable: true,
       cell: (row) => (
-        <img src={row.image} alt={row.title} className="w-16 h-16 object-cover" />
+        <img
+          src={row.image}
+          alt={row.title}
+          className="w-16 h-16 object-cover"
+        />
       ),
     },
     {
@@ -88,29 +102,54 @@ const GetForum = () => {
 
   const handleDelete = async (id) => {
     try {
-      const accessToken = localStorage.getItem("access_token");
-      if (!accessToken) {
-        throw new Error("No access token found");
-      }
-
-      const response = await fetch(`http://136.228.158.126:50001/api/forums/${id}/`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
+      // Show confirmation dialog
+      const result = await Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to delete article");
-      }
+      if (result.isConfirmed) {
+        const accessToken = localStorage.getItem("access_token");
+        if (!accessToken) {
+          throw new Error("No access token found");
+        }
 
-      // Remove the deleted article from the current data set
-      const updatedData = data.filter((item) => item.id !== id);
-      setData(updatedData);
-      setFilteredData(updatedData);
-      setTotalRows(totalRows - 1);
+        const response = await fetch(
+          `http://136.228.158.126:50001/api/forums/${id}/`,
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to delete article");
+        }
+
+        // Remove the deleted article from the current data set
+        const updatedData = data.filter((item) => item.id !== id);
+        setData(updatedData);
+        setFilteredData(updatedData);
+        setTotalRows(totalRows - 1);
+
+        // Show success message
+        Swal.fire("Deleted!", "Your forum post has been deleted.", "success");
+      }
     } catch (error) {
       console.error("Error deleting article:", error);
+      Swal.fire(
+        "Error!",
+        "There was an issue deleting the forum post.",
+        "error"
+      );
     }
   };
 
@@ -121,11 +160,14 @@ const GetForum = () => {
         throw new Error("No access token found");
       }
 
-      const response = await fetch(`http://136.228.158.126:50001/api/forums/?page=${currentPage}`, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
+      const response = await fetch(
+        `http://136.228.158.126:50001/api/forums/?page=${currentPage}`,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Network response was not ok");
