@@ -89,10 +89,10 @@ const Create_Forum = () => {
                 <h1 className="text-3xl font-suwannaphum font-bold text-white">
                   សំណួរ និង ដំណោះស្រាយ
                 </h1>
-                <p className="text-gray-200 font-suwannaphum mt-2">
+                <span className="text-white font-suwannaphum mt-2 text-[20px]">
                   ចួលរួមជាមួយពួកយើង​
                   អ្នកអាចធ្វើការបង្កើតសំណួរនិងធ្វើការឆ្លើយសំណួរដែលទាក់ទងនិងស្ទែម
-                </p>
+                </span>
               </div>
             </div>
           </div>
@@ -124,7 +124,8 @@ const Create_Forum = () => {
               onChange={(content) => setDescription(content)}
               className="text-black"
             />
-            <div className="col-span-full mt-4">
+
+<div className="col-span-full mt-4">
               <label
                 htmlFor="file-upload"
                 className="block text-md font-bold leading-6 text-gray-900 font-suwannaphum"
@@ -163,7 +164,6 @@ const Create_Forum = () => {
                           id="file-upload"
                           name="file-upload"
                           type="file"
-
                           className="sr-only"
                           onChange={onForumImage}
                         />

@@ -244,3 +244,11 @@ p{
 #editor .ql-editor {
   color: black !important; 
 }
+p {
+  font-size: 1rem;
+  color: white;
+}
+p {
+  font-size: 1rem;
+  color: black;
+}
