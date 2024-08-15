@@ -3,8 +3,8 @@ import { FaArrowRight, FaArrowLeft } from "react-icons/fa6";
 import { FaChevronRight } from "react-icons/fa";
 import { FaChevronLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import AOS from 'aos';
-import 'aos/dist/aos.css'; 
+import AOS from "aos";
+import "aos/dist/aos.css";
 AOS.init();
 const BookCard = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -13,54 +13,58 @@ const BookCard = () => {
   const books = [
     {
       imgSrc: "../src/assets/stem_book.jpg",
-      title: "ការសិក្សាផ្សេងៗដែលទាក់ទងទៅនិង STEM",
-      description: "ស្វែងរកសៀវភៅផ្សេងៗដែលទាក់ទងទៅនឹង Technology ជាពិសេសមានសៀវភៅជាច្រើនទាក់ទងគ្រប់កម្រិត​ មានច្រើនសម្រាប់ស្រាវជ្រាវ ",
+      title: "ការសិក្សាទាក់ទងទៅនិង STEM",
+      description:
+        "ស្វែងរកសៀវភៅផ្សេងៗដែលទាក់ទងទៅនឹង Technology ជាពិសេសមានសៀវភៅដែលបង្ហាញ... ",
       views: 44,
     },
     {
       imgSrc: "../src/assets/stem_book_technology.webp",
       title: " STEM sister Cambodia",
       description:
-        "បទសម្ភាសន៍អ្នកនាង អេង ឡេងស៊ា អំពីចំណាប់អារម្មណ៍ និងបទពិសោធន៍ ជ្រើសរើសបំពេញការងារក្នុងវិស័យស្ទែម (STEM) ?",
-      views:10 ,
+        "បទសម្ភាសន៍អ្នកនាង អេង ឡេងស៊ា អំពីចំណាប់អារម្មណ៍ និងបទពិសោធន៍៖ អ្នកនាងមានចំណាប់...",
+      views: 10,
     },
     {
       imgSrc: "../src/assets/Stem_book_technology1.webp",
       title: " ការអនុវត្តកម្មវិធីអប់រំបង្កើតហ្គេម",
-      description: " ការអនុវត្តកម្មវិធីអប់រំបង្កើតហ្គេម នៅអនុវិទ្យាល៍័យកែវពណ៌ ខេត្តសៀមរាប Game Changers Coalition ក្រោមប្រធានបទ Technology",
+      description:
+        "ការអនុវត្តកម្មវិធីអប់រំបង្កើតហ្គេមនៅអនុវិទ្យាល័យ កែវពណ៌ ខេត្តសៀមរាប៖កម្មវិធីនេះមានគោលបំណង...",
       views: 24,
     },
     {
       imgSrc: "../src/assets/book_stem3.jpg",
       title: " Exploring STEM Innovations",
       description:
-        "This book is designed to facilitate the study of STEM concepts, providing insights and knowledge",
+        "This book is designed to facilitate the study of STEM concepts by providing...",
       views: 63,
     },
     {
       imgSrc: "../src/assets/stem_book_technology2.webp",
       title: "GIMP Master Class",
-      description: "GIMP ជាកម្មវិធីកុំព្យូទ័រ ប្រភេទ Open Source (ឥតគិតថ្លៃក្នុងការទាញយក តំឡើង ប្រើប្រាស់ និងចែករំលែកបន្ត) សម្រាប់ការកាត់ត កែសម្រួលកែល្អរូបកាព... ",
+      description:
+        "GIMP ជាកម្មវិធីកុំព្យូទ័រ ប្រភេទ Open Source សម្រាប់ការកែសម្រួលរូបភាព និងការបង្កើតក្រាហ្វិក...",
       views: 67,
     },
     {
       imgSrc: "../src/assets/stem_forum_technoligy3.webp",
       title: "OBS Studio",
       description:
-        "OBS Studio គឺជាកម្មវិធីសម្រាប់ថត និងផ្សាយផ្ទាល់។ វាអាចប្រើបានទាំង Windows, macOS, Linux distributions និង BSD ។",
+        "OBS Studio គឺជាកម្មវិធីសម្រាប់ថត និងផ្សាយផ្ទាល់។ វាអាចប្រើបានទាំង Windows, macOS, Linux...",
       views: 100,
     },
     {
       imgSrc: "../src/assets/stem_book_technology5.webp",
-      title: "Virtual Private Netword (VPN)",
-      description: "បណ្តាញឯកជននិម្មិត ឬ VPN គឺជាការតភ្ជាប់ដែលបានអ៊ិនគ្រីបតាមអ៊ីនធឺណិតពីឧបករណ៍មួយទៅបណ្តាញមួយ។ នេះធ្វើឱ្យវាហាក់ដូចជាអ្នកកំពុងភ្ជាប់អ៊ីនធឺណិត...",
+      title: "Virtual Private Netword",
+      description:
+        "បណ្តាញឯកជននិម្មិត ឬ VPN គឺជាការតភ្ជាប់ដែលបានអ៊ិនគ្រីបតាមអ៊ីនធឺណិតពីពីឧបករណ៍របស់អ្នកទៅ...",
       views: 94,
     },
     {
       imgSrc: "../src/assets/stem_book_technology6.webp",
-      title: "រៀនរចនារូបភាពនៅលើកម្មវិធី Canva",
+      title: "រចនារូបភាពនៅលើកម្មវិធី Canva",
       description:
-        "Canva គឺជាវេទិការចនាក្រាហ្វិចពហុជាតិជាសកលរបស់អូស្ត្រាលី ដែលត្រូវបានប្រើដើម្បីបង្កើតក្រាហ្វិក និងការបង្ហាញប្រព័ន្ធផ្សព្វផ្សាយសង្គម។",
+        "Canva គឺជាវេទិការចនាក្រាហ្វិចពហុជាតិជាសកលរបស់អូស្ត្រាលី ដែលត្រូវបានប្រើប្រាស់សម្រាប់ការ...",
       views: 9,
     },
     // Add more books as needed
@@ -101,7 +105,9 @@ const BookCard = () => {
       </section>
       {/* section stem */}
       <nav className="font-suwannaphum text-center text-3xl font-semibold mb-5">
-         <marquee  behavior="" direction="">សូមស្វាគមន៍មកកាន់ STEM</marquee>
+        <marquee behavior="" direction="">
+          សូមស្វាគមន៍មកកាន់ STEM
+        </marquee>
       </nav>
       {/* Third section */}
       <section className="relative w-[96%] mx-auto overflow-hidden rounded-lg mb-5 gap-5">
@@ -131,33 +137,35 @@ const BookCard = () => {
                   </div>
                 </div>
                 <div className="p-3">
-                  <h4 className="block font-suwannaphum text-2xl font-medium leading-snug tracking-normal text-blue-gray-900">
+                  <h4 className="block font-suwannaphum text-xl font-bold leading-snug tracking-normal text-blue-gray-900">
                     {book.title}
                   </h4>
-                  <span className="block -mb-5  font-suwannaphum  text-[18px] antialiased font-normal leading-relaxed text-gray-700">
+                  <span className="mt-2 h-[50px] block mb-5  font-suwannaphum  text-l antialiased font-normal leading-relaxed text-gray-700">
                     {book.description}
                   </span>
                 </div>
-                <div className="flex items-center justify-between p-3">
-                  <p className="font-suwannaphum text-[17px] text-black">
-                    ចំនួនអ្នកមេីល: {book.views} នាក់
-                  </p>
-                  <div className="flex items-center text-[15px]">
-                    {[...Array(5)].map((_, i) => (
-                      <svg
-                        key={i}
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                        className="w-5 h-5 text-yellow-400"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
-                          clipRule="evenodd"
-                        ></path>
-                      </svg>
-                    ))}
+                <div className="border-t">
+                  <div className="flex items-center justify-between p-3 mt-1">
+                    <p className="font-suwannaphum text-sm text-black">
+                      ចំនួនអ្នកមេីល: {book.views} នាក់
+                    </p>
+                    <div className="flex items-center text-[15px]">
+                      {[...Array(5)].map((_, i) => (
+                        <svg
+                          key={i}
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                          className="w-3 h-3 text-yellow-400"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                            clipRule="evenodd"
+                          ></path>
+                        </svg>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -170,7 +178,7 @@ const BookCard = () => {
         >
           <FaChevronLeft />
         </button>
-        <button
+        <button 
           onClick={nextSlide}
           className="absolute top-1/2 right-2 transform -translate-y-1/2 text-white bg-black p-3 rounded-full hover:bg-gray-700 transition-colors"
         >
@@ -179,148 +187,156 @@ const BookCard = () => {
       </section>
       {/* Bookcard no slide */}
       <Link to="/book">
-          <section className="grid grid-cols-1 h-auto sm:grid-cols-2 lg:grid-cols-4 gap-4  w-[95%] mx-auto">
-              <div className="border rounded-lg bg-white text-gray-700 shadow-sm ">
-                <div className="relative h-full w-full overflow-hidden">
-                  <img
-                    className="h-full w-full object-cover opacity-100 transition duration-300 ease-in-out transform scale-100"
-                    src="../src/assets/stem_book.jpg"
-                    alt="Stem Book"
-                  />
-                  <div className="absolute inset-0 font-suwannaphum bg-transparent hover:bg-slate-300 opacity-0 hover:opacity-60 transition-opacity duration-300 ease-in-out flex items-center justify-center">
-                    <h2 className="text-black text-[25px] font-suwannaphum text-center font-bold">
-                      ការសិក្សាផ្សេងៗដែលទាក់ទងទៅនិង STEM
-                      <br />
-                      <span className="text-[18px]">
-                        ស្វែងរកសៀវភៅផ្សេងៗដែលទាក់ទងទៅនឹង Technology
-                      </span>
-                    </h2>
-                  </div>
-                </div>
+        <section className="grid grid-cols-1 h-[430px] sm:grid-cols-2 lg:grid-cols-4 gap-4  w-[95%] mx-auto">
+          <div className="border rounded-lg bg-white text-gray-700 shadow-sm ">
+            <div className="relative h-full w-full overflow-hidden">
+              <img
+                className="h-full w-full object-cover opacity-100 transition duration-300 ease-in-out transform scale-100 rounded-t-lg "
+                src="../src/assets/stem_book.jpg"
+                alt="Stem Book"
+              />
+              <div className="absolute inset-0 font-suwannaphum bg-transparent hover:bg-slate-300 opacity-0 hover:opacity-60 transition-opacity duration-300 ease-in-out flex items-center justify-center">
+                <h2 className="text-black text-[25px] font-suwannaphum text-center font-bold">
+                  ការសិក្សាផ្សេងៗដែលទាក់ទងទៅនិង STEM
+                  <br />
+                  <span className="text-[18px]">
+                    ស្វែងរកសៀវភៅផ្សេងៗដែលទាក់ទងទៅនឹង Technology
+                  </span>
+                </h2>
               </div>
+            </div>
+          </div>
 
-              {/* Card1 */}
-              <div className="border rounded-lg bg-white text-gray-700 shadow-md">
-                <div className="bg-transparent">
-                  <img
-                    className="h-[250px] w-full object-cover rounded-t-lg"
-                    src="../src/assets/stem_book_technology.webp"
-                    alt=""
-                  />
-                </div>
-                <div className="p-3">
-                  <h4 className="block font-suwannaphum text-2xl font-medium leading-snug tracking-normal text-blue-gray-900">
-                    STEM sister Cambodia
-                  </h4>
-                  <span className="block font-suwannaphum mt-2 text-[18px] antialiased font-normal leading-relaxed text-gray-700">
-                    បទសម្ភាសន៍អ្នកនាង អេង ឡេងស៊ា អំពីចំណាប់អារម្មណ៍ និងបទពិសោធន៍ ជ្រើសរើសបំពេញការងារក្នុងវិស័យស្ទែម (STEM) ?
-                  </span>
-                </div>
-                <div className="flex items-center justify-between p-4 -mt-5">
-                  <p className="font-suwannaphum text-[17px] text-black">
-                    ចំនួនអ្នកមេីល: 10 នាក់
-                  </p>
-                  <div className="flex items-center text-[15px] ">
-                    {[...Array(5)].map((_, i) => (
-                      <svg
-                        key={i}
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                        className="w-5 h-5 text-yellow-400"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
-                          clipRule="evenodd"
-                        ></path>
-                      </svg>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              {/* Card2 */}
-              <div className="border rounded-xl bg-white text-gray-700 shadow-md">
-                <div className="bg-transparent ">
-                  <img
-                    className="h-[250px]  rounded-t-lg w-full object-cover"
-                    src="../src/assets/Stem_book_technology1.webp"
-                    alt=""
-                  />
-                </div>
-                <div className="p-3">
-                <h4 className="block font-suwannaphum text-2xl font-medium leading-snug tracking-normal text-blue-gray-900">
-                    ការអនុវត្តកម្មវិធីអប់រំបង្កើតហ្គេម
-                  </h4>
-                  <span className="block font-suwannaphum mt-2 text-[18px] antialiased font-normal leading-relaxed text-gray-700">
-                    ការអនុវត្តកម្មវិធីអប់រំបង្កើតហ្គេម នៅអនុវិទ្យាល៍័យកែវពណ៌ ខេត្តសៀមរាប Game Changers Coalition ក្រោមប្រធានបទ Technology
-                  </span>
-                </div>
-                <div className="flex items-center justify-between p-3 -mt-3">
-                  <p className="font-suwannaphum text-[17px] text-black ">
-                    ចំនួនអ្នកមេីល: 22 នាក់
-                  </p>
-                  <div className="flex items-center text-[15px] ">
-                    {[...Array(5)].map((_, i) => (
-                      <svg
-                        key={i}
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                        className="w-5 h-5 text-yellow-400"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
-                          clipRule="evenodd"
-                        ></path>
-                      </svg>
-                    ))}
-                  </div>
+          {/* Card1 */}
+          <div className="border rounded-lg bg-white text-gray-700 shadow-md h-[430px]">
+            <div className="bg-transparent">
+              <img
+                className="h-[250px]  w-full object-cover rounded-t-lg"
+                src="../src/assets/IOS programming.jpg"
+                alt=""
+              />
+            </div>
+            <div className="p-3 mb-5">
+              <h4 className="block font-suwannaphum text-xl font-bold leading-snug tracking-normal text-blue-gray-900">
+                IOS Programming 16
+              </h4>
+              <span className="h-[50px] block font-suwannaphum mt-2 text-l antialiased font-normal leading-relaxed text-gray-700">
+                សៀវភៅនេះគ្របដណ្តប់អ្វីគ្រប់យ៉ាងដែលអ្នកត្រូវរៀនសម្រាប់ការអភិវឌ្ឍន៍កម្មវិធី
+                iOS ។ Swift គ្រាន់តែ...
+              </span>
+            </div>
+            <div className="border-t">
+              <div className="flex items-center justify-between p-3 mt-1">
+                <p className="font-suwannaphum text-sm text-black ">
+                  ចំនួនអ្នកមេីល: 10 នាក់
+                </p>
+                <div className="flex items-center text-[15px] ">
+                  {[...Array(5)].map((_, i) => (
+                    <svg
+                      key={i}
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      className="w-3 h-3 text-yellow-400"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                        clipRule="evenodd"
+                      ></path>
+                    </svg>
+                  ))}
                 </div>
               </div>
-              {/* Card3 */}
-              <div className="border rounded-xl bg-white text-gray-700 shadow-md">
-                <div className="bg-transparent rounded-none">
-                  <img
-                    className="h-[250px] w-full object-cover rounded-t-lg"
-                    src="../src/assets/book_stem3.jpg"
-                    alt="STEM Book"
-                  />
+            </div>
+          </div>
+          {/* Card2 */}
+          <div className="border rounded-xl bg-white text-gray-700 shadow-md h-[430px]">
+            <div className="bg-transparent ">
+              <img
+                className="h-[250px]  w-full object-cover rounded-t-lg"
+                src="../src/assets/Python crash course E.jpg"
+                alt=""
+              />
+            </div>
+            <div className="p-3 mb-5">
+              <h4 className="block font-suwannaphum text-xl font-bold leading-snug tracking-normal text-blue-gray-900 ">
+                Python Crash Course
+              </h4>
+              <span className="h-[50px] block font-suwannaphum mt-2 text-l antialiased font-normal leading-relaxed text-gray-700">
+                Python Crash Course
+                គឺជាសៀវភៅណែនាំដែលលក់ដាច់បំផុតរបស់ពិភពលោកចំពោះភាសាសរសេរ...
+              </span>
+            </div>
+            <div className="border-t">
+              <div className="flex items-center justify-between p-3 mt-1">
+                <p className="font-suwannaphum text-sm text-black ">
+                  ចំនួនអ្នកមេីល: 22 នាក់
+                </p>
+                <div className="flex items-center text-[15px] ">
+                  {[...Array(5)].map((_, i) => (
+                    <svg
+                      key={i}
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      className="w-3 h-3 text-yellow-400"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                        clipRule="evenodd"
+                      ></path>
+                    </svg>
+                  ))}
                 </div>
-                <div className="p-3">
-                  <h4 className="block font-suwannaphum text-2xl font-medium leading-snug tracking-normal text-blue-gray-900">
-                    Exploring STEM Innovations
-                  </h4>
-                  <span className="block font-suwannaphum mt-2 text-[18px] antialiased line-clamp-3 font-normal leading-relaxed text-gray-700">
-                    This book is designed to facilitate the study of STEM concepts, providing insights and knowledge
-                  </span>
-                </div>
-                <div className="flex items-center justify-between p-3 -mt-3">
-                  <p className="font-suwannaphum text-[17px] text-black ">
+              </div>
+            </div>
+          </div>
+          {/* Card3 */}
+          <div className="border rounded-xl bg-white text-gray-700 shadow-md h-[430px]">
+            <div className="bg-transparent ">
+              <img
+                className="h-[250px]  rounded-t-lg w-full object-cover"
+                src="../src/assets/Mathematic.jpg"
+                alt=""
+              />
+            </div>
+            <div className="p-3 mb-5">
+              <h4 className="block font-suwannaphum text-xl font-bold leading-snug tracking-normal text-blue-gray-900">
+                ការណែនាំអំពីគណិតវិទ្យា
+              </h4>
+              <span className="h-[50px] block font-suwannaphum mt-2 text-l antialiased font-normal leading-relaxed text-gray-700">
+                ស្វែងយល់ពីមូលដ្ឋានគ្រឹះការដោះស្រាយបញ្ហាប្រចាំថ្ងៃតាមរយៈនព្វន្ធ
+                ពិជគណិត ធរណីមាត្រ និងការ...
+              </span>
+            </div>
+            <div className="border-t">
+              <div className="flex items-center justify-between p-3 mt-1">
+                <p className="font-suwannaphum text-sm text-black ">
                   ចំនួនអ្នកមេីល: 27 នាក់
-                  </p>
-                  <div className="flex items-center text-[15px] ">
-                    {[...Array(5)].map((_, i) => (
-                      <svg
-                        key={i}
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                        className="w-5 h-5 text-yellow-400"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
-                          clipRule="evenodd"
-                        ></path>
-                      </svg>
-                    ))}
-                  </div>
+                </p>
+                <div className="flex items-center text-[15px] ">
+                  {[...Array(5)].map((_, i) => (
+                    <svg
+                      key={i}
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      className="w-3 h-3 text-yellow-400"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                        clipRule="evenodd"
+                      ></path>
+                    </svg>
+                  ))}
                 </div>
               </div>
-
-            </section>
+            </div>
+          </div>
+        </section>
       </Link>
     </>
   );

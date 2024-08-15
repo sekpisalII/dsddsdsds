@@ -11,9 +11,7 @@ const GetForum = () => {
   const [page, setPage] = useState(1);
   const [totalRows, setTotalRows] = useState(0);
   const [checkAllPages, setCheckAllPages] = useState(false);
-
   const [param] = useSearchParams(); // Used for initial data fetch based on URL params
-
   const columns = [
     {
       name: "ID",

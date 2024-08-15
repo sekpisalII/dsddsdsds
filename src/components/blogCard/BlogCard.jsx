@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { FaChevronRight, FaChevronLeft,FaArrowRight } from "react-icons/fa";
+import { FaChevronRight, FaChevronLeft, FaArrowRight } from "react-icons/fa";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import AOS from 'aos';
-import 'aos/dist/aos.css'; 
+import AOS from "aos";
+import "aos/dist/aos.css";
 AOS.init();
 const BlogCard = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -11,57 +11,59 @@ const BlogCard = () => {
 
   const blogs = [
     {
-      imgSrc: "../src/assets/stem_book.jpg",
-      title: "ការសិក្សាផ្សេងៗដែលទាក់ទងទៅនិង STEM",
-      description: "ស្វែងរកសៀវភៅផ្សេងៗដែលទាក់ទងទៅនឹង Technology ជាពិសេសមានសៀវភៅជាច្រើនទាក់ទងគ្រប់កម្រិត​ មានច្រើនសម្រាប់ស្រាវជ្រាវ",
+      imgSrc: "../src/assets/Telegram E.png",
+      title: "​កែ​ពុម្ព​អក្សរ​ខ្មែរ​លើ Telegram",
+      description:
+        "Telegram ជា​កម្មវិធី​ផ្ញើ​សារ (Messenger app) មួយ​ក្នុង​ចំណោម​កម្មវិធី​ដទៃ​ទៀត​ដែល​កំពុង​ពេញ​និ...",
       views: 44,
     },
     {
-      imgSrc: "../src/assets/stem_book_technology.webp",
-      title: "STEM sister Cambodia",
+      imgSrc: "../src/assets/ABA .png",
+      title: "​ប្រយ័ត្ន​​ការ​ឆបោក​តាម​អនឡាញ",
       description:
-        "បទសម្ភាសន៍អ្នកនាង អេង ឡេងស៊ា អំពីចំណាប់អារម្មណ៍ និងបទពិសោធន៍ ជ្រើសរើសបំពេញការងារក្នុងវិស័យស្ទែម (STEM) ?",
+        "ធនាគារ ABA ដែល​ជា​ធនាគារ​មួយ​​នៅ​កម្ពុជា ប្រកាស​ឲ្យ​អតិថិជន​របស់​ខ្លួន​ប្រុង​ប្រយ័ត្ន​ចំពោះ​អំពើ​ឆបោក​ផ្សេ...",
       views: 10,
     },
     {
-      imgSrc: "../src/assets/Stem_book_technology1.webp",
-      title: "ការអនុវត្តកម្មវិធីអប់រំបង្កើតហ្គេម",
-      description: "ការអនុវត្តកម្មវិធីអប់រំបង្កើតហ្គេម នៅអនុវិទ្យាល៍័យកែវពណ៌ ខេត្តសៀមរាប Game Changers Coalition ក្រោមប្រធានបទ Technology",
+      imgSrc: "../src/assets/Social Protection.jpg",
+      title: "ការ​ការពារ​ខ្លួន​នៅ​លើ​បណ្ដាញ​សង្គម",
+      description:
+        "អង្គការ Localization Lab ណែនាំ​អ្នក​ប្រើប្រាស់​អ៊ីនធឺណិត​ពី​របៀប​ការពារ​ខ្លួន​នៅ​លើ​បណ្ដាញ​សង្គម...",
       views: 24,
     },
     {
-      imgSrc: "../src/assets/book_stem3.jpg",
-      title: "Exploring STEM Innovations",
+      imgSrc: "../src/assets/Hide IP Telegram.png",
+      title: "Hide IP in Telegram",
       description:
-        "This book is designed to facilitate the study of STEM concepts, providing insights and knowledge",
+        "កម្មវិធី Telegram ប្រើ​នៅ​លើ​កុំព្យូទ័រ (Desktop version) ត្រូវ​បាន​រក​ឃើញ​ថា​លេច​ធ្លាយ​ IP Add...",
       views: 63,
     },
     {
-      imgSrc: "../src/assets/stem_book_technology2.webp",
-      title: "GIMP Master Class",
+      imgSrc: "../src/assets/Hide Friend List FB.png",
+      title: "Hide Friend List",
       description:
-        "GIMP ជាកម្មវិធីកុំព្យូទ័រ ប្រភេទ Open Source (ឥតគិតថ្លៃក្នុងការទាញយក តំឡើង ប្រើប្រាស់ និងចែករំលែកបន្ត) សម្រាប់ការកាត់ត កែសម្រួលកែល្អរូបកាព...",
+        "ជាទូទៅ បណ្ដាញ​ទំនាក់ទំនង​សង្គម​Facebook បាន​កំណត់​ឲ្យ​អ្នក​ប្រើប្រាស់​ហ្វេសប៊ុក​ទាំងអស់​អាច​មើល...",
       views: 67,
     },
     {
-      imgSrc: "../src/assets/stem_forum_technoligy3.webp",
-      title: "OBS Studio",
+      imgSrc: "../src/assets/Microsoft 10 points.png",
+      title: "ចំណុច​ខ្សោយ​ Microsoft",
       description:
-        "OBS Studio គឺជាកម្មវិធីសម្រាប់ថត និងផ្សាយផ្ទាល់។ វាអាចប្រើបានទាំង Windows, macOS, Linux distributions និង BSD ។",
+        "ក្រុមហ៊ុន Microsoft ចេញ​ផ្សាយ​ចំណុច​ខ្សោយ​ធ្ងន់ធ្ងរ​បំផុត​ចំនួន ១០ ក្នុង​ចំណោម​ចំណុច​ខ្សោយ​ទាំងអស់​...",
       views: 100,
     },
     {
-      imgSrc: "../src/assets/stem_book_technology5.webp",
-      title: "Virtual Private Network (VPN)",
+      imgSrc: "../src/assets/Koompi Computer.png",
+      title: "កុំព្យូទ័រ​ KOOMPI",
       description:
-        "បណ្តាញឯកជននិម្មិត ឬ VPN គឺជាការតភ្ជាប់ដែលបានអ៊ិនគ្រីបតាមអ៊ីនធឺណិតពីឧបករណ៍មួយទៅបណ្តាញមួយ។ នេះធ្វើឱ្យវាហាក់ដូចជាអ្នកកំពុងភ្ជាប់អ៊ីនធឺណិត...",
+        "កុំព្យូទ័រ KOOMPI ដែល​បង្កើត​ឡើង​ដោយ​កូន​ខ្មែរ នឹង​ត្រូវ​សម្ពោធ​ជា​ផ្លូវការ​ស្រប​ពេល​ជាមួយ​គ្នា​នឹង​ព្រឹត្តិកា...",
       views: 94,
     },
     {
-      imgSrc: "../src/assets/stem_book_technology6.webp",
-      title: "រៀនរចនារូបភាពនៅលើកម្មវិធី Canva",
+      imgSrc: "../src/assets/Java.jpg",
+      title: " Common Mistakes in Java",
       description:
-        "Canva គឺជាវេទិការចនាក្រាហ្វិចពហុជាតិជាសកលរបស់អូស្ត្រាលី ដែលត្រូវបានប្រើដើម្បីបង្កើតក្រាហ្វិក និងការបង្ហាញប្រព័ន្ធផ្សព្វផ្សាយសង្គម។",
+        "ការអនុវត្តល្អបំផុតរបស់ Java ដូចជាការធ្វើទ្រង់ទ្រាយកូដនិងលំនាំនៃការរចនាឱ្យមានកូដដែលពិបាក...",
       views: 9,
     },
     // Add more books as needed
@@ -101,150 +103,161 @@ const BlogCard = () => {
         </Link>
       </section>
       <Link to="/blog">
-        <section className="grid grid-cols-1 h-auto sm:grid-cols-2 lg:grid-cols-4 gap-4 w-[95%] mx-auto mb-5">
-          <div className="border rounded-lg bg-white text-gray-700 shadow-md">
-            <div className="bg-transparent">
+        <section className="grid grid-cols-1 h-auto sm:grid-cols-2 lg:grid-cols-4 gap-4  w-[95%] mx-auto mb-5">
+          <div className="border rounded-lg bg-white text-gray-700 shadow-sm h-[430px]">
+            <div className="relative h-full w-full overflow-hidden">
               <img
-                className="h-[250px] w-full object-cover rounded-t-lg"
-                src="../src/assets/stem_blog_technology.jpg"
-                alt=""
+                className="h-full w-full rounded-lg object-cover opacity-100 transition duration-300 ease-in-out transform scale-100"
+                src="../src/assets/Blog Part.jpg"
+                alt="Stem Book"
               />
-            </div>
-            <div className="p-3">
-              <h4 className="block font-suwannaphum text-2xl font-medium leading-snug tracking-normal text-blue-gray-900">
-                លេខសម្ងាត់​ប្រៀប​ដូចជា​កូន​សោរ​ផ្ទាល់ខ្លួន
-              </h4>
-              <span className="block font-suwannaphum mt-2 text-[18px] antialiased font-normal leading-relaxed text-gray-700">
-                អ៊ីនធឺណិតដែលគួរ​តែ​ប្រុងប្រយ័ត្ន និង​មាន​វិធី​ការពារ​ត្រឹមត្រូវ​ពី​ការ​លួច​ ។
-                💡👉 តស់ ! មកដឹងអំពីចំណុចគួរធ្វើ និងមិនគួរធ្វើដើម្បីបង្កើត និងរក្សាលេខសម្ងាត់ឱ្យមានសុវត្ថិភាព
-              </span>
-            </div>
-            <div className="flex items-center justify-between p-4 -mt-5">
-              <p className="font-suwannaphum text-[17px] text-black">
-                ចំនួនអ្នកមេីល: 98​ នាក់
-              </p>
-              <div className="flex items-center text-[15px] ">
-                {[...Array(5)].map((_, i) => (
-                  <svg
-                    key={i}
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    className="w-5 h-5 text-yellow-400"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                ))}
+              <div className="absolute inset-0 font-suwannaphum bg-transparent hover:bg-slate-300 opacity-0 hover:opacity-60 transition-opacity duration-300 ease-in-out flex items-center justify-center">
+                <h2 className="text-black text-xl font-suwannaphum text-center font-bold">
+                  ការសិក្សាផ្សេងៗដែលទាក់ទងទៅនិង STEM
+                  <br />
+                  <span className="text-[18px]">
+                    ស្វែងរកសៀវភៅផ្សេងៗដែលទាក់ទងទៅនឹង Technology
+                  </span>
+                </h2>
               </div>
             </div>
           </div>
+
           {/* Card1 */}
-          <div className="border rounded-lg bg-white text-gray-700 shadow-md">
-            <div className="bg-transparent">
+          <div className="border rounded-xl bg-white text-gray-700 shadow-md h-[430px]">
+            <div className="bg-transparent ">
               <img
-                className="h-[250px] w-full object-cover rounded-t-lg"
-                src="../src/assets/stem_blog_technology1.webp"
+                className="h-[250px]  rounded-t-lg w-full object-cover"
+                src="../src/assets/C++ Programming.jpg"
                 alt=""
               />
             </div>
-            <div className="p-3">
-              <h4 className="block font-suwannaphum text-2xl font-medium leading-snug tracking-normal text-blue-gray-900">
-                Shotcut
+            <div className="p-3 mb-5">
+              <h4 className="block font-suwannaphum text-xl font-bold leading-snug tracking-normal text-blue-gray-900">
+                C++ Programming
               </h4>
-              <span className="block font-suwannaphum mt-2 text-[18px] antialiased font-normal leading-relaxed text-gray-700">
-                Shotcut ជាកម្មវិធីកុំព្យូទ័រប្រភេទ Open Source សម្រាប់ការកាត់វីដេអូ ដែលឥតគិតថ្លៃ នៅក្នុងការទាញយក តំឡើង ប្រើប្រាស់ និងចែករំលែកបន្ត។ 
+              <span className="h-[50px] block font-suwannaphum mt-2 text-l antialiased font-normal leading-relaxed text-gray-700">
+                ស្វែងយល់ពីចំណុចសំខាន់នៃការសរសេរកម្មវិធី C++
+                ចាប់ពីគោលគំនិតជាមូលដ្ឋានរហូតដល់បច្ចេកទេស...
               </span>
             </div>
-            <div className="flex items-center justify-between p-4 -mt-5">
-              <p className="font-suwannaphum text-[17px] text-black">
-                ចំនួនអ្នកមេីល: 144​ នាក់
-              </p>
-              <div className="flex items-center text-[15px] ">
-                {[...Array(5)].map((_, i) => (
-                  <svg
-                    key={i}
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    className="w-5 h-5 text-yellow-400"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                ))}
+
+            <div className="border-t">
+              <div className="flex items-center justify-between p-3 mt-1">
+                <p className="font-suwannaphum text-sm text-black ">
+                  ចំនួនអ្នកមេីល: 100 នាក់
+                </p>
+                <div className="flex items-center text-[15px] ">
+                  {[...Array(5)].map((_, i) => (
+                    <svg
+                      key={i}
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      className="w-3 h-3 text-yellow-400"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                        clipRule="evenodd"
+                      ></path>
+                    </svg>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
           {/* Card2 */}
-          <div className="border rounded-xl bg-white text-gray-700 shadow-md">
+          <div className="border rounded-xl bg-white text-gray-700 shadow-md h-[430px]">
             <div className="bg-transparent ">
               <img
                 className="h-[250px]  rounded-t-lg w-full object-cover"
-                src="../src/assets/stem_blog_technology3.webp"
+                src="../src/assets/Introduct to .Net E.jpg"
                 alt=""
               />
             </div>
-            <div className="p-3">
-              <h4 className="block font-suwannaphum text-2xl font-medium leading-snug tracking-normal text-blue-gray-900">
-                  Audacity
+            <div className="p-3 mb-5">
+              <h4 className="block font-suwannaphum text-xl font-bold leading-snug tracking-normal text-blue-gray-900">
+                Introduction to .NET Core
               </h4>
-              <span className="block font-suwannaphum mt-2 text-[18px] antialiased font-normal leading-relaxed text-gray-700">
-                Audacity ជាកម្មវិធីកុំព្យូទ័រប្រភេទ Open Source សម្រាប់ការថត កាត់ និងកែសម្រួលសម្លេងរបស់យើងអោយបានពិរោះជាងមុន។
+              <span className="h-[50px] block font-suwannaphum mt-2 text-l antialiased font-normal leading-relaxed text-gray-700">
+                ស្វែងយល់អំពីចំណុចខ្លាំង និងករណីប្រើប្រាស់នៃក្របខ័ណ្ឌនីមួយៗ
+                និងរបៀបជ្រើសរើសមួយដែលត្រឹម...
               </span>
             </div>
-            <div className="flex items-center justify-between p-3 -mt-3">
-              <p className="font-suwannaphum text-[17px] text-black ">
-                ចំនួនអ្នកមេីល: 200​ នាក់
-              </p>
-              <div className="flex items-center text-[15px] ">
-                {[...Array(5)].map((_, i) => (
-                  <svg
-                    key={i}
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    className="w-5 h-5 text-yellow-400"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                ))}
+
+            <div className="border-t">
+              <div className="flex items-center justify-between p-3 mt-1">
+                <p className="font-suwannaphum text-sm text-black ">
+                  ចំនួនអ្នកមេីល: 56 នាក់
+                </p>
+                <div className="flex items-center text-[15px] ">
+                  {[...Array(5)].map((_, i) => (
+                    <svg
+                      key={i}
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      className="w-3 h-3 text-yellow-400"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                        clipRule="evenodd"
+                      ></path>
+                    </svg>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
           {/* Card3 */}
-          <div className="border rounded-lg bg-white text-gray-700 shadow-md ">
-            <div className="relative h-full w-full overflow-hidden">
+          <div className="border rounded-xl bg-white text-gray-700 shadow-md h-[430px]">
+            <div className="bg-transparent ">
               <img
-                className="h-full w-full rounded-lg object-cover opacity-100 transition duration-300 ease-in-out transform scale-100"
-                src="../src/assets/stem_blog_technology4.webp "
-                alt="Stem Book"
+                className="h-[250px]  rounded-t-lg w-full object-cover"
+                src="../src/assets/.NET.jpg"
+                alt=""
               />
-              <div className="absolute inset-0 font-suwannaphum bg-transparent hover:bg-slate-300 opacity-0 hover:opacity-60 transition-opacity duration-300 ease-in-out flex items-center justify-center">
-                <h2 className="text-black text-[25px] font-suwannaphum text-center font-bold">
-                  អាចបង្កើតប្លុកផ្សេងៗ ការបង្កើតប្លុក
-                  <br />
-                  <span className="text-[18px]">
-                    និងមានប្លុកជាច្រើនសម្រាប់ទស្សនា
-                  </span>
-                </h2>
+            </div>
+            <div className="p-3 mb-5">
+              <h4 className="block font-suwannaphum text-xl font-bold leading-snug tracking-normal text-blue-gray-900">
+                Desktop Applications .NET
+              </h4>
+              <span className="h-[50px] block font-suwannaphum mt-2 text-l antialiased font-normal leading-relaxed text-gray-700">
+                ការណែនាំនេះគ្របដណ្តប់លើការអនុវត្តល្អបំផុត សមាសធាតុសំខាន់ៗ
+                និងការពិចារណាអំពីស្ថាបត្យកម្មសម្រាប់...
+              </span>
+            </div>
+
+            <div className="border-t">
+              <div className="flex items-center justify-between p-3 mt-1">
+                <p className="font-suwannaphum text-sm text-black ">
+                  ចំនួនអ្នកមេីល: 27 នាក់
+                </p>
+                <div className="flex items-center text-[15px] ">
+                  {[...Array(5)].map((_, i) => (
+                    <svg
+                      key={i}
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      className="w-3 h-3 text-yellow-400"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                        clipRule="evenodd"
+                      ></path>
+                    </svg>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </section>
 
         {/* second section */}
-       
       </Link>
       {/* slide bar */}
       <section className="relative w-[95%] mx-auto overflow-hidden rounded-lg mb-5 gap-4">
@@ -274,33 +287,35 @@ const BlogCard = () => {
                   </div>
                 </div>
                 <div className="p-3">
-                  <h4 className="block font-suwannaphum text-2xl font-medium leading-snug tracking-normal text-blue-gray-900">
+                  <h4 className="block font-suwannaphum text-xl font-bold leading-snug tracking-normal text-blue-gray-900">
                     {book.title}
                   </h4>
-                  <span className="block -mb-5 font-suwannaphum text-[18px] antialiased font-normal leading-relaxed text-gray-700">
+                  <span className="mt-2 h-[50px] block mb-5 font-suwannaphum text-l antialiased font-normal leading-relaxed text-gray-700">
                     {book.description}
                   </span>
                 </div>
-                <div className="flex items-center justify-between p-3">
-                  <p className="font-suwannaphum text-[17px] text-black">
-                    ចំនួនអ្នកមេីល: {book.views} នាក់
-                  </p>
-                  <div className="flex items-center text-[15px]">
-                    {[...Array(5)].map((_, i) => (
-                      <svg
-                        key={i}
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                        className="w-5 h-5 text-yellow-400"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
-                          clipRule="evenodd"
-                        ></path>
-                      </svg>
-                    ))}
+                <div className="border-t">
+                  <div className="flex items-center justify-between p-3 mt-1">
+                    <p className="font-suwannaphum text-sm text-black">
+                      ចំនួនអ្នកមេីល: {book.views} នាក់
+                    </p>
+                    <div className="flex items-center text-[15px]">
+                      {[...Array(5)].map((_, i) => (
+                        <svg
+                          key={i}
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                          className="w-3 h-3 text-yellow-400"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                            clipRule="evenodd"
+                          ></path>
+                        </svg>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>

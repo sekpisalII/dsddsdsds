@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import Quill from "quill";
 import "quill/dist/quill.snow.css"; // Import Quill's CSS
 import hljs from "highlight.js";
-import "highlight.js/styles/monokai.css"; // Import highlight.js style
+import "highlight.js/styles/monokai.css";
 
 const formats = [
   "font",
@@ -79,11 +79,6 @@ const TextEditor = ({ value, onChange, placeholder }) => {
   return (
     <div className="inline-block w-auto">
       <div ref={editorRef} id="editor" />
-      <style jsx>{`
-        #editor .ql-editor {
-          color: black !important; /* Enforce black text color */
-        }
-      `}</style>
     </div>
   );
 };
