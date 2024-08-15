@@ -36,7 +36,11 @@ const EditForum = () => {
         setForumData(data);
       } catch (error) {
         console.error("Error fetching forum data:", error);
-        Swal.fire("Error", "Failed to fetch forum data. Please try again.", "error");
+        Swal.fire(
+          "Error",
+          "Failed to fetch forum data. Please try again.",
+          "error"
+        );
       } finally {
         setLoading(false);
       }
@@ -86,7 +90,11 @@ const EditForum = () => {
         imageUrl = uploadResult.url; // Extract URL from the response
       } catch (error) {
         console.error("Error uploading image:", error);
-        Swal.fire("Error", "Failed to upload image. Please try again.", "error");
+        Swal.fire(
+          "Error",
+          "Failed to upload image. Please try again.",
+          "error"
+        );
         setLoading(false);
         return;
       }
@@ -120,7 +128,11 @@ const EditForum = () => {
       }
     } catch (error) {
       console.error("Error updating forum data:", error);
-      Swal.fire("Error", "Failed to update forum data. Please try again.", "error");
+      Swal.fire(
+        "Error",
+        "Failed to update forum data. Please try again.",
+        "error"
+      );
     } finally {
       setLoading(false);
     }
@@ -175,8 +187,8 @@ const EditForum = () => {
           className="px-4 py-2 bg-blue-600 text-white rounded"
           disabled={loading}
         >
-          {loading ? 'Submitting...' : 'Submit'}
-        </button>
+          {loading ? "Submitting..." : "Submit"}
+        </button>{" "}
       </form>
     </div>
   );
