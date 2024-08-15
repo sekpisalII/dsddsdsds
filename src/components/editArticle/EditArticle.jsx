@@ -1,172 +1,196 @@
-import { useState, useEffect, useRef } from "react";
-import { Card, Dropdown, TextInput, Button, Spinner } from "flowbite-react";
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
-function GeminiChat() {
-  const [messages, setMessages] = useState([
-    {
-      sender: "bot",
-      text: "Hi there! I am Norby, your personal web page assistant.",
-    },
-    { sender: "bot", text: "How can I help you?" },
-  ]);
-  const [prompt, setPrompt] = useState("");
+const EditArticle = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [article, setArticle] = useState({
+    title: "",
+    content: "",
+    image: "",
+  });
+  const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [isTyping, setIsTyping] = useState(false);
-  const typingRef = useRef(null);
-  const chatEndRef = useRef(null);
 
-  const typeMessage = (text) => {
-    setIsTyping(true);
-    let index = 0;
-    typingRef.current = setInterval(() => {
-      setMessages((prevMessages) => {
-        const newMessages = [...prevMessages];
-        const lastMessage = newMessages[newMessages.length - 1];
-        if (lastMessage.sender === "bot") {
-          lastMessage.text = text.slice(0, index + 20);
-        }
-        return newMessages;
-      });
-      index += 1;
-      if (index >= text.length) {
-        clearInterval(typingRef.current);
-        setIsTyping(false);
-      }
-    }, 50);
-  };
-
-  const scrollToBottom = () => {
-    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const handleSend = async (event) => {
-    event.preventDefault();
-
-    if (prompt.trim() !== "") {
-      setMessages([...messages, { sender: "user", text: prompt }]);
+  useEffect(() => {
+    // Fetch the article data by ID
+    const fetchArticle = async () => {
+      const accessToken = localStorage.getItem("access_token");
       setLoading(true);
-
       try {
-        const gemini = new GoogleGenerativeAI(
-          "AIzaSyD_h8SRy54jyYXns4btKTdFAiHfuMcxb88"
+        const response = await fetch(
+          `http://136.228.158.126:50001/api/articles/${id}/`,
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
         );
-        const model = gemini.getGenerativeModel({ model: "gemini-1.5-flash" });
-        const result = await model.generateContent(prompt);
-        const response = await result.response;
-        const text = await response.text();
 
-        setMessages((prevMessages) => [
-          ...prevMessages,
-          { sender: "bot", text: "" },
-        ]);
+        if (!response.ok) {
+          throw new Error("Failed to fetch article data");
+        }
 
-        typeMessage(text);
+        const data = await response.json();
+        setArticle(data);
       } catch (error) {
-        console.error(error);
+        console.error("Error fetching article data:", error);
+        Swal.fire(
+          "Error",
+          "Failed to fetch article data. Please try again.",
+          "error"
+        );
       } finally {
         setLoading(false);
-        setPrompt("");
-        scrollToBottom();
       }
+    };
+
+    fetchArticle();
+  }, [id]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setArticle((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    let imageUrl = article.image; // Default to existing image URL
+
+    if (file) {
+      const formData = new FormData();
+      formData.append("file", file);
+
+      try {
+        const uploadResponse = await fetch(
+          "http://136.228.158.126:50001/api/upload/",
+          {
+            method: "POST",
+            body: formData,
+          }
+        );
+
+        if (!uploadResponse.ok) {
+          const errorText = await uploadResponse.text();
+          console.error("Error response:", errorText);
+          throw new Error("Failed to upload image");
+        }
+
+        const uploadResult = await uploadResponse.json();
+        imageUrl = uploadResult.url; // Extract URL from the response
+      } catch (error) {
+        console.error("Error uploading image:", error);
+        Swal.fire(
+          "Error",
+          "Failed to upload image. Please try again.",
+          "error"
+        );
+        setLoading(false);
+        return;
+      }
+    }
+
+    const accessToken = localStorage.getItem("access_token");
+    try {
+      const response = await fetch(
+        `http://136.228.158.126:50001/api/articles/${id}/`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            ...article,
+            image: imageUrl, // Update with the new or existing image URL
+          }),
+        }
+      );
+
+      if (response.ok) {
+        Swal.fire("Success", "Article updated successfully.", "success");
+        navigate("/blog"); // Redirect to the articles list page
+      } else {
+        const errorText = await response.text();
+        console.error("Error response:", errorText);
+        throw new Error("Failed to update article");
+      }
+    } catch (error) {
+      console.error("Error updating article:", error);
+      Swal.fire(
+        "Error",
+        "Failed to update article. Please try again.",
+        "error"
+      );
+    } finally {
+      setLoading(false);
     }
   };
 
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
-
-  useEffect(() => {
-    return () => {
-      if (typingRef.current) {
-        clearInterval(typingRef.current);
-      }
-    };
-  }, []);
-
   return (
-    <Card className="max-w-md sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl mx-auto p-4 shadow-lg rounded-lg bg-white">
-      {/* Header */}
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-lg font-semibold text-gray-700">Norby</h2>
-        <Dropdown label="EN" inline={true}>
-          <Dropdown.Item>EN</Dropdown.Item>
-          <Dropdown.Item>KH</Dropdown.Item>
-        </Dropdown>
+    <div className="container mx-auto p-4 font-suwannaphum bg-[#15A1DF] mt-10 rounded-lg">
+      <div className="text-2xl font-bold mb-4 text-black text-center mx-auto">
+        Edit Article
       </div>
-
-      {/* Messages */}
-      <div className="overflow-auto h-96 p-2">
-        {messages.map((message, index) => (
-          <div
-            key={index}
-            className={`flex ${
-              message.sender === "bot" ? "justify-start" : "justify-end"
-            } mb-2`}
-          >
-            <div
-              className={`p-3 rounded-lg text-sm max-w-xs ${
-                message.sender === "bot"
-                  ? "bg-gray-100 text-gray-800"
-                  : "bg-red-500 text-white"
-              }`}
-            >
-              {message.text}
+      <form onSubmit={handleSubmit}>
+        <div className="mb-4">
+          <label className="block text-gray-700">Title</label>
+          <input
+            type="text"
+            name="title"
+            value={article.title}
+            onChange={handleChange}
+            className="w-full px-3 py-2 border rounded"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700">Description</label>
+          <textarea
+            name="content"
+            value={article.content}
+            onChange={handleChange}
+            className="w-full px-3 py-2 border rounded"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700">Image</label>
+          <input
+            type="file"
+            onChange={handleFileChange}
+            className="w-full px-3 py-2 border rounded"
+          />
+          {article.image && (
+            <div className="mt-2">
+              <img
+                src={article.image}
+                alt="Article"
+                className="w-32 h-32 object-cover"
+              />
             </div>
-          </div>
-        ))}
-        {isTyping && (
-          <div className="flex justify-start mb-2">
-            <div className="p-3 rounded-lg bg-gray-100 text-gray-800 text-sm max-w-xs">
-              Typing...
-            </div>
-          </div>
-        )}
-        <div ref={chatEndRef} />
-      </div>
-
-      {/* Input */}
-      <form onSubmit={handleSend} className="mt-4 flex items-center space-x-2">
-        <TextInput
-          type="text"
-          value={prompt}
-          onChange={(e) => setPrompt(e.target.value)}
-          placeholder="Type your message here..."
-          disabled={loading}
-          className="flex-1"
-        />
-        <Button
+          )}
+        </div>
+        <button
           type="submit"
-          className="w-10 h-10 p-0"
-          color="red"
+          className="px-4 py-2 bg-blue-600 text-white rounded"
           disabled={loading}
         >
-          {loading ? <Spinner size="sm" /> : "Send"}
-        </Button>
+          {loading ? "Submitting..." : "Submit"}
+        </button>
       </form>
-    </Card>
-  );
-}
-
-function App() {
-  const [showChat, setShowChat] = useState(false);
-
-  const handleClick = () => {
-    window.alert("This is your alert message!");
-  };
-
-  return (
-    <div className="p-4">
-      <section className="w-20 h-20">
-        <img
-          src="../src/assets/robot.png"
-          alt="Robot"
-          onClick={handleClick}
-          className="cursor-pointer"
-        />
-      </section>
-      {showChat && <GeminiChat />}
     </div>
   );
-}
+};
 
-export default App;
+export default EditArticle;

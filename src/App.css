@@ -51,3 +51,8 @@ html.dark {
   align-items: flex-start !important;
   margin-top: -10px;
 }
+
+/* TextEditor.css */
+#editor .ql-editor {
+  color: black !important; /* Enforce black text color */
+}
