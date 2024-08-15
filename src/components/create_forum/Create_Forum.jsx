@@ -1,266 +1,191 @@
-import { useEffect, useState } from "react";
-import { Button, Label, Textarea } from "flowbite-react";
-import { useParams } from "react-router-dom";
-import { fetchForumByid } from "../../services/fetchForumByid";
-import FooterCard from "../footer/FooterCard";
-import ReplyCard from "../rpCrad/ReplyCard";
-import axios from "axios";
-import { AUTH_HEADER } from "../../services/constants";
-import Swal from "sweetalert2";
+import React, { useEffect, useState } from "react";
+import { saveBook } from "../../services/fetchBooks";
+import { useNavigate } from "react-router-dom";
+import { API_BASE_URI } from "../../services/constants";
+import Swal from "sweetalert2"; // Import SweetAlert2
+import DOMPurify from "dompurify";
+import TextEditor from "../texteditor/TextEditor";
 
-const CreateComment = () => {
-  const { id } = useParams();
-  const bookId = decodeURIComponent(id);
-  const [forum, setForum] = useState(null);
-  const [formattedDate, setFormattedDate] = useState("");
-  const [showReplyForm, setShowReplyForm] = useState(false);
-  const [replyText, setReplyText] = useState("");
-  const [formData, setFormData] = useState({
-    forum_id: id,
-    content: "",
-  });
+const Create_Forum = () => {
+  const navigate = useNavigate();
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [image, setImage] = useState(null);
+  const [previewImage, setPreviewImage] = useState(null);
+  const [content, setContent] = useState(""); // This holds the rich text content
+
+  const onFormSubmited = async (e) => {
+    e.preventDefault();
+
+    let formData = new FormData();
+    formData.append("file", image);
+
+    try {
+      const response = await fetch(`${API_BASE_URI}upload/`, {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to upload image");
+      }
+
+      const json = await response.json();
+      console.log(json);
+
+      await saveBook({
+        title,
+        description,
+        image: json.url,
+        content: DOMPurify.sanitize(content), // Sanitize the rich text content
+      });
+
+      // Show success message
+      Swal.fire({
+        title: "Success!",
+        text: "Your post has been submitted successfully.",
+        icon: "success",
+        confirmButtonText: "OK",
+      }).then(() => {
+        navigate("/forum");
+      });
+    } catch (error) {
+      console.error(error);
+      // Show error message
+      Swal.fire({
+        title: "Error!",
+        text: "There was an issue submitting your post.",
+        icon: "error",
+        confirmButtonText: "Try Again",
+      });
+    }
+  };
 
   useEffect(() => {
-    const fetchForumData = async () => {
-      try {
-        const bookData = await fetchForumByid(encodeURIComponent(bookId));
-        setForum(bookData);
-        const date = new Date(bookData.updated_at);
-        setFormattedDate(
-          date.toLocaleString("en-US", {
-            month: "short",
-            day: "numeric",
-            year: "numeric",
-            hour: "numeric",
-            minute: "numeric",
-          })
-        );
-      } catch (error) {
-        console.error("Error fetching forums data:", error);
+    return () => {
+      if (previewImage) {
+        URL.revokeObjectURL(previewImage);
       }
     };
+  }, [previewImage]);
 
-    fetchForumData();
-  }, [bookId]);
-
-  const handleReplyClick = () => {
-    setShowReplyForm(!showReplyForm);
+  const onForumImage = (e) => {
+    const file = e.target.files[0];
+    setImage(file);
+    setPreviewImage(URL.createObjectURL(file));
   };
-
-  const handleReplyTextChange = (event) => {
-    setReplyText(event.target.value);
-  };
-
-  const handleReplySubmit = async (e) => {
-    e.preventDefault();
-
-    if (!replyText.trim()) {
-      Swal.fire({
-        icon: "warning",
-        title: "Oops...",
-        text: "Reply content cannot be empty.",
-      });
-      return;
-    }
-
-    try {
-      const response = await axios.post(
-        "http://136.228.158.126:50001/api/comments/",
-        {
-          forum_id: id,
-          content: replyText,
-        },
-        {
-          headers: {
-            ...AUTH_HEADER,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      if (response.status === 201) {
-        Swal.fire({
-          icon: "success",
-          title: "Success!",
-          text: "Your reply has been submitted.",
-        }).then(() => {
-          setReplyText("");
-          setShowReplyForm(false);
-        });
-      } else {
-        Swal.fire({
-          icon: "error",
-          title: "Error!",
-          text: response.data.message || "Error submitting reply",
-        });
-      }
-    } catch (error) {
-      console.error("Error submitting reply:", error);
-      Swal.fire({
-        icon: "error",
-        title: "Error!",
-        text: error.message,
-      });
-    }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post(
-        "http://136.228.158.126:50001/api/comments/",
-        formData,
-        {
-          headers: {
-            ...AUTH_HEADER,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      if (response.status === 201) {
-        Swal.fire({
-          icon: "success",
-          title: "Post Created!",
-          text: "Your post has been created successfully.",
-        }).then(() => {
-          setFormData({
-            forum_id: id,
-            content: "",
-          });
-          // Optionally, you can refresh the page or fetch updated data here
-          location.reload();
-        });
-      } else {
-        Swal.fire({
-          icon: "error",
-          title: "Error!",
-          text: response.data.message || "Error creating post",
-        });
-      }
-    } catch (error) {
-      console.error(
-        `Error creating post: ${error.response.status} - ${error.response.data}`
-      );
-      Swal.fire({
-        icon: "error",
-        title: "Error!",
-        text: error.message,
-      });
-    }
-  };
-
-  const handleFormDataChange = (event) => {
-    setFormData({
-      ...formData,
-      [event.target.name]: event.target.value,
-    });
-  };
-
-  if (!forum) {
-    return <div>Loading...</div>;
-  }
   return (
     <>
-      <main className="max-w-screen-xl mx-auto mt-10 px-4 sm:px-0">
-        <div className="w-full max-w-screen-lg mx-auto h-auto relative bg-white rounded-xl border border-black/30 p-5 sm:p-8 flex flex-col sm:flex-row sm:items-center">
-          <div className="sm:flex-1">
-            <h1 className="text-zinc-800 text-2xl sm:text-3xl font-semibold font-suwannaphum mb-3">
-              ចូលរួមជាមួយយើងដើម្បីបង្កើតសហគមន៍សិក្សា
-            </h1>
-            <p className="text-zinc-800 text-base sm:text-lg font-normal font-suwannaphum">
-              រីករាយក្នុងការសួរ
-              និងឆ្លើយសំណួរទាក់ទងនឹងជំនាញផ្សេងៗដើម្បីចែករំលែកចំណេះដឹងឲ្យគ្នាទៅវិញទៅមក
-            </p>
-          </div>
-          <div className="sm:w-[255px] sm:ml-8 mt-5 sm:mt-0">
+      <main className="max-w-7xl mx-auto p-4 space-y-4">
+        <div className="bg-white shadow rounded-lg p-6">
+          <div className="relative w-full bg-blue-600 rounded-lg overflow-hidden">
             <img
-              className="w-full h-auto rounded-xl object-cover"
-              src="../src/assets/Online learning (2).gif"
-              alt="Learing by yourself "
+              src="../src/assets/Discussion.gif"
+              alt="Cartoon"
+              className="object-cover h-[500px]"
             />
+            <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+              <div className="text-center">
+                <h1 className="text-3xl font-suwannaphum font-bold text-white">
+                  សំណួរ និង ដំណោះស្រាយ
+                </h1>
+                <span className="text-white font-suwannaphum mt-2 text-[20px]">
+                  ចួលរួមជាមួយពួកយើង​
+                  អ្នកអាចធ្វើការបង្កើតសំណួរនិងធ្វើការឆ្លើយសំណួរដែលទាក់ទងនិងស្ទែម
+                </span>
+              </div>
+            </div>
           </div>
         </div>
+        <div className="bg-white shadow rounded-lg p-6 font-suwannaphum">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-2 font-suwannaphum">
+            សួរសំណល់របស់អ្នកនៅទីនេះ
+          </h2>
+          <form onSubmit={onFormSubmited}>
+            <label
+              htmlFor="title"
+              className="block text-md leading-6 text-gray-900 font-bold font-suwannaphum" 
+            >
+              ចំណងជើង**
+            </label>
+            <TextEditor
+              value={title}
+              onChange={(content) => setTitle(content)}
+              className="text-black font-suwannaphum text-[20px]"
+            />
+            <label
+              htmlFor="description"
+              className="block text-md leading-6 text-black font-bold font-suwannaphum mt-4"
+            >
+              ចម្ងល់របស់អ្នក**
+            </label>
+            <TextEditor
+              value={description}
+              onChange={(content) => setDescription(content)}
+              className="text-black"
+            />
 
-        <section className="max-w-screen-xl mx-auto mt-10 px-4 sm:px-0 shadow-md rounded-xl font-suwannaphum">
-          <div className="w-[80%] mx-auto">
-            <div className="flex items-center mb-6">
-              <img
-                src={
-                  forum.profileUser ||
-                  "https://wallpapers.com/images/hd/smiling-close-up-oggy-and-the-cockroaches-71njhqoakbau7nbm.jpg"
-                }
-                alt="Avatar"
-                className="w-12 h-12 rounded-full mr-4 ml-5"
-              />
-              <div>
-                <div className="text-lg font-medium text-gray-800 ml-5">
-                  {forum.author}
-                </div>
-                <div className="text-gray-500 ml-5"> {formattedDate}</div>
-              </div>
-            </div>
-            <h3 className="text-[20px] leading-relaxed mb-6 font-bold ml-5 text-gray-500">
-              {forum.title}
-            </h3>
-            <p className="text-lg leading-relaxed mb-6 ml-5  text-gray-500">
-              {forum.description}
-            </p>
-            <div className="flex justify-center items-center hover:scale-95 transition-shadow duration-300">
-              <img
-                className="w-full max-w-screen-lg my-5 rounded-lg shadow-xl dark:shadow-gray-800 mt-7"
-                src={forum.image}
-                alt="image description"
-              />
-            </div>
-            <div className="flex justify-end items-center mr-5">
-              <div className="ml-5 mb-5">
-                <a
-                  href="#"
-                  className="text-gray-500 hover:text-gray-700 mr-4 mb-2"
-                >
-                  <i className="far fa-thumbs-up"></i> Like
-                </a>
 
-                <a
-                  className="text-gray-500 hover:text-gray-700"
-                  onClick={handleReplyClick}
-                >
-                  <i className="far fa-comment-alt "></i> Reply
-                </a>
-                {showReplyForm && (
-                  <div className="mt-4">
-                    <Label className="font-suwannaphum">Your Reply</Label>
-                    <form
-                      onSubmit={handleSubmit}
-                      className="max-w-2xl bg-white rounded-lg border p-2 mx-auto "
+<div className="col-span-full mt-4">
+              <label
+                htmlFor="file-upload"
+                className="block text-md font-bold leading-6 text-gray-900 font-suwannaphum"
+              >
+                រូបភាព**
+              </label>
+              <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+                <div className="text-center">
+                  <svg
+                    className="mx-auto h-12 w-12 text-gray-300"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <div className="mt-4 flex text-sm leading-6 text-gray-600">
+                    <label
+                      htmlFor="file-upload"
+                      className="relative cursor-pointer font-suwannaphum rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                     >
-                      <Textarea
-                        type="text"
-                        name="content"
-                        value={formData.content}
-                        onChange={handleFormDataChange}
-                        class="w-full  bg-gray-100 rounded border border-gray-400 leading-normal resize-none h-10 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
-                      />
-
-                      <button
-                        type="submit"
-                        className="px-2.5 py-1.5 rounded-md text-white text-sm bg-indigo-500"
-                      >
-                        Submit
-                      </button>
-                    </form>
+                      <span>ដាក់បញ្ចូលរូបភាព</span>
+                      <div>
+                        {previewImage && (
+                          <img
+                            src={previewImage}
+                            alt="Preview"
+                            className="mt-2 rounded-lg"
+                          />
+                        )}
+                        <input
+                          id="file-upload"
+                          name="file-upload"
+                          type="file"
+                          className="sr-only"
+                          onChange={onForumImage}
+                        />
+                      </div>
+                    </label>
                   </div>
-                )}
+                </div>
               </div>
             </div>
-          </div>
-        </section>
-        <div>
-          <ReplyCard forumId={id} />
+            <div className="flex items-center justify-between py-2 border-t dark:border-gray-600">
+              <button
+                type="submit"
+                className="inline-flex font-suwannaphum w-[100px] items-center py-2.5 px-4 text-md font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
+              >
+                បង្ហោះ
+              </button>
+            </div>
+          </form>
         </div>
       </main>
     </>
   );
 };
-
-export default CreateComment;
+export default Create_Forum;

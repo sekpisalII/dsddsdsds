@@ -109,7 +109,7 @@ const BookCard = () => {
           សូមស្វាគមន៍មកកាន់ STEM
         </marquee>
       </nav>
-      {/* Third section */}
+      {/* Slide bar */}
       <section className="relative w-[96%] mx-auto overflow-hidden rounded-lg mb-5 gap-5">
         <div
           className="flex transition-transform  ease-out duration-500"
@@ -130,28 +130,29 @@ const BookCard = () => {
                   />
                 </div>
                 <div className="p-3">
-                  <h4 className="block font-suwannaphum text-xl font-bold leading-snug tracking-normal text-blue-gray-900">
+                  <h4 className="block font-suwannaphum text-xl font-semibold leading-snug tracking-normal text-blue-gray-900">
                     {book.title}
                   </h4>
-                  <span className="mt-2 h-[50px] block mb-5  font-suwannaphum  text-l antialiased font-normal leading-relaxed text-gray-700">
+                  <span className="mt-2 h-[50px] block mb-5  font-suwannaphum  text-md antialiased font-normal leading-relaxed text-gray-900">
                     {book.description}
                   </span>
                 </div>
                 <div className="border-t">
-                  <div className="flex items-center justify-between p-3 mt-1 text-lg">
-                    <p className="font-suwannaphum  text-black">
+                  <div className="flex items-center justify-between p-3 mt-1">
+                    <p className="font-suwannaphum  text-black text-md">
                       ចំនួនអ្នកមេីល: {book.views} នាក់
                     </p>
-                    <div className="flex items-center ">
+                    <div className="flex items-center text-lg">
                       {[...Array(5)].map((_, i) => (
                         <svg
                           key={i}
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 24 24"
                           fill="currentColor"
-                          className="w-3 h-3 text-yellow-400"
+                          className="w-3 h-3 text-yellow-400 text-lg"
                         >
                           <path
+                          className="text-lg"
                             fillRule="evenodd"
                             d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
                             clipRule="evenodd"
@@ -185,7 +186,7 @@ const BookCard = () => {
             <div className="relative h-full w-full overflow-hidden ">
               <img
                 className="h-full w-full object-cover  rounded-t-lg "
-                src="../src/assets/stem_book.jpg"
+                src="../src/assets/Lesspn_STEM.jpg"
                 alt="Stem Book"
               />
               <div className="absolute inset-0 font-suwannaphum bg-transparent hover:bg-slate-300 opacity-0 hover:opacity-60 transition-opacity duration-300 ease-in-out flex items-center justify-center">
