@@ -3,6 +3,7 @@ import { fetchBlogById } from "../../services/fetchBlogById";
 import { useParams } from "react-router-dom";
 import { SlUserFollow } from "react-icons/sl";
 import moment from "moment";
+import "./styleBlog.css";
 const BlogDetail = () => {
   const { id } = useParams();
   const [blog, setBlog] = useState(null);
@@ -153,7 +154,7 @@ const BlogDetail = () => {
 
   return (
     <>
-      <section className="mt-8 w-[100%] mx-auto flex flex-col md:flex-row justify-between gap-8 p-8 font-suwannaphum ">
+      <section className="w-[100%] mx-auto flex flex-col md:flex-row justify-between gap-8 p-8 font-suwannaphum ">
         <div className="w-full h-full">
           <h1 className="text-2xl font-bold mb-4">{blog.title}</h1>
           <p className="mb-4 text-[16px]">{blog.content}</p>
@@ -190,9 +191,9 @@ const BlogDetail = () => {
               </span>
             </div>
             <div className="flex flex-col md:flex-row items-center space-x-3 space-y-2 md:space-y-0 ">
-              <div className="flex items-center space-x-2 text-sm md:text-base transition-opacity duration-300 hover:opacity-75"></div>
+              <div className="flex ml-60 items-center space-x-2 text-sm md:text-base transition-opacity duration-300 hover:opacity-75"></div>
               <div
-                className={`flex text-white space-x-2 py-1 px-2 md:py-2 md:px-4 rounded-xl cursor-pointer transition-all duration-300 ${
+                className={`flex items-center text-white space-x-2 py-1 px-2 md:py-2 md:px-4 rounded-xl cursor-pointer transition-all duration-300  ${
                   isFollowing
                     ? "bg-gray-400"
                     : "bg-[#16a1df] hover:bg-[#246a8b] transform hover:scale-105"
@@ -200,7 +201,7 @@ const BlogDetail = () => {
                 onClick={handleFollowToggle}
               >
                 <SlUserFollow className="text-sm mt-[2px] md:mt-[3px]" />
-                <button className="ml-1 -mt-[0.1px] text-sm md:text-base">
+                <button className="text-sm md:text-base ">
                   {isFollowing ? "ឈប់តាម" : "តាមដាន"}
                 </button>
               </div>
@@ -208,12 +209,12 @@ const BlogDetail = () => {
           </div>
           {/*  */}
 
-          <div className="w-full p-4 bg-gray-200 rounded-lg sticky top-52 ">
+          <div className="w-full p-4 bg-gray-200 rounded-lg sticky top-[250px] ">
             <ul>
               <li className="font-bold mb-4 ">អត្ថបទដែលពាក់ព័ន្ធ</li>
               {[...Array(4)].map((_, index) => (
                 <li key={index} className="flex items-center space-x-4">
-                  <div className="w-[60px] h-[60px] mt-3">
+                  <div className="w-[60px] h-[60px] mt-3 cursor-pointer">
                     <img
                       src={blog.image}
                       alt="Related article image"
@@ -222,7 +223,8 @@ const BlogDetail = () => {
                   </div>
 
                   <div>
-                    <span className="block​">{blog.title}</span>
+                    <p className="block title-truncate">{blog.title}</p>
+
                     <div className="text-[14px]">
                       បង្កើត: {moment(blog.created_at).format("MMMM D, YYYY")}
                     </div>
@@ -230,6 +232,12 @@ const BlogDetail = () => {
                 </li>
               ))}
             </ul>
+          </div>
+          <div className="w-full p-4 bg-gray-200 rounded-lg shadow-md items-center gap-2 font-suwannaphum sticky top-[630px]">
+            <h6 className="text-gray-800 font-semibold mb-2">ពាក្យគន្លឹះ:</h6>
+            <span className="mt-2 px-2 py-1 text-xs bg-gray-100 rounded-full text-gray-700 cursor-pointer hover:bg-blue-500 hover:text-white">
+              មិនទាន់មានពាក្យគន្លឹះទេ
+            </span>
           </div>
         </div>
       </section>
