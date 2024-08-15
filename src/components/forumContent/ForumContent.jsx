@@ -9,7 +9,7 @@ const ForumContent = () => {
     if (!access_token) {
       navigate("/login");
     } else {
-      navigate(path);
+      navigate(path);   
     }
   };
   return (
@@ -105,11 +105,12 @@ const ForumContent = () => {
               </li>
             </ul>
           </div>
-        </aside> 
+        </aside>
 
     </main>
-  </div>
+   </div>
   );
+
 };
 
 export default ForumContent;

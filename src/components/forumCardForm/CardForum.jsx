@@ -22,7 +22,7 @@ export default function CardForum({ forums }) {
   const handleToggle = () => setIsExpanded(!isExpanded);
 
   return (
-    <div className="card bg-white shadow rounded-lg hover:shadow-md transition-shadow duration-300">
+    <div className="card bg-white shadow rounded-lg hover:shadow-md transition-shadow duration-300 xl:w-[95%]">
       <Link to={`/createComment/${forums.id}`} className="block">
         <div className="flex items-center mb-3">
           <img
@@ -42,14 +42,18 @@ export default function CardForum({ forums }) {
             </p>
           </div>
         </div>
-        <h2 className="card-title" dangerouslySetInnerHTML={{ __html: forums.title || "No title" }}>
-        </h2>
+        <h2
+          className="card-title"
+          dangerouslySetInnerHTML={{ __html: forums.title || "No title" }}
+        ></h2>
         <p
           className={`text-base text-gray-700 font-suwannaphum ${
             isExpanded ? "" : "line-clamp-2"
-          }`}  dangerouslySetInnerHTML={{ __html: forums.description || "No description" }}
-        >
-        </p>
+          }`}
+          dangerouslySetInnerHTML={{
+            __html: forums.description || "No description",
+          }}
+        ></p>
         <button
           onClick={handleToggle}
           className="mt-2 text-indigo-600 hover:underline focus:outline-none text-sm"

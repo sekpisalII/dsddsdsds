@@ -36,7 +36,11 @@ const EditArticle = () => {
         setArticle(data);
       } catch (error) {
         console.error("Error fetching article data:", error);
-        Swal.fire("Error", "Failed to fetch article data. Please try again.", "error");
+        Swal.fire(
+          "Error",
+          "Failed to fetch article data. Please try again.",
+          "error"
+        );
       } finally {
         setLoading(false);
       }
@@ -86,7 +90,11 @@ const EditArticle = () => {
         imageUrl = uploadResult.url; // Extract URL from the response
       } catch (error) {
         console.error("Error uploading image:", error);
-        Swal.fire("Error", "Failed to upload image. Please try again.", "error");
+        Swal.fire(
+          "Error",
+          "Failed to upload image. Please try again.",
+          "error"
+        );
         setLoading(false);
         return;
       }
@@ -119,7 +127,11 @@ const EditArticle = () => {
       }
     } catch (error) {
       console.error("Error updating article:", error);
-      Swal.fire("Error", "Failed to update article. Please try again.", "error");
+      Swal.fire(
+        "Error",
+        "Failed to update article. Please try again.",
+        "error"
+      );
     } finally {
       setLoading(false);
     }
@@ -174,7 +186,7 @@ const EditArticle = () => {
           className="px-4 py-2 bg-blue-600 text-white rounded"
           disabled={loading}
         >
-          {loading ? 'Submitting...' : 'Submit'}
+          {loading ? "Submitting..." : "Submit"}
         </button>
       </form>
     </div>

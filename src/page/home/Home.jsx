@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
-import { Avatar, Dropdown, Navbar, Button } from "flowbite-react";
-import { LuLayoutDashboard } from "react-icons/lu";
-import { GrArticle } from "react-icons/gr";
-import { IoSettingsSharp } from "react-icons/io5";
-import { RiLogoutBoxLine } from "react-icons/ri";
+
 import { AUTH_HEADER } from "../../services/constants";
 import Background from "../../components/background/Background";
 import BookCard from "../../components/bookCard/BookCard";

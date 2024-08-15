@@ -1,4 +1,3 @@
- 
 import React, { useEffect, useState } from "react";
 import ForumContent from "../../components/forumContent/ForumContent";
 import FooterCard from "../../components/footer/FooterCard";
