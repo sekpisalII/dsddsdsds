@@ -126,7 +126,7 @@ const EditArticle = () => {
 
       if (response.ok) {
         Swal.fire("Success", "Article updated successfully.", "success");
-        navigate("/blog");
+        navigate("/Article");
       } else {
         const errorText = await response.text();
         console.error("Error response:", errorText);
